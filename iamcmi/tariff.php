@@ -95,7 +95,7 @@
               <div class="row" >
                 <div class="col-md-2" align="left">รหัสรถ :</div>
                 <div class="col-md-2" >
-                  <input type="text" class="form-control" placeholder="Vehical Code" id="tarVehCodePK" name="tarVehCodePK" value='<?php echo $tarVehCodePK ?>'>
+                  <input type="text" class="form-control" placeholder="Vehical Code" id="tarVehCodePK" name="tarVehCodePK" value='<?php echo $tarVehCodePK ?>' required>
                   <input type="hidden" class="form-control" id="tarIDPK" name="tarIDPK" value='<?php echo $tarIDPK ?>' >
                 </div>
               </div>  
@@ -104,17 +104,17 @@
                 <div class="col-md-2" align="left">ความจุ :</div>
                 <div class="col-md-2">
                   <input type="text" class="form-control" id="vehCapacity" name="vehCapacity" value=""
-                    placeholder="ความจุ">
+                    placeholder="ความจุ" required>
                 </div>
                 <div class="col-md-2" align="right">น้ำหนัก :</div>
                 <div class="col-md-2">
                   <input type="text" class="form-control" id="vehWeight" name="vehWeight" value=""
-                    placeholder="น้ำหนัก">
+                    placeholder="น้ำหนัก" required>
                 </div>
                 <div class="col-md-2" align="right">จำนวนที่นั่ง :</div>
                 <div class="col-md-2">
                   <input type="text" class="form-control" id="vehSeat" name="vehSeat" value=""
-                    placeholder="จำนวนที่นั่ง">
+                    placeholder="จำนวนที่นั่ง" required>
                 </div>
               </div>
               <br>
@@ -122,12 +122,12 @@
                 <div class="col-md-2" align="left">เลขตัวถัง :</div>
                 <div class="col-md-2">
                   <input type="text" class="form-control" id="vehChassisNum" name="vehChassisNum" value=""
-                    placeholder="เลขตัวถัง">
+                    placeholder="เลขตัวถัง" required>
                 </div>
                 <div class="col-md-2" align="right">ทะเบียนรถ:</div>
                 <div class="col-md-2">
                   <input type="text" class="form-control" id="vehLicenseNum" name="vehLicenseNum" value=""
-                    placeholder="ทะเบียนรถ">
+                    placeholder="ทะเบียนรถ" required>
                 </div>
                 
               </div>
@@ -144,19 +144,19 @@
                 <div class="col-md-2" align="left">เบี้ยสุทธิ :</div>
                 <div class="col-md-2">
                   <input type="text" class="form-control" id="premNet" name="premNet" value='<?php echo $premNet ?>'
-                    placeholder="เบี้ยสุทธิ" >
-                  <input type="hidden" class="form-control" id="premStdNet" name="premStdNet" value='<?php echo $premStdNet ?>'>  
+                    placeholder="เบี้ยสุทธิ" required>
+                  <input type="hidden" class="form-control" id="premStdNet" name="premStdNet" value='<?php echo $premStdNet ?>' >  
                 </div>
                 <div class="col-md-2" align="right">ภาษีมูลค่าเพิ่ม :</div>
                 <div class="col-md-2">
                   <input type="text" class="form-control" id="premVat" name="premVat" value='<?php echo $premVat ?>'
-                    placeholder="ภาษีมูลค่าเพิ่ม" >
+                    placeholder="ภาษีมูลค่าเพิ่ม" required>
                   <input type="hidden" class="form-control" id="premStdVat" name="premStdVat" value='<?php echo $premStdVat ?>'>  
                 </div>
                 <div class="col-md-2" align="right">อากรสแตมป์ :</div>
                 <div class="col-md-2">
                   <input type="text" class="form-control" id="premStampDuty" name="premStampDuty" value='<?php echo $premStampDuty ?>'
-                    placeholder="อากรสแตมป์" >
+                    placeholder="อากรสแตมป์" required>
                   <input type="hidden" class="form-control" id="premStdStampDuty" name="premStdStampDuty" value='<?php echo $premStdStampDuty ?>'>
                 </div>
               </div>
@@ -165,7 +165,7 @@
                 <div class="col-md-2" align="left">เบี้ยรวม:</div>
                 <div class="col-md-2">
                   <input type="text" class="form-control" id="premTotal" name="premTotal" value='<?php echo $premTotal ?>'
-                    placeholder="เบี้ยรวม" >
+                    placeholder="เบี้ยรวม" required>
                   <input type="hidden" class="form-control" id="premStdTotal" name="premStdTotal" value='<?php echo $premStdTotal ?>'>    
                 </div>        
               </div>

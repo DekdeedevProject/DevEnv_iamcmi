@@ -292,7 +292,7 @@ $quoQueryResult = executeSql($conn,$sqlID);
 					<div class="date" id="datetimepicker">						
 						<div id="datetimepicker4" class="input-group date"> 
 			               <input type="text" class="form-control" data-format="dd-MM-yyyy HH:mm:ss" placeholder="วันที่เริ่มคุ้มครอง" 
-							id="polEffDate" name="polEffDate" value='<?php echo $polEffDate; ?>'>
+							id="polEffDate" name="polEffDate" value='<?php echo $polEffDate; ?>' required>
 			                <span class="add-on"> 
 			                    <i class="glyphicon glyphicon-calendar cld"></i> 
 			                </span> 
@@ -305,7 +305,7 @@ $quoQueryResult = executeSql($conn,$sqlID);
 					<div class="date" id="datetimepicker">						
 						<div id="datetimepicker5" class="input-group date"> 
 				             <input type="text" class="form-control" data-format="dd-MM-yyyy HH:mm:ss"  placeholder="วันสิ้นสุดความคุ้มครอง" 
-								id="polExpDate" name="polExpDate" value='<?php echo $polExpDate ?>'>
+								id="polExpDate" name="polExpDate" value='<?php echo $polExpDate ?>' required>
 							 <div class="add-on"> 
 				                <i class="glyphicon glyphicon-calendar cld"></i> 
 				             </div> 
@@ -324,7 +324,7 @@ $quoQueryResult = executeSql($conn,$sqlID);
 			<div class="row">
 				<div class="col-md-2" align="left">ยี่ห้อ :</div>
 				<div class="col-md-2" name="redMake" id="redMake">
-				<input type="hidden" name="redMakeName" id="redMakeName" value='<?php echo $redMake ?>'/>
+				<input type="hidden" name="redMakeName" id="redMakeName" value='<?php echo $redMake ?>' required/>
 					
 					<select class="form-control">
 						<option>กรุณาเลือก</option>
@@ -332,14 +332,14 @@ $quoQueryResult = executeSql($conn,$sqlID);
 				</div>
 				<div class="col-md-2" align="right">รุ่น :</div>
 				<div class="col-md-2" name="redModel" id="redModel">
-				<input type="hidden" name="redModelName" id="redModelName" value='<?php echo $redModel ?>'/>
+				<input type="hidden" name="redModelName" id="redModelName" value='<?php echo $redModel ?>' required/>
 					<select class="form-control">
 						<option>กรุณาเลือก</option>
 					</select>
 				</div>
 				<div class="col-md-2" align="right">ปี :</div>
 				<div class="col-md-2" name="redYear" id="redYear">
-				<input type="hidden" name="redYearName" id="redYearName" value='<?php echo $redYear ?>'/>
+				<input type="hidden" name="redYearName" id="redYearName" value='<?php echo $redYear ?>' required/>
 					<select class="form-control">
 						<option>กรุณาเลือก</option>
 					</select>
@@ -349,7 +349,7 @@ $quoQueryResult = executeSql($conn,$sqlID);
 			<div class="row">
 				<div class="col-md-2" align="left">รุ่นย่อย :</div>
 				<div class="col-md-2" name="redDesc" id="redDesc" >
-				<input type="hidden" name="redDescName" id="redDescName" value='<?php echo $redDesc ?>'/>	
+				<input type="hidden" name="redDescName" id="redDescName" value='<?php echo $redDesc ?>' required/>	
 					<select class="form-control">
 						<option>กรุณาเลือก</option>
 					</select>
@@ -357,13 +357,13 @@ $quoQueryResult = executeSql($conn,$sqlID);
 				
 				<div class="col-md-2" align="right">รหัสรถ :</div>
 				<div class="col-md-2" id="redKey">
-					<input type="text" id="redKey" name="redKey" class="form-control" placeholder="รหัสรถ" value='<?php echo $redKey ?>'>
+					<input type="text" id="redKey" name="redKey" class="form-control" placeholder="รหัสรถ" value='<?php echo $redKey ?>' required/>
 					<div class="col-md-2" align="right"><a href="#">+Add+</a></div>
 				</div>
 				<div class="col-md-2" align="right">รหัสตัวแทน :</div>
 				<div class="col-md-2">
 					<input type="text" class="form-control" id="AgreeCode"
-						placeholder="รหัสตัวแทน">
+						placeholder="รหัสตัวแทน" required>
 				</div>
 			</div>
 			<br>
@@ -377,7 +377,7 @@ $quoQueryResult = executeSql($conn,$sqlID);
 
 				<div class="col-md-2" align="left">ประเภท :</div>
 				<div class="col-md-2" name="tarBody" id="tarBody">
-				<input type="hidden" name="tarBodyName" id="tarBodyName" value='<?php echo $tarBodyNameTH ?>'/>
+				<input type="hidden" name="tarBodyName" id="tarBodyName" value='<?php echo $tarBodyNameTH ?>' required/>
 				<select class="form-control">
 						<option>กรุณาเลือก</option>
 				</select>	
@@ -385,14 +385,14 @@ $quoQueryResult = executeSql($conn,$sqlID);
 				
 				<div class="col-md-2" align="right">ประเภทย่อย :</div>
 				<div class="col-md-2" name="tarSubBody" id="tarSubBody" >
-				<input type="hidden" name="tarSubBodyName" id="tarSubBodyName" value='<?php echo $tarSubBodyNameTH ?>'/>
+				<input type="hidden" name="tarSubBodyName" id="tarSubBodyName" value='<?php echo $tarSubBodyNameTH ?>' required/>
 				<select class="form-control">
 						<option>กรุณาเลือก</option>
 				</select>	
 				</div>
 				<div class="col-md-2" align="right">การใช้งาน :</div>
 				<div class="col-md-2" name="tarUsage" id="tarUsage">
-				<input type="hidden" name="tarUsageName" id="tarUsageName" value='<?php echo $tarUsageNameTH ?>'/>
+				<input type="hidden" name="tarUsageName" id="tarUsageName" value='<?php echo $tarUsageNameTH ?>' required/>
 				<select class="form-control">
 						<option>กรุณาเลือก</option>
 				</select>	
@@ -404,7 +404,7 @@ $quoQueryResult = executeSql($conn,$sqlID);
 				
 				<div class="col-md-2" align="left">รหัสรถ :</div>
 				<div class="col-md-2" >
-					<input type="text" id="tarVehCodePK" name="tarVehCodePK" class="form-control" placeholder="Vehical Code" value='<?php echo $tarVehCodePK ?>'>
+					<input type="text" id="tarVehCodePK" name="tarVehCodePK" class="form-control" placeholder="Vehical Code" value='<?php echo $tarVehCodePK ?>' required>
 				</div>
 			</div>	
 			<br>
@@ -412,17 +412,17 @@ $quoQueryResult = executeSql($conn,$sqlID);
 				<div class="col-md-2" align="left">ความจุ :</div>
 				<div class="col-md-2">
 					<input type="text" class="form-control" id="vehCapacity" name="vehCapacity" value='<?php echo $vehCapacity ?>'
-						placeholder="ความจุ">
+						placeholder="ความจุ" required/>
 				</div>
 				<div class="col-md-2" align="right">น้ำหนัก :</div>
 				<div class="col-md-2">
 					<input type="text" class="form-control" id="vehWeight" name="vehWeight" value='<?php echo $vehWeight ?>'
-						placeholder="น้ำหนัก">
+						placeholder="น้ำหนัก" required/>
 				</div>
 				<div class="col-md-2" align="right">จำนวนที่นั่ง :</div>
 				<div class="col-md-2">
 					<input type="text" class="form-control" id="vehSeat" name="vehSeat" value='<?php echo $vehSeat ?>'
-						placeholder="จำนวนที่นั่ง">
+						placeholder="จำนวนที่นั่ง" required/> 
 				</div>
 			</div>
 			<br>
@@ -430,12 +430,12 @@ $quoQueryResult = executeSql($conn,$sqlID);
 				<div class="col-md-2" align="left">เลขตัวถัง :</div>
 				<div class="col-md-2">
 					<input type="text" class="form-control" id="vehChassisNum" name="vehChassisNum" value='<?php echo $vehChassisNum ?>'
-						placeholder="เลขตัวถัง">
+						placeholder="เลขตัวถัง" required>
 				</div>
 				<div class="col-md-2" align="right">ทะเบียนรถ:</div>
 				<div class="col-md-2">
 					<input type="text" class="form-control" id="vehLicenseNum" name="vehLicenseNum" value='<?php echo $vehLicenseNum ?>'
-						placeholder="ทะเบียนรถ">
+						placeholder="ทะเบียนรถ" required>
 				</div>
 				
 			</div>
@@ -453,19 +453,19 @@ $quoQueryResult = executeSql($conn,$sqlID);
 				<div class="col-md-2">
 					<input type="hidden" class="form-control" id="premStdNet" name="premStdNet" value='<?php echo $premStdNet ?>'>	
 					<input type="text" class="form-control" id="premNet" name="premNet" value='<?php echo $premNet ?>'
-						placeholder="เบี้ยสุทธิ" >
+						placeholder="เบี้ยสุทธิ" required >
 				</div>
 				<div class="col-md-2" align="right">ภาษีมูลค่าเพิ่ม :</div>
 				<div class="col-md-2">
 					<input type="hidden" class="form-control" id="premStdVat" name="premStdVat" value='<?php echo $premStdVat ?>'>	
 					<input type="text" class="form-control" id="premVat" name="premVat" value='<?php echo $premVat ?>'
-						placeholder="ภาษีมูลค่าเพิ่ม" >
+						placeholder="ภาษีมูลค่าเพิ่ม" required >
 				</div>
 				<div class="col-md-2" align="right">อากรสแตมป์ :</div>
 				<div class="col-md-2">
 					<input type="hidden" class="form-control" id="premStdStampDuty" name="premStdStampDuty" value='<?php echo $premStdStampDuty ?>'>
 					<input type="text" class="form-control" id="premStampDuty" name="premStampDuty" value='<?php echo $premStampDuty ?>'
-						placeholder="อากรสแตมป์" >
+						placeholder="อากรสแตมป์" required >
 				</div>
 			</div>
 			<br>
@@ -474,7 +474,7 @@ $quoQueryResult = executeSql($conn,$sqlID);
 				<div class="col-md-2">
 					<input type="hidden" class="form-control" id="premStdTotal" name="premStdTotal" value='<?php echo $premStdTotal ?>'>	
 					<input type="text" class="form-control" id="premTotal" name="premTotal" value='<?php echo $premTotal ?>'
-						placeholder="เบี้ยรวม" >
+						placeholder="เบี้ยรวม" required >
 				</div>				
 			</div>
 			</span>
@@ -502,12 +502,12 @@ $quoQueryResult = executeSql($conn,$sqlID);
 				<div class="col-md-2" align="right">ชื่อ :</div>
 				<div class="col-md-2">
 					<input type="text" class="form-control" id="perFName" name="perFName" value='<?php echo $perFName ?>'
-						placeholder="ชื่อ" >
+						placeholder="ชื่อ" required>
 				</div>
 				<div class="col-md-2" align="right">นามสกุล :</div>
 				<div class="col-md-2">
 					<input type="text" class="form-control" id="perLName" name="perLName" value='<?php echo $perLName ?>'
-						placeholder="นามสกุล" >
+						placeholder="นามสกุล" required>
 				</div>
 			</div>
 			<br>
@@ -517,7 +517,7 @@ $quoQueryResult = executeSql($conn,$sqlID);
 					<div class="date" id="datetimepicker6">						
 						<div id="datetimepicker6" class="input-group date"> 
 			               <input type="text" class="form-control" data-format="dd-MM-yyyy" placeholder="วันเกิด" 
-							id="perDOB" name="perDOB" value='<?php echo $perDOB; ?>'>
+							id="perDOB" name="perDOB" value='<?php echo $perDOB; ?>' required>
 			                <span class="add-on"> 
 			                    <i class="glyphicon glyphicon-calendar cld"></i> 
 			                </span> 
@@ -529,21 +529,21 @@ $quoQueryResult = executeSql($conn,$sqlID);
 			<div class="row">				
 				<div class="col-md-2" align="left">ประเภทบัตร :</div>
 				<div class="col-md-2" name="perCardType" id="perCardType"> 
-					<select class="form-control">				
+					<select class="form-control" required>				
 					<option>กรุณาเลือก</option>
 					</select>
 				</div>
 				<div class="col-md-2" align="right">เลขที่บัตร :</div>
 				<div class="col-md-2">
 					<input type="text" class="form-control" id="perCardNo" name="perCardNo" value='<?php echo $perCardNo ?>'
-						placeholder="เลขที่บัตร" >
+						placeholder="เลขที่บัตร" required>
 				</div>
 				<div class="col-md-2" align="right">วันหมดอายุ :</div>
 				<div class="col-md-2">
 					<div class="date" id="datetimepicker7">						
 						<div id="datetimepicker7" class="input-group date"> 
 			               <input type="text" class="form-control" data-format="dd-MM-yyyy" placeholder="วันหมดอายุ" 
-							id="perExpDate" name="perExpDate" value='<?php echo $perDOB; ?>'>
+							id="perExpDate" name="perExpDate" value='<?php echo $perDOB; ?>' required>
 			                <span class="add-on"> 
 			                    <i class="glyphicon glyphicon-calendar cld"></i> 
 			                </span> 
@@ -556,12 +556,12 @@ $quoQueryResult = executeSql($conn,$sqlID);
 				<div class="col-md-2" align="left">บ้านเลขที่1 :</div>
 				<div class="col-md-2">
 					<input type="text" class="form-control" id="addrLine1" name="addrLine1" value='<?php echo $addrLine1 ?>'
-						placeholder="บ้านเลขที่1">
+						placeholder="บ้านเลขที่1" required>
 				</div>
 				<div class="col-md-2" align="right">บ้านเลขที่2 :</div>
 				<div class="col-md-2">
 					<input type="text" class="form-control" id="addrLine2" name="addrLine2" value='<?php echo $addrLine2 ?>'
-						placeholder="บ้านเลขที่2">
+						placeholder="บ้านเลขที่2" required>
 				</div>
 			</div>
 			<br>
@@ -598,7 +598,7 @@ $quoQueryResult = executeSql($conn,$sqlID);
 			<div class="row">
 				<div class="col-md-2" align="left">อีเมล์ :</div>
 				<div class="col-md-2">
-					<input type="text" class="form-control" placeholder="อีเมล์" id="addrEmail"  name="addrEmail" value='<?php echo $addrEmail ?>'>
+					<input type="text" class="form-control" placeholder="อีเมล์" id="addrEmail"  name="addrEmail" value='<?php echo $addrEmail ?>' required>
 				</div>
 				<div class="col-md-2" align="right">ประเภทเบอร์ติดต่อ:</div>
 				<div class="col-md-2" name="addrContType1" id="addrContType1"> 
@@ -609,7 +609,7 @@ $quoQueryResult = executeSql($conn,$sqlID);
 				<div class="col-md-2" align="right">เบอร์ติดต่อ:</div>
 				<div class="col-md-2">
 					<input type="text" class="form-control" id="addrContNum1"
-						placeholder="เบอร์ติดต่อ" name="addrContNum1" value='<?php echo $addrContNum1 ?>'>
+						placeholder="เบอร์ติดต่อ" name="addrContNum1" value='<?php echo $addrContNum1 ?>' required>
 				</div>
 			</div>
 			<br>

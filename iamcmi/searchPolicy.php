@@ -256,18 +256,18 @@ $no=1;
 ?>
 			<tr align="left">
 		     	<th scope="row"><?php echo $no++; ?></th>
-				<td><?php echo $searchRow["POL_QuoNum"] ?></td>
-				<td><?php echo $searchRow["POL_EffDate"] ?></td>
-				<td><?php echo $searchRow["POL_StatusName_EN"] ?></td>
-				<td><?php echo "xxx.xx" ?></td>
-				<td><?php echo "Paid/Outstanding" ?></td>
 				<td>
 				<form action="policySearchCheck.php" id="cmi" method="GET">	
 					<input type="hidden" name="polStatusIDFK" id='<?php echo $searchRow["POL_Status_ID_FK"] ?>' value='<?php echo $searchRow["POL_Status_ID_FK"] ?>'/>
 					<input type="hidden" name="polQuoNum" id='<?php echo $searchRow["POL_ID_PK"] ?>' value='<?php echo $searchRow["POL_QuoNum"] ?>'/>
-					<input type="Submit"/>
+					<input type="Submit" value='<?php echo $searchRow["POL_QuoNum"] ?>'/>
 				</form>	
 				</td>
+				<td><?php echo $searchRow["POL_EffDate"] ?></td>
+				<td><?php echo $searchRow["POL_StatusName_TH"] ?></td>
+				<td><?php echo "xxx.xx" ?></td>
+				<td><?php echo "Paid/Outstanding" ?></td>
+				<td></td>
 			</tr>
 <?php	
 	}

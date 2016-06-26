@@ -170,7 +170,7 @@ redirect("policyCreateStep1.php");
 // echo "<a href='policyCreateStep1.php'><input type='Button' value='Next' class='btn btn-primary btn-md'/></a>";	
 }
 else{
-// redirect("policyCreateStep3.php");
+redirect("policyCreateStep2.php");
 // echo "<a href='policyCreateStep2.php'><input type='Button' value='Next' class='btn btn-primary btn-md'/></a>";
 }
 connClose($conn);

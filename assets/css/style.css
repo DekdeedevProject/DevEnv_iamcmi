@@ -184,7 +184,6 @@ h1 a.navbar-brand {
 	font-size:10px; 
 	height:45px;
 	color:#828282;
-	display: flex;
 }
 
 .cld{
@@ -198,8 +197,9 @@ h1 a.navbar-brand {
 
 
 #Homepage {
-    padding: 100px 0 60px;
+    padding-bottom: 13.5%;
     background-color:orange;
+    display: block;
 }
 
 
