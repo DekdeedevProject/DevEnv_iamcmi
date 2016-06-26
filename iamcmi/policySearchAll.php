@@ -100,8 +100,10 @@ $searchResultSize = $searchResult->num_rows;
 				</div>
 			</div>
 		
+			<fieldset>
 			<ul class="nav nav-tabs">
-				<li class="active"><a href="#">Policy Information</a></li>
+				<li class="active"><a href="policySearchAll.php">Policy Information</a></li>
+				<li class="active"><a href="financeSearch.php">Finance Information</a></li>
 			</ul>
 			<div class="row">
 				<div class="col-md-2">
@@ -113,8 +115,10 @@ $searchResultSize = $searchResult->num_rows;
 			<tr>
 				<th>No.</th>
 				<th>Policy No.</th>
-				<th>Status</th>
 				<th>Effective Date</th>
+				<th>Policy Status</th>
+				<th>Total Premium</th>
+				<th>Payment Status</th>
 				<th></th>
 			</tr>
 			<?php 
@@ -127,8 +131,10 @@ $searchResultSize = $searchResult->num_rows;
 				   
 				    	<td><?php echo $no++; ?></td>
 						<td><?php echo $searchRow["POL_QuoNum"] ?></td>
-						<td><?php echo $searchRow["POL_StatusName_EN"] ?></td>
 						<td><?php echo $searchRow["POL_EffDate"] ?></td>
+						<td><?php echo $searchRow["POL_StatusName_EN"] ?></td>
+						<td><?php echo "xxx.xx" ?></td>
+						<td><?php echo "Paid/Outstanding" ?></td>
 						<td>
 						<form action="policySearchCheck.php" id="cmi" method="GET">	
 							<input type="hidden" name="polStatusIDFK" id='<?php echo $searchRow["POL_Status_ID_FK"] ?>' value='<?php echo $searchRow["POL_Status_ID_FK"] ?>'/>
