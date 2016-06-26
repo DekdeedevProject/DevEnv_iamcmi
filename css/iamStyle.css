@@ -1,3 +1,5 @@
+@media (min-width: @screen-lg-min) { }
+
 .navbar{
 
 	height:120px;
@@ -59,7 +61,21 @@ body {
   vertical-align: top;
 }
 
-.confDiv{
-  height: 100%;
-  background-color: orange;
+.input-group-btn:first-child > .btn, .input-group-btn:first-child > .btn-group {
+    margin-right: -1px;
+    display: -webkit-box;
 }
+
+.issCont{
+  height: 423px;
+}
+
+.confDiv{
+  background-color: orange;
+  height: 100%;
+}
+
+.modal-body {
+    max-height: 80vh; 
+}
+

@@ -60,7 +60,7 @@ unset($_SESSION["polQuoNum"]);
                                 <div class="hi-icon-effect-9 hi-icon-effect-9a">
                                     <a href="policyCreateStep1.php" onMouseOver="document.MyImage1.src='../img/create-hover.png'; " onMouseOut="document.MyImage1.src='../img/create-icono.png';"><img src="../img/create-icono.png" width="120" height="120"  name="MyImage1"></a> 
                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                              
-                                    <a href="policySearchAll.php" onMouseOver="document.MyImage2.src='../img/query-hover.png';" onMouseOut="document.MyImage2.src='../img/search-icono.png';"><img src="../img/search-icono.png" width="120" height="120" name="MyImage2"></a>
+                                    <a href="searchPolicy.php" onMouseOver="document.MyImage2.src='../img/query-hover.png';" onMouseOut="document.MyImage2.src='../img/search-icono.png';"><img src="../img/search-icono.png" width="120" height="120" name="MyImage2"></a>
                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
                                     <a href="#.php" onMouseOver="document.MyImage3.src='../img/print-hover.png';" onMouseOut="document.MyImage3.src='../img/print-icono.png';"><img src="../img/print-icono.png" width="120" height="120" name="MyImage3"></a>
                                 </div>
