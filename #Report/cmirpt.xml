@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CrystalReport xmlns="urn:crystal-reports:schemas:report-detail"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:crystal-reports:schemas:report-detail http://www.businessobjects.com/products/xml/CR2008Schema.xsd">
+<ReportHeader>
+<Section SectionNumber="0">
+</Section>
+</ReportHeader>
+<Details Level="1">
+<Section SectionNumber="0">
+<Text Name="Text5"><TextValue>วันที่บันทึก :</TextValue>
+</Text>
+<Text Name="Text6"><TextValue>วันที่พิมพ์ :</TextValue>
+</Text>
+<Text Name="Text10"><TextValue>ตารางกรมธรรม์ประกันภัยคุ้มครองผู้ประสบภัยจากรถ / ใบเสร็จรับเงิน / ใบกำกับภาษี
+THE SCHEDULE RECEIPT / TAX INVOICE</TextValue>
+</Text>
+<Text Name="Text11"><TextValue>รหัสบริษัท</TextValue>
+</Text>
+<Text Name="Text12"><TextValue>SEI</TextValue>
+</Text>
+<Text Name="Text13"><TextValue>กรมธรรม์ประกันภัยเลขที่</TextValue>
+</Text>
+<Text Name="Text14"><TextValue>Policy No.</TextValue>
+</Text>
+<Text Name="Text15"><TextValue>รายการ</TextValue>
+</Text>
+<Text Name="Text16"><TextValue>1. ผู้เอาประกันภัย</TextValue>
+</Text>
+<Text Name="Text17"><TextValue>1. The Insured</TextValue>
+</Text>
+<Text Name="Text18"><TextValue>ชื่อ :</TextValue>
+</Text>
+<Text Name="Text19"><TextValue>ที่อยู่ :</TextValue>
+</Text>
+<Text Name="Text20"><TextValue>Name</TextValue>
+</Text>
+<Text Name="Text21"><TextValue>Address</TextValue>
+</Text>
+<Text Name="Text22"><TextValue>เลขประจำตัวผู้เสียภาษีอากร :
+</TextValue>
+</Text>
+<Text Name="Text23"><TextValue>อาณาเขตที่คุ้มครอง</TextValue>
+</Text>
+<Text Name="Text24"><TextValue>: ประเทศไทย</TextValue>
+</Text>
+<Text Name="Text25"><TextValue>Territoral Limit Covered</TextValue>
+</Text>
+<Text Name="Text26"><TextValue>Thailand</TextValue>
+</Text>
+<Text Name="Text27"><TextValue>รายการ</TextValue>
+</Text>
+<Text Name="Text28"><TextValue>Item</TextValue>
+</Text>
+<Text Name="Text29"><TextValue>2. ระยะเวลาประกันภัย :</TextValue>
+</Text>
+<Text Name="Text31"><TextValue>2. Period Insured</TextValue>
+</Text>
+<Text Name="Text32"><TextValue>เริ่มต้นวันที่</TextValue>
+</Text>
+<Text Name="Text33"><TextValue>ถึงวันที่</TextValue>
+</Text>
+<Text Name="Text34"><TextValue>From</TextValue>
+</Text>
+<Text Name="Text35"><TextValue>To</TextValue>
+</Text>
+<Text Name="Text36"><TextValue>เวลา 16:30 น.</TextValue>
+</Text>
+<Text Name="Text37"><TextValue>at 16:30 hours</TextValue>
+</Text>
+<Text Name="Text38"><TextValue>Item</TextValue>
+</Text>
+<Text Name="Text39"><TextValue>รายการ</TextValue>
+</Text>
+<Text Name="Text40"><TextValue>3. Particulars of Motor Vehicle</TextValue>
+</Text>
+<Text Name="Text41"><TextValue>3. รถที่เอาประกันภัย :</TextValue>
+</Text>
+<Text Name="Text42"><TextValue>รหัสรถ</TextValue>
+</Text>
+<Text Name="Text43"><TextValue>Code</TextValue>
+</Text>
+<Text Name="Text46"><TextValue>Make</TextValue>
+</Text>
+<Text Name="Text47"><TextValue>ชื่อรถ</TextValue>
+</Text>
+<Text Name="Text49"><TextValue>License No.</TextValue>
+</Text>
+<Text Name="Text50"><TextValue>เลขทะเบียน</TextValue>
+</Text>
+<Text Name="Text51"><TextValue>Chassis No.</TextValue>
+</Text>
+<Text Name="Text52"><TextValue>เลขตัวถัง</TextValue>
+</Text>
+<Text Name="Text53"><TextValue>Body Type</TextValue>
+</Text>
+<Text Name="Text54"><TextValue>แบบตัวถัง</TextValue>
+</Text>
+<Text Name="Text57"><TextValue>Capacity</TextValue>
+</Text>
+<Text Name="Text58"><TextValue>ขนาดเครื่องยนต์/จำนวนที่นั่ง/น้ำหนักรวม</TextValue>
+</Text>
+<Text Name="Text61"><TextValue>Item</TextValue>
+</Text>
+<Text Name="Text62"><TextValue>รายการ</TextValue>
+</Text>
+<Text Name="Text65"><TextValue>4. Limit of Covered</TextValue>
+</Text>
+<Text Name="Text66"><TextValue>4. จำนวนเงินคุ้มครองผู้ประสบภัย :</TextValue>
+</Text>
+<Text Name="Text67"><TextValue>(1) 50,000 บาท ต่อหนึ่งคน สำหรับความเสียหายต่อร่างกายหรืออนามัย</TextValue>
+</Text>
+<Text Name="Text68"><TextValue>(2) 200,000 บาท ต่อหนึ่งคน สำหรับการเสียชีวิต สูญเสียอวัยวะ หรือทุพพลภาพอย่างถาวร</TextValue>
+</Text>
+<Text Name="Text69"><TextValue>(3) 200 บาท ต่อวัน รวมกันไม่เกิน 20 วัน สำหรับการชดเชยรายวันกรณีเข้ารักษาในสถานพยาบาลในฐานะคนไข้ใน</TextValue>
+</Text>
+<Text Name="Text70"><TextValue>ทั้งนี้จำนวนเงินคุ้มครองสูงสุดสำหรับ (1)(2) และ (3) รวมกันไม่เกิน 204,000 บาท ต่อหนึ่งคน
+และรวมกันไม่เกินห้าล้านบาทสำหรับรถที่มีที่นั่งไม่เกินเจ็ดคนหรือรถบรรทุกผู้โดยสารรวมทั้งผู้ขับขี่ไม่เกินเจ็ดคน
+และไม่เกินสิบล้านบาท สำหรับรถที่มีที่นั่งเกินเจ็ดคนหรือรถบรรทุกผู้โดยสารรวมทั้งผู้ขับขี่เกินเจ็ดคน ต่ออุบัติเหตุแต่ละครั้ง</TextValue>
+</Text>
+<Text Name="Text73"><TextValue>Item</TextValue>
+</Text>
+<Text Name="Text74"><TextValue>รายการ</TextValue>
+</Text>
+<Text Name="Text75"><TextValue>5. Limit นด</TextValue>
+</Text>
+<Text Name="Text76"><TextValue>5. จำนวนเงินค่าเสียหายเบื้องต้น :</TextValue>
+</Text>
+<Text Name="Text77"><TextValue>ความเสียหายต่อร่างกายไม่เกิน 30,000 บาท ต่อหนึ่งคน หรือตามที่กฎหมายกำหนด</TextValue>
+</Text>
+<Text Name="Text78"><TextValue>ความเสียหายต่อร่างกาย สำหรับการสูญเสียอวัยวะ หรือทุพพลภาพอย่างถาวร 35,000 บาท หรือตามที่กฎหมายกำหนด </TextValue>
+</Text>
+<Text Name="Text79"><TextValue>ความเสียหายต่อชีวิต 35,000 บาท ต่อหนึ่งคน หรือตามที่กฎหมายกำหนด
+</TextValue>
+</Text>
+<Text Name="Text80"><TextValue>จำนวนเงินค่าเสียหายเบื้องต้นนี้เป็นส่วนหนึ่งของจำนวนเงินคุ้มครองผู้ประสบภัยตามรายการ 4
+</TextValue>
+</Text>
+<Text Name="Text81"><TextValue>Item</TextValue>
+</Text>
+<Text Name="Text82"><TextValue>รายการ</TextValue>
+</Text>
+<Text Name="Text83"><TextValue>6. Premium : (Baht)</TextValue>
+</Text>
+<Text Name="Text84"><TextValue>6. เบี้ยประกันภัย : (บาท)</TextValue>
+</Text>
+<Text Name="Text85"><TextValue>ชำระอากรแล้ว</TextValue>
+</Text>
+<Text Name="Text86"><TextValue>เบี้ยประกันภัย</TextValue>
+</Text>
+<Text Name="Text87"><TextValue>ส่วนลดจากการประกันภัยโดยตรง</TextValue>
+</Text>
+<Text Name="Text88"><TextValue>เบี้ยประกันภัยสุทธิ
+</TextValue>
+</Text>
+<Text Name="Text89"><TextValue>อากรแสตมป์
+</TextValue>
+</Text>
+<Text Name="Text90"><TextValue>ภาษีมูลค่าเพิ่ม
+</TextValue>
+</Text>
+<Text Name="Text91"><TextValue>รวมเงิน
+</TextValue>
+</Text>
+<Text Name="Text92"><TextValue>Premium
+</TextValue>
+</Text>
+<Text Name="Text93"><TextValue>Premium Discount
+</TextValue>
+</Text>
+<Text Name="Text94"><TextValue>Net Premium
+</TextValue>
+</Text>
+<Text Name="Text95"><TextValue>Stamp
+</TextValue>
+</Text>
+<Text Name="Text96"><TextValue>Vat
+</TextValue>
+</Text>
+<Text Name="Text97"><TextValue>Total
+</TextValue>
+</Text>
+<Text Name="Text98"><TextValue>Item</TextValue>
+</Text>
+<Text Name="Text99"><TextValue>รายการ</TextValue>
+</Text>
+<Text Name="Text100"><TextValue>7. Use of Motor Vehicle</TextValue>
+</Text>
+<Text Name="Text101"><TextValue>7. การใช้รถ :
+</TextValue>
+</Text>
+<Text Name="Text102"><TextValue>ใช้เป็นรถส่วนบุคคลไม่ใช้รับจ้างหรือให้เช่า
+</TextValue>
+</Text>
+<Text Name="Text103"><TextValue>การประกันภัยโดยตรง</TextValue>
+</Text>
+<Text Name="Text104"><TextValue>ตัวแทนประกันภัยรายนี้</TextValue>
+</Text>
+<Text Name="Text105"><TextValue>นายหน้าประกันภัยรายนี้</TextValue>
+</Text>
+<Text Name="Text106"><TextValue>ใบอนุญาตเลขที่</TextValue>
+</Text>
+<Text Name="Text4"><TextValue>วันทำสัญญาประกันภัย : </TextValue>
+</Text>
+<Text Name="Text7"><TextValue>Agreement made on</TextValue>
+</Text>
+<Text Name="Text8"><TextValue>วันทำกรมธรรม์ประกันภัย : </TextValue>
+</Text>
+<Text Name="Text9"><TextValue>Policy issued on</TextValue>
+</Text>
+<Text Name="Text30"><TextValue>เพื่อเป็นหลักฐาน บริษัทโดยบุคคลผู้มีอำนาจได้ลงลายมือชื่อและประทับตราของบริษัทไว้เป็นสำคัญ ณ สำนักงานของบริษัท</TextValue>
+</Text>
+<Text Name="Text44"><TextValue>As evidence th Company has cause this policy to be signed by </TextValue>
+</Text>
+<Text Name="Text45"><TextValue>กรรมการ Director</TextValue>
+</Text>
+<Text Name="Text48"><TextValue>กรรมการ Director</TextValue>
+</Text>
+<Text Name="Text55"><TextValue>ผู้รับมอบอำนาจ Authorized Signature/ผู้รับเงิน Cashier</TextValue>
+</Text>
+<Text Name="Text56"><TextValue>/</TextValue>
+</Text>
+<Text Name="Text59"><TextValue>/</TextValue>
+</Text>
+</Section>
+</Details>
+<ReportFooter>
+<Section SectionNumber="0">
+</Section>
+</ReportFooter>
+</CrystalReport>

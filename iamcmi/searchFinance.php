@@ -294,6 +294,15 @@ $no=1;
 	</div>
 	
 <footer>
-
-</footer>	
+<!-- FOOTER SECTION-->
+<?php 
+// @BEGIN
+// @DEKDEEDEV_IAMCMI
+// @Falom
+// @2016-06-19 SUN 02:08 PM 
+include 'footer.php'; 
+// @Falom END 2016-06-19 SUN 02:08 PM 
+?>
+<!-- END FOOTER SECTION-->
+</footer>
 </html>

@@ -40,9 +40,16 @@ include 'header.php';
 </head>
 <body>
 	<form action="policySaveStep2.php" method="post">
+		<br><br><br><br><br><br>
+
+	    <div class="container" align="center">
+	    	<img src="../img/step2.png">
+	    </div>
+
+    	<br>
 		<div class="container">
-			<div class="page-header" style="background-color: #E0EEEE;">
-				<h1>&nbsp;พ. ร. บ.</h1>
+			<div class="page-header" style="background-color: #E0EEEE;width: 1175px;left: -20px;position: relative;display: -webkit-box;">
+				<h1 style="display: -webkit-inline-box;">&nbsp;พ. ร. บ.</h1>
 			</div>
 			<div class="row">
 				<div class="col-md-12">
@@ -67,7 +74,17 @@ include 'header.php';
 			</div>
 		</div>
 	</form>
-</body>	
+</body><br><br><br>
 <footer>
+<!-- FOOTER SECTION-->
+<?php 
+// @BEGIN
+// @DEKDEEDEV_IAMCMI
+// @Falom
+// @2016-06-19 SUN 02:08 PM 
+include 'footer.php'; 
+// @Falom END 2016-06-19 SUN 02:08 PM 
+?>
+<!-- END FOOTER SECTION-->
 </footer>
 </html>

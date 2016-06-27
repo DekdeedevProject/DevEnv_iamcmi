@@ -268,9 +268,15 @@ $quoQueryResult = executeSql($conn,$sqlID);
 		<?php echo $perSalu;?>
 	)">
 	<form action="policySaveStep1.php" method="post">
-		
+		<br><br><br><br><br><br>
+
+	    <div class="container" align="center">
+	    	<img src="../img/step1.png">
+	    </div>
+
+    	<br>
 		<div class="container">
-			<div class="page-header" style="background-color: #E0EEEE;">
+			<div class="page-header" style="background-color: #E0EEEE;width: 1175px;left: -20px;position: relative;display: -webkit-box;">
 				<h1 style="display: -webkit-inline-box;">&nbsp;พ. ร. บ.</h1>
 			</div>
 			<div class="row titleInsured">
@@ -632,7 +638,7 @@ $quoQueryResult = executeSql($conn,$sqlID);
 			</div>
 		</div>
 	</form>
-</body>	
+</body><br><br>
 <footer>
 <!-- FOOTER SECTION-->
 <?php 

@@ -42,6 +42,7 @@ unset($_SESSION["polQuoNum"]);
 </head>
 <body>
         <div class="container-fluid confDiv">
+            <br><br><br><br>
             <section id="Homepage" style="background-color:orange; height:598px;">
                 <div class="row">
                     <br><br>
@@ -73,13 +74,6 @@ unset($_SESSION["polQuoNum"]);
         </div>
    
      <!--END HOMEPAGE SECTION-->
-
-     <div id="footer" class="container-fluid" align="center" style="background-color:#e5e5e5; height:60px;" >
-     <footer>
-     <br>
-     	<span><img src="../img/copy.png"></a> <font color="#666666">1999-2016 IAMCMI.com All rights reserved.</span>
-     </footer>
-     </div>
 
 </body>
 <footer>
