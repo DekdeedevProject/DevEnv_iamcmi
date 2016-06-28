@@ -91,7 +91,7 @@ $sql="";
 	
 	case 'PCS1_001':
 	$sql = "	SELECT POL_ID_PK, POL_QuoNum 
-			FROM policy
+			FROM Policy
 			ORDER BY POL_ID_PK DESC
 			LIMIT 1;";
 	break;
