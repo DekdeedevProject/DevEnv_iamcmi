@@ -166,12 +166,12 @@ include 'config/Condition/PSS_CON_001.php';
 
 //redirect("policyCreateStep1.php");
 if($_POST['btn']=="save"){
-redirect("policyCreateStep1.php");		
-// echo "<a href='policyCreateStep1.php'><input type='Button' value='Next' class='btn btn-primary btn-md'/></a>";	
+// redirect("policyCreateStep1.php");		
+echo "<a href='policyCreateStep1.php'><input type='Button' value='Next' class='btn btn-primary btn-md'/></a>";	
 }
 else{
-redirect("policyCreateStep2.php");
-// echo "<a href='policyCreateStep2.php'><input type='Button' value='Next' class='btn btn-primary btn-md'/></a>";
+// redirect("policyCreateStep2.php");
+echo "<a href='policyCreateStep2.php'><input type='Button' value='Next' class='btn btn-primary btn-md'/></a>";
 }
 connClose($conn);
 

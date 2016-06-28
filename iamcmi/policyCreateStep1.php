@@ -232,18 +232,18 @@ $quoQueryResult = executeSql($conn,$sqlID);
 	if($quoQueryResult){
 	$quoQueryResultSize = $quoQueryResult->num_rows;
 		if($quoQueryResultSize==0){
-		// echo "WHEN RELOAD PAGE";
+		echo "WHEN RELOAD PAGE";
 		include 'config/condition/PCS_CON_001.php';
 		$polEffDate 	= $_SESSION["startSessionDateTime"] ;
 		$polExpDate 	= date("Y-m-d 16:30:00", strtotime("+12 Months"));
 		}
 		else if($quoQueryResultSize==1){
-		// echo "WHEN RECORDS HAS ALREADY SAVED OR SUBMITTED&BACK<br>";
+		echo "WHEN RECORDS HAS ALREADY SAVED OR SUBMITTED&BACK<br>";
 		$row 		= $quoQueryResult->fetch_assoc();
 		include 'config/condition/PCS_CON_002.php';
 		}
 		else{
-		// echo "RECORDS MORE THAN ONE ROW";
+		echo "RECORDS MORE THAN ONE ROW";
 		}
 	}
 }	
@@ -621,7 +621,7 @@ $quoQueryResult = executeSql($conn,$sqlID);
 			<br>
 			<div class="row">
 				<div class="col-md-12" align="center">
-					<a href="policySaveStep1.php"></a><button class="btn btn-primary btn-md" name="btn" id="btn" value="save">Save</button></a>
+					<input type="Submit" class="btn btn-primary btn-md" name="btn" id="btn" value="Save"/>
 					<input type="Reset" class="btn btn-primary btn-md"/>
 					<input type="Submit" class="btn btn-primary btn-md" name="btn" id="btn" value="Submit"/>
 					<input type="hidden" id="polPREMIDFK" name="polPREMIDFK" value="<?php echo $polPREMIDFK; ?>"/>

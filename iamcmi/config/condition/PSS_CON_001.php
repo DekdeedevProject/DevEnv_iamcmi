@@ -121,6 +121,7 @@
 	echo "polUpdatedDate:".$polUpdatedDate."<br>";
 	echo "polUpdatedBy:".$polUpdatedBy."<br>";
 	echo "vehIDPK:".$vehIDPK."<br>";
+	echo "vehTARIDFK:".$vehTARIDFK."<br>";
 	echo "vehTARVehCodeFK:".$vehTARVehCodeFK."<br>";
 	echo "vehREDKEYFK:".$vehREDKEYFK."<br>";
 	echo "vehLicenseNum:".$vehLicenseNum."<br>";
