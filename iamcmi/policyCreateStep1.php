@@ -216,7 +216,7 @@ $polResult 	= executeSql($conn,$sqlID);
 		else{
 		// echo "NEW DB POLICY NUMBER: <br>";
 		}
-		include 'config/Condition/PCS_CON_001.php';
+		include 'config/condition/PCS_CON_001.php';
 		$_SESSION["startSessionDateTime"] 	= date("Y-m-d H:i:s");
 		$_SESSION["polQuoNum"]				= getNewPolicyNo($lastPolNo);
 		$polQuoNum 		= $_SESSION["polQuoNum"];
@@ -233,14 +233,14 @@ $quoQueryResult = executeSql($conn,$sqlID);
 	$quoQueryResultSize = $quoQueryResult->num_rows;
 		if($quoQueryResultSize==0){
 		// echo "WHEN RELOAD PAGE";
-		include 'config/Condition/PCS_CON_001.php';
+		include 'config/condition/PCS_CON_001.php';
 		$polEffDate 	= $_SESSION["startSessionDateTime"] ;
 		$polExpDate 	= date("Y-m-d 16:30:00", strtotime("+12 Months"));
 		}
 		else if($quoQueryResultSize==1){
 		// echo "WHEN RECORDS HAS ALREADY SAVED OR SUBMITTED&BACK<br>";
 		$row 		= $quoQueryResult->fetch_assoc();
-		include 'config/Condition/PCS_CON_002.php';
+		include 'config/condition/PCS_CON_002.php';
 		}
 		else{
 		// echo "RECORDS MORE THAN ONE ROW";
