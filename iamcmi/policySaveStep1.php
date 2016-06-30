@@ -4,12 +4,13 @@ session_start();
 $conn = connOpen();
 $polQuoCreateDate=$_SESSION["startSessionDateTime"];
 $polQuoNum=$_SESSION["polQuoNum"];
-echo "polQuoNum: ".$polQuoNum."<br>";
 $polUpdatedBy=$_SESSION["usrName"];
 
 setPolQuoNum($polQuoNum);
 $sqlID = "PSS1_001";					
 $polSearchResult = executeSql($conn,$sqlID);	
+
+echo "polQuoNum: ".$polQuoNum."<br>";
 if($polSearchResult){
 $polSearchSize = $polSearchResult->num_rows;
 echo "polSearchSize: ".$polSearchSize."<br>";
@@ -88,7 +89,6 @@ include 'config/Condition/PSS_CON_001.php';
 		$sqlID ="PSS1_006";
 		setVehicalInfo(
 		// $vehIDPK,
-		$vehTARIDFK,
 		$vehTARVehCodeFK,
 		$vehREDKEYFK,
 		$vehLicenseNum,
@@ -128,6 +128,7 @@ include 'config/Condition/PSS_CON_001.php';
 	$polAppReceivedDate,
 	$polIssueDate,
 	$polIssueBy,
+	$polAgentCode,
 	$polPRODIDFK,
 	$polPREMIDFK=$premIDPK,
 	$polCUSIDFKPHD=$perIDPK,

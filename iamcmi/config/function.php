@@ -324,7 +324,6 @@ $sql="";
 	case 'PSS1_006':
 	echo "PSS1_006";
 	// $vehIDPK=$GLOBALS['vehIDPK'];
-	$vehTARIDFK=$GLOBALS['vehTARIDFK'];
 	$vehTARVehCodeFK=$GLOBALS['vehTARVehCodeFK'];
 	$vehREDKEYFK=$GLOBALS['vehREDKEYFK'];
 	$vehLicenseNum=$GLOBALS['vehLicenseNum'];
@@ -343,7 +342,6 @@ $sql="";
 	$vehUpdatedBy=$GLOBALS['vehUpdatedBy'];
 
 	echo $sql="INSERT INTO Vehical (
-			VEH_TAR_ID_FK,
 			VEH_TAR_VehCode_FK,
 			VEH_RED_KEY_FK,
 			VEH_LicenseNum,
@@ -362,7 +360,6 @@ $sql="";
 			VEH_UpdatedBy
 		)
 		VALUES (
-			'$vehTARIDFK',
 			'$vehTARVehCodeFK',
 			'$vehREDKEYFK',
 			'$vehLicenseNum',
@@ -450,6 +447,7 @@ $sql="";
 	$polAppReceivedDate=$GLOBALS['polAppReceivedDate'];
 	$polIssueDate=$GLOBALS['polIssueDate'];
 	$polIssueBy=$GLOBALS['polIssueBy'];
+	$polAgentCode=$GLOBALS['polAgentCode'];
 	$polPRODIDFK=$GLOBALS['polPRODIDFK'];
 	$polPREMIDFK=$GLOBALS['polPREMIDFK'];
 	$polCUSIDFKPHD=$GLOBALS['polCUSIDFKPHD'];
@@ -525,7 +523,7 @@ $sql="";
 	$premQuoNumRef=$GLOBALS['premQuoNumRef'];
 	$premUpdatedDate=$GLOBALS['premUpdatedDate'];
 	$premUpdatedBy=$GLOBALS['premUpdatedBy'];
-	$sql ="	UPDATE Policy 
+	echo $sql ="	UPDATE Policy 
 			INNER JOIN PolicyStatus 
 				ON POL_Status_ID_PK=POL_Status_ID_FK 
 			INNER JOIN Vehical 
@@ -538,7 +536,6 @@ $sql="";
 				ON RED_KEY=VEH_RED_KEY_FK
 			INNER JOIN Tariff
 				ON TAR_VehCode_PK=VEH_TAR_VehCode_FK
-				AND TAR_ID_PK=VEH_TAR_ID_FK
 			INNER JOIN Premium
 				ON PREM_ID_PK=POL_PREM_ID_FK
 			SET 
@@ -556,6 +553,7 @@ $sql="";
 				POL_AppReceivedDate='$polAppReceivedDate',
 				POL_IssueDate='$polIssueDate',
 				POL_IssueBy='$polIssueBy',
+				POL_AgentCode='$polAgentCode',
 				POL_PROD_ID_FK='$polPRODIDFK',
 				POL_PREM_ID_FK='$polPREMIDFK',
 				POL_CUS_ID_FK_PHD='$polCUSIDFKPHD',
@@ -566,7 +564,6 @@ $sql="";
 				POL_UpdatedDate='$polUpdatedDate',
 				POL_UpdatedBy='$polUpdatedBy',
 				VEH_ID_PK='$vehIDPK',
-				VEH_TAR_ID_FK='$vehTARIDFK',
 				VEH_TAR_VehCode_FK='$vehTARVehCodeFK',
 				VEH_RED_KEY_FK='$vehREDKEYFK',
 				VEH_LicenseNum='$vehLicenseNum',
@@ -796,6 +793,7 @@ $polProDate;
 $polAppReceivedDate;
 $polIssueDate;
 $polIssueBy;
+$polAgentCode;
 $polPRODIDFK;
 $polPREMIDFK;
 $polCUSIDFKPHD;
@@ -910,6 +908,7 @@ $polProDate,
 $polAppReceivedDate,
 $polIssueDate,
 $polIssueBy,
+$polAgentCode,
 $polPRODIDFK,
 $polPREMIDFK,
 $polCUSIDFKPHD,
@@ -935,6 +934,7 @@ $GLOBALS['polProDate']=$polProDate;
 $GLOBALS['polAppReceivedDate']=$polAppReceivedDate;
 $GLOBALS['polIssueDate']=$polIssueDate;
 $GLOBALS['polIssueBy']=$polIssueBy;
+$GLOBALS['polAgentCode']=$polAgentCode;
 $GLOBALS['polPRODIDFK ']=$polPRODIDFK ;
 $GLOBALS['polPREMIDFK ']=$polPREMIDFK ;
 $GLOBALS['polCUSIDFKPHD']=$polCUSIDFKPHD;
@@ -1005,7 +1005,6 @@ $GLOBALS['addrUpdatedBy']=$addrUpdatedBy;
 }
 function setVehicalInfo(
 // $vehIDPK,
-$vehTARIDFK,	
 $vehTARVehCodeFK,
 $vehREDKEYFK,
 $vehLicenseNum,
@@ -1025,7 +1024,6 @@ $vehUpdatedBy
 ){	
 // echo "setVehicalInfo";	
 // $GLOBALS['vehIDPK']=$vehIDPK;
-$GLOBALS['vehTARIDFK']=$vehTARIDFK;	
 $GLOBALS['vehTARVehCodeFK']=$vehTARVehCodeFK;
 $GLOBALS['vehREDKEYFK']=$vehREDKEYFK;
 $GLOBALS['vehLicenseNum']=$vehLicenseNum;
@@ -1148,6 +1146,7 @@ $polProDate,
 $polAppReceivedDate,
 $polIssueDate,
 $polIssueBy,
+$polAgentCode,
 $polPRODIDFK,
 $polPREMIDFK,
 $polCUSIDFKPHD,
@@ -1238,6 +1237,7 @@ $GLOBALS['polProDate']=$polProDate;
 $GLOBALS['polAppReceivedDate']=$polAppReceivedDate;
 $GLOBALS['polIssueDate']=$polIssueDate;
 $GLOBALS['polIssueBy']=$polIssueBy;
+$GLOBALS['polAgentCode']=$polAgentCode;
 $GLOBALS['polPRODIDFK']=$polPRODIDFK;
 $GLOBALS['polPREMIDFK']=$polPREMIDFK;
 $GLOBALS['polCUSIDFKPHD']=$polCUSIDFKPHD;

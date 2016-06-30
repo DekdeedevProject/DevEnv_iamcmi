@@ -1,6 +1,6 @@
 <?php
 
-	$polMasPolNum="";
+$polMasPolNum="";
 $polQuoNum=$_SESSION["polQuoNum"];
 $polNum="";
 $polCat="N/A";
@@ -14,6 +14,7 @@ $polProDate="0000-00-00 00:00:00";
 $polAppReceivedDate="0000-00-00 00:00:00";
 $polIssueDate="0000-00-00 00:00:00";
 $polIssueBy="";
+$polAgentCode=trim($_POST['polAgentCode']);
 $polPRODIDFK="1";
 $polPREMIDFK=trim($_POST['polPREMIDFK']);
 $polCUSIDFKPHD=trim($_POST['polCUSIDFKPHD']);

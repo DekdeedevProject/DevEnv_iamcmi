@@ -1,12 +1,4 @@
 <?php
-
-	if(!isset($_POST['polEffDate'])){
-		echo "Please input: polEffDate";
-	}
-	else{
-		echo "Success!!!";
-	}
-
 	$polMasPolNum="";
 	$polQuoNum=$_SESSION["polQuoNum"];
 	$polNum="";
@@ -21,6 +13,7 @@
 	$polAppReceivedDate="0000-00-00 00:00:00";
 	$polIssueDate="0000-00-00 00:00:00";
 	$polIssueBy="";
+	$polAgentCode=trim($_POST['polAgentCode']);
 	$polPRODIDFK="1";
 	$polPREMIDFK=trim($_POST['polPREMIDFK']);
 	$polCUSIDFKPHD=trim($_POST['polCUSIDFKPHD']);
@@ -111,6 +104,7 @@
 	echo "polAppReceivedDate:".$polAppReceivedDate."<br>";
 	echo "polIssueDate:".$polIssueDate."<br>";
 	echo "polIssueBy:".$polIssueBy."<br>";
+	echo "polAgentCode:".$polAgentCode."<br>";
 	echo "polPRODIDFK:".$polPRODIDFK."<br>";
 	echo "polPREMIDFK:".$polPREMIDFK."<br>";
 	echo "polCUSIDFKPHD:".$polCUSIDFKPHD."<br>";

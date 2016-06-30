@@ -2,25 +2,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<!-- <link href="config/bootstrap/css/bootstrap.min.css" rel="stylesheet"
-	media="screen">
-<script src="config/bootstrap/js/bootstrap.min.js"></script>
-<script src="config/jquery-ui-1.11.4.custom/jquery-ui.min.js"></script>
-<link href="config/jquery-ui-1.11.4.custom/jquery-ui.min.css" rel="stylesheet"> -->
+
+<!-- MAIN STYLE SECTION-->
 <link rel="stylesheet" href="../css/iamStyle.css">
 <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" href="../bootstrap/css/bootstrap-theme.min.css">
-<script src="../js/jquery-1.12.4.js"></script>
-<script src="../js/jquery-1.12.4.min.js"></script>
-<script src="../bootstrap/js/bootstrap.min.js"></script>
-<script src="../js/jquery-ui-1.12.0-rc.2/jquery-ui.js"></script>
 <link rel="stylesheet" href="../js/jquery-ui-themes-1.12.0-rc.2/themes/smoothness/jquery-ui.css" />
-
-<script type="text/javascript" src="../bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
 <link rel="stylesheet" type="text/css" media="screen" href="../bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css">
-
-
-<!-- MAIN STYLE SECTION-->
 <link href="../assets/plugins/isotope/isotope.css" rel="stylesheet" media="screen" />
 <link href="../assets/plugins/fancybox/jquery.fancybox.css" rel="stylesheet" />
 <link href="../assets/plugins/IconHoverEffects-master/css/component.css" rel="stylesheet" />
@@ -28,8 +16,12 @@
 <link href="../assets/css/about-achivements.css" rel="stylesheet" />
 <link id="mainStyle" href="../assets/css/style.css" rel="stylesheet" />
 <!-- END MAIN STYLE SECTION-->
-
- <script type="text/javascript">
+<script src="../js/jquery-1.12.4.js"></script>
+<script src="../js/jquery-1.12.4.min.js"></script>
+<script src="../bootstrap/js/bootstrap.min.js"></script>
+<script src="../js/jquery-ui-1.12.0-rc.2/jquery-ui.js"></script>
+<script type="text/javascript" src="../bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+<script type="text/javascript">
     $(function () {
         $('#datetimepicker4').datetimepicker();
         $('#datetimepicker5').datetimepicker();
@@ -189,7 +181,6 @@
         	window.onLoad=dochangeLocation('addrZipCode',subDistID);
     	}
 // @Falom END 2016-06-19 SUN 02:08 PM 
-
 </script>
 
 <!-- HEADER SECTION-->
@@ -201,9 +192,9 @@
 include 'config/config.php'; 
 include 'header.php'; 
 
-// echo $_SESSION["polQuoNum"];
+echo $_SESSION["polQuoNum"];
 if(!isset($_SESSION["polQuoNum"])){ 
-// echo "<br>NEW FROM HOME PAGE<br>";
+echo "<br>NEW FROM HOME PAGE<br>";
 $sqlID	= "PCS1_001";			
 $polResult 	= executeSql($conn,$sqlID);
 	if($polResult){
@@ -225,8 +216,9 @@ $polResult 	= executeSql($conn,$sqlID);
 	}
 }
 else{	
-// echo "<br>EXISTING FROM RELOAD/SAVED/SUBMITED&Back <br>";
+echo "<br>EXISTING FROM RELOAD/SAVED/SUBMITED&Back <br>";
 $polQuoNum = $_SESSION["polQuoNum"];
+setPolQuoNum($polQuoNum);
 $sqlID			= "PCS1_003";				
 $quoQueryResult = executeSql($conn,$sqlID);
 	if($quoQueryResult){
@@ -247,10 +239,6 @@ $quoQueryResult = executeSql($conn,$sqlID);
 		}
 	}
 }	
-
-
-
-
 // @Falom END 2016-06-19 SUN 02:08 PM 
 ?>
 <!-- END HEADER SECTION-->
@@ -368,8 +356,8 @@ $quoQueryResult = executeSql($conn,$sqlID);
 				</div>
 				<div class="col-md-2" align="right">รหัสตัวแทน :</div>
 				<div class="col-md-2">
-					<input type="text" class="form-control" id="AgreeCode"
-						placeholder="รหัสตัวแทน" required>
+					<input type="text" class="form-control" id="polAgentCode" name="polAgentCode"
+						placeholder="รหัสตัวแทน" value='<?php echo $polAgentCode ?>' required> 
 				</div>
 			</div>
 			<br>
