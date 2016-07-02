@@ -146,6 +146,7 @@ $sql="";
 	$polAppReceivedDate=$GLOBALS['polAppReceivedDate'];
 	$polIssueDate=$GLOBALS['polIssueDate'];
 	$polIssueBy=$GLOBALS['polIssueBy'];
+	$polAgentCode=$GLOBALS['polAgentCode'];
 	$polPRODIDFK=$GLOBALS['polPRODIDFK '];
 	$polPREMIDFK=$GLOBALS['polPREMIDFK '];
 	$polCUSIDFKPHD=$GLOBALS['polCUSIDFKPHD'];
@@ -170,6 +171,7 @@ $sql="";
 				POL_AppReceivedDate,
 				POL_IssueDate,
 				POL_IssueBy,
+				POL_AgentCode,
 				POL_PROD_ID_FK,
 				POL_PREM_ID_FK,
 				POL_CUS_ID_FK_PHD,
@@ -195,6 +197,7 @@ $sql="";
 				'$polAppReceivedDate',
 				'$polIssueDate',
 				'$polIssueBy',
+				'$polAgentCode',
 				'$polPRODIDFK',
 				'$polPREMIDFK',
 				'$polCUSIDFKPHD',
@@ -751,15 +754,27 @@ $sql="";
 				;";
 	break;
 
-	case 'PSA_001':
+	case 'SPO_001':
 	$sql = "SELECT * 
 			FROM Policy 
 			INNER JOIN PolicyStatus 
-				ON POL_Status_ID_PK=POL_Status_ID_FK
+				ON POL_Status_ID_PK=POL_Status_ID_FK 
+			INNER JOIN Vehical 
+				ON VEH_ID_PK=POL_VEH_ID_FK	
+			INNER JOIN Personal 
+				ON PER_ID_PK=POL_CUS_ID_FK_INS 
+			INNER JOIN Address 
+				ON ADDR_ID_PK=POL_CUS_Addr_ID_INS	
+			INNER JOIN Redbook
+				ON RED_KEY=VEH_RED_KEY_FK
+			INNER JOIN Tariff
+				ON TAR_VehCode_PK=VEH_TAR_VehCode_FK
+			INNER JOIN Premium
+				ON PREM_ID_PK=POL_PREM_ID_FK	
 			ORDER BY POL_ID_PK DESC;";
 	break;
 
-	case 'PSA_002':
+	case 'SPO_002':
 	$sBy 	= $GLOBALS['sBy'];
 	$sDesc 	= $GLOBALS['sDesc'];
 	$sql = "SELECT * 
@@ -768,6 +783,33 @@ $sql="";
 				ON POL_Status_ID_PK=POL_Status_ID_FK
 			WHERE ".$sBy." LIKE '%".$sDesc."%'	
 			ORDER BY POL_ID_PK DESC;";
+	break;
+
+	case 'SFN_001':
+	$sql = "SELECT 	POL_AgentCode as SFN_AgentCode,
+					COUNT(POL_QuoNum) as SFN_TotalQuo,
+					SUM(PREM_Total) as SFN_TotalPrem,
+					SUM(PREM_Outstanding) as SFN_OutstadPrem, 
+					SUM(PREM_Paid) as SFN_PaidPrem,
+					SUM(PREM_PaidBalance) as SFN_PaidBal
+			FROM Policy 
+			INNER JOIN PolicyStatus 
+				ON POL_Status_ID_PK=POL_Status_ID_FK 
+			INNER JOIN Vehical 
+				ON VEH_ID_PK=POL_VEH_ID_FK	
+			INNER JOIN Personal 
+				ON PER_ID_PK=POL_CUS_ID_FK_INS 
+			INNER JOIN Address 
+				ON ADDR_ID_PK=POL_CUS_Addr_ID_INS	
+			INNER JOIN Redbook
+				ON RED_KEY=VEH_RED_KEY_FK
+			INNER JOIN Tariff
+				ON TAR_VehCode_PK=VEH_TAR_VehCode_FK
+			INNER JOIN Premium
+				ON PREM_ID_PK=POL_PREM_ID_FK	
+			GROUP BY POL_AgentCode	
+			ORDER BY POL_AgentCode;
+			";
 	break;
 
 	default:

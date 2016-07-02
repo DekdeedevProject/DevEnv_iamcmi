@@ -166,7 +166,7 @@ $sDesc = "null";
 // echo "<br>sBy: ". $sBy;
 // echo "<br>sDesc: ". $sDesc;
 
-$sqlID = "PSA_002";
+$sqlID = "SPO_002";
 setSearchCriteria($sBy,$sDesc);
 $searchResult 	= executeSql($conn,$sqlID);
 	if($searchResult){
@@ -174,7 +174,7 @@ $searchResult 	= executeSql($conn,$sqlID);
 	}
 }
 else{
-$sqlID = "PSA_001";
+$sqlID = "SPO_001";
 $searchResult 	= executeSql($conn,$sqlID);
 
 	if($searchResult){
@@ -245,6 +245,7 @@ $searchResultSize = $searchResult->num_rows;
 		      <th>สถานะกรมธรรม์</th>
 		      <th>ชื่อผู้เอาประกัน</th>
 		      <th>ทะเบียนรถ</th>
+		      <th>เบี้ยประกัน</th>
 		      <th>รหัสตัวแทน</th>
 		    </tr>
 		  </thead>
@@ -265,9 +266,18 @@ $no=1;
 				</td>
 				<td><?php echo $searchRow["POL_EffDate"] ?></td>
 				<td><?php echo $searchRow["POL_StatusName_TH"] ?></td>
-				<td><?php echo "xxx.xx" ?></td>
-				<td><?php echo "Paid/Outstanding" ?></td>
-				<td></td>
+				<td><?php echo $searchRow["PER_FName"]." ".$searchRow["PER_LName"] ?></td>
+				<td><?php echo $searchRow["VEH_LicenseNum"] ?></td>
+				<td><?php 
+				if($searchRow["PREM_PaidStatus"]=='N'){
+					echo "<p style='color:red'>".$searchRow["PREM_Total"]."</p>"; 
+				}
+				else{
+					echo "<p style='color:green'>".$searchRow["PREM_Total"]."</p>"; 
+				}
+				?>
+				</td>
+				<td><?php echo $searchRow["POL_AgentCode"] ?></td>
 			</tr>
 <?php	
 	}

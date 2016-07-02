@@ -166,7 +166,7 @@ $sDesc = "null";
 // echo "<br>sBy: ". $sBy;
 // echo "<br>sDesc: ". $sDesc;
 
-$sqlID = "PSA_002";
+$sqlID = "SPO_002";
 setSearchCriteria($sBy,$sDesc);
 $searchResult 	= executeSql($conn,$sqlID);
 	if($searchResult){
@@ -174,7 +174,7 @@ $searchResult 	= executeSql($conn,$sqlID);
 	}
 }
 else{
-$sqlID = "PSA_001";
+$sqlID = "SFN_001";
 $searchResult 	= executeSql($conn,$sqlID);
 
 	if($searchResult){
@@ -240,13 +240,11 @@ $searchResultSize = $searchResult->num_rows;
 		  <thead>
 		    <tr>
 		      <th>No.</th>
-				<th>User</th>
+				<th>Agent Code</th>
 				<th>Total Policy</th>
-				<th>#Quote in Progress</th>
-				<th>#Payment in Progress</th>
-				<th>Amount</th>
-				<th>#Issued</th>
-				<th>Amount</th>
+				<th>Total Premium</th>
+				<th>Outstanding Premium</th>
+				<th>Paid Premium</th>
 				<th>Status</th>
 		    </tr>
 		  </thead>
@@ -257,15 +255,22 @@ $no=1;
 	while($searchRow = $searchResult->fetch_assoc()) {
 ?>
 			<tr align="left">
-		     	<th>1.</th>
-				<td>Falom</td>
-				<td>10</td>
-				<td>5</td>
-				<td>3</td>
-				<td>1,800.00</td>
-				<td>2</td>
-				<td>1,200.00</td>
-				<th>Paid</th>
+		     	<th><?php echo $no++; ?></th>
+				<td><?php echo $searchRow["SFN_AgentCode"] ?></td>
+				<td><?php echo $searchRow["SFN_TotalQuo"] ?></td>
+				<td><?php echo $searchRow["SFN_TotalPrem"] ?></td>
+				<td><?php echo $searchRow["SFN_PaidBal"] ?></td>
+				<td><?php echo $searchRow["SFN_PaidPrem"] ?></td>
+				<td>
+				<?php 
+					if($searchRow["SFN_PaidBal"]==0){
+						echo "Paid";
+					}
+					else{
+						echo "Outstanding";
+					}
+				?>
+				</td>
 			</tr>
 <?php	
 	}
