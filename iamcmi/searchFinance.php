@@ -245,7 +245,12 @@ $searchResultSize = $searchResult->num_rows;
 				<th>Total Premium</th>
 				<th>Outstanding Premium</th>
 				<th>Paid Premium</th>
-				<th>Status</th>
+				<th>Payment Status</th>
+				<?php 
+				if($_SESSION["usrRole"]=='Admin')
+					echo"<th>Approve Status</th>";
+				?>
+
 		    </tr>
 		  </thead>
 		  <tbody id="myTable">
@@ -271,6 +276,15 @@ $no=1;
 					}
 				?>
 				</td>
+				<?php 
+				if($_SESSION["usrRole"]=='Admin')
+					if($searchRow["SFN_PaidBal"]==0){
+						echo"<td><input type='checkbox'></td>";
+					}
+					else{
+						echo"<td>Payment Inprogress</td>";
+					}
+				?>
 			</tr>
 <?php	
 	}

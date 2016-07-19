@@ -11,7 +11,6 @@ $policyCreate = $title."Create New Policy";
 $policySearch = $title."Policy Search";
 $redbookUpdate = $title."Update Redbook Information";
 
-
 function connOpen(){
 	$hostname = "localhost";
 	$username = "root";

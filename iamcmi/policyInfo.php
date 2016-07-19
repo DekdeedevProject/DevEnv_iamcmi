@@ -10,7 +10,8 @@
     $conn   = connOpen();
     $data = $_GET['data'];
     $val = $_GET['val'];
-
+    $usrName = $_GET['usrName'];
+    $usrRole = $_GET['usrRole'];
 
          if ($data=='perCardType') { 
               $sqlID  = "PCS1_005";   
@@ -55,41 +56,25 @@
                 
               } 
          } 
+         else if ($data=='polAGTIDFK') { 
+              setUser($usrName,$usrRole);
+              $sqlID  = "PCS1_021";   
+              $aCodeResult =executeSql($conn,$sqlID);
+              echo "<select class='form-control' name='polAGTIDFK' id='polAGTIDFK' >\n";
+              echo "<option value='0'>- เลือกรหัสตัวแทน -</option>\n";
+              while($aCodeRow = $aCodeResult->fetch_assoc()){
+                if($val==$aCodeRow["AGT_ID_PK"]){
+                 echo "<option value='$aCodeRow[AGT_ID_PK]' selected='selected'>$aCodeRow[AGT_Code] (agtIDPK:$aCodeRow[AGT_ID_PK])</option>" ;
+                }
+                else{   
+                echo "<option value='$aCodeRow[AGT_ID_PK]' >$aCodeRow[AGT_Code] (agtIDPK:$aCodeRow[AGT_ID_PK])</option>" ;
+                }
+                
+              } 
+         }
          else{
           echo "</select>\n";
          } 
 
 
 ?>
-<!-- 
-<?php 
-            if ($addrContTypeResult->num_rows > 0) {
-              while($addrContTypeRow = $addrContTypeResult->fetch_assoc()){
-              ?>
-              <option name="addrContType" id="addrContType" value=<?php echo $addrContTypeRow["ADDR_ContType_ID_PK"];?>><?php echo $addrContTypeRow["ADDR_ContTypeName_TH"];?></option>
-              <?php
-              } 
-            }
-            else{
-            ?>  
-            <option value="">Test</option>
-            <?php
-            } 
-            ?>
- -->
-<!-- 
-<?php 
-            if ($perCardTypeResult->num_rows > 0) {
-              while($perCardTypeRow = $perCardTypeResult->fetch_assoc()){
-              ?>
-              <option name="perCardType" id="perCardType" value=<?php echo $perCardTypeRow["PER_CardType_ID_PK"];?>><?php echo $perCardTypeRow["PER_CardType_Name_TH"];?></option>
-              <?php
-              } 
-            }
-            else{
-            ?>  
-            <option value="">Test</option>
-            <?php
-            } 
-            ?>        -->
-

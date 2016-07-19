@@ -188,7 +188,7 @@ $searchResultSize = $searchResult->num_rows;
 </head>
 <title><?php echo $policySearch; ?></title>
 <body>
-		<form action="policySearchAll.php" id="cmi" method="POST">
+		<form action="searchPolicy.php" id="cmi" method="POST">
 		<div class="container">
 			<div class="page-header">
 				<h1>พ ร บ.</h1>
@@ -211,7 +211,7 @@ $searchResultSize = $searchResult->num_rows;
 					</select>	
 					<input type="text" name="sDesc"/>
 					<input type="Submit" class="btn btn-primary btn-md" value="Search"/>
-					<a href="policySearchAll.php"><input type="Button" value="Reset" class="btn btn-primary btn-md"/></a>
+					<a href="searchPolicy.php"><input type="Button" value="Reset" class="btn btn-primary btn-md"/></a>
 				</form>		
 				</div>
 			</div>
@@ -247,6 +247,8 @@ $searchResultSize = $searchResult->num_rows;
 		      <th>ทะเบียนรถ</th>
 		      <th>เบี้ยประกัน</th>
 		      <th>รหัสตัวแทน</th>
+		      <th>ลบ</th>
+		      <th>บิล</th>
 		    </tr>
 		  </thead>
 		  <tbody id="myTable">
@@ -277,7 +279,9 @@ $no=1;
 				}
 				?>
 				</td>
-				<td><?php echo $searchRow["POL_AgentCode"] ?></td>
+				<td><?php echo $searchRow["AGT_Code"] ?></td>
+				<td>ลบ</td>
+				<td>บิล</td>
 			</tr>
 <?php	
 	}

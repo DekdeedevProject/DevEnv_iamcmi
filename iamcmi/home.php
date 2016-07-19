@@ -35,7 +35,9 @@
 // @2016-06-19 SUN 02:08 PM 
 include 'config/config.php'; 
 include 'header.php'; 
+if(isset($_SESSION["polQuoNum"])){ 
 unset($_SESSION["polQuoNum"]);
+}
 // @Falom END 2016-06-19 SUN 02:08 PM 
 ?>
 <!-- END HEADER SECTION-->

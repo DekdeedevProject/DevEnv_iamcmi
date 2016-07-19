@@ -76,6 +76,9 @@
                 }   
               }
          }
+         else if ($data=='tarIDPK') {
+
+         }
          else if ($data=='tarVehCodePK'){
               setTariffID("",$tarBody,$tarSubBody,$tarUsage);
               $sqlID = "PCS1_017";
@@ -95,8 +98,8 @@
               <div class="row" >
                 <div class="col-md-2" align="left">รหัสรถ :</div>
                 <div class="col-md-2" >
-                  <input type="text" class="form-control" placeholder="Vehical Code" id="tarVehCodePK" name="tarVehCodePK" value='<?php echo $tarVehCodePK ?>' required>
-                  <input type="hidden" class="form-control" id="tarIDPK" name="tarIDPK" value='<?php echo $tarIDPK ?>' >
+                  <input type="text" class="form-control" placeholder="Vehical Code" id="tarVehCodePK" name="tarVehCodePK" value='<?php echo $tarVehCodePK ?>' required readonly>
+                  <input type="text" class="form-control" id="tarIDPK" name="tarIDPK" value='<?php echo $tarIDPK ?>' >
                 </div>
               </div>  
               <br>
@@ -143,20 +146,17 @@
               <div class="row">
                 <div class="col-md-2" align="left">เบี้ยสุทธิ :</div>
                 <div class="col-md-2">
-                  <input type="text" class="form-control" id="premNet" name="premNet" value='<?php echo $premNet ?>'
-                    placeholder="เบี้ยสุทธิ" required>
+                  <input type="text" class="form-control" id="premNet" name="premNet" value='<?php echo $premNet ?>' readonly required>
                   <input type="hidden" class="form-control" id="premStdNet" name="premStdNet" value='<?php echo $premStdNet ?>' >  
                 </div>
                 <div class="col-md-2" align="right">ภาษีมูลค่าเพิ่ม :</div>
                 <div class="col-md-2">
-                  <input type="text" class="form-control" id="premVat" name="premVat" value='<?php echo $premVat ?>'
-                    placeholder="ภาษีมูลค่าเพิ่ม" required>
+                  <input type="text" class="form-control" id="premVat" name="premVat" value='<?php echo $premVat ?>' required readonly>
                   <input type="hidden" class="form-control" id="premStdVat" name="premStdVat" value='<?php echo $premStdVat ?>'>  
                 </div>
                 <div class="col-md-2" align="right">อากรสแตมป์ :</div>
                 <div class="col-md-2">
-                  <input type="text" class="form-control" id="premStampDuty" name="premStampDuty" value='<?php echo $premStampDuty ?>'
-                    placeholder="อากรสแตมป์" required>
+                  <input type="text" class="form-control" id="premStampDuty" name="premStampDuty" value='<?php echo $premStampDuty ?>' readonly required>
                   <input type="hidden" class="form-control" id="premStdStampDuty" name="premStdStampDuty" value='<?php echo $premStdStampDuty ?>'>
                 </div>
               </div>
@@ -164,8 +164,7 @@
               <div class="row">
                 <div class="col-md-2" align="left">เบี้ยรวม:</div>
                 <div class="col-md-2">
-                  <input type="text" class="form-control" id="premTotal" name="premTotal" value='<?php echo $premTotal ?>'
-                    placeholder="เบี้ยรวม" required>
+                  <input type="text" class="form-control" id="premTotal" name="premTotal" value='<?php echo $premTotal ?>' readonly required>
                   <input type="hidden" class="form-control" id="premStdTotal" name="premStdTotal" value='<?php echo $premStdTotal ?>'>    
                 </div>        
               </div>

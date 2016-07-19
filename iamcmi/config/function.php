@@ -1,48 +1,47 @@
 <?php
-	function getNewPolicyNo($polNo){
-		$polName_prefix = "TEST";
-		$polName_lengthLimit = 10;
-			
-		if(!is_null($polNo)){
-			$polNo = trim($polNo,$polName_prefix)+1;
-			$addZero = $polName_lengthLimit - (strlen($polName_prefix) + strlen($polNo));
-			$newPolNo = $polName_prefix;
+function getNewPolicyNo($orgPolPrefix, $orgPolLength, $polNo){
+$polPrefix = $orgPolPrefix;
+$polLength = $orgPolLength;
+	
+if(!is_null($polNo)){
+	$polNo = trim($polNo,$polPrefix)+1;
+}
+else{
+	$polNo = 1;
+}
 
-			while($addZero >= 0){
-				$newPolNo = $newPolNo."0";
-				$addZero--;
-			}
-			$polNo = $newPolNo.$polNo;
-		}
-		else{
-			
-			$polNo = $polName_prefix."000001";
-		}
+$addZero = $polLength - (strlen($polPrefix) + strlen($polNo));
+$newPolNo = $polPrefix;
+while($addZero >= 0){
+	$newPolNo = $newPolNo."0";
+	$addZero--;
+}
+$polNo = $newPolNo.$polNo;
 
-		return $polNo;
-	}
+return $polNo;
 
-	function redirect($url)
-	{
-	    $baseUri;
-	    echo $baseUri;
-	    if(headers_sent())
-	    {
-	        $string = '<script type="text/javascript">';
-	        $string .= 'window.location = "' . $baseUri.$url . '"';
-	        $string .= '</script>';
+}
 
-	        echo $string;
-	    }
-	    else
-	    {
-	    if (isset($_SERVER['HTTP_REFERER']) AND ($url == $_SERVER['HTTP_REFERER']))
-	        header('Location: '.$_SERVER['HTTP_REFERER']);
-	    else
-	        header('Location: '.$baseUri.$url);
-	    }
-	    exit;
-	}
+function redirect($url)
+{
+   $baseUri;
+ echo $baseUri;
+ if(headers_sent())
+ {
+     $string = '<script type="text/javascript">';
+     $string .= 'window.location = "' . $baseUri.$url . '"';
+     $string .= '</script>';
+     echo $string;
+ }
+ else
+ {
+ if (isset($_SERVER['HTTP_REFERER']) AND ($url == $_SERVER['HTTP_REFERER']))
+     header('Location: '.$_SERVER['HTTP_REFERER']);
+ else
+     header('Location: '.$baseUri.$url);
+  }
+  exit;
+}
 
 function getAlertMsg($msg){
 $message="No message";
@@ -88,56 +87,106 @@ $sql="";
 			AND ACC_Pass='".$accPass."';";
 	break;
 
+	case 'PCS1_020':
+	$polOrgIDFK = $GLOBALS['polOrgIDFK'];
+	$sql = "SELECT * 
+			FROM Organization
+			WHERE ORG_ID_PK='".$polOrgIDFK."'
+			LIMIT 1;";
+	break;
+
+	case 'PCS1_021':
+	$usrName = $GLOBALS['usrName'];
+	$usrRole = $GLOBALS['usrRole'];
+    $sql = "SELECT *
+				FROM agent
+				JOIN account
+					ON AGT_ACC_ID_FK=ACC_ID_PK
+				WHERE ACC_User='".$usrName."' AND ACC_Role='".$usrRole."';";
+	break;
+
+	case 'PCS1_022':
+	$orgIDPK=$GLOBALS['orgIDPK'];
+    $sql = "SELECT *
+			FROM organization
+			WHERE ORG_ID_PK='".$orgIDPK."'";
+	break;
+
+	case 'PCS1_023':
+	$polStatusIDFK=$GLOBALS['polStatusIDFK'];
+    $sql = "SELECT *
+			FROM t_status
+			WHERE STA_ID_PK='".$polStatusIDFK."'";
+	break;
+
+	case 'PCS1_024':
+	$redKey=$GLOBALS['redKey'];
+    $sql = "SELECT *
+			FROM t_redbook
+			WHERE RED_Key='".$redKey."'";
+	break;
 	
 	case 'PCS1_001':
-	$sql = "	SELECT POL_ID_PK, POL_QuoNum 
-			FROM Policy
+	$polOrgIDFK = $GLOBALS['polOrgIDFK'];
+	$sql = "SELECT POL_ID_PK, POL_QuoNum, POL_Org_ID_FK 
+			FROM policy
+			WHERE POL_Org_ID_FK='".$polOrgIDFK."'
 			ORDER BY POL_ID_PK DESC
 			LIMIT 1;";
 	break;
 
 	case 'PCS1_002':
 	$sql 	= "	SELECT * 
-				FROM provinces
+				FROM T_provinces
 				ORDER BY PROVINCE_NAME;";
 	break;
 
 	case 'PCS1_003':
 	$polQuoNum = $GLOBALS['polQuoNum'];
 	$sql = "SELECT * 
-			FROM Policy 
-			INNER JOIN PolicyStatus 
-				ON POL_Status_ID_PK=POL_Status_ID_FK 
-			INNER JOIN Vehical 
-				ON VEH_ID_PK=POL_VEH_ID_FK	
-			INNER JOIN Personal 
-				ON PER_ID_PK=POL_CUS_ID_FK_INS 
-			INNER JOIN Address 
-				ON ADDR_ID_PK=POL_CUS_Addr_ID_INS	
-			INNER JOIN Redbook
-				ON RED_KEY=VEH_RED_KEY_FK
-			INNER JOIN Tariff
-				ON TAR_VehCode_PK=VEH_TAR_VehCode_FK
-			INNER JOIN Premium
-				ON PREM_ID_PK=POL_PREM_ID_FK	
+			FROM policy 
+			INNER JOIN organization
+				ON POL_Org_ID_FK=ORG_ID_PK
+			INNER JOIN t_status
+				ON POL_Status_ID_FK=STA_ID_PK
+			INNER JOIN agent
+				ON POL_AGT_ID_FK=AGT_ID_PK
+			INNER JOIN vehical 
+				ON POL_VEH_ID_FK=VEH_ID_PK	
+			INNER JOIN t_redbook
+				ON VEH_RED_KEY_FK=RED_KEY	
+			-- INNER JOIN T_PolStatus 
+			-- 	ON POL_Status_ID_PK=POL_Status_ID_FK 
+			-- INNER JOIN Vehical 
+			-- 	ON VEH_ID_PK=POL_VEH_ID_FK	
+			-- INNER JOIN Personal 
+			-- 	ON PER_ID_PK=POL_CUS_ID_FK_INS 
+			-- INNER JOIN Address 
+			-- 	ON ADDR_ID_PK=POL_CUS_Addr_ID_INS	
+			-- INNER JOIN Redbook
+			-- 	ON RED_KEY=VEH_RED_KEY_FK
+			-- INNER JOIN T_Tariff
+			-- 	ON TAR_ID_PK=VEH_TAR_ID_FK
+			-- INNER JOIN Premium
+			-- 	ON PREM_ID_PK=POL_PREM_ID_FK	
 			WHERE POL_QuoNum='".$polQuoNum."';";
 	break;
 	case 'PSS1_001':
 	$polQuoNum = $GLOBALS['polQuoNum'];
 	$sql = "SELECT * 
-			FROM Policy 
+			FROM policy 
 			WHERE POL_QuoNum='".$polQuoNum."';";
 	break;
 
 	case 'PSS1_002':
-	echo "PSS1_002";
-	// $polIDPK=$GLOBALS['polIDPK'];
-	$polMasPolNum=$GLOBALS['polMasPolNum'];
-	$polQuoNum=$GLOBALS['polQuoNum '];
+	$polIDPK=$GLOBALS['polIDPK'];
+	$polOrgIDFK=$GLOBALS['polOrgIDFK'];
+	$polStatusIDFK=$GLOBALS['polStatusIDFK'];
+	$polMaspolNum=$GLOBALS['polMaspolNum'];
+	$polQuoNum=$GLOBALS['polQuoNum'];
 	$polNum=$GLOBALS['polNum'];
 	$polCat=$GLOBALS['polCat'];
-	$polReFlag=$GLOBALS['polReFlag '];
-	$polStatusIDFK=$GLOBALS['polStatusIDFK '];
+	$polReFlag=$GLOBALS['polReFlag'];
 	$polEffDate=$GLOBALS['polEffDate'];
 	$polExpDate=$GLOBALS['polExpDate'];
 	$polQuoCreateDate=$GLOBALS['polQuoCreateDate'];
@@ -146,9 +195,9 @@ $sql="";
 	$polAppReceivedDate=$GLOBALS['polAppReceivedDate'];
 	$polIssueDate=$GLOBALS['polIssueDate'];
 	$polIssueBy=$GLOBALS['polIssueBy'];
-	$polAgentCode=$GLOBALS['polAgentCode'];
-	$polPRODIDFK=$GLOBALS['polPRODIDFK '];
-	$polPREMIDFK=$GLOBALS['polPREMIDFK '];
+	$polAGTIDFK=$GLOBALS['polAGTIDFK'];
+	$polPRODIDFK=$GLOBALS['polPRODIDFK'];
+	$polPREMIDFK=$GLOBALS['polPREMIDFK'];
 	$polCUSIDFKPHD=$GLOBALS['polCUSIDFKPHD'];
 	$polCUSAddrIDPHD=$GLOBALS['polCUSAddrIDPHD'];
 	$polCUSIDFKINS=$GLOBALS['polCUSIDFKINS'];
@@ -156,13 +205,14 @@ $sql="";
 	$polVEHIDFK=$GLOBALS['polVEHIDFK'];
 	$polUpdatedDate=$GLOBALS['polUpdatedDate'];
 	$polUpdatedBy=$GLOBALS['polUpdatedBy'];
-	echo $sql ="	INSERT INTO Policy (
+	echo $sql ="	INSERT INTO policy (
+				POL_Org_ID_FK,
+				POL_Status_ID_FK,
 				POL_MasPolNum,
 				POL_QuoNum,
 				POL_Num,
 				POL_Cat,
 				POL_ReFlag,
-				POL_Status_ID_FK ,
 				POL_EffDate,
 				POL_ExpDate,
 				POL_QuoCreateDate,
@@ -171,7 +221,7 @@ $sql="";
 				POL_AppReceivedDate,
 				POL_IssueDate,
 				POL_IssueBy,
-				POL_AgentCode,
+				POL_AGT_ID_FK,
 				POL_PROD_ID_FK,
 				POL_PREM_ID_FK,
 				POL_CUS_ID_FK_PHD,
@@ -183,21 +233,22 @@ $sql="";
 				POL_UpdatedBy
 			)
 			VALUES (		
-				'$polMasPolNum',
+				'$polOrgIDFK',
+				'$polStatusIDFK',
+				'$polMaspolNum',
 				'$polQuoNum',
 				'$polNum',
 				'$polCat',
 				'$polReFlag',
-				'$polStatusIDFK',
 				'$polEffDate',
 				'$polExpDate',
 				'$polQuoCreateDate',
-				'$polQuoDate',
+				$polQuoDate,
 				'$polProDate',
 				'$polAppReceivedDate',
 				'$polIssueDate',
 				'$polIssueBy',
-				'$polAgentCode',
+				'$polAGTIDFK',
 				'$polPRODIDFK',
 				'$polPREMIDFK',
 				'$polCUSIDFKPHD',
@@ -205,20 +256,20 @@ $sql="";
 				'$polCUSIDFKINS',
 				'$polCUSAddrIDINS',
 				'$polVEHIDFK',
-				'$polUpdatedDate',
+				$polUpdatedDate,
 				'$polUpdatedBy'
 			)"; 
 	break;
 
 	case 'PCS1_004':
 	$sql 	= "	SELECT * 
-				FROM AddressContType
+				FROM T_AddrContType
 				ORDER BY ADDR_ContType_ID_PK;";
 	break;
 
 	case 'PCS1_005':
 	$sql 	= "	SELECT * 
-				FROM PersonalCardType
+				FROM T_PerCardType
 				ORDER BY PER_CardType_ID_PK;";
 	break;
 
@@ -266,7 +317,7 @@ $sql="";
 	$cusAddrIDPHD = $GLOBALS['cusAddrIDINS'];
 	$polIDPK = $GLOBALS['polIDPK'];
 	$polVehIDFK=$GLOBALS['polVehIDFK'];
-	$sql ="	UPDATE Policy
+	$sql ="	UPDATE policy
 			SET CUS_ID_FK_INS='$cusIDFKINS',
 				CUS_Addr_ID_INS='$cusAddrIDINS',
 				CUS_ID_FK_PHD='$cusIDFKPHD',
@@ -326,7 +377,8 @@ $sql="";
 	break;
 	case 'PSS1_006':
 	echo "PSS1_006";
-	// $vehIDPK=$GLOBALS['vehIDPK'];
+	$vehIDPK=$GLOBALS['vehIDPK'];
+	$vehTARIDFK=$GLOBALS['vehTARIDFK'];
 	$vehTARVehCodeFK=$GLOBALS['vehTARVehCodeFK'];
 	$vehREDKEYFK=$GLOBALS['vehREDKEYFK'];
 	$vehLicenseNum=$GLOBALS['vehLicenseNum'];
@@ -344,7 +396,8 @@ $sql="";
 	$vehUpdatedDate=$GLOBALS['vehUpdatedDate'];
 	$vehUpdatedBy=$GLOBALS['vehUpdatedBy'];
 
-	echo $sql="INSERT INTO Vehical (
+	echo $sql="INSERT INTO vehical (
+			VEH_TAR_ID_FK,
 			VEH_TAR_VehCode_FK,
 			VEH_RED_KEY_FK,
 			VEH_LicenseNum,
@@ -363,6 +416,7 @@ $sql="";
 			VEH_UpdatedBy
 		)
 		VALUES (
+			'$vehTARIDFK',
 			'$vehTARVehCodeFK',
 			'$vehREDKEYFK',
 			'$vehLicenseNum',
@@ -377,7 +431,7 @@ $sql="";
 			'$vehColor',
 			'$vehCountry',
 			'$vehQuoNumRef',
-			'vehUpdatedDate',
+			$vehUpdatedDate,
 			'$vehUpdatedBy'
 		)"; 
 	break;
@@ -397,6 +451,12 @@ $sql="";
 	$premVat=$GLOBALS['premVat'];
 	$premTotal=$GLOBALS['premTotal'];
 	$premQuoNumRef=$GLOBALS['premQuoNumRef'];
+	$premOutstanding=$GLOBALS['premOutstanding'];
+	$premPaid=$GLOBALS['premPaid'];
+	$premPaidStatus=$GLOBALS['premPaidStatus'];
+	$premPaidStatusAprv=$GLOBALS['premPaidStatusAprv'];
+	$premPaidBalance=$GLOBALS['premPaidBalance'];
+	$premPaidDate=$GLOBALS['premPaidDate'];
 	$premUpdatedDate=$GLOBALS['premUpdatedDate'];
 	$premUpdatedBy=$GLOBALS['premUpdatedBy'];
 	echo $sql =" INSERT INTO Premium (
@@ -413,6 +473,12 @@ $sql="";
 				PREM_Vat,
 				PREM_Total,
 				PREM_QuoNumRef,
+				PREM_Outstanding,
+				PREM_Paid,
+				PREM_PaidStatus,
+				PREM_PaidStatusAprv,
+				PREM_PaidBalance,
+				PREM_PaidDate,
 				PREM_UpdatedDate,
 				PREM_UpdatedBy
 			)
@@ -430,18 +496,26 @@ $sql="";
 				'$premVat',
 				'$premTotal',
 				'$premQuoNumRef',
+				'$premOutstanding',
+				'$premPaid',
+				'$premPaidStatus',
+				'$premPaidStatusAprv',
+				'$premPaidBalance',
+				'$premPaidDate',
 				'$premUpdatedDate',
 				'$premUpdatedBy'
 			)"; 
 	break;
 
 	case 'PSS1_008':
-	$polMasPolNum=$GLOBALS['polMasPolNum'];
+	$polIDPK=$GLOBALS['polIDPK'];
+	$polOrgIDFK=$GLOBALS['polOrgIDFK'];
+	$polStatusIDFK=$GLOBALS['polStatusIDFK'];
+	$polMaspolNum=$GLOBALS['polMaspolNum'];
 	$polQuoNum=$GLOBALS['polQuoNum'];
 	$polNum=$GLOBALS['polNum'];
 	$polCat=$GLOBALS['polCat'];
 	$polReFlag=$GLOBALS['polReFlag'];
-	$polStatusIDFK=$GLOBALS['polStatusIDFK'];
 	$polEffDate=$GLOBALS['polEffDate'];
 	$polExpDate=$GLOBALS['polExpDate'];
 	$polQuoCreateDate=$GLOBALS['polQuoCreateDate'];
@@ -450,7 +524,7 @@ $sql="";
 	$polAppReceivedDate=$GLOBALS['polAppReceivedDate'];
 	$polIssueDate=$GLOBALS['polIssueDate'];
 	$polIssueBy=$GLOBALS['polIssueBy'];
-	$polAgentCode=$GLOBALS['polAgentCode'];
+	$polAGTIDFK=$GLOBALS['polAGTIDFK'];
 	$polPRODIDFK=$GLOBALS['polPRODIDFK'];
 	$polPREMIDFK=$GLOBALS['polPREMIDFK'];
 	$polCUSIDFKPHD=$GLOBALS['polCUSIDFKPHD'];
@@ -460,103 +534,28 @@ $sql="";
 	$polVEHIDFK=$GLOBALS['polVEHIDFK'];
 	$polUpdatedDate=$GLOBALS['polUpdatedDate'];
 	$polUpdatedBy=$GLOBALS['polUpdatedBy'];
-	$vehIDPK=$GLOBALS['vehIDPK'];
-	$vehTARIDFK=$GLOBALS['vehTARIDFK'];
-	$vehTARVehCodeFK=$GLOBALS['vehTARVehCodeFK'];
-	$vehREDKEYFK=$GLOBALS['vehREDKEYFK'];
-	$vehLicenseNum=$GLOBALS['vehLicenseNum'];
-	$vehChassisNum=$GLOBALS['vehChassisNum'];
-	$vehCapacity=$GLOBALS['vehCapacity'];
-	$vehSeat=$GLOBALS['vehSeat'];
-	$vehWeight=$GLOBALS['vehWeight'];
-	$vehEngineNum=$GLOBALS['vehEngineNum'];
-	$vehNewCar=$GLOBALS['vehNewCar'];
-	$vehDriveArea=$GLOBALS['vehDriveArea'];
-	$vehProvIDFK=$GLOBALS['vehProvIDFK'];
-	$vehColor=$GLOBALS['vehColor'];
-	$vehCountry=$GLOBALS['vehCountry'];
-	$vehQuoNumRef=$GLOBALS['vehQuoNumRef'];
-	$vehUpdatedDate=$GLOBALS['vehUpdatedDate'];
-	$vehUpdatedBy=$GLOBALS['vehUpdatedBy'];
-	$perIDPK=$GLOBALS['perIDPK'];
-	$perSalu=$GLOBALS['perSalu'];
-	$perFName=$GLOBALS['perFName'];
-	$perMName=$GLOBALS['perMName'];
-	$perLName=$GLOBALS['perLName'];
-	$perDOB=$GLOBALS['perDOB'];
-	$perCardType=$GLOBALS['perCardType'];
-	$perCardNo=$GLOBALS['perCardNo'];
-	$perExpDate=$GLOBALS['perExpDate'];
-	$perUpdatedDate=$GLOBALS['perUpdatedDate'];
-	$perUpdatedBy=$GLOBALS['perUpdatedBy'];
-	$addrIDPK=$GLOBALS['addrIDPK'];
-	$addrLine1=$GLOBALS['addrLine1'];
-	$addrLine2=$GLOBALS['addrLine2'];
-	$addrSubDist=$GLOBALS['addrSubDist'];
-	$addrDist=$GLOBALS['addrDist'];
-	$addrProv=$GLOBALS['addrProv'];
-	$addrZipCode=$GLOBALS['addrZipCode'];
-	$addrGeo=$GLOBALS['addrGeo'];
-	$addrEmail=$GLOBALS['addrEmail'];
-	$addrContType1=$GLOBALS['addrContType1'];
-	$addrContNum1=$GLOBALS['addrContNum1'];
-	$addrContType2=$GLOBALS['addrContType2'];
-	$addrContNum2=$GLOBALS['addrContNum2'];
-	$addrUpdatedDate=$GLOBALS['addrUpdatedDate'];
-	$addrUpdatedBy=$GLOBALS['addrUpdatedBy'];
-	$tarIDPK=$GLOBALS['tarIDPK'];
-	$tarVehCodePK=$GLOBALS['tarVehCodePK'];
-	$redKey=$GLOBALS['redKey'];
-	$redMake=$GLOBALS['redMake'];
-	$redModel=$GLOBALS['redModel'];
-	$redYear=$GLOBALS['redYear'];
-	$redDesc=$GLOBALS['redDesc'];
-	$premStdNet=$GLOBALS['premStdNet'];
-	$premStdVat=$GLOBALS['premStdVat'];
-	$premStdStampDuty=$GLOBALS['premStdStampDuty'];
-	$premStdTotal=$GLOBALS['premStdTotal'];
-	$premPercentVat=$GLOBALS['premPercentVat'];
-	$premPerDiscount=$GLOBALS['premPerDiscount'];
-	$premDiscountFlag=$GLOBALS['premDiscountFlag'];
-	$premDiscount=$GLOBALS['premDiscount'];
-	$premNet=$GLOBALS['premNet'];
-	$premStampDuty=$GLOBALS['premStampDuty'];
-	$premVat=$GLOBALS['premVat'];
-	$premTotal=$GLOBALS['premTotal'];
-	$premQuoNumRef=$GLOBALS['premQuoNumRef'];
-	$premUpdatedDate=$GLOBALS['premUpdatedDate'];
-	$premUpdatedBy=$GLOBALS['premUpdatedBy'];
-	echo $sql ="	UPDATE Policy 
-			INNER JOIN PolicyStatus 
-				ON POL_Status_ID_PK=POL_Status_ID_FK 
-			INNER JOIN Vehical 
-				ON VEH_ID_PK=POL_VEH_ID_FK	
-			INNER JOIN Personal 
-				ON PER_ID_PK=POL_CUS_ID_FK_INS 
-			INNER JOIN Address 
-				ON ADDR_ID_PK=POL_CUS_Addr_ID_INS	
-			INNER JOIN Redbook
-				ON RED_KEY=VEH_RED_KEY_FK
-			INNER JOIN Tariff
-				ON TAR_VehCode_PK=VEH_TAR_VehCode_FK
-			INNER JOIN Premium
-				ON PREM_ID_PK=POL_PREM_ID_FK
-			SET 
-				POL_MasPolNum='$polMasPolNum',
+
+	$vehREDKEYFK= $GLOBALS['vehREDKEYFK'] ;
+	echo $sql ="	UPDATE policy 
+				JOIN vehical
+				ON POL_VEH_ID_FK=VEH_ID_PK
+				SET 
+				POL_Org_ID_FK='$polOrgIDFK',
+				POL_Status_ID_FK='$polStatusIDFK',
+				POL_MasPolNum='$polMaspolNum',
 				POL_QuoNum='$polQuoNum',
 				POL_Num='$polNum',
 				POL_Cat='$polCat',
 				POL_ReFlag='$polReFlag',
-				POL_Status_ID_FK='$polStatusIDFK',
 				POL_EffDate='$polEffDate',
 				POL_ExpDate='$polExpDate',
 				POL_QuoCreateDate='$polQuoCreateDate',
-				POL_QuoDate='$polQuoDate',
+				POL_QuoDate=$polQuoDate,
 				POL_ProDate='$polProDate',
 				POL_AppReceivedDate='$polAppReceivedDate',
 				POL_IssueDate='$polIssueDate',
 				POL_IssueBy='$polIssueBy',
-				POL_AgentCode='$polAgentCode',
+				POL_AGT_ID_FK='$polAGTIDFK',
 				POL_PROD_ID_FK='$polPRODIDFK',
 				POL_PREM_ID_FK='$polPREMIDFK',
 				POL_CUS_ID_FK_PHD='$polCUSIDFKPHD',
@@ -564,87 +563,24 @@ $sql="";
 				POL_CUS_ID_FK_INS='$polCUSIDFKINS',
 				POL_CUS_Addr_ID_INS='$polCUSAddrIDINS',
 				POL_VEH_ID_FK='$polVEHIDFK',
-				POL_UpdatedDate='$polUpdatedDate',
+				POL_UpdatedDate=$polUpdatedDate,
 				POL_UpdatedBy='$polUpdatedBy',
-				VEH_ID_PK='$vehIDPK',
-				VEH_TAR_VehCode_FK='$vehTARVehCodeFK',
-				VEH_RED_KEY_FK='$vehREDKEYFK',
-				VEH_LicenseNum='$vehLicenseNum',
-				VEH_ChassisNum='$vehChassisNum',
-				VEH_Capacity='$vehCapacity',
-				VEH_Seat='$vehSeat',
-				VEH_Weight='$vehWeight',
-				VEH_EngineNum='$vehEngineNum',
-				VEH_NewCar='$vehNewCar',
-				VEH_DriveArea='$vehDriveArea',
-				VEH_Prov_ID_FK='$vehProvIDFK',
-				VEH_Color='$vehColor',
-				VEH_Country='$vehCountry',
-				VEH_QuoNumRef='$vehQuoNumRef',
-				VEH_UpdatedDate='$vehUpdatedDate',
-				VEH_UpdatedBy='$vehUpdatedBy',
-				PER_ID_PK='$perIDPK',
-				PER_Salu='$perSalu',
-				PER_FName='$perFName',
-				PER_MName='$perMName',
-				PER_LName='$perLName',
-				PER_DOB='$perDOB',
-				PER_CardType='$perCardType',
-				PER_CardNo='$perCardNo',
-				PER_ExpDate='$perExpDate',
-				PER_UpdatedDate='$perUpdatedDate',
-				PER_UpdatedBy='$perUpdatedBy',
-				ADDR_ID_PK='$addrIDPK',
-				ADDR_Line1='$addrLine1',
-				ADDR_Line2='$addrLine2',
-				ADDR_SubDist='$addrSubDist',
-				ADDR_Dist='$addrDist',
-				ADDR_Prov='$addrProv',
-				ADDR_ZipCode='$addrZipCode',
-				ADDR_Geo='$addrGeo',
-				ADDR_Email='$addrEmail',
-				ADDR_ContType1='$addrContType1',
-				ADDR_ContNum1='$addrContNum1',
-				ADDR_ContType2='$addrContType2',
-				ADDR_ContNum2='$addrContNum2',
-				ADDR_UpdatedDate='$addrUpdatedDate',
-				ADDR_UpdatedBy='$addrUpdatedBy',
-				TAR_ID_PK='$tarIDPK',
-				TAR_VehCode_PK='$tarVehCodePK',
-				RED_Key='$redKey',
-				RED_Make='$redMake',
-				RED_Model='$redModel',
-				RED_Year='$redYear',
-				RED_Desc='$redDesc',
-				PREM_StdNet='$premStdNet',
-				PREM_StdVat='$premStdVat',
-				PREM_StdStampDuty='$premStdStampDuty',
-				PREM_StdTotal='$premStdTotal',
-				PREM_PercentVat='$premPercentVat',
-				PREM_PerDiscount='$premPerDiscount',
-				PREM_DiscountFlag='$premDiscountFlag',
-				PREM_Discount='$premDiscount',
-				PREM_Net='$premNet',
-				PREM_StampDuty='$premStampDuty',
-				PREM_Vat='$premVat',
-				PREM_Total='$premTotal',
-				PREM_QuoNumRef='$premQuoNumRef',
-				PREM_UpdatedDate='$premUpdatedDate',
-				PREM_UpdatedBy='$premUpdatedBy'
-			WHERE POL_QuoNum='".$polQuoNum."';
+
+				VEH_RED_KEY_FK='$vehREDKEYFK'
+			WHERE  POL_ID_PK='".$polIDPK."' AND POL_QuoNum='".$polQuoNum."';
 	";
 	break;
 
 	case 'PCS1_006':
 	$sql 	= "	SELECT DISTINCT(RED_Make) 
-				FROM Redbook
+				FROM t_redbook
 				ORDER BY RED_Make;";
 	break;
 
 	case 'PCS1_007':
 	$redMake=$GLOBALS['redMake'];
 	$sql 	= "	SELECT DISTINCT(RED_Model) 
-				FROM Redbook
+				FROM t_redbook
 				WHERE RED_Make='".$redMake."'
 				ORDER BY RED_Model;";
 	break;
@@ -653,7 +589,7 @@ $sql="";
 	$redMake=$GLOBALS['redMake'];
 	$redModel=$GLOBALS['redModel'];
 	$sql 	= "	SELECT DISTINCT(RED_Year)
-				FROM Redbook
+				FROM t_redbook
 				WHERE RED_Make='".$redMake."' AND RED_Model='".$redModel."'
 				ORDER BY RED_Year;";
 	break;
@@ -663,7 +599,7 @@ $sql="";
 	$redModel=$GLOBALS['redModel'];
 	$redYear=$GLOBALS['redYear'];
 	$sql 	= "	SELECT DISTINCT(RED_Desc)
-				FROM Redbook
+				FROM t_redbook
 				WHERE RED_Make='".$redMake."' AND RED_Model='".$redModel."' AND RED_Year='".$redYear."'
 				ORDER BY RED_Desc;";
 	break;
@@ -673,14 +609,14 @@ $sql="";
 	$redYear=$GLOBALS['redYear'];
 	$redDesc=$GLOBALS['redDesc'];
 	$sql 	= "SELECT *
-				FROM Redbook
+				FROM t_redbook
 				WHERE RED_Make='".$redMake."' AND RED_Model='".$redModel."' AND RED_Year='".$redYear."' AND RED_Desc='".$redDesc."'
 				;";
 	break;			
 	case 'PCS1_010':
 	$provID=$GLOBALS['provID'];
 	$sql 	= "SELECT *
-				FROM districts
+				FROM T_districts
 				WHERE PROVINCE_ID='".$provID."'
 				ORDER BY DISTRICT_NAME;";
 	break;
@@ -689,7 +625,7 @@ $sql="";
 	$provID=$GLOBALS['provID'];
 	$distID=$GLOBALS['distID'];
 	$sql 	= "	SELECT *
-				FROM subdistricts
+				FROM T_subdistricts
 				WHERE PROVINCE_ID='".$provID."' AND DISTRICT_ID='".$distID."'
 				ORDER BY SUBDISTRICT_NAME;";
 	break;
@@ -697,14 +633,14 @@ $sql="";
 	case 'PCS1_012':
 	$subDistID=$GLOBALS['subDistID'];
 	$sql 	= "	SELECT *
-				FROM zipcodes
+				FROM T_zipcodes
 				WHERE subdistrict_code='".$subDistID."'
 				ORDER BY zipcode;";
 	break;
 
 	case 'PCS1_013':
 	$sql 	= " SELECT DISTINCT(TAR_PowerName_TH)
-				FROM Tariff
+				FROM T_Tariff
 				ORDER BY TAR_PowerName_TH;";
 	break;
 
@@ -714,7 +650,7 @@ $sql="";
 	$tarSubBody=$GLOBALS['tarSubBody'];
 	$tarUsage=$GLOBALS['tarUsage'];
 	$sql 	= "	SELECT DISTINCT(TAR_BodyName_TH)
-				FROM Tariff
+				FROM T_Tariff
 				ORDER BY TAR_BodyName_TH;";
 	break;
 
@@ -722,7 +658,7 @@ $sql="";
 	$tarPower=$GLOBALS['tarPower'];
 	$tarBody=$GLOBALS['tarBody'];
 	$sql 	= "	SELECT DISTINCT(TAR_SubBodyName_TH)
-				FROM Tariff
+				FROM T_Tariff
 				WHERE TAR_BodyName_TH='".$tarBody."'
 				ORDER BY TAR_SubBodyName_TH;";
 	break;
@@ -732,7 +668,7 @@ $sql="";
 	$tarBody=$GLOBALS['tarBody'];
 	$tarSubBody=$GLOBALS['tarSubBody'];
 	$sql 	= "	SELECT DISTINCT(TAR_UsageName_TH)
-				FROM Tariff
+				FROM T_Tariff
 				WHERE TAR_BodyName_TH='".$tarBody."' AND TAR_SubBodyName_TH='".$tarSubBody."'
 				ORDER BY TAR_UsageName_TH;";
 	break;
@@ -743,21 +679,21 @@ $sql="";
 	$tarSubBody=$GLOBALS['tarSubBody'];
 	$tarUsage=$GLOBALS['tarUsage'];
 	$sql 	= "	SELECT *
-				FROM Tariff
+				FROM T_Tariff
 				WHERE TAR_BodyName_TH='".$tarBody."' AND TAR_SubBodyName_TH='".$tarSubBody."' AND TAR_UsageName_TH='".$tarUsage."'
 				;";
 	break;
 	case 'PCS1_018':
 	$sql 	= "	SELECT *
-				FROM PersonalSaluType
+				FROM T_PerSaluType
 				ORDER BY PER_Salu_TH
 				;";
 	break;
 
 	case 'SPO_001':
 	$sql = "SELECT * 
-			FROM Policy 
-			INNER JOIN PolicyStatus 
+			FROM policy 
+			INNER JOIN T_PolStatus 
 				ON POL_Status_ID_PK=POL_Status_ID_FK 
 			INNER JOIN Vehical 
 				ON VEH_ID_PK=POL_VEH_ID_FK	
@@ -767,10 +703,12 @@ $sql="";
 				ON ADDR_ID_PK=POL_CUS_Addr_ID_INS	
 			INNER JOIN Redbook
 				ON RED_KEY=VEH_RED_KEY_FK
-			INNER JOIN Tariff
-				ON TAR_VehCode_PK=VEH_TAR_VehCode_FK
+			INNER JOIN T_Tariff
+				ON TAR_ID_PK=VEH_TAR_ID_FK
 			INNER JOIN Premium
 				ON PREM_ID_PK=POL_PREM_ID_FK	
+			INNER JOIN Agent
+				ON POL_AGT_ID_FK=AGT_ID_PK	
 			ORDER BY POL_ID_PK DESC;";
 	break;
 
@@ -778,22 +716,8 @@ $sql="";
 	$sBy 	= $GLOBALS['sBy'];
 	$sDesc 	= $GLOBALS['sDesc'];
 	$sql = "SELECT * 
-			FROM Policy 
-			INNER JOIN PolicyStatus 
-				ON POL_Status_ID_PK=POL_Status_ID_FK
-			WHERE ".$sBy." LIKE '%".$sDesc."%'	
-			ORDER BY POL_ID_PK DESC;";
-	break;
-
-	case 'SFN_001':
-	$sql = "SELECT 	POL_AgentCode as SFN_AgentCode,
-					COUNT(POL_QuoNum) as SFN_TotalQuo,
-					SUM(PREM_Total) as SFN_TotalPrem,
-					SUM(PREM_Outstanding) as SFN_OutstadPrem, 
-					SUM(PREM_Paid) as SFN_PaidPrem,
-					SUM(PREM_PaidBalance) as SFN_PaidBal
-			FROM Policy 
-			INNER JOIN PolicyStatus 
+			FROM policy 
+			INNER JOIN T_PolStatus 
 				ON POL_Status_ID_PK=POL_Status_ID_FK 
 			INNER JOIN Vehical 
 				ON VEH_ID_PK=POL_VEH_ID_FK	
@@ -803,12 +727,41 @@ $sql="";
 				ON ADDR_ID_PK=POL_CUS_Addr_ID_INS	
 			INNER JOIN Redbook
 				ON RED_KEY=VEH_RED_KEY_FK
-			INNER JOIN Tariff
+			INNER JOIN T_Tariff
+				ON TAR_VehCode_PK=VEH_TAR_VehCode_FK
+			INNER JOIN Premium
+				ON PREM_ID_PK=POL_PREM_ID_FK
+			WHERE ".$sBy." LIKE '%".$sDesc."%'	
+			ORDER BY POL_ID_PK DESC;";
+	break;
+
+	case 'SFN_001':
+	$sql = "SELECT 	POL_AGT_ID_FK,
+					AGT_Code as SFN_AgentCode,
+					COUNT(POL_QuoNum) as SFN_TotalQuo,
+					SUM(PREM_Total) as SFN_TotalPrem,
+					SUM(PREM_Outstanding) as SFN_OutstadPrem, 
+					SUM(PREM_Paid) as SFN_PaidPrem,
+					SUM(PREM_PaidBalance) as SFN_PaidBal
+			FROM policy 
+			INNER JOIN Agent
+				ON POL_AGT_ID_FK=AGT_ID_PK
+			INNER JOIN T_PolStatus 
+				ON POL_Status_ID_PK=POL_Status_ID_FK 
+			INNER JOIN Vehical 
+				ON VEH_ID_PK=POL_VEH_ID_FK	
+			INNER JOIN Personal 
+				ON PER_ID_PK=POL_CUS_ID_FK_INS 
+			INNER JOIN Address 
+				ON ADDR_ID_PK=POL_CUS_Addr_ID_INS	
+			INNER JOIN Redbook
+				ON RED_KEY=VEH_RED_KEY_FK
+			INNER JOIN T_Tariff
 				ON TAR_VehCode_PK=VEH_TAR_VehCode_FK
 			INNER JOIN Premium
 				ON PREM_ID_PK=POL_PREM_ID_FK	
-			GROUP BY POL_AgentCode	
-			ORDER BY POL_AgentCode;
+			GROUP BY POL_AGT_ID_FK	
+			ORDER BY POL_AGT_ID_FK;
 			";
 	break;
 
@@ -820,13 +773,25 @@ $sql="";
 return $sql;
 }
 
+
+$accUser;
+$accPass;
+
+$sBy;
+$sDesc;
+
+$provID;
+$distID;
+$subDistID;
+
 $polIDPK;
-$polMasPolNum;
+$polOrgIDFK;
+$polStatusIDFK;
+$polMaspolNum;
 $polQuoNum;
 $polNum;
 $polCat;
 $polReFlag;
-$polStatusIDFK;
 $polEffDate;
 $polExpDate;
 $polQuoCreateDate;
@@ -835,7 +800,7 @@ $polProDate;
 $polAppReceivedDate;
 $polIssueDate;
 $polIssueBy;
-$polAgentCode;
+$polAGTIDFK;
 $polPRODIDFK;
 $polPREMIDFK;
 $polCUSIDFKPHD;
@@ -845,13 +810,25 @@ $polCUSAddrIDINS;
 $polVEHIDFK;
 $polUpdatedDate;
 $polUpdatedBy;
+
 $polStatusIDPK;
 $polStatusNameEN;
 $polStatusNameTH;
 $polStatusDesc;
 $polStatusUpdatedDate;
 $polStatusUpdatedBy;
+
+$orgIDPK;
+$orgShortName;
+$orgLongNameTH;
+$orgLongNameEN;
+$orgPolPrefix;
+$orgPolLength;
+$orgUpdateDate;
+$orgUpdateBy;
+
 $vehIDPK;
+$vehTARIDFK;
 $vehTARVehCodeFK;
 $vehREDKEYFK;
 $vehLicenseNum;
@@ -868,6 +845,7 @@ $vehCountry;
 $vehQuoNumRef;
 $vehUpdatedDate;
 $vehUpdatedBy;
+
 $perIDPK;
 $perSalu;
 $perFName;
@@ -879,6 +857,7 @@ $perCardNo;
 $perExpDate;
 $perUpdatedDate;
 $perUpdatedBy;
+
 $addrIDPK;
 $addrLine1;
 $addrLine2;
@@ -894,6 +873,7 @@ $addrContType2;
 $addrContNum2;
 $addrUpdatedDate;
 $addrUpdatedBy;
+
 $tarIDPK;
 $tarVehCodePK;
 $tarPowerNameEN;
@@ -916,6 +896,12 @@ $tarStampDuty;
 $tarTotalPrem;
 $tarUpdatedDate;
 $tarUpdatedBy;
+
+$tarPower;
+$tarBody;
+$tarSubBody;
+$tarUsage;
+
 $redIDPK;
 $redKey;
 $redMake;
@@ -934,14 +920,41 @@ $redECO;
 $redUpdatedDate;
 $redUpdatedBy;
 
+$premIDPK;
+$premStdNet;
+$premStdVat;
+$premStdStampDuty;
+$premStdTotal;
+$premPercentVat;
+$premPerDiscount;
+$premDiscountFlag;
+$premDiscount;
+$premNet;
+$premStampDuty;
+$premVat;
+$premTotal;
+$premQuoNumRef;
+$premOutstanding;
+$premPaid;
+$premPaidStatus;
+$premPaidStatusAprv;
+$premPaidBalance;
+$premPaidDate;
+$premUpdatedDate;
+$premUpdatedBy;
+
+$usrName;
+$usrRole;
+
 function setPolicyInfo(
-// $polIDPK,
-$polMasPolNum,
+$polIDPK,
+$polOrgIDFK,
+$polStatusIDFK,
+$polMaspolNum,
 $polQuoNum,
 $polNum,
 $polCat,
 $polReFlag,
-$polStatusIDFK,
 $polEffDate,
 $polExpDate,
 $polQuoCreateDate,
@@ -950,7 +963,7 @@ $polProDate,
 $polAppReceivedDate,
 $polIssueDate,
 $polIssueBy,
-$polAgentCode,
+$polAGTIDFK,
 $polPRODIDFK,
 $polPREMIDFK,
 $polCUSIDFKPHD,
@@ -961,32 +974,34 @@ $polVEHIDFK,
 $polUpdatedDate,
 $polUpdatedBy
 ){
-// $GLOBALS['polIDPK']=$polIDPK;
-$GLOBALS['polMasPolNum']=$polMasPolNum;
-$GLOBALS['polQuoNum ']=$polQuoNum ;
-$GLOBALS['polNum']=$polNum;
-$GLOBALS['polCat']=$polCat;
-$GLOBALS['polReFlag ']=$polReFlag ;
-$GLOBALS['polStatusIDFK ']=$polStatusIDFK ;
-$GLOBALS['polEffDate']=$polEffDate;
-$GLOBALS['polExpDate']=$polExpDate;
-$GLOBALS['polQuoCreateDate']=$polQuoCreateDate;
-$GLOBALS['polQuoDate']=$polQuoDate;
-$GLOBALS['polProDate']=$polProDate;
-$GLOBALS['polAppReceivedDate']=$polAppReceivedDate;
-$GLOBALS['polIssueDate']=$polIssueDate;
-$GLOBALS['polIssueBy']=$polIssueBy;
-$GLOBALS['polAgentCode']=$polAgentCode;
-$GLOBALS['polPRODIDFK ']=$polPRODIDFK ;
-$GLOBALS['polPREMIDFK ']=$polPREMIDFK ;
-$GLOBALS['polCUSIDFKPHD']=$polCUSIDFKPHD;
-$GLOBALS['polCUSAddrIDPHD']=$polCUSAddrIDPHD;
-$GLOBALS['polCUSIDFKINS']=$polCUSIDFKINS;
-$GLOBALS['polCUSAddrIDINS']=$polCUSAddrIDINS;
-$GLOBALS['polVEHIDFK']=$polVEHIDFK;
-$GLOBALS['polUpdatedDate']=$polUpdatedDate;
-$GLOBALS['polUpdatedBy']=$polUpdatedBy;
+$GLOBALS['polIDPK'] = $polIDPK;
+$GLOBALS['polOrgIDFK'] = $polOrgIDFK;
+$GLOBALS['polStatusIDFK'] = $polStatusIDFK;
+$GLOBALS['polMaspolNum'] = $polMaspolNum;
+$GLOBALS['polQuoNum'] = $polQuoNum;
+$GLOBALS['polNum'] = $polNum;
+$GLOBALS['polCat'] = $polCat;
+$GLOBALS['polReFlag'] = $polReFlag;
+$GLOBALS['polEffDate'] = $polEffDate;
+$GLOBALS['polExpDate'] = $polExpDate;
+$GLOBALS['polQuoCreateDate'] = $polQuoCreateDate;
+$GLOBALS['polQuoDate'] = $polQuoDate;
+$GLOBALS['polProDate'] = $polProDate;
+$GLOBALS['polAppReceivedDate'] = $polAppReceivedDate;
+$GLOBALS['polIssueDate'] = $polIssueDate;
+$GLOBALS['polIssueBy'] = $polIssueBy;
+$GLOBALS['polAGTIDFK'] = $polAGTIDFK;
+$GLOBALS['polPRODIDFK'] = $polPRODIDFK;
+$GLOBALS['polPREMIDFK'] = $polPREMIDFK;
+$GLOBALS['polCUSIDFKPHD'] = $polCUSIDFKPHD;
+$GLOBALS['polCUSAddrIDPHD'] = $polCUSAddrIDPHD;
+$GLOBALS['polCUSIDFKINS'] = $polCUSIDFKINS;
+$GLOBALS['polCUSAddrIDINS'] = $polCUSAddrIDINS;
+$GLOBALS['polVEHIDFK'] = $polVEHIDFK;
+$GLOBALS['polUpdatedDate'] = $polUpdatedDate;
+$GLOBALS['polUpdatedBy'] = $polUpdatedBy;
 }
+
 function setPolicyHolderInfo(
 // $perIDPK,
 $perSalu,
@@ -1045,8 +1060,10 @@ $GLOBALS['addrContNum2']=$addrContNum2;
 $GLOBALS['addrUpdatedDate']=$addrUpdatedDate;
 $GLOBALS['addrUpdatedBy']=$addrUpdatedBy;
 }
+
 function setVehicalInfo(
-// $vehIDPK,
+$vehIDPK,
+$vehTARIDFK,	
 $vehTARVehCodeFK,
 $vehREDKEYFK,
 $vehLicenseNum,
@@ -1063,9 +1080,9 @@ $vehCountry,
 $vehQuoNumRef,
 $vehUpdatedDate,
 $vehUpdatedBy
-){	
-// echo "setVehicalInfo";	
-// $GLOBALS['vehIDPK']=$vehIDPK;
+){		
+$GLOBALS['vehIDPK']=$vehIDPK;
+$GLOBALS['vehTARIDFK']=$vehTARIDFK;
 $GLOBALS['vehTARVehCodeFK']=$vehTARVehCodeFK;
 $GLOBALS['vehREDKEYFK']=$vehREDKEYFK;
 $GLOBALS['vehLicenseNum']=$vehLicenseNum;
@@ -1084,22 +1101,6 @@ $GLOBALS['vehUpdatedDate']=$vehUpdatedDate;
 $GLOBALS['vehUpdatedBy']=$vehUpdatedBy;
 }
 
-$premIDPK;
-$premStdNet;
-$premStdVat;
-$premStdStampDuty;
-$premStdTotal;
-$premPercentVat;
-$premPerDiscount;
-$premDiscountFlag;
-$premDiscount;
-$premNet;
-$premStampDuty;
-$premVat;
-$premTotal;
-$premQuoNumRef;
-$premUpdatedDate;
-$premUpdatedBy;
 function setPremiumInfo(
 // $premIDPK,
 $premStdNet,
@@ -1115,6 +1116,12 @@ $premStampDuty,
 $premVat,
 $premTotal,
 $premQuoNumRef,
+$premOutstanding,
+$premPaid,
+$premPaidStatus,
+$premPaidStatusAprv,
+$premPaidBalance,
+$premPaidDate,
 $premUpdatedDate,
 $premUpdatedBy
 ){
@@ -1132,6 +1139,12 @@ $GLOBALS['premStampDuty']=$premStampDuty;
 $GLOBALS['premVat']=$premVat;
 $GLOBALS['premTotal']=$premTotal;
 $GLOBALS['premQuoNumRef']=$premQuoNumRef;
+$GLOBALS['premOutstanding']=$premOutstanding;
+$GLOBALS['premPaid']=$premPaid;
+$GLOBALS['premPaidStatus']=$premPaidStatus;
+$GLOBALS['premPaidStatusAprv']=$premPaidStatusAprv;
+$GLOBALS['premPaidBalance']=$premPaidBalance;
+$GLOBALS['premPaidDate']=$premPaidDate;
 $GLOBALS['premUpdatedDate']=$premUpdatedDate;
 $GLOBALS['premUpdatedBy']=$premUpdatedBy;
 }	
@@ -1173,13 +1186,16 @@ function setRedbookInfo(
 	// $GLOBALS['redUpdatedDate']=$redUpdatedDate;
 	// $GLOBALS['redUpdatedBy']=$redUpdatedBy;
 }
+
 function setPolicyUpdate(
-$polMasPolNum,
+$polIDPK,
+$polOrgIDFK,
+$polStatusIDFK,
+$polMaspolNum,
 $polQuoNum,
 $polNum,
 $polCat,
 $polReFlag,
-$polStatusIDFK,
 $polEffDate,
 $polExpDate,
 $polQuoCreateDate,
@@ -1188,7 +1204,7 @@ $polProDate,
 $polAppReceivedDate,
 $polIssueDate,
 $polIssueBy,
-$polAgentCode,
+$polAGTIDFK,
 $polPRODIDFK,
 $polPREMIDFK,
 $polCUSIDFKPHD,
@@ -1198,174 +1214,44 @@ $polCUSAddrIDINS,
 $polVEHIDFK,
 $polUpdatedDate,
 $polUpdatedBy,
-$vehIDPK,
-$vehTARIDFK,
-$vehTARVehCodeFK,
-$vehREDKEYFK,
-$vehLicenseNum,
-$vehChassisNum,
-$vehCapacity,
-$vehSeat,
-$vehWeight,
-$vehEngineNum,
-$vehNewCar,
-$vehDriveArea,
-$vehProvIDFK,
-$vehColor,
-$vehCountry,
-$vehQuoNumRef,
-$vehUpdatedDate,
-$vehUpdatedBy,
-$perIDPK,
-$perSalu,
-$perFName,
-$perMName,
-$perLName,
-$perDOB,
-$perCardType,
-$perCardNo,
-$perExpDate,
-$perUpdatedDate,
-$perUpdatedBy,
-$addrIDPK,
-$addrLine1,
-$addrLine2,
-$addrSubDist,
-$addrDist,
-$addrProv,
-$addrZipCode,
-$addrGeo,
-$addrEmail,
-$addrContType1,
-$addrContNum1,
-$addrContType2,
-$addrContNum2,
-$addrUpdatedDate,
-$addrUpdatedBy,
-$tarIDPK,
-$tarVehCodePK,
-$redKey,
-$redMake,
-$redModel,
-$redYear,
-$redDesc,
-$premStdNet,
-$premStdVat,
-$premStdStampDuty,
-$premStdTotal,
-$premPercentVat,
-$premPerDiscount,
-$premDiscountFlag,
-$premDiscount,
-$premNet,
-$premStampDuty,
-$premVat,
-$premTotal,
-$premQuoNumRef,
-$premUpdatedDate,
-$premUpdatedBy
+
+$vehREDKEYFK
 ){
-$GLOBALS['polMasPolNum']=$polMasPolNum;
-$GLOBALS['polQuoNum']=$polQuoNum;
-$GLOBALS['polNum']=$polNum;
-$GLOBALS['polCat']=$polCat;
-$GLOBALS['polReFlag']=$polReFlag;
-$GLOBALS['polStatusIDFK']=$polStatusIDFK;
-$GLOBALS['polEffDate']=$polEffDate;
-$GLOBALS['polExpDate']=$polExpDate;
-$GLOBALS['polQuoCreateDate']=$polQuoCreateDate;
-$GLOBALS['polQuoDate']=$polQuoDate;
-$GLOBALS['polProDate']=$polProDate;
-$GLOBALS['polAppReceivedDate']=$polAppReceivedDate;
-$GLOBALS['polIssueDate']=$polIssueDate;
-$GLOBALS['polIssueBy']=$polIssueBy;
-$GLOBALS['polAgentCode']=$polAgentCode;
-$GLOBALS['polPRODIDFK']=$polPRODIDFK;
-$GLOBALS['polPREMIDFK']=$polPREMIDFK;
-$GLOBALS['polCUSIDFKPHD']=$polCUSIDFKPHD;
-$GLOBALS['polCUSAddrIDPHD']=$polCUSAddrIDPHD;
-$GLOBALS['polCUSIDFKINS']=$polCUSIDFKINS;
-$GLOBALS['polCUSAddrIDINS']=$polCUSAddrIDINS;
-$GLOBALS['polVEHIDFK']=$polVEHIDFK;
-$GLOBALS['polUpdatedDate']=$polUpdatedDate;
-$GLOBALS['polUpdatedBy']=$polUpdatedBy;
-$GLOBALS['vehIDPK']=$vehIDPK;
-$GLOBALS['vehTARIDFK']=$vehTARIDFK;
-$GLOBALS['vehTARVehCodeFK']=$vehTARVehCodeFK;
-$GLOBALS['vehREDKEYFK']=$vehREDKEYFK;
-$GLOBALS['vehLicenseNum']=$vehLicenseNum;
-$GLOBALS['vehChassisNum']=$vehChassisNum;
-$GLOBALS['vehCapacity']=$vehCapacity;
-$GLOBALS['vehSeat']=$vehSeat;
-$GLOBALS['vehWeight']=$vehWeight;
-$GLOBALS['vehEngineNum']=$vehEngineNum;
-$GLOBALS['vehNewCar']=$vehNewCar;
-$GLOBALS['vehDriveArea']=$vehDriveArea;
-$GLOBALS['vehProvIDFK']=$vehProvIDFK;
-$GLOBALS['vehColor']=$vehColor;
-$GLOBALS['vehCountry']=$vehCountry;
-$GLOBALS['vehQuoNumRef']=$vehQuoNumRef;
-$GLOBALS['vehUpdatedDate']=$vehUpdatedDate;
-$GLOBALS['vehUpdatedBy']=$vehUpdatedBy;
-$GLOBALS['perIDPK']=$perIDPK;
-$GLOBALS['perSalu']=$perSalu;
-$GLOBALS['perFName']=$perFName;
-$GLOBALS['perMName']=$perMName;
-$GLOBALS['perLName']=$perLName;
-$GLOBALS['perDOB']=$perDOB;
-$GLOBALS['perCardType']=$perCardType;
-$GLOBALS['perCardNo']=$perCardNo;
-$GLOBALS['perExpDate']=$perExpDate;
-$GLOBALS['perUpdatedDate']=$perUpdatedDate;
-$GLOBALS['perUpdatedBy']=$perUpdatedBy;
-$GLOBALS['addrIDPK']=$addrIDPK;
-$GLOBALS['addrLine1']=$addrLine1;
-$GLOBALS['addrLine2']=$addrLine2;
-$GLOBALS['addrSubDist']=$addrSubDist;
-$GLOBALS['addrDist']=$addrDist;
-$GLOBALS['addrProv']=$addrProv;
-$GLOBALS['addrZipCode']=$addrZipCode;
-$GLOBALS['addrGeo']=$addrGeo;
-$GLOBALS['addrEmail']=$addrEmail;
-$GLOBALS['addrContType1']=$addrContType1;
-$GLOBALS['addrContNum1']=$addrContNum1;
-$GLOBALS['addrContType2']=$addrContType2;
-$GLOBALS['addrContNum2']=$addrContNum2;
-$GLOBALS['addrUpdatedDate']=$addrUpdatedDate;
-$GLOBALS['addrUpdatedBy']=$addrUpdatedBy;
-$GLOBALS['tarIDPK']=$tarIDPK;
-$GLOBALS['tarVehCodePK']=$tarVehCodePK;
-$GLOBALS['redKey']=$redKey;
-$GLOBALS['redMake']=$redMake;
-$GLOBALS['redModel']=$redModel;
-$GLOBALS['redYear']=$redYear;
-$GLOBALS['redDesc']=$redDesc;
-$GLOBALS['premStdNet']=$premStdNet;
-$GLOBALS['premStdVat']=$premStdVat;
-$GLOBALS['premStdStampDuty']=$premStdStampDuty;
-$GLOBALS['premStdTotal']=$premStdTotal;
-$GLOBALS['premPercentVat']=$premPercentVat;
-$GLOBALS['premPerDiscount']=$premPerDiscount;
-$GLOBALS['premDiscountFlag']=$premDiscountFlag;
-$GLOBALS['premDiscount']=$premDiscount;
-$GLOBALS['premNet']=$premNet;
-$GLOBALS['premStampDuty']=$premStampDuty;
-$GLOBALS['premVat']=$premVat;
-$GLOBALS['premTotal']=$premTotal;
-$GLOBALS['premQuoNumRef']=$premQuoNumRef;
-$GLOBALS['premUpdatedDate']=$premUpdatedDate;
-$GLOBALS['premUpdatedBy']=$premUpdatedBy;
+$GLOBALS['polIDPK'] = $polIDPK;
+$GLOBALS['polOrgIDFK'] = $polOrgIDFK;
+$GLOBALS['polStatusIDFK'] = $polStatusIDFK;
+$GLOBALS['polMaspolNum'] = $polMaspolNum;
+$GLOBALS['polQuoNum'] = $polQuoNum;
+$GLOBALS['polNum'] = $polNum;
+$GLOBALS['polCat'] = $polCat;
+$GLOBALS['polReFlag'] = $polReFlag;
+$GLOBALS['polEffDate'] = $polEffDate;
+$GLOBALS['polExpDate'] = $polExpDate;
+$GLOBALS['polQuoCreateDate'] = $polQuoCreateDate;
+$GLOBALS['polQuoDate'] = $polQuoDate;
+$GLOBALS['polProDate'] = $polProDate;
+$GLOBALS['polAppReceivedDate'] = $polAppReceivedDate;
+$GLOBALS['polIssueDate'] = $polIssueDate;
+$GLOBALS['polIssueBy'] = $polIssueBy;
+$GLOBALS['polAGTIDFK'] = $polAGTIDFK;
+$GLOBALS['polPRODIDFK'] = $polPRODIDFK;
+$GLOBALS['polPREMIDFK'] = $polPREMIDFK;
+$GLOBALS['polCUSIDFKPHD'] = $polCUSIDFKPHD;
+$GLOBALS['polCUSAddrIDPHD'] = $polCUSAddrIDPHD;
+$GLOBALS['polCUSIDFKINS'] = $polCUSIDFKINS;
+$GLOBALS['polCUSAddrIDINS'] = $polCUSAddrIDINS;
+$GLOBALS['polVEHIDFK'] = $polVEHIDFK;
+$GLOBALS['polUpdatedDate'] = $polUpdatedDate;
+$GLOBALS['polUpdatedBy'] = $polUpdatedBy;
+
+$GLOBALS['vehREDKEYFK'] = $vehREDKEYFK;
 }
 
-$accUser;
-$accPass;
 function setLogin($accUser,$accPass){
 $GLOBALS['accUser']=$accUser;
 $GLOBALS['accPass']=$accPass;
 }
 
-$sBy;
-$sDesc;
 function setSearchCriteria(
 $sBy,
 $sDesc 
@@ -1374,9 +1260,6 @@ $GLOBALS['sBy']=$sBy;
 $GLOBALS['sDesc']=$sDesc;
 }
 
-$provID;
-$distID;
-$subDistID;
 function setLocationID(
 $provID,
 $distID,
@@ -1387,10 +1270,6 @@ $GLOBALS['distID']=$distID;
 $GLOBALS['subDistID']=$subDistID;
 }
 
-$tarPower;
-$tarBody;
-$tarSubBody;
-$tarUsage;
 function setTariffID(
 $tarPower,
 $tarBody,
@@ -1403,10 +1282,6 @@ $GLOBALS['tarSubBody']=$tarSubBody;
 $GLOBALS['tarUsage']=$tarUsage;
 }
 
-$redMake;
-$redModel;
-$redYear;
-$redDesc;
 function setRedbookID(
 $redMake,
 $redModel,
@@ -1419,9 +1294,18 @@ $GLOBALS['redYear']=$redYear;
 $GLOBALS['redDesc']=$redDesc;
 }
 
+function setUser($usrName,$usrRole){
+$GLOBALS['usrName']=$usrName;
+$GLOBALS['usrRole']=$usrRole;
+}
+function setRedKey($redKey){return $GLOBALS['redKey'] = $redKey;}
+function setRedMake($redMake){return $GLOBALS['redMake'] = $redMake;}
+function setOrgIDPK($orgIDPK){return $GLOBALS['orgIDPK'] = $orgIDPK;}
+function setPolOrgIDFK($polOrgIDFK){return $GLOBALS['polOrgIDFK'] = $polOrgIDFK;}
 function setPolVehIDFK($polVehIDFK){return $GLOBALS['polVehIDFK'] = $polVehIDFK;}
 function setPolIDPK($polIDPK){return $GLOBALS['polIDPK'] = $polIDPK;}
 function setPolQuoNum($polQuoNum){return $GLOBALS['polQuoNum'] = $polQuoNum;}
+function setPolStatusIDFK($polStatusIDFK){return $GLOBALS['polStatusIDFK'] = $polStatusIDFK;}
 function setCusIDFKINS($cusIDFKINS){return $GLOBALS['cusIDFKINS'] = $cusIDFKINS;}
 function setCUSAddrIDINS($cusAddrIDINS){return $GLOBALS['cusAddrIDINS'] = $cusAddrIDINS;}
 function setCusIDFKPHD($cusIDFKPHD){return $GLOBALS['cusIDFKPHD'] = $cusIDFKPHD;}

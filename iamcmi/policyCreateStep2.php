@@ -33,7 +33,30 @@
 // @2016-06-19 SUN 02:08 PM 
 include 'config/config.php'; 
 include 'header.php'; 
+
+
+$polQuoNum = $_SESSION["polQuoNum"];
+setPolQuoNum($polQuoNum);
+$sqlID			= "PCS1_003";
+$quoQueryResult = executeSql($conn,$sqlID);
+	if($quoQueryResult){
+	$quoQueryResultSize = $quoQueryResult->num_rows;
+		if($quoQueryResultSize==0){
+		echo "INCORRECT REDIRECT TO HOME PAGE";
+		// redirect("home.php");		
+		echo "<a href='home.php'><input type='Button' value='Home' class='btn btn-primary btn-md'/></a>";
+		}
+		else if($quoQueryResultSize==1){
+		echo "WHEN RECORDS HAS ALREADY SAVED OR SUBMITTED&BACK<br>";
+		$row 		= $quoQueryResult->fetch_assoc();
+		include 'config/condition/PCS_CON_002.php';
+		}
+		else{
+		echo "INCORRECT RECORDS MORE THAN ONE ROW";
+		}
+	}
 // @Falom END 2016-06-19 SUN 02:08 PM 
+
 ?>
 <!-- END HEADER SECTION-->
 <title><?php echo $policyCreate ?></title>
@@ -63,13 +86,32 @@ include 'header.php';
 				<div class="col-md-2" align="left">เลขกรมธรรม์ :</div>
 				<div class="col-md-2">
 					<input type="text" class="form-control" id="chas"
-						placeholder="Enter Chassis Number" value=''>
+						placeholder="Enter Chassis Number" value='<?php echo $polQuoNum; ?>' readonly>
+				</div>
+				<div class="col-md-2" align="right">เบี้ยที่ต้องชำระ:</div>
+				<div class="col-md-2">
+					<input type="text" class="form-control" id="chas"
+						placeholder="Enter Chassis Number" value='<?php echo (-$premPaidBalance); ?>' readonly>
 				</div>
 			</div><br>
-				<div class="row">
+			<div class="row">
+				<div class="col-md-2" align="left">สถานะการชำระ:</div>
+				<div class="col-md-2">
+					<input type="text" class="form-control" id="chas"
+						placeholder="Enter Chassis Number" value='<?php echo $premPaidStatus; ?>' readonly>
+				</div>
+			</div><br>
+			<div class="row">
 				<div class="col-md-12" align="center">
-					<a href="policyCreateStep1.php"><button type="button" class="btn btn-primary btn-md">Back</button></a>
-					<input type="Submit" class="btn btn-primary btn-md" Value="Next"/>
+					<?php
+						echo "<a href='policyCreateStep1.php'><button type='button' class='btn btn-primary btn-md'>Back</button></a> ";
+						if($premPaidStatusAprv == 'Y'){
+							echo "<input type='Submit' class='btn btn-primary btn-md' value='Next'/>";
+						}
+						else{
+							echo "<a href='home.php'><button type='button' class='btn btn-primary btn-md'>Home</button></a>";					
+						}
+					?>
 				</div>
 			</div>
 		</div>
