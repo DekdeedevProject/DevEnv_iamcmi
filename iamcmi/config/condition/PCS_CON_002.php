@@ -67,6 +67,8 @@ $vehQuoNumRef=$row["VEH_QuoNumRef"];
 $vehUpdatedDate=$row["VEH_UpdatedDate"];
 $vehUpdatedBy=$row["VEH_UpdatedBy"];
 
+$tarIDPK=$vehTARIDFK;
+
 $redIDPK=$row["RED_ID_PK"];
 $redKey=$row["RED_Key"];
 $redMake=$row["RED_Make"];
@@ -84,5 +86,29 @@ $redJanpaneseCar=$row["RED_JanpaneseCar"];
 $redECO=$row["RED_ECO"];
 $redUpdatedDate=$row["RED_UpdatedDate"];
 $redUpdatedBy=$row["RED_UpdatedBy"];
+
+$premIDPK=$row["PREM_ID_PK"];
+$premStdNet=$row["PREM_StdNet"];
+$premStdVat=$row["PREM_StdVat"];
+$premStdStampDuty=$row["PREM_StdStampDuty"];
+$premStdTotal=$row["PREM_StdTotal"];
+$premPercentVat=$row["PREM_PercentVat"];
+$premPerDiscount=$row["PREM_PerDiscount"];
+$premDiscountFlag=$row["PREM_DiscountFlag"];
+$premDiscount=$row["PREM_Discount"];
+$premNet=$row["PREM_Net"];
+$premStampDuty=$row["PREM_StampDuty"];
+$premVat=$row["PREM_Vat"];
+$premTotal=$row["PREM_Total"];
+$premQuoNumRef=$row["PREM_QuoNumRef"];
+$premOutstanding=$row["PREM_Outstanding"];
+$premPaid=$row["PREM_Paid"];
+$premPaidStatus=$row["PREM_PaidStatus"];
+$premPaidStatusAprv=$row["PREM_PaidStatusAprv"];
+$premPaidBalance=$row["PREM_PaidBalance"];
+$premPaidDate=$row["PREM_PaidDate"];
+$premUpdatedDate=$row["PREM_UpdatedDate"];
+$premUpdatedBy=$row["PREM_UpdatedBy"];
+
 ?>
 

@@ -66,10 +66,8 @@ $(function () {
              xhttp.send(null); //ส่งค่า
         }
 
-	var tarBody;
-	var tarSubBody;
-	var tarUsage;
-	    function dochangeTariff(src, val) {
+	
+	    function dochangeTariff(src, val, tarBody, tarSubBody, tarUsage) {
 	    	//alert(src);
         	var xhttp = new XMLHttpRequest();
 			xhttp.onreadystatechange = function() {
@@ -77,23 +75,6 @@ $(function () {
 		     	document.getElementById(src).innerHTML = xhttp.responseText;
 		    	}
 		  	};
-
-	
-		  	switch (src) {
-            	case 'tarBody':
-            	break;
-				case 'tarSubBody':
-            	tarBody=val;
-            	break;
-            	case 'tarUsage':
-            	tarSubBody=val;
-            	break;
-            	case 'tarVehCodePK':
-            	tarUsage=val;
-            	break;
-            	default:
-				break;
-            } 
 
 		  	 xhttp.open("GET", "tariff.php?data="+src+"&val="+val+"&tarBody="+tarBody+"&tarSubBody="+tarSubBody+"&tarUsage="+tarUsage); //สร้าง connection
              xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;charset=utf-8"); // set Header
@@ -177,18 +158,20 @@ $(function () {
         	vehREDKEYFK = document.getElementById("vehREDKEYFK").value;
         	if(vehREDKEYFK=='-1'){
         	redMake = document.getElementById("redMake").value;
-        	// redModel = document.getElementById("redModel").value;
-        	// redDesc = document.getElementById("redDesc").value;
-        	// redYear = document.getElementById("redYear").value;
         	window.onLoad=dochangeRedbook('redMake', "",redMake, "", "", "");
-          	// window.onLoad=dochangeRedbook('redModel', redMake); 
-        	// window.onLoad=dochangeRedbook('redYear', redModel);  
-        	// window.onLoad=dochangeRedbook('redDesc', redYear); 
-        	}
+          	}
         	else{
         	window.onLoad=dochangeRedbook('vehREDKEY', vehREDKEYFK, "" , "", "", "");   	
         	}
         	
+        	tarIDPK = document.getElementById("tarIDPK").value;
+        	if(vehREDKEYFK=='-1'){
+        	window.onLoad=dochangeTariff('tarBody', "-1", "" , "", "");
+        	}
+        	else{
+        	// alert(tarIDPK);
+        	window.onLoad=dochangeTariff('tariffInfo', tarIDPK, "" , "", "");
+        	}
 
 			polAGTIDFK = document.getElementById("agtIDPK").value;
         	usrName = document.getElementById("usrName").value;
@@ -398,7 +381,7 @@ $quoQueryResult = executeSql($conn,$sqlID);
 			<div class="row">
 				<div class="col-md-2" align="left">ยี่ห้อ :</div>
 				<div class="col-md-2" id="redMake" name="redMake" >
-					redMake:<input type="text" id="redMake" name="redMake" value='<?php echo $redMake; ?>' />
+					<input type="hidden" id="redMake" name="redMake" value='<?php echo $redMake; ?>' />
 			
 					<select class="form-control">
 						<option>กรุณาเลือก</option>
@@ -406,14 +389,14 @@ $quoQueryResult = executeSql($conn,$sqlID);
 				</div>
 				<div class="col-md-2" align="right">รุ่นรถ :</div>
 				<div class="col-md-2" id="redModel" name="redModel">
-					redModel:<input type="text" id="redModel" name="redModel" value='<?php echo $redModel; ?>' />
+					<input type="hidden" id="redModel" name="redModel" value='<?php echo $redModel; ?>' />
 					<select class="form-control">
 						<option>กรุณาเลือก</option>
 					</select>
 				</div>
 				<div class="col-md-2" align="right">ปี :</div>
 				<div class="col-md-2" id="redYear" name="redYear">
-					redYear:<input type="text" id="redYear" name="redYear" value='<?php echo $redYear; ?>' />
+					<input type="hidden" id="redYear" name="redYear" value='<?php echo $redYear; ?>' />
 					<select class="form-control">
 						<option>กรุณาเลือก</option>
 					</select>
@@ -424,7 +407,7 @@ $quoQueryResult = executeSql($conn,$sqlID);
 			<div class="row">
 				<div class="col-md-2" align="left">รายละเอียดรถ :</div>
 				<div class="col-md-2" id="redDesc" name="redDesc">
-					redDesc:<input type="text" id="redDesc" name="redDesc" value='<?php echo $redDesc; ?>' /><br>
+					<input type="hidden" id="redDesc" name="redDesc" value='<?php echo $redDesc; ?>' />
 					<select class="form-control">
 						<option>กรุณาเลือก</option>
 					</select>
@@ -432,8 +415,7 @@ $quoQueryResult = executeSql($conn,$sqlID);
 				
 				<div class="col-md-2" align="right">รหัสรุ่นรถ :</div>
 				<div class="col-md-2" id="redKey">
-					<input type="text" class="form-control"
-					placeholder="รหัสรุ่นรถ" id="redKey" name="redKey" value='<?php echo $redKey; ?>' required randonly />
+					<input type="text" id="redKey" name="redKey" class="form-control" placeholder="รหัสรุ่นรถ" value='<?php echo $redKey ?>' required readonly>
 					<div class="col-md-2" align="right">
 						<a href="javascript:void(0);" NAME="Add Redbook" title=" My title here "  
             			onClick=" window.open('addRedbook.php','','width=550,height=170,left=150,top=200,toolbar=1,status=1')"> 
@@ -445,43 +427,7 @@ $quoQueryResult = executeSql($conn,$sqlID);
 			<br>
 			</span>
 
-			<!-- <div class="row">
-				<div class="col-md-2" align="left">ประเภท :</div>
-				<div class="col-md-2" name="tarBody" id="tarBody">
-				<input type="hidden" name="tarBodyName" id="tarBodyName" value='<?php echo $tarBodyNameTH ?>' required/>
-				<select class="form-control">
-						<option>กรุณาเลือก</option>
-				</select>	
-				</div>
-				
-				<div class="col-md-2" align="right">ประเภทย่อย :</div>
-				<div class="col-md-2" name="tarSubBody" id="tarSubBody" >
-				<input type="hidden" name="tarSubBodyName" id="tarSubBodyName" value='<?php echo $tarSubBodyNameTH ?>' required/>
-				<select class="form-control">
-						<option>กรุณาเลือก</option>
-				</select>	
-				</div>
-				<div class="col-md-2" align="right">การใช้งาน :</div>
-				<div class="col-md-2" name="tarUsage" id="tarUsage">
-				<input type="hidden" name="tarUsageName" id="tarUsageName" value='<?php echo $tarUsageNameTH ?>' required/>
-				<select class="form-control">
-						<option>กรุณาเลือก</option>
-				</select>	
-				</div>		
-			</div>
-			<br> -->
-
-			<!-- <span id="tarVehCodePK" name="tarVehCodePK">
-			<div class="row" >
-				<div class="col-md-2" align="left">รหัสรถ :</div>
-				<div class="col-md-2" >
-					<input type="text" id="tarVehCodePK" name="tarVehCodePK" class="form-control" placeholder="Vehical Code" value='<?php echo $tarVehCodePK ?>' required readonly>
-					<input type="hidden" name="tarIDPK" id="tarIDPK" value='<?php echo $tarIDPK ?>' required/>
-				</div>
-			</div>	
-			<br> -->
-
-			<!-- <div class="row">
+			<div class="row">
 				<div class="col-md-2" align="left">ความจุ :</div>
 				<div class="col-md-2">
 					<input type="text" class="form-control" id="vehCapacity" name="vehCapacity" value='<?php echo $vehCapacity ?>'
@@ -498,9 +444,9 @@ $quoQueryResult = executeSql($conn,$sqlID);
 						placeholder="จำนวนที่นั่ง" required/> 
 				</div>
 			</div>
-			<br> -->
+			<br>
 
-			<!-- <div class="row">
+			<div class="row">
 				<div class="col-md-2" align="left">เลขตัวถัง :</div>
 				<div class="col-md-2">
 					<input type="text" class="form-control" id="vehChassisNum" name="vehChassisNum" value='<?php echo $vehChassisNum ?>'
@@ -513,7 +459,47 @@ $quoQueryResult = executeSql($conn,$sqlID);
 				</div>
 				
 			</div>
-			<br> -->
+			<br>
+
+	
+			<span name="tariffInfo" id="tariffInfo">
+			<input type="hidden" name="tarIDPK" id="tarIDPK" value='<?php echo $tarIDPK ?>' required/>
+						
+			<div class="row">
+				<div class="col-md-2" align="left">ประเภท :</div>
+				<div class="col-md-2" name="tarBody" id="tarBody">
+				<select class="form-control">
+						<option>กรุณาเลือก</option>
+				</select>	
+				</div>
+				
+				<div class="col-md-2" align="right">ประเภทย่อย :</div>
+				<div class="col-md-2" name="tarSubBody" id="tarSubBody" >
+				<select class="form-control">
+						<option>กรุณาเลือก</option>
+				</select>	
+				</div>
+				<div class="col-md-2" align="right">การใช้งาน :</div>
+				<div class="col-md-2" name="tarUsage" id="tarUsage">
+				<select class="form-control">
+						<option>กรุณาเลือก</option>
+				</select>	
+				</div>		
+			</div>
+
+
+			</span>
+			<br>	
+			
+			<span id="vehTARvehCodeFK" name="vehTARvehCodeFK">
+			<div class="row" >
+				<div class="col-md-2" align="left">รหัสรถ :</div>
+				<div class="col-md-2" >
+					<input type="text" id="vehTARvehCodeFK" name="vehTARvehCodeFK" class="form-control" placeholder="รหัสรถ" value='<?php echo $vehTARvehCodeFK ?>' required readonly>
+				</div>
+			</div>	
+			<br>
+				
 
 			<div class="row titleInsured">
 				<div class="col-md-12" align="left">
@@ -523,7 +509,7 @@ $quoQueryResult = executeSql($conn,$sqlID);
 				</div>
 			</div>
 			<br>
-<!-- 
+
 			<div class="row">
 				<div class="col-md-2" align="left">เบี้ยสุทธิ :</div>
 				<div class="col-md-2">
@@ -554,7 +540,7 @@ $quoQueryResult = executeSql($conn,$sqlID);
 				</div>				
 			</div>
 			</span>
-			<br> -->
+			<br>
 
 			<div class="row titleInsured">
 				<div class="col-md-6" align="left">
@@ -767,12 +753,15 @@ $quoQueryResult = executeSql($conn,$sqlID);
 			polVEHIDFK:<input type="text" placeholder="" id="polVEHIDFK" name="polVEHIDFK" value='<?php echo $polVEHIDFK; ?>' randonly />
 			vehREDKEYFK:<input type="text" placeholder="" id="vehREDKEYFK" name="vehREDKEYFK" value='<?php echo $vehREDKEYFK; ?>' randonly />
 			redIDPK:<input type="text" placeholder="" id="redIDPK" name="redIDPK" value='<?php echo $redIDPK; ?>' randonly />
-			redKey:<input type="text" placeholder="รหัสรุ่นรถ" value='<?php echo $redKey; ?>' required randonly />
+			redKey:<input type="text" placeholder="" value='<?php echo $redKey; ?>' randonly />
 			redMake:<input type="text" value='<?php echo $redMake; ?>' />
 			redModel:<input type="text" value='<?php echo $redModel; ?>' />
 			redYear:<input type="text" value='<?php echo $redYear; ?>' />
 			redDesc:<input type="text" value='<?php echo $redDesc; ?>' /><br>
 			
+			vehTARvehCodeFK:<input type="text" placeholder="" value='<?php echo $vehTARvehCodeFK; ?>' randonly />
+			tarIDPK:<input type="text" placeholder="" value='<?php echo $tarIDPK; ?>' randonly /><br>
+
 			polUpdatedDate:<input type="text" placeholder="N/A" id="polUpdatedDate" name="polUpdatedDate" value='<?php echo $polUpdatedDate; ?>' randonly /><br>
 			polUpdatedBy:<input type="text" placeholder="N/A" id="polUpdatedBy" name="polUpdatedBy" value='<?php echo $polUpdatedBy; ?>' randonly /><br>
 			

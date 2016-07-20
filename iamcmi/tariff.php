@@ -14,72 +14,112 @@
     $tarSubBody = trim($_GET['tarSubBody']);
     $tarUsage = trim($_GET['tarUsage']);
          if ($data=='tarPower') { 
-              $sqlID = "PCS1_013";
-              $tarPowerResult = executeSql($conn,$sqlID);
-              $tarPowerSize = $tarPowerResult->num_rows;
-              echo "<select class='form-control' name='tarPower' id='tarPower' onChange=\"dochangeTariff('tarBody', this.value)\">\n";
-              echo "<option value='0'>- เลือกการขับเคลื่อน -</option>\n";
-              while($tarPowerRow = $tarPowerResult->fetch_assoc()){
-                if($tarBody==$tarPowerRow["TAR_PowerName_TH"]){
-                   echo "<option value='$tarPowerRow[TAR_PowerName_TH]' selected='selected' >$tarPowerRow[TAR_PowerName_TH]</option>" ;
-                }
-                else{
-                   echo "<option value='$tarPowerRow[TAR_PowerName_TH]' >$tarPowerRow[TAR_PowerName_TH]</option>" ;
-                }
-                  
-              }
+              // $sqlID = "PCS1_013";
+              // $tarPowerResult = executeSql($conn,$sqlID);
+              // $tarPowerSize = $tarPowerResult->num_rows;
+              // echo "<select class='form-control' name='tarPower' id='tarPower' onChange=\"dochangeTariff('tarBody', this.value, '', '', '')\">\n";
+              // echo "<option value='0'>- เลือกการขับเคลื่อน -</option>\n";
+              // while($tarPowerRow = $tarPowerResult->fetch_assoc()){
+              //   echo "<option value='$tarPowerRow[TAR_PowerName_TH]' >$tarPowerRow[TAR_PowerName_TH]</option>" ;
+              // }
          } else if ($data=='tarBody') {
               setTariffID("","","","");
               $sqlID = "PCS1_014";
               $tarBodyResult = executeSql($conn,$sqlID);
-              echo "<select class='form-control' name='tarBody' id='tarBody' onChange=\"dochangeTariff('tarSubBody', this.value)\">\n";
+              echo "<select class='form-control' name='tarBody' id='tarBody' onChange=\"dochangeTariff('tarSubBody', '', this.value, '', '')\">\n";
               echo "<option value='0'>- เลือกประเภท -</option>\n";
               while($tarBodyRow = $tarBodyResult->fetch_assoc()){
-                if($val==$tarBodyRow["TAR_BodyName_TH"]){
-                 echo "<option value='$tarBodyRow[TAR_BodyName_TH]' selected='selected' >$tarBodyRow[TAR_BodyName_TH]</option>" ;
-                }
-                else{
-                  echo "<option value='$tarBodyRow[TAR_BodyName_TH]' >$tarBodyRow[TAR_BodyName_TH]</option>" ;
-                }
-                   
+                echo "<option value='$tarBodyRow[TAR_BodyName_TH]' >$tarBodyRow[TAR_BodyName_TH]</option>" ;
               }
          } else if ($data=='tarSubBody') {
               setTariffID("",$tarBody,"","");
               $sqlID = "PCS1_015";
               $tarSubBodyResult = executeSql($conn,$sqlID);
-              $tarSubBody = trim($_GET['tarSubBody']);
-             echo "<select class='form-control' name='tarSubBody' id='tarSubBody' onChange=\"dochangeTariff('tarUsage', this.value)\">\n";
+              echo "<select class='form-control' name='tarSubBody' id='tarSubBody' onChange=\"dochangeTariff('tarUsage', '', '".$tarBody."', this.value, '')\">\n";
               echo "<option value='0'>- เลือกประเภทย่อย -</option>\n";
-              
-             while($tarSubBodyRow = $tarSubBodyResult->fetch_assoc()){   
-                if($tarSubBody==$tarSubBodyRow["TAR_SubBodyName_TH"]){
-                 echo "<option value='$tarSubBodyRow[TAR_SubBodyName_TH]' selected='selected' >$tarSubBodyRow[TAR_SubBodyName_TH]</option>" ;
-                }
-                else{
-                  echo "<option value='$tarSubBodyRow[TAR_SubBodyName_TH]' >$tarSubBodyRow[TAR_SubBodyName_TH]</option>" ;
-                }    
+              while($tarSubBodyRow = $tarSubBodyResult->fetch_assoc()){   
+                echo "<option value='$tarSubBodyRow[TAR_SubBodyName_TH]' >$tarSubBodyRow[TAR_SubBodyName_TH]</option>" ;
               }
          }
          else if ($data=='tarUsage') {
               setTariffID("",$tarBody,$tarSubBody,"");
               $sqlID = "PCS1_016";
               $tarUsageResult = executeSql($conn,$sqlID);
-              $tarUsage = trim($_GET['tarUsage']);
-              echo "<select class='form-control' name='tarUsage' id='tarUsage' onChange=\"dochangeTariff('tarVehCodePK', this.value)\">\n";
+              echo "<select class='form-control' name='tarUsage' id='tarUsage' onChange=\"dochangeTariff('vehTARvehCodeFK', '', '".$tarBody."', '".$tarSubBody."', this.value)\">\n";
               echo "<option value='0'>- เลือกการใช้งาน -</option>\n";
               while($tarUsageRow = $tarUsageResult->fetch_assoc()){
-                if($tarUsage==$tarUsageRow["TAR_UsageName_TH"]){
-                   echo "<option value=\"$tarUsageRow[TAR_UsageName_TH]\" selected='selected'>$tarUsageRow[TAR_UsageName_TH]</option> \n" ;
-                }
-                else{  
-                   echo "<option value=\"$tarUsageRow[TAR_UsageName_TH]\" >$tarUsageRow[TAR_UsageName_TH]</option> \n" ;
-                }   
+                echo "<option value=\"$tarUsageRow[TAR_UsageName_TH]\" >$tarUsageRow[TAR_UsageName_TH]</option> \n" ;
               }
          }
-         else if ($data=='tarIDPK') {
+         else if ($data=='tariffInfo') {
+              setTariffID($val,"","","");
+              $sqlID = "PCS1_013";
+              $tarResult = executeSql($conn,$sqlID);
+              $tarRow = $tarResult->fetch_assoc();
+              $tarBody = $tarRow["TAR_BodyName_TH"];
+              $tarSubBody = $tarRow["TAR_SubBodyName_TH"];
+              $tarUsage = $tarRow["TAR_UsageName_TH"];
+              echo "<div class='row'>";
+              echo "<div class='col-md-2' align='left'>ประเภท :</div>";
+              echo "<div class='col-md-2' name='tarBody' id='tarBody'>";
+ 
+              setTariffID("","","","");
+              $sqlID = "PCS1_014";
+              $tarBodyResult = executeSql($conn,$sqlID);
+              echo "<select class='form-control' name='tarBody' id='tarBody' onChange=\"dochangeTariff('tarSubBody', '', this.value, '', '')\">\n";
+              echo "<option value='0'>- เลือกประเภท -</option>\n";
+              $tarBody = $tarRow["TAR_BodyName_TH"];
+              while($tarBodyRow = $tarBodyResult->fetch_assoc()){
+                if(trim($tarBody)==trim($tarBodyRow["TAR_BodyName_TH"])){
+                echo "<option value='$tarBodyRow[TAR_BodyName_TH]' selected='selected'>$tarBodyRow[TAR_BodyName_TH]</option>" ;
+                }
+                else{
+                echo "<option value='$tarBodyRow[TAR_BodyName_TH]' >$tarBodyRow[TAR_BodyName_TH]</option>" ;
+                } 
+              }  
 
+
+              echo  "</select>"; 
+              echo  "</div>";
+              echo  "<div class='col-md-2' align='right'>ประเภทย่อย :</div>";
+              echo  "<div class='col-md-2' name='tarSubBody' id='tarSubBody' >";
+              setTariffID("",$tarBody,"","");
+              $sqlID = "PCS1_015";
+              $tarSubBodyResult = executeSql($conn,$sqlID);
+              $tarSubBody = $tarRow["TAR_SubBodyName_TH"];
+              echo "<select class='form-control' name='tarSubBody' id='tarSubBody' onChange=\"dochangeTariff('tarUsage', '', '".$tarBody."', this.value, '')\">\n";
+              echo "<option value='0'>- เลือกประเภทย่อย -</option>\n";
+              while($tarSubBodyRow = $tarSubBodyResult->fetch_assoc()){   
+                if(trim($tarSubBody)==trim($tarSubBodyRow["TAR_SubBodyName_TH"])){
+                echo "<option value='$tarSubBodyRow[TAR_SubBodyName_TH]' selected='selected'>$tarSubBodyRow[TAR_SubBodyName_TH]</option>" ;
+                }
+                else{
+                  echo "<option value='$tarSubBodyRow[TAR_SubBodyName_TH]' >$tarSubBodyRow[TAR_SubBodyName_TH]</option>" ;
+                } 
+              }
+              echo "</select>";
+              echo "</div>";
+              
+              echo "<div class='col-md-2' align='right'>การใช้งาน :</div>";
+              echo "<div class='col-md-2' name='tarUsage' id='tarUsage'>";
+              setTariffID("",$tarBody,$tarSubBody,"");
+              $sqlID = "PCS1_016";
+              $tarUsageResult = executeSql($conn,$sqlID);
+              $tarUsage = $tarRow["TAR_UsageName_TH"];
+              echo "<select class='form-control' name='tarUsage' id='tarUsage' onChange=\"dochangeTariff('vehTARvehCodeFK', '', '".$tarBody."', '".$tarSubBody."', this.value)\">\n";
+              echo "<option value='0'>- เลือกการใช้งาน -</option>\n";
+              while($tarUsageRow = $tarUsageResult->fetch_assoc()){
+                if(trim($tarUsage)==trim($tarUsageRow["TAR_UsageName_TH"])){
+                echo "<option value=\"$tarUsageRow[TAR_UsageName_TH]\" selected='selected'>$tarUsageRow[TAR_UsageName_TH]</option> \n" ;
+                }
+                else{
+                echo "<option value=\"$tarUsageRow[TAR_UsageName_TH]\" >$tarUsageRow[TAR_UsageName_TH]</option> \n" ;
+                } 
+              }  
+              echo "</div>";    
+              echo "</div>";
          }
-         else if ($data=='tarVehCodePK'){
+         else if ($data=='vehTARvehCodeFK'){
               setTariffID("",$tarBody,$tarSubBody,$tarUsage);
               $sqlID = "PCS1_017";
               $tarVehCodeResult = executeSql($conn,$sqlID);
@@ -98,41 +138,10 @@
               <div class="row" >
                 <div class="col-md-2" align="left">รหัสรถ :</div>
                 <div class="col-md-2" >
-                  <input type="text" class="form-control" placeholder="Vehical Code" id="tarVehCodePK" name="tarVehCodePK" value='<?php echo $tarVehCodePK ?>' required readonly>
-                  <input type="text" class="form-control" id="tarIDPK" name="tarIDPK" value='<?php echo $tarIDPK ?>' >
+                  <input type="text" class="form-control" placeholder="รหัสรถ" id="vehTARvehCodeFK" name="vehTARvehCodeFK" value='<?php echo $tarVehCodePK ?>' required readonly>
                 </div>
               </div>  
               <br>
-              <div class="row">
-                <div class="col-md-2" align="left">ความจุ :</div>
-                <div class="col-md-2">
-                  <input type="text" class="form-control" id="vehCapacity" name="vehCapacity" value=""
-                    placeholder="ความจุ" required>
-                </div>
-                <div class="col-md-2" align="right">น้ำหนัก :</div>
-                <div class="col-md-2">
-                  <input type="text" class="form-control" id="vehWeight" name="vehWeight" value=""
-                    placeholder="น้ำหนัก" required>
-                </div>
-                <div class="col-md-2" align="right">จำนวนที่นั่ง :</div>
-                <div class="col-md-2">
-                  <input type="text" class="form-control" id="vehSeat" name="vehSeat" value=""
-                    placeholder="จำนวนที่นั่ง" required>
-                </div>
-              </div>
-              <br>
-              <div class="row">
-                <div class="col-md-2" align="left">เลขตัวถัง :</div>
-                <div class="col-md-2">
-                  <input type="text" class="form-control" id="vehChassisNum" name="vehChassisNum" value=""
-                    placeholder="เลขตัวถัง" required>
-                </div>
-                <div class="col-md-2" align="right">ทะเบียนรถ:</div>
-                <div class="col-md-2">
-                  <input type="text" class="form-control" id="vehLicenseNum" name="vehLicenseNum" value=""
-                    placeholder="ทะเบียนรถ" required>
-                </div>
-                
               </div>
               <br>
               <div class="row titleInsured">

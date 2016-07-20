@@ -143,7 +143,7 @@ $sql="";
 
 	case 'PCS1_003':
 	$polQuoNum = $GLOBALS['polQuoNum'];
-	$sql = "SELECT * 
+	echo $sql = "SELECT * 
 			FROM policy 
 			INNER JOIN organization
 				ON POL_Org_ID_FK=ORG_ID_PK
@@ -155,20 +155,8 @@ $sql="";
 				ON POL_VEH_ID_FK=VEH_ID_PK	
 			INNER JOIN t_redbook
 				ON VEH_RED_KEY_FK=RED_KEY	
-			-- INNER JOIN T_PolStatus 
-			-- 	ON POL_Status_ID_PK=POL_Status_ID_FK 
-			-- INNER JOIN Vehical 
-			-- 	ON VEH_ID_PK=POL_VEH_ID_FK	
-			-- INNER JOIN Personal 
-			-- 	ON PER_ID_PK=POL_CUS_ID_FK_INS 
-			-- INNER JOIN Address 
-			-- 	ON ADDR_ID_PK=POL_CUS_Addr_ID_INS	
-			-- INNER JOIN Redbook
-			-- 	ON RED_KEY=VEH_RED_KEY_FK
-			-- INNER JOIN T_Tariff
-			-- 	ON TAR_ID_PK=VEH_TAR_ID_FK
-			-- INNER JOIN Premium
-			-- 	ON PREM_ID_PK=POL_PREM_ID_FK	
+			INNER JOIN premium
+				ON POL_PREM_ID_FK=PREM_ID_PK	
 			WHERE POL_QuoNum='".$polQuoNum."';";
 	break;
 	case 'PSS1_001':
@@ -639,9 +627,10 @@ $sql="";
 	break;
 
 	case 'PCS1_013':
-	$sql 	= " SELECT DISTINCT(TAR_PowerName_TH)
-				FROM T_Tariff
-				ORDER BY TAR_PowerName_TH;";
+	$val=$GLOBALS['tarPower'];
+	$sql 	= " SELECT *
+				FROM t_tariff
+				WHERE TAR_ID_PK='".$val."';";
 	break;
 
 	case 'PCS1_014':
@@ -650,7 +639,7 @@ $sql="";
 	$tarSubBody=$GLOBALS['tarSubBody'];
 	$tarUsage=$GLOBALS['tarUsage'];
 	$sql 	= "	SELECT DISTINCT(TAR_BodyName_TH)
-				FROM T_Tariff
+				FROM t_tariff
 				ORDER BY TAR_BodyName_TH;";
 	break;
 
@@ -658,7 +647,7 @@ $sql="";
 	$tarPower=$GLOBALS['tarPower'];
 	$tarBody=$GLOBALS['tarBody'];
 	$sql 	= "	SELECT DISTINCT(TAR_SubBodyName_TH)
-				FROM T_Tariff
+				FROM t_tariff
 				WHERE TAR_BodyName_TH='".$tarBody."'
 				ORDER BY TAR_SubBodyName_TH;";
 	break;
@@ -668,7 +657,7 @@ $sql="";
 	$tarBody=$GLOBALS['tarBody'];
 	$tarSubBody=$GLOBALS['tarSubBody'];
 	$sql 	= "	SELECT DISTINCT(TAR_UsageName_TH)
-				FROM T_Tariff
+				FROM t_tariff
 				WHERE TAR_BodyName_TH='".$tarBody."' AND TAR_SubBodyName_TH='".$tarSubBody."'
 				ORDER BY TAR_UsageName_TH;";
 	break;
@@ -679,10 +668,11 @@ $sql="";
 	$tarSubBody=$GLOBALS['tarSubBody'];
 	$tarUsage=$GLOBALS['tarUsage'];
 	$sql 	= "	SELECT *
-				FROM T_Tariff
+				FROM t_tariff
 				WHERE TAR_BodyName_TH='".$tarBody."' AND TAR_SubBodyName_TH='".$tarSubBody."' AND TAR_UsageName_TH='".$tarUsage."'
 				;";
 	break;
+
 	case 'PCS1_018':
 	$sql 	= "	SELECT *
 				FROM T_PerSaluType
