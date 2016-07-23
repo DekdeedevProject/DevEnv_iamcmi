@@ -32,36 +32,14 @@ $(function () {
 // @DEKDEEDEV_IAMCMI
 // @Falom
 // @2016-06-19 SUN 02:08 PM    
-	var provID;
-	var distID;
-	var subDistID;
-	    function dochangeLocation(src, val) {
+		 function dochangeLocation(src, val, provID, distID, subDistID) {
         	var xhttp = new XMLHttpRequest();
 			xhttp.onreadystatechange = function() {
 		    if (xhttp.readyState == 4 && xhttp.status == 200) {
 		     	document.getElementById(src).innerHTML = xhttp.responseText;
 		    	}
 		  	};
-		  	// alert(val);
-		  	switch (src) {
-				case 'addrProv':
-				provID=val;
-				break;
-            	case 'addrDist':
-            	provID=val;
-				break;
-				case 'addrSubDist':
-            	distID=val;
-            	break;
-            	case 'addrZipCode':
-            	subDistID=val;
-            	break;
-            	default:
-				break;
-            } 
-            
-            // alert("provID:"+provID+" distID:"+distID+"subDistID:"+subDistID);
-		  	 xhttp.open("GET", "location.php?data="+src+"&val="+val+"&provID="+provID+"&distID="+distID+"&subDistID="+subDistID); //สร้าง connection
+		  	xhttp.open("GET", "location.php?data="+src+"&val="+val+"&provID="+provID+"&distID="+distID+"&subDistID="+subDistID); //สร้าง connection
              xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;charset=utf-8"); // set Header
              xhttp.send(null); //ส่งค่า
         }
@@ -95,19 +73,8 @@ $(function () {
              xhttp.send(null); //ส่งค่า
         }
 
-        function dochangePoliycInfo(src, val) {
-	    	var xhttp = new XMLHttpRequest();
-			xhttp.onreadystatechange = function() {
-		    if (xhttp.readyState == 4 && xhttp.status == 200) {
-		     	document.getElementById(src).innerHTML = xhttp.responseText;
-		    	}
-		  	};
-		     xhttp.open("GET", "policyInfo.php?data="+src+"&val="+val); //สร้าง connection
-             xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;charset=utf-8"); // set Header
-             xhttp.send(null); //ส่งค่า
-        }
-
-        function dochangeAgentInfo(src, val, usrName, usrRole) {
+ 
+        function dochangePolicyInfo(src, val, usrName, usrRole) {
         	// alert(val);
 	    	var xhttp = new XMLHttpRequest();
 			xhttp.onreadystatechange = function() {
@@ -119,39 +86,6 @@ $(function () {
              xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;charset=utf-8"); // set Header
              xhttp.send(null); //ส่งค่า
         }
-
-        function myFunction(addrProv,addrDist,addrSubDist,addrZipCode,perCardType,addrContType1,perSalu){
-        	window.onLoad=dochangeLocation('addrProv', -1);   
-
-        	tarBody = document.getElementById("tarBodyName").value;
-        	tarSubBody = document.getElementById("tarSubBodyName").value;
-        	tarUsage = document.getElementById("tarUsageName").value;
-        	redMake = document.getElementById("redMakeName").value;
-        	redModel = document.getElementById("redModelName").value;
-        	redDesc = document.getElementById("redDescName").value;
-        	redYear = document.getElementById("redYearName").value;
-        	window.onLoad=dochangeTariff('tarBody', tarBody);
-        	window.onLoad=dochangeTariff('tarSubBody', tarBody);
-        	window.onLoad=dochangeTariff('tarUsage', tarSubBody);
-        	window.onLoad=dochangeRedbook('redMake', redMake);
-        	window.onLoad=dochangeRedbook('redModel', redMake); 
-        	window.onLoad=dochangeRedbook('redYear', redModel);  
-        	window.onLoad=dochangeRedbook('redDesc', redYear);    
-        	window.onLoad=dochangePoliycInfo('polAGTIDFK', "Admin");
-        	window.onLoad=dochangePoliycInfo('perCardType', perCardType);
-        	window.onLoad=dochangePoliycInfo('addrContType1', addrContType1);
-        	window.onLoad=dochangePoliycInfo('perSalu', perSalu);
-
-        	provID=addrProv;
-        	distID=addrDist;
-        	subDistID=addrSubDist;
-        	zipCodeID=addrZipCode;
-
-        	window.onLoad=dochangeLocation('addrProv',provID);
-        	window.onLoad=dochangeLocation('addrDist',provID);
-        	window.onLoad=dochangeLocation('addrSubDist',distID);
-        	window.onLoad=dochangeLocation('addrZipCode',subDistID);
-    	}
 
     	function reloadFunc(){
     		
@@ -176,8 +110,26 @@ $(function () {
 			polAGTIDFK = document.getElementById("agtIDPK").value;
         	usrName = document.getElementById("usrName").value;
         	usrRole = document.getElementById("usrRole").value;
-        	window.onLoad=dochangeAgentInfo('polAGTIDFK', polAGTIDFK, usrName, usrRole)
-     
+        	window.onLoad=dochangePolicyInfo('polAGTIDFK', polAGTIDFK, usrName, usrRole)
+
+        	PHD_perSalu = document.getElementById("PHD_perSaluID").value;
+        	window.onLoad=dochangePolicyInfo('PHD_perSalu', PHD_perSalu,"","");
+			PHD_perCardType = document.getElementById("PHD_perCardTypeID").value;
+			window.onLoad=dochangePolicyInfo('PHD_perCardType', PHD_perCardType,"","");
+			PHD_addrContType1 = document.getElementById("PHD_addrContType1ID").value;
+			window.onLoad=dochangePolicyInfo('PHD_addrContType1', PHD_addrContType1,"","");
+
+        	provID = document.getElementById("PHD_addrProvID").value;
+        	distID =  document.getElementById("PHD_addrDistID").value;
+        	subDistID= document.getElementById("PHD_addrSubDistID").value;
+        	zipCodeID= document.getElementById("PHD_addrZipCodeID").value ;
+        	if(provID=='-1'){
+        	window.onLoad=dochangeLocation('PHD_addrProv',"","","","");    
+        	}
+        	else{
+        	window.onLoad=dochangeLocation('PHD_addr',zipCodeID,provID,distID,subDistID);  
+        	}
+        	 
      		
     	}
 // @Falom END 2016-06-19 SUN 02:08 PM 
@@ -227,8 +179,6 @@ $polResult 	= executeSql($conn,$sqlID);
 		$_SESSION["polQuoNum"]				= getNewPolicyNo($orgPolPrefix, $orgPolLength, $lastPolNo);
 		$polQuoNum 		= $_SESSION["polQuoNum"];
 		$polOrgIDFK 	= $orgIDPK;
-		$polEffDate 	= date("Y-m-d H:i:s");
-		$polExpDate 	= date("Y-m-d 16:30:00", strtotime("+12 Months"));
 
 		setPolStatusIDFK($polStatusIDFK);
 		$sqlID	= "PCS1_023";	
@@ -548,41 +498,38 @@ $quoQueryResult = executeSql($conn,$sqlID);
 						<h4 style="display: -webkit-inline-box;padding-left: 5px; color:white;"><b>ข้อมูลผู้ถือกรมธรรม์</b></h4>
 					</div>
 				</div>
-				<div class="col-md-6" align="right">
-					<div style="height: 30px;top: 8px; position: relative;">
-						<input type="checkbox" name="titleInsured" value="titleInsured">&nbsp;&nbsp; <span class="txtIs">Insured same as policyholder</span>
-					</div>
-				</div>
 			</div>
 			<br>
 
-			<!-- <div class="row">
+			<div class="row">
 				<div class="col-md-2" align="left">คำนำหน้าชื่อ :</div>
-				<div class="col-md-2" id="perSalu" name="perSalu">
+				<input type="hidden" class="form-control" id="PHD_perSaluID" name="PHD_perSaluID" value='<?php echo $PHD_perSalu ?>'>
+				<div class="col-md-2" id="PHD_perSalu" name="PHD_perSalu">
 					<select class="form-control">
 						<option>กรุณาเลือก</option>
 					</select>
 				</div>
 				<div class="col-md-2" align="right">ชื่อ :</div>
 				<div class="col-md-2">
-					<input type="text" class="form-control" id="perFName" name="perFName" value='<?php echo $perFName ?>'
+					<input type="text" class="form-control" id="PHD_perFName" name="PHD_perFName" value='<?php echo $PHD_perFName ?>'
 						placeholder="ชื่อ" required>
 				</div>
 				<div class="col-md-2" align="right">นามสกุล :</div>
 				<div class="col-md-2">
-					<input type="text" class="form-control" id="perLName" name="perLName" value='<?php echo $perLName ?>'
+					<input type="hidden" class="form-control" id="PHD_perMName" name="PHD_perMName" value='<?php echo $PHD_perMName ?>'>
+					<input type="text" class="form-control" id="PHD_perLName" name="PHD_perLName" value='<?php echo $PHD_perLName ?>'
 						placeholder="นามสกุล" required>
 				</div>
 			</div>
-			<br> -->
+			<br>
 
-			<!-- <div class="row">
+			<div class="row">
 				<div class="col-md-2" align="left">วันเกิด :</div>
 				<div class="col-md-2">
 					<div class="date" id="datetimepicker6">						
 						<div id="datetimepicker6" class="input-group date"> 
 			               <input type="text" class="form-control" data-format="dd-MM-yyyy" placeholder="วันเกิด" 
-							id="perDOB" name="perDOB" value='<?php echo $perDOB; ?>' required>
+							id="PHD_perDOB" name="PHD_perDOB" value='<?php echo $PHD_perDOB; ?>' required>
 			                <span class="add-on"> 
 			                    <i class="glyphicon glyphicon-calendar cld"></i> 
 			                </span> 
@@ -590,18 +537,19 @@ $quoQueryResult = executeSql($conn,$sqlID);
 					</div>
 				</div>
 			</div>
-			<br> -->
+			<br>
 
-			<!-- <div class="row">				
+			<div class="row">				
 				<div class="col-md-2" align="left">ประเภทบัตร :</div>
-				<div class="col-md-2" name="perCardType" id="perCardType"> 
+				<input type="hidden" class="form-control" id="PHD_perCardTypeID" name="PHD_perCardTypeID" value='<?php echo $PHD_perCardType ?>'>
+				<div class="col-md-2" name="PHD_perCardType" id="PHD_perCardType"> 
 					<select class="form-control" required>				
 					<option>กรุณาเลือก</option>
 					</select>
 				</div>
 				<div class="col-md-2" align="right">เลขที่บัตร :</div>
 				<div class="col-md-2">
-					<input type="text" class="form-control" id="perCardNo" name="perCardNo" value='<?php echo $perCardNo ?>'
+					<input type="text" class="form-control" id="PHD_perCardNo" name="PHD_perCardNo" value='<?php echo $PHD_perCardNo ?>'
 						placeholder="เลขที่บัตร" required>
 				</div>
 				<div class="col-md-2" align="right">วันหมดอายุ :</div>
@@ -609,95 +557,105 @@ $quoQueryResult = executeSql($conn,$sqlID);
 					<div class="date" id="datetimepicker7">						
 						<div id="datetimepicker7" class="input-group date"> 
 			               <input type="text" class="form-control" data-format="dd-MM-yyyy" placeholder="วันหมดอายุ" 
-							id="perExpDate" name="perExpDate" value='<?php echo $perDOB; ?>' required>
+							id="PHD_perExpDate" name="PHD_perExpDate" value='<?php echo $PHD_perExpDate; ?>' required>
 			                <span class="add-on"> 
 			                    <i class="glyphicon glyphicon-calendar cld"></i> 
 			                </span> 
             			</div> 
 					</div>
 				</div>
-			</div> -->
+			</div>
 			<br>
 
-			<!-- <div class="row">
-				<div class="col-md-2" align="left">บ้านเลขที่1 :</div>
+			<div class="row">
+				<div class="col-md-2" align="left">บ้านเลขที่ :</div>
 				<div class="col-md-2">
-					<input type="text" class="form-control" id="addrLine1" name="addrLine1" value='<?php echo $addrLine1 ?>'
-						placeholder="บ้านเลขที่1" required>
+					<input type="text" class="form-control" id="PHD_addrLine1" name="PHD_addrLine1" value='<?php echo $PHD_addrLine1 ?>'
+						placeholder="บ้านเลขที่" required>
 				</div>
-				<div class="col-md-2" align="right">บ้านเลขที่2 :</div>
+				<div class="col-md-2" align="right">หมู่บ้าน/ซอย/ถนน :</div>
 				<div class="col-md-2">
-					<input type="text" class="form-control" id="addrLine2" name="addrLine2" value='<?php echo $addrLine2 ?>'
-						placeholder="บ้านเลขที่2" required>
+					<input type="text" class="form-control" id="PHD_addrLine2" name="PHD_addrLine2" value='<?php echo $PHD_addrLine2 ?>'
+						placeholder="หมู่บ้าน/ซอย/ถนน">
 				</div>
 			</div>
-			<br> -->
-
-			<!-- <div class="row">
+			<br>
+			<span name="PHD_addr" id="PHD_addr">
+			<div class="row">
 				<div class="col-md-2" align="left">จังหวัด :</div>
-				<div class="col-md-2" id="addrProv" name="addrProv">
+				<input type="hidden" class="form-control" id="PHD_addrProvID" name="PHD_addrProvID" value='<?php echo $PHD_addrProv ?>'>
+				<div class="col-md-2" id="PHD_addrProv" name="PHD_addrProv">
 					<select class="form-control">
 						<option>กรุณาเลือก</option>
 					</select>
 				</div>
 				<div class="col-md-2" align="right">แขวง/อำเภอ :</div>
-				<div class="col-md-2" id="addrDist" name="addrDist">
+				<input type="hidden" class="form-control" id="PHD_addrDistID" name="PHD_addrDistID" value='<?php echo $PHD_addrDist ?>'>
+				<div class="col-md-2" id="PHD_addrDist" name="PHD_addrDist">
 					<select class="form-control">
 						<option>กรุณาเลือก</option>
 					</select>	
 				</div>
 				<div class="col-md-2" align="right">เขต/ตำบล :</div>
-				<div class="col-md-2" id="addrSubDist" name="addrSubDist">
+				<input type="hidden" class="form-control" id="PHD_addrSubDistID" name="PHD_addrSubDistID" value='<?php echo $PHD_addrSubDist ?>'>
+				<div class="col-md-2" id="PHD_addrSubDist" name="PHD_addrSubDist">
 					<select class="form-control">
 						<option>กรุณาเลือก</option>	
 					</select>	
 				</div>
 			</div>
-			<br> -->
+			<br>
 
-			<!-- <div class="row">
+			<div class="row">
 				<div class="col-md-2" align="left">รหัสไปรษณีย์ :</div>
-				<div class="col-md-2" id="addrZipCode" name="addrZipCode">
-					<select class="form-control" id="addrZipCode" name="addrZipCode">
+				<input type="hidden" class="form-control" id="PHD_addrZipCodeID" name="PHD_addrZipCodeID" value='<?php echo $PHD_addrZipCode ?>'>
+				<div class="col-md-2" id="PHD_addrZipCode" name="PHD_addrZipCode">
+					<select class="form-control" id="PHD_addrZipCode" name="PHD_addrZipCode">
 						<option>กรุณาเลือก</option>
 					</select>		
 				</div>
 			</div>
-			<br> -->
+			</span>
+			<br>
 
-			<!-- <div class="row">
+			<div class="row">
 				<div class="col-md-2" align="left">อีเมล์ :</div>
 				<div class="col-md-2">
-					<input type="text" class="form-control" placeholder="อีเมล์" id="addrEmail"  name="addrEmail" value='<?php echo $addrEmail ?>' required>
+					<input type="text" class="form-control" placeholder="อีเมล์" id="PHD_addrEmail"  name="PHD_addrEmail" value='<?php echo $PHD_addrEmail ?>' required>
 				</div>
 				<div class="col-md-2" align="right">ประเภทเบอร์ติดต่อ:</div>
-				<div class="col-md-2" name="addrContType1" id="addrContType1"> 
+				<input type="hidden" class="form-control" id="PHD_addrContType1ID" name="PHD_addrContType1ID" value='<?php echo $PHD_addrContType1 ?>'>
+				<div class="col-md-2" name="PHD_addrContType1" id="PHD_addrContType1"> 
 					<select class="form-control">
 						<option>กรุณาเลือก</option>
 					</select>
 				</div>
 				<div class="col-md-2" align="right">เบอร์ติดต่อ:</div>
 				<div class="col-md-2">
-					<input type="text" class="form-control" id="addrContNum1"
-						placeholder="เบอร์ติดต่อ" name="addrContNum1" value='<?php echo $addrContNum1 ?>' required>
+					<input type="text" class="form-control" id="PHD_addrContNum1"
+						placeholder="เบอร์ติดต่อ" name="PHD_addrContNum1" value='<?php echo $PHD_addrContNum1 ?>' required>
 				</div>
 			</div>
-			<br> -->
+			<br>
+
+			<span id="insuredInfo">
+			<div class="row titleInsured">
+				<div class="col-md-6" align="left">
+					<div>
+						<h4 style="display: -webkit-inline-box;padding-left: 5px; color:white;"><b>ข้อมูลผู้เอากรมธรรม์</b></h4>
+					</div>
+				</div>
+				<div class="col-md-6" align="right">
+					<div style="height: 30px;top: 8px; position: relative;">
+						<input type="checkbox" name="titleInsured" value="titleInsured">&nbsp;&nbsp; <span class="txtIs">Insured same as policyholder</span>
+					</div>
+				</div>
+			</div>
+			<br>
+			</span>	
 
 			<div class="row">
 				<div class="col-md-12" align="center">
-					<!-- <input type="hidden" id="polOrgIDFK" name="polOrgIDFK" value="<?php echo $polOrgIDFK; ?>"/>
-					<input type="hidden" id="polPREMIDFK" name="polPREMIDFK" value="<?php echo $polPREMIDFK; ?>"/>
-					<input type="hidden" id="polCUSIDFKPHD" name="polCUSIDFKPHD" value="<?php echo $polCUSIDFKPHD; ?>"/>
-					<input type="hidden" id="polCUSIDFKINS" name="polCUSIDFKINS" value="<?php echo $polCUSIDFKINS; ?>"/>
-					<input type="hidden" id="polCUSAddrIDPHD" name="polCUSAddrIDPHD" value="<?php echo $polCUSAddrIDPHD; ?>"/>
-					<input type="hidden" id="polCUSAddrIDINS" name="polCUSAddrIDINS" value="<?php echo $polCUSAddrIDINS; ?>"/>
-					<input type="hidden" id="polVEHIDFK" name="polVEHIDFK" value="<?php echo $polVEHIDFK; ?>"/>
-					<input type="hidden" id="vehIDPK" name="vehIDPK" value="<?php echo $vehIDPK; ?>"/>
-					<input type="hidden" id="perIDPK" name="perIDPK" value="<?php echo $perIDPK; ?>"/>
-					<input type="hidden" id="addrIDPK" name="addrIDPK" value="<?php echo $addrIDPK; ?>"/>
-					<input type="hidden" id="addrIDPK" name="addrIDPK" value="<?php echo $polOrgIDFK; ?>"/> -->
-
 					<a href="home.php"><input type="button" class="btn btn-primary btn-md" name="btn" id="btn" value="Cancel"/></a>
 					<input type="Reset" class="btn btn-primary btn-md"/>
 					<input type="Submit" class="btn btn-primary btn-md" name="btn" id="btn" value="Save"/>
@@ -759,12 +717,65 @@ $quoQueryResult = executeSql($conn,$sqlID);
 			redYear:<input type="text" value='<?php echo $redYear; ?>' />
 			redDesc:<input type="text" value='<?php echo $redDesc; ?>' /><br>
 			
+			vehIDPK:<input type="text" placeholder="" id="vehIDPK" name="vehIDPK" value='<?php echo $vehIDPK; ?>' randonly />
+			vehTARIDFK:<input type="text" id="vehTARIDFK" name="vehTARIDFK" value='<?php echo $vehTARIDFK ?>' readonly>
 			vehTARvehCodeFK:<input type="text" placeholder="" value='<?php echo $vehTARvehCodeFK; ?>' randonly />
 			tarIDPK:<input type="text" placeholder="" value='<?php echo $tarIDPK; ?>' randonly /><br>
 
+			premIDPK:<input type="text" placeholder="" id="premIDPK" name="premIDPK" value='<?php echo $premIDPK; ?>' randonly /><br>
+			premStdNet:<input type="text" placeholder="" value='<?php echo $premStdNet; ?>' randonly /><br>
+			premStdVat:<input type="text" placeholder="" value='<?php echo $premStdVat; ?>' randonly /><br>
+			premStdStampDuty:<input type="text" placeholder="" value='<?php echo $premStdStampDuty; ?>' randonly /><br>
+			premStdTotal:<input type="text" placeholder="" value='<?php echo $premStdTotal; ?>' randonly /><br>
+			premPercentVat:<input type="text" placeholder="" id="premPercentVat" name="premPercentVat" value='<?php echo $premPercentVat; ?>' randonly /><br>
+			premPerDiscount:<input type="text" placeholder="" id="premPerDiscount" name="premPerDiscount" value='<?php echo $premPerDiscount; ?>' randonly /><br>
+			premDiscountFlag:<input type="text" placeholder="" id="premDiscountFlag" name="premDiscountFlag" value='<?php echo $premDiscountFlag; ?>' randonly /><br>
+			premDiscount:<input type="text" placeholder="" id="premDiscount" name="premDiscount" value='<?php echo $premDiscount; ?>' randonly /><br>
+			premNet:<input type="text" placeholder="" id="premNet" name="premNet" value='<?php echo $premNet; ?>' randonly /><br>
+			premStampDuty:<input type="text" placeholder="" id="premStampDuty" name="premStampDuty" value='<?php echo $premStampDuty; ?>' randonly /><br>
+			premVat:<input type="text" placeholder="" id="premVat" name="premVat" value='<?php echo $premVat; ?>' randonly /><br>
+			premTotal:<input type="text" placeholder="" id="premTotal" name="premTotal" value='<?php echo $premTotal; ?>' randonly /><br>
+			premQuoNumRef:<input type="text" placeholder="" id="premQuoNumRef" name="premQuoNumRef" value='<?php echo $premQuoNumRef; ?>' randonly /><br>
+			premOutstanding:<input type="text" placeholder="" id="premOutstanding" name="premOutstanding" value='<?php echo $premOutstanding; ?>' randonly /><br>
+			premPaid:<input type="text" placeholder="" id="premPaid" name="premPaid" value='<?php echo $premPaid; ?>' randonly /><br>
+			premPaidStatus:<input type="text" placeholder="" id="premPaidStatus" name="premPaidStatus" value='<?php echo $premPaidStatus; ?>' randonly /><br>
+			premPaidStatusAprv:<input type="text" placeholder="" id="premPaidStatusAprv" name="premPaidStatusAprv" value='<?php echo $premPaidStatusAprv; ?>' randonly /><br>
+			premPaidBalance:<input type="text" placeholder="" id="premPaidBalance" name="premPaidBalance" value='<?php echo $premPaidBalance; ?>' randonly /><br>
+			premPaidDate:<input type="text" placeholder="" id="premPaidDate" name="premPaidDate" value='<?php echo $premPaidDate; ?>' randonly /><br>
+			premUpdatedDate:<input type="text" placeholder="" id="premUpdatedDate" name="premUpdatedDate" value='<?php echo $premUpdatedDate; ?>' randonly /><br>
+			premUpdatedBy:<input type="text" placeholder="" id="premUpdatedBy" name="premUpdatedBy" value='<?php echo $premUpdatedBy; ?>' randonly /><br>
+			
 			polUpdatedDate:<input type="text" placeholder="N/A" id="polUpdatedDate" name="polUpdatedDate" value='<?php echo $polUpdatedDate; ?>' randonly /><br>
 			polUpdatedBy:<input type="text" placeholder="N/A" id="polUpdatedBy" name="polUpdatedBy" value='<?php echo $polUpdatedBy; ?>' randonly /><br>
 			
+			PHD_perIDPK:<input type="text" placeholder="" id="PHD_perIDPK" name="PHD_perIDPK" value='<?php echo $PHD_perIDPK; ?>' /><br>
+			PHD_perSalu:<input type="text" placeholder="" value='<?php echo $PHD_perSalu; ?>' /><br>
+			PHD_perFName:<input type="text" placeholder="" value='<?php echo $PHD_perFName; ?>' /><br>
+			PHD_perMName:<input type="text" placeholder="" value='<?php echo $PHD_perMName; ?>' /><br>
+			PHD_perLName:<input type="text" placeholder="" value='<?php echo $PHD_perLName; ?>' /><br>
+			PHD_perDOB:<input type="text" placeholder="" value='<?php echo $PHD_perDOB; ?>' /><br>
+			PHD_perCardType:<input type="text" placeholder="" value='<?php echo $PHD_perCardType; ?>' /><br>
+			PHD_perCardNo:<input type="text" placeholder="" value='<?php echo $PHD_perCardNo; ?>' /><br>
+			PHD_perExpDate:<input type="text" placeholder="" value='<?php echo $PHD_perExpDate; ?>' /><br>
+			PHD_perUpdatedDate:<input type="text" placeholder="" id="PHD_perUpdatedDate" name="PHD_perUpdatedDate" value='<?php echo $PHD_perUpdatedDate; ?>' /><br>
+			PHD_perUpdatedBy:<input type="text" placeholder="" id="PHD_perUpdatedBy" name="PHD_perUpdatedBy" value='<?php echo $PHD_perUpdatedBy; ?>' /><br>
+			
+			PHD_addrIDPK:<input type="text" placeholder="" id="PHD_addrIDPK" name="PHD_addrIDPK" value='<?php echo $PHD_addrIDPK; ?>' /><br>
+			PHD_addrLine1:<input type="text" placeholder="" value='<?php echo $PHD_addrLine1; ?>' /><br>
+			PHD_addrLine2:<input type="text" placeholder="" value='<?php echo $PHD_addrLine2; ?>' /><br>
+			PHD_addrSubDist:<input type="text" placeholder="" value='<?php echo $PHD_addrSubDist; ?>' /><br>
+			PHD_addrDist:<input type="text" placeholder="" value='<?php echo $PHD_addrDist; ?>' /><br>
+			PHD_addrProv:<input type="text" placeholder="" value='<?php echo $PHD_addrProv; ?>' /><br>
+			PHD_addrZipCode:<input type="text" placeholder="" value='<?php echo $PHD_addrZipCode; ?>' /><br>
+			PHD_addrGeo:<input type="text" placeholder="" id="PHD_addrGeo" name="PHD_addrGeo" value='<?php echo $PHD_addrGeo; ?>' /><br>
+			PHD_addrEmail:<input type="text" placeholder="" value='<?php echo $PHD_addrEmail; ?>' /><br>
+			PHD_addrContType1:<input type="text" placeholder="" value='<?php echo $PHD_addrContType1; ?>' /><br>
+			PHD_addrContNum1:<input type="text" placeholder="" value='<?php echo $PHD_addrContNum1; ?>' /><br>
+			PHD_addrContType2:<input type="text" placeholder="" id="PHD_addrContType2" name="PHD_addrContType2" value='<?php echo $PHD_addrContType2; ?>' /><br>
+			PHD_addrContNum2:<input type="text" placeholder="" id="PHD_addrContNum2" name="PHD_addrContNum2" value='<?php echo $PHD_addrContNum2; ?>' /><br>
+			PHD_addrUpdatedDate:<input type="text" placeholder="" id="PHD_addrUpdatedDate" name="PHD_addrUpdatedDate" value='<?php echo $PHD_addrUpdatedDate; ?>' /><br>
+			PHD_addrUpdatedBy:<input type="text" placeholder="" id="PHD_addrUpdatedBy" name="PHD_addrUpdatedBy" value='<?php echo $PHD_addrUpdatedBy; ?>' /><br>
+
 			userName::<input type="text" placeholder="" id="usrName" name="usrName" value='<?php echo $_SESSION["usrName"]; ?>' randonly /><br>
 			userName::<input type="text" placeholder="" id="usrRole" name="usrRole" value='<?php echo $_SESSION["usrRole"]; ?>' randonly /><br>
 		</div>

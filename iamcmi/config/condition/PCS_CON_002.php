@@ -110,5 +110,33 @@ $premPaidDate=$row["PREM_PaidDate"];
 $premUpdatedDate=$row["PREM_UpdatedDate"];
 $premUpdatedBy=$row["PREM_UpdatedBy"];
 
+$PHD_perIDPK=$row["PHD_PER_ID_PK"];
+$PHD_perSalu=$row["PHD_PER_Salu"];
+$PHD_perFName=$row["PHD_PER_FName"];
+$PHD_perMName=$row["PHD_PER_MName"];
+$PHD_perLName=$row["PHD_PER_LName"];
+$PHD_perDOB=$row["PHD_PER_DOB"];
+$PHD_perCardType=$row["PHD_PER_CardType"];
+$PHD_perCardNo=$row["PHD_PER_CardNo"];
+$PHD_perExpDate=$row["PHD_PER_ExpDate"];
+$PHD_perUpdatedDate=$row["PHD_PER_UpdatedDate"];
+$PHD_perUpdatedBy=$row["PHD_PER_UpdatedBy"];
+
+$PHD_addrIDPK=$row["PHD_ADDR_ID_PK"];
+$PHD_addrLine1=$row["PHD_ADDR_Line1"];
+$PHD_addrLine2=$row["PHD_ADDR_Line2"];
+$PHD_addrSubDist=$row["PHD_ADDR_SubDist"];
+$PHD_addrDist=$row["PHD_ADDR_Dist"];
+$PHD_addrProv=$row["PHD_ADDR_Prov"];
+$PHD_addrZipCode=$row["PHD_ADDR_ZipCode"];
+$PHD_addrGeo=$row["PHD_ADDR_Geo"];
+$PHD_addrEmail=$row["PHD_ADDR_Email"];
+$PHD_addrContType1=$row["PHD_ADDR_ContType1"];
+$PHD_addrContNum1=$row["PHD_ADDR_ContNum1"];
+$PHD_addrContType2=$row["PHD_ADDR_ContType2"];
+$PHD_addrContNum2=$row["PHD_ADDR_ContNum2"];
+$PHD_addrUpdatedDate=$row["PHD_ADDR_UpdatedDate"];
+$PHD_addrUpdatedBy=$row["PHD_ADDR_UpdatedBy"];
+
 ?>
 

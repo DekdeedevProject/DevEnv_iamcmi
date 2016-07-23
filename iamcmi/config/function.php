@@ -143,7 +143,42 @@ $sql="";
 
 	case 'PCS1_003':
 	$polQuoNum = $GLOBALS['polQuoNum'];
-	echo $sql = "SELECT * 
+	// echo "<br>PCS1_003<br>";
+	$sql = "SELECT 
+				policy.*,
+				organization.*,
+				t_status.*,
+				agent.*,
+				vehical.*,
+				t_redbook.*,
+				premium.*,
+				PHD.PER_ID_PK	 as 	PHD_PER_ID_PK,
+				PHD.PER_Salu	 as 	PHD_PER_Salu,
+				PHD.PER_FName	 as 	PHD_PER_FName,
+				PHD.PER_MName	 as 	PHD_PER_MName,
+				PHD.PER_LName	 as 	PHD_PER_LName,
+				PHD.PER_DOB	 as 	PHD_PER_DOB,
+				PHD.PER_CardType	 as 	PHD_PER_CardType,
+				PHD.PER_CardNo	 as 	PHD_PER_CardNo,
+				PHD.PER_ExpDate	 as 	PHD_PER_ExpDate,
+				PHD.PER_UpdatedDate	 as 	PHD_PER_UpdatedDate,
+				PHD.PER_UpdatedBy as 	PHD_PER_UpdatedBy,
+
+				PHDA.ADDR_ID_PK	 as 	PHD_ADDR_ID_PK,
+				PHDA.ADDR_Line1	 as 	PHD_ADDR_Line1,
+				PHDA.ADDR_Line2	 as 	PHD_ADDR_Line2,
+				PHDA.ADDR_SubDist	 as 	PHD_ADDR_SubDist,
+				PHDA.ADDR_Dist	 as 	PHD_ADDR_Dist,
+				PHDA.ADDR_Prov	 as 	PHD_ADDR_Prov,
+				PHDA.ADDR_ZipCode	 as 	PHD_ADDR_ZipCode,
+				PHDA.ADDR_Geo	 as 	PHD_ADDR_Geo,
+				PHDA.ADDR_Email	 as 	PHD_ADDR_Email,
+				PHDA.ADDR_ContType1	 as 	PHD_ADDR_ContType1,
+				PHDA.ADDR_ContNum1	 as 	PHD_ADDR_ContNum1,
+				PHDA.ADDR_ContType2	 as 	PHD_ADDR_ContType2,
+				PHDA.ADDR_ContNum2	 as 	PHD_ADDR_ContNum2,
+				PHDA.ADDR_UpdatedDate	 as 	PHD_ADDR_UpdatedDate,
+				PHDA.ADDR_UpdatedBy	 as 	PHD_ADDR_UpdatedBy
 			FROM policy 
 			INNER JOIN organization
 				ON POL_Org_ID_FK=ORG_ID_PK
@@ -157,6 +192,10 @@ $sql="";
 				ON VEH_RED_KEY_FK=RED_KEY	
 			INNER JOIN premium
 				ON POL_PREM_ID_FK=PREM_ID_PK	
+			INNER JOIN personal	as PHD
+				ON POL_CUS_ID_FK_PHD=PHD.PER_ID_PK
+			INNER JOIN address	as PHDA
+				ON POL_CUS_Addr_ID_PHD=PHDA.ADDR_ID_PK
 			WHERE POL_QuoNum='".$polQuoNum."';";
 	break;
 	case 'PSS1_001':
@@ -193,6 +232,7 @@ $sql="";
 	$polVEHIDFK=$GLOBALS['polVEHIDFK'];
 	$polUpdatedDate=$GLOBALS['polUpdatedDate'];
 	$polUpdatedBy=$GLOBALS['polUpdatedBy'];
+	echo "<br>PSS1_002<br>";
 	echo $sql ="	INSERT INTO policy (
 				POL_Org_ID_FK,
 				POL_Status_ID_FK,
@@ -272,7 +312,7 @@ $sql="";
 	$perExpDate =	$GLOBALS['perExpDate'];
 	$perUpdatedDate =	$GLOBALS['perUpdatedDate'];
 	$perUpdatedBy	= 	$GLOBALS['polUpdatedBy'];
-	$sql =" INSERT INTO Personal (
+	$sql =" INSERT INTO personal (
 				PER_Salu,
 				PER_FName,
 				PER_MName,
@@ -293,7 +333,7 @@ $sql="";
 				'$perCardType',
 				'$perCardNo',
 				'$perExpDate',
-				'$perUpdatedDate',
+				$perUpdatedDate,
 				'$perUpdatedBy'
 			)"; 
 	break;
@@ -364,7 +404,7 @@ $sql="";
 		)"; 
 	break;
 	case 'PSS1_006':
-	echo "PSS1_006";
+	
 	$vehIDPK=$GLOBALS['vehIDPK'];
 	$vehTARIDFK=$GLOBALS['vehTARIDFK'];
 	$vehTARVehCodeFK=$GLOBALS['vehTARVehCodeFK'];
@@ -383,7 +423,7 @@ $sql="";
 	$vehQuoNumRef=$GLOBALS['vehQuoNumRef'];
 	$vehUpdatedDate=$GLOBALS['vehUpdatedDate'];
 	$vehUpdatedBy=$GLOBALS['vehUpdatedBy'];
-
+	echo "<br>PSS1_006<br>";
 	echo $sql="INSERT INTO vehical (
 			VEH_TAR_ID_FK,
 			VEH_TAR_VehCode_FK,
@@ -446,8 +486,9 @@ $sql="";
 	$premPaidBalance=$GLOBALS['premPaidBalance'];
 	$premPaidDate=$GLOBALS['premPaidDate'];
 	$premUpdatedDate=$GLOBALS['premUpdatedDate'];
-	$premUpdatedBy=$GLOBALS['premUpdatedBy'];
-	echo $sql =" INSERT INTO Premium (
+	$premUpdatedBy=$GLOBALS['premUpdatedBy'];	
+	echo "<br>PSS1_007<br>";
+	echo $sql =" INSERT INTO premium (
 				PREM_StdNet,
 				PREM_StdVat,
 				PREM_StdStampDuty,
@@ -490,7 +531,7 @@ $sql="";
 				'$premPaidStatusAprv',
 				'$premPaidBalance',
 				'$premPaidDate',
-				'$premUpdatedDate',
+				$premUpdatedDate,
 				'$premUpdatedBy'
 			)"; 
 	break;
@@ -523,10 +564,67 @@ $sql="";
 	$polUpdatedDate=$GLOBALS['polUpdatedDate'];
 	$polUpdatedBy=$GLOBALS['polUpdatedBy'];
 
+	$premStdNet=$GLOBALS['premStdNet'];
+	$premStdVat=$GLOBALS['premStdVat'];
+	$premStdStampDuty=$GLOBALS['premStdStampDuty'];
+	$premStdTotal=$GLOBALS['premStdTotal'];
+	$premPercentVat=$GLOBALS['premPercentVat'];
+	$premPerDiscount=$GLOBALS['premPerDiscount'];
+	$premDiscountFlag=$GLOBALS['premDiscountFlag'];
+	$premDiscount=$GLOBALS['premDiscount'];
+	$premNet=$GLOBALS['premNet'];
+	$premStampDuty=$GLOBALS['premStampDuty'];
+	$premVat=$GLOBALS['premVat'];
+	$premTotal=$GLOBALS['premTotal'];
+	$premQuoNumRef=$GLOBALS['premQuoNumRef'];
+	$premOutstanding=$GLOBALS['premOutstanding'];
+	$premPaid=$GLOBALS['premPaid'];
+	$premPaidStatus=$GLOBALS['premPaidStatus'];
+	$premPaidStatusAprv=$GLOBALS['premPaidStatusAprv'];
+	$premPaidBalance=$GLOBALS['premPaidBalance'];
+	$premPaidDate=$GLOBALS['premPaidDate'];
+
+
+	$PHD_perIDPK=$GLOBALS['PHD_perIDPK'];
+	$PHD_perSalu=$GLOBALS['PHD_perSalu'];
+	$PHD_perFName=$GLOBALS['PHD_perFName'];
+	$PHD_perMName=$GLOBALS['PHD_perMName'];
+	$PHD_perLName=$GLOBALS['PHD_perLName'];
+	$PHD_perDOB=$GLOBALS['PHD_perDOB'];
+	$PHD_perCardType=$GLOBALS['PHD_perCardType'];
+	$PHD_perCardNo=$GLOBALS['PHD_perCardNo'];
+	$PHD_perExpDate=$GLOBALS['PHD_perExpDate'];
+	$PHD_perUpdatedDate=$GLOBALS['PHD_perUpdatedDate'];
+	$PHD_perUpdatedBy=$GLOBALS['PHD_perUpdatedBy'];
+	$PHD_addrIDPK=$GLOBALS['PHD_addrIDPK'];
+	$PHD_addrLine1=$GLOBALS['PHD_addrLine1'];
+	$PHD_addrLine2=$GLOBALS['PHD_addrLine2'];
+	$PHD_addrSubDist=$GLOBALS['PHD_addrSubDist'];
+	$PHD_addrDist=$GLOBALS['PHD_addrDist'];
+	$PHD_addrProv=$GLOBALS['PHD_addrProv'];
+	$PHD_addrZipCode=$GLOBALS['PHD_addrZipCode'];
+	$PHD_addrGeo=$GLOBALS['PHD_addrGeo'];
+	$PHD_addrEmail=$GLOBALS['PHD_addrEmail'];
+	$PHD_addrContType1=$GLOBALS['PHD_addrContType1'];
+	$PHD_addrContNum1=$GLOBALS['PHD_addrContNum1'];
+	$PHD_addrContType2=$GLOBALS['PHD_addrContType2'];
+	$PHD_addrContNum2=$GLOBALS['PHD_addrContNum2'];
+	$PHD_addrUpdatedDate=$GLOBALS['PHD_addrUpdatedDate'];
+	$PHD_addrUpdatedBy=$GLOBALS['PHD_addrUpdatedBy'];
+
+	$vehTARIDFK= $GLOBALS['vehTARIDFK'] ;
+	$vehTARvehCodeFK= $GLOBALS['vehTARvehCodeFK'] ;
 	$vehREDKEYFK= $GLOBALS['vehREDKEYFK'] ;
+	echo "<br>PSS1_008<br>";
 	echo $sql ="	UPDATE policy 
 				JOIN vehical
 				ON POL_VEH_ID_FK=VEH_ID_PK
+				JOIN premium
+				ON POL_PREM_ID_FK=PREM_ID_PK
+				JOIN personal	as PHD
+				ON POL_CUS_ID_FK_PHD=PHD.PER_ID_PK
+				JOIN address	as PHDA
+				ON POL_CUS_Addr_ID_PHD=PHDA.ADDR_ID_PK
 				SET 
 				POL_Org_ID_FK='$polOrgIDFK',
 				POL_Status_ID_FK='$polStatusIDFK',
@@ -554,6 +652,53 @@ $sql="";
 				POL_UpdatedDate=$polUpdatedDate,
 				POL_UpdatedBy='$polUpdatedBy',
 
+				PREM_StdNet='$premStdNet',
+				PREM_StdVat='$premStdVat',
+				PREM_StdStampDuty='$premStdStampDuty',
+				PREM_StdTotal='$premStdTotal',
+				PREM_PercentVat='$premPercentVat',
+				PREM_PerDiscount='$premPerDiscount',
+				PREM_DiscountFlag='$premDiscountFlag',
+				PREM_Discount='$premDiscount',
+				PREM_Net='$premNet',
+				PREM_StampDuty='$premStampDuty',
+				PREM_Vat='$premVat',
+				PREM_Total='$premTotal',
+				PREM_QuoNumRef='$premQuoNumRef',
+				PREM_Outstanding='$premOutstanding',
+				PREM_Paid='$premPaid',
+				PREM_PaidStatus='$premPaidStatus',
+				PREM_PaidStatusAprv='$premPaidStatusAprv',
+				PREM_PaidBalance='$premPaidBalance',
+				PREM_PaidDate='$premPaidDate',
+
+				PHD.PER_Salu='$PHD_perSalu',
+				PHD.PER_FName='$PHD_perFName',
+				PHD.PER_MName='$PHD_perMName',
+				PHD.PER_LName='$PHD_perLName',
+				PHD.PER_DOB='$PHD_perDOB',
+				PHD.PER_CardType='$PHD_perCardType',
+				PHD.PER_CardNo='$PHD_perCardNo',
+				PHD.PER_ExpDate='$PHD_perExpDate',
+				PHD.PER_UpdatedDate=$PHD_perUpdatedDate,
+				PHD.PER_UpdatedBy='$PHD_perUpdatedBy',
+				PHDA.ADDR_Line1='$PHD_addrLine1',
+				PHDA.ADDR_Line2='$PHD_addrLine2',
+				PHDA.ADDR_SubDist='$PHD_addrSubDist',
+				PHDA.ADDR_Dist='$PHD_addrDist',
+				PHDA.ADDR_Prov='$PHD_addrProv',
+				PHDA.ADDR_ZipCode='$PHD_addrZipCode',
+				PHDA.ADDR_Geo='$PHD_addrGeo',
+				PHDA.ADDR_Email='$PHD_addrEmail',
+				PHDA.ADDR_ContType1='$PHD_addrContType1',
+				PHDA.ADDR_ContNum1='$PHD_addrContNum1',
+				PHDA.ADDR_ContType2='$PHD_addrContType2',
+				PHDA.ADDR_ContNum2='$PHD_addrContNum2',
+				PHDA.ADDR_UpdatedDate=$PHD_addrUpdatedDate,
+				PHDA.ADDR_UpdatedBy='$PHD_addrUpdatedBy',
+
+				VEH_TAR_ID_FK='$vehTARIDFK',
+				VEH_TAR_VehCode_FK='$vehTARvehCodeFK',
 				VEH_RED_KEY_FK='$vehREDKEYFK'
 			WHERE  POL_ID_PK='".$polIDPK."' AND POL_QuoNum='".$polQuoNum."';
 	";
@@ -933,6 +1078,33 @@ $premPaidDate;
 $premUpdatedDate;
 $premUpdatedBy;
 
+$PHD_perIDPK;
+$PHD_perSalu;
+$PHD_perFName;
+$PHD_perMName;
+$PHD_perLName;
+$PHD_perDOB;
+$PHD_perCardType;
+$PHD_perCardNo;
+$PHD_perExpDate;
+$PHD_perUpdatedDate;
+$PHD_perUpdatedBy;
+$PHD_addrIDPK;
+$PHD_addrLine1;
+$PHD_addrLine2;
+$PHD_addrSubDist;
+$PHD_addrDist;
+$PHD_addrProv;
+$PHD_addrZipCode;
+$PHD_addrGeo;
+$PHD_addrEmail;
+$PHD_addrContType1;
+$PHD_addrContNum1;
+$PHD_addrContType2;
+$PHD_addrContNum2;
+$PHD_addrUpdatedDate;
+$PHD_addrUpdatedBy;
+
 $usrName;
 $usrRole;
 
@@ -1205,6 +1377,55 @@ $polVEHIDFK,
 $polUpdatedDate,
 $polUpdatedBy,
 
+$premStdNet,
+$premStdVat,
+$premStdStampDuty,
+$premStdTotal,
+$premPercentVat,
+$premPerDiscount,
+$premDiscountFlag,
+$premDiscount,
+$premNet,
+$premStampDuty,
+$premVat,
+$premTotal,
+$premQuoNumRef,
+$premOutstanding,
+$premPaid,
+$premPaidStatus,
+$premPaidStatusAprv,
+$premPaidBalance,
+$premPaidDate,
+
+$PHD_perIDPK,
+$PHD_perSalu,
+$PHD_perFName,
+$PHD_perMName,
+$PHD_perLName,
+$PHD_perDOB,
+$PHD_perCardType,
+$PHD_perCardNo,
+$PHD_perExpDate,
+$PHD_perUpdatedDate,
+$PHD_perUpdatedBy,
+$PHD_addrIDPK,
+$PHD_addrLine1,
+$PHD_addrLine2,
+$PHD_addrSubDist,
+$PHD_addrDist,
+$PHD_addrProv,
+$PHD_addrZipCode,
+$PHD_addrGeo,
+$PHD_addrEmail,
+$PHD_addrContType1,
+$PHD_addrContNum1,
+$PHD_addrContType2,
+$PHD_addrContNum2,
+$PHD_addrUpdatedDate,
+$PHD_addrUpdatedBy,
+
+$vehTARIDFK,
+$vehTARvehCodeFK,
 $vehREDKEYFK
 ){
 $GLOBALS['polIDPK'] = $polIDPK;
@@ -1234,6 +1455,55 @@ $GLOBALS['polVEHIDFK'] = $polVEHIDFK;
 $GLOBALS['polUpdatedDate'] = $polUpdatedDate;
 $GLOBALS['polUpdatedBy'] = $polUpdatedBy;
 
+$GLOBALS['premStdNet'] = $premStdNet;
+$GLOBALS['premStdVat'] = $premStdVat;
+$GLOBALS['premStdStampDuty'] = $premStdStampDuty;
+$GLOBALS['premStdTotal'] = $premStdTotal;
+$GLOBALS['premPercentVat'] = $premPercentVat;
+$GLOBALS['premPerDiscount'] = $premPerDiscount;
+$GLOBALS['premDiscountFlag'] = $premDiscountFlag;
+$GLOBALS['premDiscount'] = $premDiscount;
+$GLOBALS['premNet'] = $premNet;
+$GLOBALS['premStampDuty'] = $premStampDuty;
+$GLOBALS['premVat'] = $premVat;
+$GLOBALS['premTotal'] = $premTotal;
+$GLOBALS['premQuoNumRef'] = $premQuoNumRef;
+$GLOBALS['premOutstanding'] = $premOutstanding;
+$GLOBALS['premPaid'] = $premPaid;
+$GLOBALS['premPaidStatus'] = $premPaidStatus;
+$GLOBALS['premPaidStatusAprv'] = $premPaidStatusAprv;
+$GLOBALS['premPaidBalance'] = $premPaidBalance;
+$GLOBALS['premPaidDate'] = $premPaidDate;
+
+$GLOBALS['PHD_perIDPK'] = $PHD_perIDPK;
+$GLOBALS['PHD_perSalu'] = $PHD_perSalu;
+$GLOBALS['PHD_perFName'] = $PHD_perFName;
+$GLOBALS['PHD_perMName'] = $PHD_perMName;
+$GLOBALS['PHD_perLName'] = $PHD_perLName;
+$GLOBALS['PHD_perDOB'] = $PHD_perDOB;
+$GLOBALS['PHD_perCardType'] = $PHD_perCardType;
+$GLOBALS['PHD_perCardNo'] = $PHD_perCardNo;
+$GLOBALS['PHD_perExpDate'] = $PHD_perExpDate;
+$GLOBALS['PHD_perUpdatedDate'] = $PHD_perUpdatedDate;
+$GLOBALS['PHD_perUpdatedBy'] = $PHD_perUpdatedBy;
+$GLOBALS['PHD_addrIDPK'] = $PHD_addrIDPK;
+$GLOBALS['PHD_addrLine1'] = $PHD_addrLine1;
+$GLOBALS['PHD_addrLine2'] = $PHD_addrLine2;
+$GLOBALS['PHD_addrSubDist'] = $PHD_addrSubDist;
+$GLOBALS['PHD_addrDist'] = $PHD_addrDist;
+$GLOBALS['PHD_addrProv'] = $PHD_addrProv;
+$GLOBALS['PHD_addrZipCode'] = $PHD_addrZipCode;
+$GLOBALS['PHD_addrGeo'] = $PHD_addrGeo;
+$GLOBALS['PHD_addrEmail'] = $PHD_addrEmail;
+$GLOBALS['PHD_addrContType1'] = $PHD_addrContType1;
+$GLOBALS['PHD_addrContNum1'] = $PHD_addrContNum1;
+$GLOBALS['PHD_addrContType2'] = $PHD_addrContType2;
+$GLOBALS['PHD_addrContNum2'] = $PHD_addrContNum2;
+$GLOBALS['PHD_addrUpdatedDate'] = $PHD_addrUpdatedDate;
+$GLOBALS['PHD_addrUpdatedBy'] = $PHD_addrUpdatedBy;
+
+$GLOBALS['vehTARIDFK']=$vehTARIDFK ;
+$GLOBALS['vehTARvehCodeFK']=$vehTARvehCodeFK;
 $GLOBALS['vehREDKEYFK'] = $vehREDKEYFK;
 }
 

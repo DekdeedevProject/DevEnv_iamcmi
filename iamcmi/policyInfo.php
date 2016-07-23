@@ -13,10 +13,10 @@
     $usrName = $_GET['usrName'];
     $usrRole = $_GET['usrRole'];
 
-         if ($data=='perCardType') { 
+         if ($data=='PHD_perCardType') { 
               $sqlID  = "PCS1_005";   
               $perCardTypeResult  =executeSql($conn,$sqlID);
-              echo "<select class='form-control' name='perCardType' id='perCardType' >\n";
+              echo "<select class='form-control' name='PHD_perCardType' id='PHD_perCardType' >\n";
               echo "<option value='0'>- เลือกประเภทบัตร -</option>\n";
               while($perCardTypeRow = $perCardTypeResult->fetch_assoc()){
                    if($val==$perCardTypeRow["PER_CardType_ID_PK"]){
@@ -28,10 +28,10 @@
                    }
               }
              
-         } else if ($data=='addrContType1') { 
-             $sqlID  = "PCS1_004";   
+         } else if ($data=='PHD_addrContType1') { 
+              $sqlID  = "PCS1_004";
               $addrContType1Result =executeSql($conn,$sqlID);
-              echo "<select class='form-control' name='addrContType1' id='addrContType1' >\n";
+              echo "<select class='form-control' name='PHD_addrContType1' id='PHD_addrContType1' >\n";
               echo "<option value='0'>- เลือกประเภทเบอร์ติดต่อ -</option>\n";
               while($addrContType1Row = $addrContType1Result->fetch_assoc()){
                 if($val==$addrContType1Row["ADDR_ContType_ID_PK"]){
@@ -41,10 +41,10 @@
                 echo "<option value='$addrContType1Row[ADDR_ContType_ID_PK]' >$addrContType1Row[ADDR_ContTypeName_TH]</option>" ;
                 }
              } 
-         } else if ($data=='perSalu') { 
+         } else if ($data=='PHD_perSalu') { 
              $sqlID  = "PCS1_018";   
               $perSaluResult =executeSql($conn,$sqlID);
-              echo "<select class='form-control' name='perSalu' id='perSalu' >\n";
+              echo "<select class='form-control' name='PHD_perSalu' id='PHD_perSalu' >\n";
               echo "<option value='0'>- เลือกคำนำหน้าชื่อ -</option>\n";
               while($perSaluRow = $perSaluResult->fetch_assoc()){
                 if($val==$perSaluRow["PER_Salu_ID_PK"]){

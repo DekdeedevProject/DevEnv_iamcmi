@@ -18,97 +18,104 @@ echo "polSearchSize: ".$polSearchSize."<br>";
 	if($polSearchSize==0){
 		// // getAlertMsg("CREATE NEW POLICY");
 		// //Policyholder Information		
-		// $sqlID ="PSS1_003";
-		// setPolicyHolderInfo(
-		// // $perIDPK,
-		// $perSalu,
-		// $perFName,
-		// $perMName,
-		// $perLName,
-		// $perDOB,
-		// $perCardType,
-		// $perCardNo,
-		// $perExpDate,
-		// $perUpdatedDate,
-		// $perUpdatedBy
-		// );
-		// $perInsertResult = executeSql($conn,$sqlID);
-		// 	if ($perInsertResult){
-		// 	$perIDPK = $conn->insert_id;
-		// 	}
+		$sqlID ="PSS1_003";
+		setPolicyHolderInfo(
+		$PHD_perSalu,
+		$PHD_perFName,
+		$PHD_perMName,
+		$PHD_perLName,
+		$PHD_perDOB,
+		$PHD_perCardType,
+		$PHD_perCardNo,
+		$PHD_perExpDate,
+		$PHD_perUpdatedDate='CURRENT_TIMESTAMP',
+		$PHD_perUpdatedBy=$updatedBy
+		);
 
-		// $sqlID ="PSS1_005";
-		// setAddressInfo(
-		// // $addrIDPK,
-		// $addrLine1,
-		// $addrLine2,
-		// $addrSubDist,
-		// $addrDist,
-		// $addrProv,
-		// $addrZipCode,
-		// $addrGeo,
-		// $addrEmail,
-		// $addrContType1,
-		// $addrContNum1,
-		// $addrContType2,
-		// $addrContNum2,
-		// $addrUpdatedDate,
-		// $addrUpdatedBy
-		// );
-		// $addrInsertResult = executeSql($conn,$sqlID);
-		// 	if ($addrInsertResult){
-		// 	$addrIDPK = $conn->insert_id;
-		// 	}
-		// // POL_Status_ID_FK: 1=Quote in Progress	
-		// //Save process
+		$perInsertResult = executeSql($conn,$sqlID);
+			if ($perInsertResult){
+			$perIDPK = $conn->insert_id;
+			}
 
-		// $sqlID ="PSS1_007";
-		// setPremiumInfo(
-		// // $premIDPK,
-		// $premStdNet,
-		// $premStdVat,
-		// $premStdStampDuty,
-		// $premStdTotal,
-		// $premPercentVat,
-		// $premPerDiscount,
-		// $premDiscountFlag,
-		// $premDiscount,
-		// $premNet,
-		// $premStampDuty,
-		// $premVat,
-		// $premTotal,
-		// $premQuoNumRef,
-		// $premOutstanding,
-		// $premPaid,
-		// $premPaidStatus,
-		// $premPaidStatusAprv,
-		// $premPaidBalance,
-		// $premPaidDate,
-		// $premUpdatedDate,
-		// $premUpdatedBy
-		// );
-		// $premInsertResult = executeSql($conn,$sqlID);
-		// 	if ($premInsertResult){
-		// 	$premIDPK = $conn->insert_id;
-		// 	}	
+		$sqlID ="PSS1_005";
+		setAddressInfo(
+		// $PHD_addrIDPK,
+		$PHD_addrLine1,
+		$PHD_addrLine2,
+		$PHD_addrSubDist,
+		$PHD_addrDist,
+		$PHD_addrProv,
+		$PHD_addrZipCode,
+		$PHD_addrGeo,
+		$PHD_addrEmail,
+		$PHD_addrContType1,
+		$PHD_addrContNum1,
+		$PHD_addrContType2,
+		$PHD_addrContNum2,
+		$PHD_addrUpdatedDate='CURRENT_TIMESTAMP',
+		$PHD_addrUpdatedBy=$updatedBy
+		);
+		$addrInsertResult = executeSql($conn,$sqlID);
+			if ($addrInsertResult){
+			$addrIDPK = $conn->insert_id;
+			}
+
+	$sqlID ="PSS1_007";
+	if($premDiscountFlag=='Y'){
+
+	}
+	else{
+	$premNet=$premStdNet;
+	$premStampDuty=$premStdVat;
+	$premVat=$premStdStampDuty;
+	$premTotal=$premStdTotal;
+	}
+	setPremiumInfo(
+	// $premIDPK,
+	$premStdNet,
+	$premStdVat,
+	$premStdStampDuty,
+	$premStdTotal,
+	$premPercentVat,
+	$premPerDiscount,
+	$premDiscountFlag,
+	$premDiscount,
+	$premNet,
+	$premStampDuty,
+	$premVat,
+	$premTotal,
+	$premQuoNumRef=$polQuoNum,
+	$premOutstanding=-($premTotal),
+	$premPaid,
+	$premPaidStatus,
+	$premPaidStatusAprv,
+	$premPaidBalance=$premPaid+$premOutstanding,
+	$premPaidDate,
+	$premUpdatedDate='CURRENT_TIMESTAMP',
+	$premUpdatedBy=$updatedBy
+	);
+	$premInsertResult = executeSql($conn,$sqlID);
+		if ($premInsertResult){
+		$premIDPK = $conn->insert_id;
+		}	
 
 	$sqlID ="PSS1_006";
 	setVehicalInfo(
 	$vehIDPK="",
-	$vehTARIDFK="",
-	$vehTARvehCodeFK="",
+	$vehTARIDFK,
+	$vehTARvehCodeFK,
 	$vehREDKEYFK=$redKey,
-	$vehLicenseNum="",
-	$vehChassisNum="",
-	$vehCapacity="",
-	$vehSeat="",
-	$vehWeight="",
-	$vehEngineNum="",
-	$vehNewCar="",
-	$vehDriveArea="",
-	$vehProvIDFK="",
-	$vehColor="",
-	$vehCountry="",
+	$vehLicenseNum,
+	$vehChassisNum,
+	$vehCapacity,
+	$vehSeat,
+	$vehWeight,
+	$vehEngineNum,
+	$vehNewCar,
+	$vehDriveArea,
+	$vehProvIDFK,
+	$vehColor,
+	$vehCountry,
 	$vehQuoNumRef=$polQuoNum,
 	$vehUpdatedDate='CURRENT_TIMESTAMP',
 	$vehUpdatedBy=$updatedBy
@@ -143,11 +150,11 @@ echo "polSearchSize: ".$polSearchSize."<br>";
 	$polIssueBy=$updatedBy,
 	$polAGTIDFK,
 	$polPRODIDFK,
-	$polPREMIDFK,
-	$polCUSIDFKPHD,
-	$polCUSAddrIDPHD,
-	$polCUSIDFKINS,
-	$polCUSAddrIDINS,
+	$polPREMIDFK=$premIDPK,
+	$polCUSIDFKPHD=$perIDPK,
+	$polCUSAddrIDPHD=$addrIDPK,
+	$polCUSIDFKINS=$perIDPK,
+	$polCUSAddrIDINS=$addrIDPK,
 	$polVEHIDFK=$vehIDPK,
 	$polUpdatedDate='CURRENT_TIMESTAMP',
 	$polUpdatedBy=$updatedBy
@@ -160,6 +167,17 @@ echo "polSearchSize: ".$polSearchSize."<br>";
 	}
 	else{
 	echo "UPDATE EXISTING POLICY";	
+
+	$sqlID ="PSS1_007";
+	if($premDiscountFlag=='Y'){
+
+	}
+	else{
+	$premNet=$premStdNet;
+	$premStampDuty=$premStdVat;
+	$premVat=$premStdStampDuty;
+	$premTotal=$premStdTotal;
+	}
 	setPolicyUpdate(
 		$polIDPK,
 		$polOrgIDFK,
@@ -188,7 +206,57 @@ echo "polSearchSize: ".$polSearchSize."<br>";
 		$polUpdatedDate='CURRENT_TIMESTAMP',
 		$polUpdatedBy=$updatedBy,
 
+		$premStdNet,
+		$premStdVat,
+		$premStdStampDuty,
+		$premStdTotal,
+		$premPercentVat,
+		$premPerDiscount,
+		$premDiscountFlag,
+		$premDiscount,
+		$premNet,
+		$premStampDuty,
+		$premVat,
+		$premTotal,
+		$premQuoNumRef=$polQuoNum,
+		$premOutstanding=-($premTotal),
+		$premPaid,
+		$premPaidStatus,
+		$premPaidStatusAprv,
+		$premPaidBalance=$premPaid+$premOutstanding,
+		$premPaidDate,
+
+		$PHD_perIDPK,
+		$PHD_perSalu,
+		$PHD_perFName,
+		$PHD_perMName,
+		$PHD_perLName,
+		$PHD_perDOB,
+		$PHD_perCardType,
+		$PHD_perCardNo,
+		$PHD_perExpDate,
+		$PHD_perUpdatedDate='CURRENT_TIMESTAMP',
+		$PHD_perUpdatedBy=$updatedBy,
+		$PHD_addrIDPK,
+		$PHD_addrLine1,
+		$PHD_addrLine2,
+		$PHD_addrSubDist,
+		$PHD_addrDist,
+		$PHD_addrProv,
+		$PHD_addrZipCode,
+		$PHD_addrGeo,
+		$PHD_addrEmail,
+		$PHD_addrContType1,
+		$PHD_addrContNum1,
+		$PHD_addrContType2,
+		$PHD_addrContNum2,
+		$PHD_addrUpdatedDate='CURRENT_TIMESTAMP',
+		$PHD_addrUpdatedBy=$updatedBy,
+
+		$vehTARIDFK,
+		$vehTARvehCodeFK,
 		$vehREDKEYFK=$redKey
+
 	);
 	$sqlID ="PSS1_008";
 	$policyUpdateResult = executeSql($conn,$sqlID);

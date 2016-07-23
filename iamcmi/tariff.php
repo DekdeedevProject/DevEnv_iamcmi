@@ -125,7 +125,7 @@
               $tarVehCodeResult = executeSql($conn,$sqlID);
               $tarVehCodeRow = $tarVehCodeResult->fetch_assoc();
               $tarVehCodePK=$tarVehCodeRow["TAR_VehCode_PK"];
-              $tarIDPK=$tarVehCodeRow["TAR_ID_PK"];
+              $vehTARIDFK=$tarVehCodeRow["TAR_ID_PK"];
               $premNet=sprintf('%0.2f', $tarVehCodeRow["TAR_Prem"]);
               $premVat=sprintf('%0.2f', $tarVehCodeRow["TAR_Vat"]);
               $premStampDuty=sprintf('%0.2f', $tarVehCodeRow["TAR_StampDuty"]);
@@ -138,7 +138,10 @@
               <div class="row" >
                 <div class="col-md-2" align="left">รหัสรถ :</div>
                 <div class="col-md-2" >
+                  
+                  <input type="hidden" class="form-control" id="vehTARIDFK" name="vehTARIDFK" value='<?php echo $vehTARIDFK ?>' required readonly>
                   <input type="text" class="form-control" placeholder="รหัสรถ" id="vehTARvehCodeFK" name="vehTARvehCodeFK" value='<?php echo $tarVehCodePK ?>' required readonly>
+                  
                 </div>
               </div>  
               <br>
