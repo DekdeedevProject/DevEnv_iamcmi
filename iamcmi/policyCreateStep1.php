@@ -647,7 +647,7 @@ $quoQueryResult = executeSql($conn,$sqlID);
 				</div>
 				<div class="col-md-6" align="right">
 					<div style="height: 30px;top: 8px; position: relative;">
-						<input type="checkbox" name="titleInsured" value="titleInsured">&nbsp;&nbsp; <span class="txtIs">Insured same as policyholder</span>
+						<input type="checkbox" name="titleInsured" value="titleInsured" checked="checked" >&nbsp;&nbsp; <span class="txtIs">Insured same as policyholder</span>
 					</div>
 				</div>
 			</div>
@@ -659,126 +659,130 @@ $quoQueryResult = executeSql($conn,$sqlID);
 					<a href="home.php"><input type="button" class="btn btn-primary btn-md" name="btn" id="btn" value="Cancel"/></a>
 					<input type="Reset" class="btn btn-primary btn-md"/>
 					<input type="Submit" class="btn btn-primary btn-md" name="btn" id="btn" value="Save"/>
-					<input type="Submit" class="btn btn-primary btn-md" name="btn" id="btn" value="Submit"/>
+					<input type="Submit" class="btn btn-primary btn-md" name="btn" id="btn" value="Next"/>
 
 				</div>
 			</div>
+	<!-- polIDPK: --><input type="hidden" placeholder="" id="polIDPK" name="polIDPK" value='<?php echo $polIDPK; ?>' randonly /><!-- <br> -->
+      
+	<!-- polOrgIDFK: --><input type="hidden" placeholder="" id="polOrgIDFK" name="polOrgIDFK" value='<?php echo $polOrgIDFK; ?>' randonly />
+	<!-- orgIDPK: --><input type="hidden" placeholder="" id="orgIDPK" name="orgIDPK" value='<?php echo $orgIDPK; ?>' randonly />
+	<!-- orgShortName: --><input type="hidden" placeholder="" id="orgShortName" name="orgShortName" value='<?php echo $orgShortName; ?>' randonly />
+	<!-- orgLongNameTH: -->
+	<!-- <input type="hidden" placeholder="" id="orgLongNameTH" name="orgLongNameTH" value='<?php echo $orgLongNameTH; ?>' randonly /><br> --> 
+	<!-- orgLongNameEN: -->
+	<!-- <input type="hidden" placeholder="" id="orgLongNameEN" name="orgLongNameEN" value='<?php echo $orgLongNameEN; ?>' randonly /><br> --> 
+	<!-- orgPolPrefix: -->
+	<!-- <input type="hidden" placeholder="" id="orgPolPrefix" name="orgPolPrefix" value='<?php echo $orgPolPrefix; ?>' randonly /><br> --> 
+	<!-- orgPolLength: -->
+	<!-- <input type="hidden" placeholder="" id="orgPolLength" name="orgPolLength" value='<?php echo $orgPolLength; ?>' randonly /><br> --> 
 
-			polIDPK:<input type="text" placeholder="" id="polIDPK" name="polIDPK" value='<?php echo $polIDPK; ?>' randonly /><br>
-			
-			polOrgIDFK:<input type="text" placeholder="" id="polOrgIDFK" name="polOrgIDFK" value='<?php echo $polOrgIDFK; ?>' randonly />
-			orgIDPK:<input type="text" placeholder="" id="orgIDPK" name="orgIDPK" value='<?php echo $orgIDPK; ?>' randonly />
-			orgShortName:<input type="text" placeholder="" id="orgShortName" name="orgShortName" value='<?php echo $orgShortName; ?>' randonly /><br>
-			<!-- orgLongNameTH:<input type="text" placeholder="" id="orgLongNameTH" name="orgLongNameTH" value='<?php echo $orgLongNameTH; ?>' randonly /><br> -->
-			<!-- orgLongNameEN:<input type="text" placeholder="" id="orgLongNameEN" name="orgLongNameEN" value='<?php echo $orgLongNameEN; ?>' randonly /><br> -->
-			<!-- orgPolPrefix:<input type="text" placeholder="" id="orgPolPrefix" name="orgPolPrefix" value='<?php echo $orgPolPrefix; ?>' randonly /><br> -->
-			<!-- orgPolLength:<input type="text" placeholder="" id="orgPolLength" name="orgPolLength" value='<?php echo $orgPolLength; ?>' randonly /><br> -->
-			
-			polStatusIDFK:<input type="text" placeholder="" id="polStatusIDFK" name="polStatusIDFK" value='<?php echo $polStatusIDFK; ?>' randonly />		
-			staIDPK:<input type="text" placeholder="" id="staIDPK" name="staIDPK" value='<?php echo $staIDPK; ?>' randonly /><br>
-			staNameEN:<input type="text" placeholder="" id="staNameEN" name="staNameEN" value='<?php echo $staNameEN; ?>' randonly />
-			staNameTH:<input type="text" placeholder="" id="staNameTH" name="staNameTH" value='<?php echo $staNameTH; ?>' randonly /><br>
-			<!-- staDesc:<input type="text" placeholder="" id="staDesc" name="staDesc" value='<?php echo $staDesc; ?>' randonly /><br> -->
-			<!-- staUpdatedDate:<input type="text" placeholder="" id="staUpdatedDate" name="staUpdatedDate" value='<?php echo $staUpdatedDate; ?>' randonly /><br> -->
-			<!-- staUpdatedBy:<input type="text" placeholder="" id="staUpdatedBy" name="staUpdatedBy" value='<?php echo $staUpdatedBy; ?>' randonly /><br> -->
+    <!-- polStatusIDFK: --><input type="hidden" placeholder="" id="polStatusIDFK" name="polStatusIDFK" value='<?php echo $polStatusIDFK; ?>' randonly />   
+	<!-- staIDPK: --><input type="hidden" placeholder="" id="staIDPK" name="staIDPK" value='<?php echo $staIDPK; ?>' randonly />
+	<!-- staNameEN: --><input type="hidden" placeholder="" id="staNameEN" name="staNameEN" value='<?php echo $staNameEN; ?>' randonly />
+	<!-- staNameTH: --><input type="hidden" placeholder="" id="staNameTH" name="staNameTH" value='<?php echo $staNameTH; ?>' randonly />
 
-			polMaspolNum:<input type="text" placeholder="" id="polMaspolNum" name="polMaspolNum" value='<?php echo $polMaspolNum; ?>' randonly /><br>
-			polMaspolNum:<input type="text" placeholder="" id="polMaspolNum" name="polMaspolNum" value='<?php echo $polMaspolNum; ?>' randonly /><br>
-			polQuoNum:<input type="text" placeholder="" id="polQuoNum" name="polQuoNum" value='<?php echo $polQuoNum; ?>' randonly /><br>
-			polNum:<input type="text" placeholder="" id="polNum" name="polNum" value='<?php echo $polNum; ?>' randonly /><br>
-			polCat:<input type="text" placeholder="" id="polCat" name="polCat" value='<?php echo $polCat; ?>' randonly /><br>
-			polReFlag:<input type="text" placeholder="" id="polReFlag" name="polReFlag" value='<?php echo $polReFlag; ?>' randonly /><br>
-			polEffDate:<input type="text" placeholder="วันที่เริ่มคุ้มครอง" id="polEffDate" name="polEffDate" value='<?php echo $polEffDate; ?>' required /><br>
-			polExpDate:<input type="text" placeholder="วันสิ้นสุดความคุ้มครอง" id="polExpDate" name="polExpDate" value='<?php echo $polExpDate; ?>' required /><br>
-			polQuoCreateDate:<input type="text" placeholder="วันที่สร้างใบเสนอราคา" id="polQuoCreateDate" name="polQuoCreateDate" value='<?php echo $polQuoCreateDate; ?>' randonly /><br>
-			polQuoDate:<input type="text" placeholder="วันที่ออกใบเสนอราคา" id="polQuoDate" name="polQuoDate" value='<?php echo $polQuoDate; ?>' randonly /><br>
-			polProDate:<input type="text" placeholder="" id="polProDate" name="polProDate" value='<?php echo $polProDate; ?>' randonly /><br>
-			polAppReceivedDate:<input type="text" placeholder="" id="polAppReceivedDate" name="polAppReceivedDate" value='<?php echo $polAppReceivedDate; ?>' randonly /><br>
-			polIssueDate:<input type="text" placeholder="" id="polIssueDate" name="polIssueDate" value='<?php echo $polIssueDate; ?>' randonly /><br>
-			polIssueBy:<input type="text" placeholder="" id="polIssueBy" name="polIssueBy" value='<?php echo $polIssueBy; ?>' randonly /><br>
-			
-			polAGTIDFK:<input type="text" placeholder="" value='<?php echo $polAGTIDFK; ?>' randonly />
-			agtIDPK:<input type="text" placeholder="" id="agtIDPK" name="agtIDPK" value='<?php echo $agtIDPK; ?>' randonly />
-			agtCode:<input type="text" placeholder="" id="agtCode" name="agtCode" value='<?php echo $agtCode; ?>' randonly /><br>
-			
-			polPRODIDFK:<input type="text" placeholder="" id="polPRODIDFK" name="polPRODIDFK" value='<?php echo $polPRODIDFK; ?>' randonly /><br>
-			polPREMIDFK:<input type="text" placeholder="" id="polPREMIDFK" name="polPREMIDFK" value='<?php echo $polPREMIDFK; ?>' randonly /><br>
-			polCUSIDFKPHD:<input type="text" placeholder="" id="polCUSIDFKPHD" name="polCUSIDFKPHD" value='<?php echo $polCUSIDFKPHD; ?>' randonly /><br>
-			polCUSAddrIDPHD:<input type="text" placeholder="" id="polCUSAddrIDPHD" name="polCUSAddrIDPHD" value='<?php echo $polCUSAddrIDPHD; ?>' randonly /><br>
-			polCUSIDFKINS:<input type="text" placeholder="" id="polCUSIDFKINS" name="polCUSIDFKINS" value='<?php echo $polCUSIDFKINS; ?>' randonly /><br>
-			polCUSAddrIDINS:<input type="text" placeholder="" id="polCUSAddrIDINS" name="polCUSAddrIDINS" value='<?php echo $polCUSAddrIDINS; ?>' randonly /><br>
-			
-			polVEHIDFK:<input type="text" placeholder="" id="polVEHIDFK" name="polVEHIDFK" value='<?php echo $polVEHIDFK; ?>' randonly />
-			vehREDKEYFK:<input type="text" placeholder="" id="vehREDKEYFK" name="vehREDKEYFK" value='<?php echo $vehREDKEYFK; ?>' randonly />
-			redIDPK:<input type="text" placeholder="" id="redIDPK" name="redIDPK" value='<?php echo $redIDPK; ?>' randonly />
-			redKey:<input type="text" placeholder="" value='<?php echo $redKey; ?>' randonly />
-			redMake:<input type="text" value='<?php echo $redMake; ?>' />
-			redModel:<input type="text" value='<?php echo $redModel; ?>' />
-			redYear:<input type="text" value='<?php echo $redYear; ?>' />
-			redDesc:<input type="text" value='<?php echo $redDesc; ?>' /><br>
-			
-			vehIDPK:<input type="text" placeholder="" id="vehIDPK" name="vehIDPK" value='<?php echo $vehIDPK; ?>' randonly />
-			vehTARIDFK:<input type="text" id="vehTARIDFK" name="vehTARIDFK" value='<?php echo $vehTARIDFK ?>' readonly>
-			vehTARvehCodeFK:<input type="text" placeholder="" value='<?php echo $vehTARvehCodeFK; ?>' randonly />
-			tarIDPK:<input type="text" placeholder="" value='<?php echo $tarIDPK; ?>' randonly /><br>
+    <!-- staDesc:<input type="hidden" placeholder="" id="staDesc" name="staDesc" value='<?php echo $staDesc; ?>' randonly /><br> -->
+    <!-- staUpdatedDate:<input type="hidden" placeholder="" id="staUpdatedDate" name="staUpdatedDate" value='<?php echo $staUpdatedDate; ?>' randonly /><br> -->
+    <!-- staUpdatedBy:<input type="hidden" placeholder="" id="staUpdatedBy" name="staUpdatedBy" value='<?php echo $staUpdatedBy; ?>' randonly /><br> -->
 
-			premIDPK:<input type="text" placeholder="" id="premIDPK" name="premIDPK" value='<?php echo $premIDPK; ?>' randonly /><br>
-			premStdNet:<input type="text" placeholder="" value='<?php echo $premStdNet; ?>' randonly /><br>
-			premStdVat:<input type="text" placeholder="" value='<?php echo $premStdVat; ?>' randonly /><br>
-			premStdStampDuty:<input type="text" placeholder="" value='<?php echo $premStdStampDuty; ?>' randonly /><br>
-			premStdTotal:<input type="text" placeholder="" value='<?php echo $premStdTotal; ?>' randonly /><br>
-			premPercentVat:<input type="text" placeholder="" id="premPercentVat" name="premPercentVat" value='<?php echo $premPercentVat; ?>' randonly /><br>
-			premPerDiscount:<input type="text" placeholder="" id="premPerDiscount" name="premPerDiscount" value='<?php echo $premPerDiscount; ?>' randonly /><br>
-			premDiscountFlag:<input type="text" placeholder="" id="premDiscountFlag" name="premDiscountFlag" value='<?php echo $premDiscountFlag; ?>' randonly /><br>
-			premDiscount:<input type="text" placeholder="" id="premDiscount" name="premDiscount" value='<?php echo $premDiscount; ?>' randonly /><br>
-			premNet:<input type="text" placeholder="" id="premNet" name="premNet" value='<?php echo $premNet; ?>' randonly /><br>
-			premStampDuty:<input type="text" placeholder="" id="premStampDuty" name="premStampDuty" value='<?php echo $premStampDuty; ?>' randonly /><br>
-			premVat:<input type="text" placeholder="" id="premVat" name="premVat" value='<?php echo $premVat; ?>' randonly /><br>
-			premTotal:<input type="text" placeholder="" id="premTotal" name="premTotal" value='<?php echo $premTotal; ?>' randonly /><br>
-			premQuoNumRef:<input type="text" placeholder="" id="premQuoNumRef" name="premQuoNumRef" value='<?php echo $premQuoNumRef; ?>' randonly /><br>
-			premOutstanding:<input type="text" placeholder="" id="premOutstanding" name="premOutstanding" value='<?php echo $premOutstanding; ?>' randonly /><br>
-			premPaid:<input type="text" placeholder="" id="premPaid" name="premPaid" value='<?php echo $premPaid; ?>' randonly /><br>
-			premPaidStatus:<input type="text" placeholder="" id="premPaidStatus" name="premPaidStatus" value='<?php echo $premPaidStatus; ?>' randonly /><br>
-			premPaidStatusAprv:<input type="text" placeholder="" id="premPaidStatusAprv" name="premPaidStatusAprv" value='<?php echo $premPaidStatusAprv; ?>' randonly /><br>
-			premPaidBalance:<input type="text" placeholder="" id="premPaidBalance" name="premPaidBalance" value='<?php echo $premPaidBalance; ?>' randonly /><br>
-			premPaidDate:<input type="text" placeholder="" id="premPaidDate" name="premPaidDate" value='<?php echo $premPaidDate; ?>' randonly /><br>
-			premUpdatedDate:<input type="text" placeholder="" id="premUpdatedDate" name="premUpdatedDate" value='<?php echo $premUpdatedDate; ?>' randonly /><br>
-			premUpdatedBy:<input type="text" placeholder="" id="premUpdatedBy" name="premUpdatedBy" value='<?php echo $premUpdatedBy; ?>' randonly /><br>
-			
-			polUpdatedDate:<input type="text" placeholder="N/A" id="polUpdatedDate" name="polUpdatedDate" value='<?php echo $polUpdatedDate; ?>' randonly /><br>
-			polUpdatedBy:<input type="text" placeholder="N/A" id="polUpdatedBy" name="polUpdatedBy" value='<?php echo $polUpdatedBy; ?>' randonly /><br>
-			
-			PHD_perIDPK:<input type="text" placeholder="" id="PHD_perIDPK" name="PHD_perIDPK" value='<?php echo $PHD_perIDPK; ?>' /><br>
-			PHD_perSalu:<input type="text" placeholder="" value='<?php echo $PHD_perSalu; ?>' /><br>
-			PHD_perFName:<input type="text" placeholder="" value='<?php echo $PHD_perFName; ?>' /><br>
-			PHD_perMName:<input type="text" placeholder="" value='<?php echo $PHD_perMName; ?>' /><br>
-			PHD_perLName:<input type="text" placeholder="" value='<?php echo $PHD_perLName; ?>' /><br>
-			PHD_perDOB:<input type="text" placeholder="" value='<?php echo $PHD_perDOB; ?>' /><br>
-			PHD_perCardType:<input type="text" placeholder="" value='<?php echo $PHD_perCardType; ?>' /><br>
-			PHD_perCardNo:<input type="text" placeholder="" value='<?php echo $PHD_perCardNo; ?>' /><br>
-			PHD_perExpDate:<input type="text" placeholder="" value='<?php echo $PHD_perExpDate; ?>' /><br>
-			PHD_perUpdatedDate:<input type="text" placeholder="" id="PHD_perUpdatedDate" name="PHD_perUpdatedDate" value='<?php echo $PHD_perUpdatedDate; ?>' /><br>
-			PHD_perUpdatedBy:<input type="text" placeholder="" id="PHD_perUpdatedBy" name="PHD_perUpdatedBy" value='<?php echo $PHD_perUpdatedBy; ?>' /><br>
-			
-			PHD_addrIDPK:<input type="text" placeholder="" id="PHD_addrIDPK" name="PHD_addrIDPK" value='<?php echo $PHD_addrIDPK; ?>' /><br>
-			PHD_addrLine1:<input type="text" placeholder="" value='<?php echo $PHD_addrLine1; ?>' /><br>
-			PHD_addrLine2:<input type="text" placeholder="" value='<?php echo $PHD_addrLine2; ?>' /><br>
-			PHD_addrSubDist:<input type="text" placeholder="" value='<?php echo $PHD_addrSubDist; ?>' /><br>
-			PHD_addrDist:<input type="text" placeholder="" value='<?php echo $PHD_addrDist; ?>' /><br>
-			PHD_addrProv:<input type="text" placeholder="" value='<?php echo $PHD_addrProv; ?>' /><br>
-			PHD_addrZipCode:<input type="text" placeholder="" value='<?php echo $PHD_addrZipCode; ?>' /><br>
-			PHD_addrGeo:<input type="text" placeholder="" id="PHD_addrGeo" name="PHD_addrGeo" value='<?php echo $PHD_addrGeo; ?>' /><br>
-			PHD_addrEmail:<input type="text" placeholder="" value='<?php echo $PHD_addrEmail; ?>' /><br>
-			PHD_addrContType1:<input type="text" placeholder="" value='<?php echo $PHD_addrContType1; ?>' /><br>
-			PHD_addrContNum1:<input type="text" placeholder="" value='<?php echo $PHD_addrContNum1; ?>' /><br>
-			PHD_addrContType2:<input type="text" placeholder="" id="PHD_addrContType2" name="PHD_addrContType2" value='<?php echo $PHD_addrContType2; ?>' /><br>
-			PHD_addrContNum2:<input type="text" placeholder="" id="PHD_addrContNum2" name="PHD_addrContNum2" value='<?php echo $PHD_addrContNum2; ?>' /><br>
-			PHD_addrUpdatedDate:<input type="text" placeholder="" id="PHD_addrUpdatedDate" name="PHD_addrUpdatedDate" value='<?php echo $PHD_addrUpdatedDate; ?>' /><br>
-			PHD_addrUpdatedBy:<input type="text" placeholder="" id="PHD_addrUpdatedBy" name="PHD_addrUpdatedBy" value='<?php echo $PHD_addrUpdatedBy; ?>' /><br>
+    <!--polMaspolNum: --><input type="hidden" placeholder="" id="polMaspolNum" name="polMaspolNum" value='<?php echo $polMaspolNum; ?>' randonly /><!--<br>-->
+	<!--polMaspolNum: --><input type="hidden" placeholder="" id="polMaspolNum" name="polMaspolNum" value='<?php echo $polMaspolNum; ?>' randonly /><!--<br>-->
+	<!--polQuoNum: --><input type="hidden" placeholder="" id="polQuoNum" name="polQuoNum" value='<?php echo $polQuoNum; ?>' randonly /><!--<br>-->
+	<!--polNum: --><input type="hidden" placeholder="" id="polNum" name="polNum" value='<?php echo $polNum; ?>' randonly /><!--<br>-->
+	<!--polCat: --><input type="hidden" placeholder="" id="polCat" name="polCat" value='<?php echo $polCat; ?>' randonly /><!--<br>-->
+	<!--polReFlag: --><input type="hidden" placeholder="" id="polReFlag" name="polReFlag" value='<?php echo $polReFlag; ?>' randonly /><!--<br>-->
+	<!--polEffDate: --><input type="hidden" placeholder="วันที่เริ่มคุ้มครอง" id="polEffDate" name="polEffDate" value='<?php echo $polEffDate; ?>' required /><!--<br>-->
+	<!--polExpDate: --><input type="hidden" placeholder="วันสิ้นสุดความคุ้มครอง" id="polExpDate" name="polExpDate" value='<?php echo $polExpDate; ?>' required /><!--<br>-->
+	<!--polQuoCreateDate: --><input type="hidden" placeholder="วันที่สร้างใบเสนอราคา" id="polQuoCreateDate" name="polQuoCreateDate" value='<?php echo $polQuoCreateDate; ?>' randonly /><!--<br>-->
+	<!--polQuoDate: --><input type="hidden" placeholder="วันที่ออกใบเสนอราคา" id="polQuoDate" name="polQuoDate" value='<?php echo $polQuoDate; ?>' randonly /><!--<br>-->
+	<!--polProDate: --><input type="hidden" placeholder="" id="polProDate" name="polProDate" value='<?php echo $polProDate; ?>' randonly /><!--<br>-->
+	<!--polAppReceivedDate: --><input type="hidden" placeholder="" id="polAppReceivedDate" name="polAppReceivedDate" value='<?php echo $polAppReceivedDate; ?>' randonly /><!--<br>-->
+	<!--polIssueDate: --><input type="hidden" placeholder="" id="polIssueDate" name="polIssueDate" value='<?php echo $polIssueDate; ?>' randonly /><!--<br>-->
+	<!--polIssueBy: --><input type="hidden" placeholder="" id="polIssueBy" name="polIssueBy" value='<?php echo $polIssueBy; ?>' randonly /><!--<br>-->
 
-			userName::<input type="text" placeholder="" id="usrName" name="usrName" value='<?php echo $_SESSION["usrName"]; ?>' randonly /><br>
-			userName::<input type="text" placeholder="" id="usrRole" name="usrRole" value='<?php echo $_SESSION["usrRole"]; ?>' randonly /><br>
-		</div>
+	<!--polAGTIDFK:--><input type="hidden" placeholder="" value='<?php echo $polAGTIDFK; ?>' randonly />
+	<!--agtIDPK:--><input type="hidden" placeholder="" id="agtIDPK" name="agtIDPK" value='<?php echo $agtIDPK; ?>' randonly />
+	<!--agtCode:--><input type="hidden" placeholder="" id="agtCode" name="agtCode" value='<?php echo $agtCode; ?>' randonly /><!--<br>-->
+
+	<!--polPRODIDFK:--><input type="hidden" placeholder="" id="polPRODIDFK" name="polPRODIDFK" value='<?php echo $polPRODIDFK; ?>' randonly /><!--<br>-->
+	<!--polPREMIDFK:--><input type="hidden" placeholder="" id="polPREMIDFK" name="polPREMIDFK" value='<?php echo $polPREMIDFK; ?>' randonly /><!--<br>-->
+	<!--polCUSIDFKPHD:--><input type="hidden" placeholder="" id="polCUSIDFKPHD" name="polCUSIDFKPHD" value='<?php echo $polCUSIDFKPHD; ?>' randonly /><!--<br>-->
+	<!--polCUSAddrIDPHD:--><input type="hidden" placeholder="" id="polCUSAddrIDPHD" name="polCUSAddrIDPHD" value='<?php echo $polCUSAddrIDPHD; ?>' randonly /><!--<br>-->
+	<!--polCUSIDFKINS:--><input type="hidden" placeholder="" id="polCUSIDFKINS" name="polCUSIDFKINS" value='<?php echo $polCUSIDFKINS; ?>' randonly /><!--<br>-->
+	<!--polCUSAddrIDINS:--><input type="hidden" placeholder="" id="polCUSAddrIDINS" name="polCUSAddrIDINS" value='<?php echo $polCUSAddrIDINS; ?>' randonly /><!--<br>-->
+
+	<!--polVEHIDFK:--><input type="hidden" placeholder="" id="polVEHIDFK" name="polVEHIDFK" value='<?php echo $polVEHIDFK; ?>' randonly />
+	<!--vehREDKEYFK:--><input type="hidden" placeholder="" id="vehREDKEYFK" name="vehREDKEYFK" value='<?php echo $vehREDKEYFK; ?>' randonly />
+	<!--redIDPK:--><input type="hidden" placeholder="" id="redIDPK" name="redIDPK" value='<?php echo $redIDPK; ?>' randonly />
+	<!--redKey:--><input type="hidden" placeholder="" value='<?php echo $redKey; ?>' randonly />
+	<!--redMake:--><input type="hidden" value='<?php echo $redMake; ?>' />
+	<!--redModel:--><input type="hidden" value='<?php echo $redModel; ?>' />
+	<!--redYear:--><input type="hidden" value='<?php echo $redYear; ?>' />
+	<!-- redDesc:--><input type="hidden" value='<?php echo $redDesc; ?>' /><!--<br>-->
+      
+	<!--vehIDPK:--><input type="hidden" placeholder="" id="vehIDPK" name="vehIDPK" value='<?php echo $vehIDPK; ?>' randonly />
+	<!--vehTARIDFK:--><input type="hidden" id="vehTARIDFK" name="vehTARIDFK" value='<?php echo $vehTARIDFK ?>' readonly>
+	<!--vehTARvehCodeFK:--><input type="hidden" placeholder="" value='<?php echo $vehTARvehCodeFK; ?>' randonly />
+	<!--tarIDPK:--><input type="hidden" placeholder="" value='<?php echo $tarIDPK; ?>' randonly /><!--<br>-->
+
+	<!--premIDPK:--><input type="hidden" placeholder="" id="premIDPK" name="premIDPK" value='<?php echo $premIDPK; ?>' randonly /><!--<br>-->
+	<!--premStdNet:--><input type="hidden" placeholder="" value='<?php echo $premStdNet; ?>' randonly /><!--<br>-->
+	<!--premStdVat:--><input type="hidden" placeholder="" value='<?php echo $premStdVat; ?>' randonly /><!--<br>-->
+	<!--premStdStampDuty:--><input type="hidden" placeholder="" value='<?php echo $premStdStampDuty; ?>' randonly /><!--<br>-->
+	<!--premStdTotal:--><input type="hidden" placeholder="" value='<?php echo $premStdTotal; ?>' randonly /><!--<br>-->
+	<!--premPercentVat:--><input type="hidden" placeholder="" id="premPercentVat" name="premPercentVat" value='<?php echo $premPercentVat; ?>' randonly /><!--<br>-->
+	<!--premPerDiscount:--><input type="hidden" placeholder="" id="premPerDiscount" name="premPerDiscount" value='<?php echo $premPerDiscount; ?>' randonly /><!--<br>-->
+	<!--premDiscountFlag:--><input type="hidden" placeholder="" id="premDiscountFlag" name="premDiscountFlag" value='<?php echo $premDiscountFlag; ?>' randonly /><!--<br>-->
+	<!--premDiscount:--><input type="hidden" placeholder="" id="premDiscount" name="premDiscount" value='<?php echo $premDiscount; ?>' randonly /><!--<br>-->
+	<!--premNet:--><input type="hidden" placeholder="" id="premNet" name="premNet" value='<?php echo $premNet; ?>' randonly /><!--<br>-->
+	<!--premStampDuty:--><input type="hidden" placeholder="" id="premStampDuty" name="premStampDuty" value='<?php echo $premStampDuty; ?>' randonly /><!--<br>-->
+	<!--premVat:--><input type="hidden" placeholder="" id="premVat" name="premVat" value='<?php echo $premVat; ?>' randonly /><!--<br>-->
+	<!--premTotal:--><input type="hidden" placeholder="" id="premTotal" name="premTotal" value='<?php echo $premTotal; ?>' randonly /><!--<br>-->
+	<!--premQuoNumRef:--><input type="hidden" placeholder="" id="premQuoNumRef" name="premQuoNumRef" value='<?php echo $premQuoNumRef; ?>' randonly /><!--<br>-->
+	<!--premOutstanding:--><input type="hidden" placeholder="" id="premOutstanding" name="premOutstanding" value='<?php echo $premOutstanding; ?>' randonly /><!--<br>-->
+	<!--premPaid:--><input type="hidden" placeholder="" id="premPaid" name="premPaid" value='<?php echo $premPaid; ?>' randonly /><!--<br>-->
+	<!--premPaidStatus:--><input type="hidden" placeholder="" id="premPaidStatus" name="premPaidStatus" value='<?php echo $premPaidStatus; ?>' randonly /><!--<br>-->
+	<!--premPaidStatusAprv:--><input type="hidden" placeholder="" id="premPaidStatusAprv" name="premPaidStatusAprv" value='<?php echo $premPaidStatusAprv; ?>' randonly /><!--<br>-->
+	<!--premPaidBalance:--><input type="hidden" placeholder="" id="premPaidBalance" name="premPaidBalance" value='<?php echo $premPaidBalance; ?>' randonly /><!--<br>-->
+	<!--premPaidDate:--><input type="hidden" placeholder="" id="premPaidDate" name="premPaidDate" value='<?php echo $premPaidDate; ?>' randonly /><!--<br>-->
+	<!--premUpdatedDate:--><input type="hidden" placeholder="" id="premUpdatedDate" name="premUpdatedDate" value='<?php echo $premUpdatedDate; ?>' randonly /><!--<br>-->
+	<!--premUpdatedBy:--><input type="hidden" placeholder="" id="premUpdatedBy" name="premUpdatedBy" value='<?php echo $premUpdatedBy; ?>' randonly /><!--<br>-->
+        
+    <!-- polUpdatedDate: --><input type="hidden" placeholder="N/A" id="polUpdatedDate" name="polUpdatedDate" value='<?php echo $polUpdatedDate; ?>' randonly /><!--<br>-->
+    <!-- polUpdatedBy: --><input type="hidden" placeholder="N/A" id="polUpdatedBy" name="polUpdatedBy" value='<?php echo $polUpdatedBy; ?>' randonly /><!--<br>-->
+      
+	<!--PHD_perIDPK:--><input type="hidden" placeholder="" id="PHD_perIDPK" name="PHD_perIDPK" value='<?php echo $PHD_perIDPK; ?>' /><!--<br>-->
+	<!--PHD_perSalu:--><input type="hidden" placeholder="" value='<?php echo $PHD_perSalu; ?>' /><!--<br>-->
+	<!--PHD_perFName:--><input type="hidden" placeholder="" value='<?php echo $PHD_perFName; ?>' /><!--<br>-->
+	<!--PHD_perMName:--><input type="hidden" placeholder="" value='<?php echo $PHD_perMName; ?>' /><!--<br>-->
+	<!--PHD_perLName:--><input type="hidden" placeholder="" value='<?php echo $PHD_perLName; ?>' /><!--<br>-->
+	<!--PHD_perDOB:--><input type="hidden" placeholder="" value='<?php echo $PHD_perDOB; ?>' /><!--<br>-->
+	<!--PHD_perCardType:--><input type="hidden" placeholder="" value='<?php echo $PHD_perCardType; ?>' /><!--<br>-->
+	<!--PHD_perCardNo:--><input type="hidden" placeholder="" value='<?php echo $PHD_perCardNo; ?>' /><!--<br>-->
+	<!--PHD_perExpDate:--><input type="hidden" placeholder="" value='<?php echo $PHD_perExpDate; ?>' /><!--<br>-->
+	<!--PHD_perUpdatedDate:--><input type="hidden" placeholder="" id="PHD_perUpdatedDate" name="PHD_perUpdatedDate" value='<?php echo $PHD_perUpdatedDate; ?>' /><!--<br>-->
+	<!--PHD_perUpdatedBy:--><input type="hidden" placeholder="" id="PHD_perUpdatedBy" name="PHD_perUpdatedBy" value='<?php echo $PHD_perUpdatedBy; ?>' /><!--<br>-->
+	<!--PHD_addrIDPK:--><input type="hidden" placeholder="" id="PHD_addrIDPK" name="PHD_addrIDPK" value='<?php echo $PHD_addrIDPK; ?>' /><!--<br>-->
+	<!--PHD_addrLine1:--><input type="hidden" placeholder="" value='<?php echo $PHD_addrLine1; ?>' /><!--<br>-->
+	<!--PHD_addrLine2:--><input type="hidden" placeholder="" value='<?php echo $PHD_addrLine2; ?>' /><!--<br>-->
+	<!--PHD_addrSubDist:--><input type="hidden" placeholder="" value='<?php echo $PHD_addrSubDist; ?>' /><!--<br>-->
+	<!--PHD_addrDist:--><input type="hidden" placeholder="" value='<?php echo $PHD_addrDist; ?>' /><!--<br>-->
+	<!--PHD_addrProv:--><input type="hidden" placeholder="" value='<?php echo $PHD_addrProv; ?>' /><!--<br>-->
+	<!--PHD_addrZipCode:--><input type="hidden" placeholder="" value='<?php echo $PHD_addrZipCode; ?>' /><!--<br>-->
+	<!--PHD_addrGeo:--><input type="hidden" placeholder="" id="PHD_addrGeo" name="PHD_addrGeo" value='<?php echo $PHD_addrGeo; ?>' /><!--<br>-->
+	<!--PHD_addrEmail:--><input type="hidden" placeholder="" value='<?php echo $PHD_addrEmail; ?>' /><!--<br>-->
+	<!--PHD_addrContType1:--><input type="hidden" placeholder="" value='<?php echo $PHD_addrContType1; ?>' /><!--<br>-->
+	<!--PHD_addrContNum1:--><input type="hidden" placeholder="" value='<?php echo $PHD_addrContNum1; ?>' /><!--<br>-->
+	<!--PHD_addrContType2:--><input type="hidden" placeholder="" id="PHD_addrContType2" name="PHD_addrContType2" value='<?php echo $PHD_addrContType2; ?>' /><!--<br>-->
+	<!--PHD_addrContNum2:--><input type="hidden" placeholder="" id="PHD_addrContNum2" name="PHD_addrContNum2" value='<?php echo $PHD_addrContNum2; ?>' /><!--<br>-->
+	<!--PHD_addrUpdatedDate:--><input type="hidden" placeholder="" id="PHD_addrUpdatedDate" name="PHD_addrUpdatedDate" value='<?php echo $PHD_addrUpdatedDate; ?>' /><!--<br>-->
+	<!--PHD_addrUpdatedBy:--><input type="hidden" placeholder="" id="PHD_addrUpdatedBy" name="PHD_addrUpdatedBy" value='<?php echo $PHD_addrUpdatedBy; ?>' /><!--<br>-->
+
+    <!-- userName:: --><input type="hidden" placeholder="" id="usrName" name="usrName" value='<?php echo $_SESSION["usrName"]; ?>' randonly /><!--<br>-->
+    <!-- userName:: --><input type="hidden" placeholder="" id="usrRole" name="usrRole" value='<?php echo $_SESSION["usrRole"]; ?>' randonly /><!--<br>-->
+
+			</div>
 	</form>
 
 <!-- END BODY SECTION-->	

@@ -24,7 +24,28 @@
 <link href="../assets/css/about-achivements.css" rel="stylesheet" />
 <link id="mainStyle" href="../assets/css/style.css" rel="stylesheet" />
 <!-- END MAIN STYLE SECTION-->
+<script type="text/javascript">
 
+
+function updateStatus(src, val1, val2){
+	var xhttp = new XMLHttpRequest();
+			xhttp.onreadystatechange = function() {
+		    if (xhttp.readyState == 4 && xhttp.status == 200) {
+		     	document.getElementById(src).innerHTML = xhttp.responseText;
+		    	}
+		  	};
+		  	 xhttp.open("GET", "premiumInfo.php?data="+src+"&val1="+val1+"&val2="+val2); //สร้าง connection
+             xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;charset=utf-8"); // set Header
+             xhttp.send(null); //ส่งค่า
+}
+
+function reloadFunc(){
+	src='paidStatus';
+	val1 = document.getElementById("paidStatusID").value;
+	val2 = document.getElementById("paidStatusApprID").value;
+	updateStatus(src, val1, val2);
+}
+</script>
 <!-- HEADER SECTION-->
 <?php 
 // @BEGIN
@@ -61,7 +82,7 @@ $quoQueryResult = executeSql($conn,$sqlID);
 <!-- END HEADER SECTION-->
 <title><?php echo $policyCreate ?></title>
 </head>
-<body>
+<body onload="reloadFunc()">
 	<form action="policySaveStep2.php" method="post">
 		<br><br><br><br><br><br>
 
@@ -77,7 +98,7 @@ $quoQueryResult = executeSql($conn,$sqlID);
 			<div class="row">
 				<div class="col-md-12">
 					<div style="background-color: #EBECE4; height: 30px;">
-						<b>ขั้นตอนการจ่ายเงิน</b>
+						<b>ขั้นตอนการชำระเงิน</b>
 					</div>
 				</div>
 			</div>
@@ -94,22 +115,27 @@ $quoQueryResult = executeSql($conn,$sqlID);
 						placeholder="Enter Chassis Number" value='<?php echo (-$premPaidBalance); ?>' readonly>
 				</div>
 			</div><br>
+
+			<input type="hidden" id="paidStatusID" name="paidStatusID" value='<?php echo $premPaidStatus; ?>'>
+			<input type="hidden" id="paidStatusApprID" name="paidStatusApprID" value='<?php echo $premPaidStatusAprv; ?>'>
+			<span id="paidStatus" name="paidStatus">	
 			<div class="row">
 				<div class="col-md-2" align="left">สถานะการชำระ:</div>
-				<div class="col-md-2">
-					<input type="text" class="form-control" id="chas"
-						placeholder="Enter Chassis Number" value='<?php echo $premPaidStatus; ?>' readonly>
+				
 				</div>
-			</div><br>
+			</div>
+			</span>
+			<br>
 			<div class="row">
 				<div class="col-md-12" align="center">
 					<?php
-						echo "<a href='policyCreateStep1.php'><button type='button' class='btn btn-primary btn-md'>Back</button></a> ";
 						if($premPaidStatusAprv == 'Y'){
 							echo "<input type='Submit' class='btn btn-primary btn-md' value='Next'/>";
 						}
 						else{
-							echo "<a href='home.php'><button type='button' class='btn btn-primary btn-md'>Home</button></a>";					
+							echo "<a href='policyCreateStep1.php'><button type='button' class='btn btn-primary btn-md'>Edit Policy Info.</button></a> ";
+							echo "<a href='home.php'><button type='button' class='btn btn-primary btn-md'>Home</button></a> ";					
+							echo "<a href='xx.php'><button type='button' class='btn btn-primary btn-md'>Save</button></a> ";
 						}
 					?>
 				</div>

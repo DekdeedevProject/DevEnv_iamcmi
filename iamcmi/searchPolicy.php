@@ -208,6 +208,9 @@ $searchResultSize = $searchResult->num_rows;
 						<option name="sBy" id="sBy" value="0">กรุณาเลือก</option>
 						<option name="sBy" id="sBy" value="POL_QuoNum">Policy No.</option>
 						<option name="sBy" id="sBy" value="POL_StatusName_EN">Status</option>
+						<option name="sBy" id="sBy" value="POL_StatusName_EN">Policy Holder</option>
+						<option name="sBy" id="sBy" value="POL_StatusName_EN">Regitration No.</option>
+						<option name="sBy" id="sBy" value="POL_StatusName_EN">Agent Code</option>
 					</select>	
 					<input type="text" name="sDesc"/>
 					<input type="Submit" class="btn btn-primary btn-md" value="Search"/>
@@ -227,7 +230,8 @@ $searchResultSize = $searchResult->num_rows;
 		<br>
 		<ul class="nav nav-tabs">
 				<li class="active"><a href="searchPolicy.php">Policy Information</a></li>
-				<li class="active"><a href="searchFinance.php">Finance Information</a></li>
+				<li class="active"><a href="searchPayment.php">Payment Information</a></li>
+				<li class="active"><a href="searchAgent.php">Agent Information</a></li>
 			</ul>
 			<div class="row">
 				<div class="col-md-2">
@@ -239,16 +243,14 @@ $searchResultSize = $searchResult->num_rows;
 		<table class="table table-striped">
 		  <thead>
 		    <tr>
-		      <th>ลำดับ</th>
-		      <th>เลขกรมธรรม์</th>
-		      <th>วันเริ่มคุ้มครอง</th>
-		      <th>สถานะกรมธรรม์</th>
-		      <th>ชื่อผู้เอาประกัน</th>
-		      <th>ทะเบียนรถ</th>
-		      <th>เบี้ยประกัน</th>
-		      <th>รหัสตัวแทน</th>
-		      <th>ลบ</th>
-		      <th>บิล</th>
+		      <th>No</th>
+		      <th>Policy No.</th>
+		      <th>Effective Date</th>
+		      <th>Status</th>
+		      <th>Policy Holder</th>
+		      <th>Regitration No.</th>
+		      <th>Payment</th>
+		      <th>Agent</th>
 		    </tr>
 		  </thead>
 		  <tbody id="myTable">
@@ -267,8 +269,8 @@ $no=1;
 				</form>	
 				</td>
 				<td><?php echo $searchRow["POL_EffDate"] ?></td>
-				<td><?php echo $searchRow["POL_StatusName_TH"] ?></td>
-				<td><?php echo $searchRow["PER_FName"]." ".$searchRow["PER_LName"] ?></td>
+				<td><?php echo $searchRow["STA_Name_EN"] ?></td>
+				<td><?php echo $searchRow["PHD_PER_FName"]." ".$searchRow["PHD_PER_LName"] ?></td>
 				<td><?php echo $searchRow["VEH_LicenseNum"] ?></td>
 				<td><?php 
 				if($searchRow["PREM_PaidStatus"]=='N'){
@@ -280,8 +282,6 @@ $no=1;
 				?>
 				</td>
 				<td><?php echo $searchRow["AGT_Code"] ?></td>
-				<td>ลบ</td>
-				<td>บิล</td>
 			</tr>
 <?php	
 	}

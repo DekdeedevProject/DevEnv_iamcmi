@@ -826,46 +826,116 @@ $sql="";
 	break;
 
 	case 'SPO_001':
-	$sql = "SELECT * 
+	$sql = "SELECT 
+				policy.*,
+				organization.*,
+				t_status.*,
+				agent.*,
+				vehical.*,
+				t_redbook.*,
+				premium.*,
+				PHD.PER_ID_PK	 as 	PHD_PER_ID_PK,
+				PHD.PER_Salu	 as 	PHD_PER_Salu,
+				PHD.PER_FName	 as 	PHD_PER_FName,
+				PHD.PER_MName	 as 	PHD_PER_MName,
+				PHD.PER_LName	 as 	PHD_PER_LName,
+				PHD.PER_DOB	 as 	PHD_PER_DOB,
+				PHD.PER_CardType	 as 	PHD_PER_CardType,
+				PHD.PER_CardNo	 as 	PHD_PER_CardNo,
+				PHD.PER_ExpDate	 as 	PHD_PER_ExpDate,
+				PHD.PER_UpdatedDate	 as 	PHD_PER_UpdatedDate,
+				PHD.PER_UpdatedBy as 	PHD_PER_UpdatedBy,
+
+				PHDA.ADDR_ID_PK	 as 	PHD_ADDR_ID_PK,
+				PHDA.ADDR_Line1	 as 	PHD_ADDR_Line1,
+				PHDA.ADDR_Line2	 as 	PHD_ADDR_Line2,
+				PHDA.ADDR_SubDist	 as 	PHD_ADDR_SubDist,
+				PHDA.ADDR_Dist	 as 	PHD_ADDR_Dist,
+				PHDA.ADDR_Prov	 as 	PHD_ADDR_Prov,
+				PHDA.ADDR_ZipCode	 as 	PHD_ADDR_ZipCode,
+				PHDA.ADDR_Geo	 as 	PHD_ADDR_Geo,
+				PHDA.ADDR_Email	 as 	PHD_ADDR_Email,
+				PHDA.ADDR_ContType1	 as 	PHD_ADDR_ContType1,
+				PHDA.ADDR_ContNum1	 as 	PHD_ADDR_ContNum1,
+				PHDA.ADDR_ContType2	 as 	PHD_ADDR_ContType2,
+				PHDA.ADDR_ContNum2	 as 	PHD_ADDR_ContNum2,
+				PHDA.ADDR_UpdatedDate	 as 	PHD_ADDR_UpdatedDate,
+				PHDA.ADDR_UpdatedBy	 as 	PHD_ADDR_UpdatedBy
 			FROM policy 
-			INNER JOIN T_PolStatus 
-				ON POL_Status_ID_PK=POL_Status_ID_FK 
-			INNER JOIN Vehical 
-				ON VEH_ID_PK=POL_VEH_ID_FK	
-			INNER JOIN Personal 
-				ON PER_ID_PK=POL_CUS_ID_FK_INS 
-			INNER JOIN Address 
-				ON ADDR_ID_PK=POL_CUS_Addr_ID_INS	
-			INNER JOIN Redbook
-				ON RED_KEY=VEH_RED_KEY_FK
-			INNER JOIN T_Tariff
-				ON TAR_ID_PK=VEH_TAR_ID_FK
-			INNER JOIN Premium
-				ON PREM_ID_PK=POL_PREM_ID_FK	
-			INNER JOIN Agent
-				ON POL_AGT_ID_FK=AGT_ID_PK	
+			INNER JOIN organization
+				ON POL_Org_ID_FK=ORG_ID_PK
+			INNER JOIN t_status
+				ON POL_Status_ID_FK=STA_ID_PK
+			INNER JOIN agent
+				ON POL_AGT_ID_FK=AGT_ID_PK
+			INNER JOIN vehical 
+				ON POL_VEH_ID_FK=VEH_ID_PK	
+			INNER JOIN t_redbook
+				ON VEH_RED_KEY_FK=RED_KEY	
+			INNER JOIN premium
+				ON POL_PREM_ID_FK=PREM_ID_PK	
+			INNER JOIN personal	as PHD
+				ON POL_CUS_ID_FK_PHD=PHD.PER_ID_PK
+			INNER JOIN address	as PHDA
+				ON POL_CUS_Addr_ID_PHD=PHDA.ADDR_ID_PK	
 			ORDER BY POL_ID_PK DESC;";
 	break;
 
 	case 'SPO_002':
 	$sBy 	= $GLOBALS['sBy'];
 	$sDesc 	= $GLOBALS['sDesc'];
-	$sql = "SELECT * 
+	$sql = "SELECT 
+				policy.*,
+				organization.*,
+				t_status.*,
+				agent.*,
+				vehical.*,
+				t_redbook.*,
+				premium.*,
+				PHD.PER_ID_PK	 as 	PHD_PER_ID_PK,
+				PHD.PER_Salu	 as 	PHD_PER_Salu,
+				PHD.PER_FName	 as 	PHD_PER_FName,
+				PHD.PER_MName	 as 	PHD_PER_MName,
+				PHD.PER_LName	 as 	PHD_PER_LName,
+				PHD.PER_DOB	 as 	PHD_PER_DOB,
+				PHD.PER_CardType	 as 	PHD_PER_CardType,
+				PHD.PER_CardNo	 as 	PHD_PER_CardNo,
+				PHD.PER_ExpDate	 as 	PHD_PER_ExpDate,
+				PHD.PER_UpdatedDate	 as 	PHD_PER_UpdatedDate,
+				PHD.PER_UpdatedBy as 	PHD_PER_UpdatedBy,
+
+				PHDA.ADDR_ID_PK	 as 	PHD_ADDR_ID_PK,
+				PHDA.ADDR_Line1	 as 	PHD_ADDR_Line1,
+				PHDA.ADDR_Line2	 as 	PHD_ADDR_Line2,
+				PHDA.ADDR_SubDist	 as 	PHD_ADDR_SubDist,
+				PHDA.ADDR_Dist	 as 	PHD_ADDR_Dist,
+				PHDA.ADDR_Prov	 as 	PHD_ADDR_Prov,
+				PHDA.ADDR_ZipCode	 as 	PHD_ADDR_ZipCode,
+				PHDA.ADDR_Geo	 as 	PHD_ADDR_Geo,
+				PHDA.ADDR_Email	 as 	PHD_ADDR_Email,
+				PHDA.ADDR_ContType1	 as 	PHD_ADDR_ContType1,
+				PHDA.ADDR_ContNum1	 as 	PHD_ADDR_ContNum1,
+				PHDA.ADDR_ContType2	 as 	PHD_ADDR_ContType2,
+				PHDA.ADDR_ContNum2	 as 	PHD_ADDR_ContNum2,
+				PHDA.ADDR_UpdatedDate	 as 	PHD_ADDR_UpdatedDate,
+				PHDA.ADDR_UpdatedBy	 as 	PHD_ADDR_UpdatedBy
 			FROM policy 
-			INNER JOIN T_PolStatus 
-				ON POL_Status_ID_PK=POL_Status_ID_FK 
-			INNER JOIN Vehical 
-				ON VEH_ID_PK=POL_VEH_ID_FK	
-			INNER JOIN Personal 
-				ON PER_ID_PK=POL_CUS_ID_FK_INS 
-			INNER JOIN Address 
-				ON ADDR_ID_PK=POL_CUS_Addr_ID_INS	
-			INNER JOIN Redbook
-				ON RED_KEY=VEH_RED_KEY_FK
-			INNER JOIN T_Tariff
-				ON TAR_VehCode_PK=VEH_TAR_VehCode_FK
-			INNER JOIN Premium
-				ON PREM_ID_PK=POL_PREM_ID_FK
+			INNER JOIN organization
+				ON POL_Org_ID_FK=ORG_ID_PK
+			INNER JOIN t_status
+				ON POL_Status_ID_FK=STA_ID_PK
+			INNER JOIN agent
+				ON POL_AGT_ID_FK=AGT_ID_PK
+			INNER JOIN vehical 
+				ON POL_VEH_ID_FK=VEH_ID_PK	
+			INNER JOIN t_redbook
+				ON VEH_RED_KEY_FK=RED_KEY	
+			INNER JOIN premium
+				ON POL_PREM_ID_FK=PREM_ID_PK	
+			INNER JOIN personal	as PHD
+				ON POL_CUS_ID_FK_PHD=PHD.PER_ID_PK
+			INNER JOIN address	as PHDA
+				ON POL_CUS_Addr_ID_PHD=PHDA.ADDR_ID_PK	
 			WHERE ".$sBy." LIKE '%".$sDesc."%'	
 			ORDER BY POL_ID_PK DESC;";
 	break;
@@ -879,21 +949,11 @@ $sql="";
 					SUM(PREM_Paid) as SFN_PaidPrem,
 					SUM(PREM_PaidBalance) as SFN_PaidBal
 			FROM policy 
-			INNER JOIN Agent
+			INNER JOIN agent
 				ON POL_AGT_ID_FK=AGT_ID_PK
-			INNER JOIN T_PolStatus 
-				ON POL_Status_ID_PK=POL_Status_ID_FK 
-			INNER JOIN Vehical 
-				ON VEH_ID_PK=POL_VEH_ID_FK	
-			INNER JOIN Personal 
-				ON PER_ID_PK=POL_CUS_ID_FK_INS 
-			INNER JOIN Address 
-				ON ADDR_ID_PK=POL_CUS_Addr_ID_INS	
-			INNER JOIN Redbook
-				ON RED_KEY=VEH_RED_KEY_FK
-			INNER JOIN T_Tariff
-				ON TAR_VehCode_PK=VEH_TAR_VehCode_FK
-			INNER JOIN Premium
+			INNER JOIN t_status 
+				ON POL_Status_ID_FK=STA_ID_PK 
+			INNER JOIN premium
 				ON PREM_ID_PK=POL_PREM_ID_FK	
 			GROUP BY POL_AGT_ID_FK	
 			ORDER BY POL_AGT_ID_FK;
