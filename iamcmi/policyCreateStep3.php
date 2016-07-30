@@ -21,7 +21,6 @@ include 'header.php';
 <title><?php echo $policyCreate ?></title>
 </head>
 <body>
-	<form action="#.php" method="post">
 		<br><br><br><br><br><br>
 
 	    <div class="container" align="center">
@@ -50,13 +49,15 @@ include 'header.php';
 			</div><br>
 				<div class="row">
 				<div class="col-md-12" align="center">
-					<a href="#.php"><button type="button" class="btn btn-primary btn-md">Print</button></a>
+					<form action="printPolicy.php" method="post">
+						<input type="hidden" id="policyNo" name="policyNo" value='<?php echo $_SESSION["polQuoNum"]; ?>'/>
+						<input type="submit" class="btn btn-primary btn-md" value="Print">
+					</form>	
 					<a href="#.php"><button type="button" class="btn btn-primary btn-md">Download</button></a>
 					<a href="home.php"><button type="button" class="btn btn-primary btn-md">Home</button></a>
 				</div>
 			</div>
 		</div>
-	</form>
 </body>	<br><br><br>
 <footer>
 <!-- FOOTER SECTION-->
