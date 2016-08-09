@@ -110,6 +110,11 @@ $premPaidDate=$row["PREM_PaidDate"];
 $premUpdatedDate=$row["PREM_UpdatedDate"];
 $premUpdatedBy=$row["PREM_UpdatedBy"];
 
+
+$PHD_perSaluIDPK=$row["PER_Salu_ID_PK"];
+$PHD_perSaluTH=$row["PER_Salu_TH"];
+$PHD_perSaluEN=$row["PER_Salu_EN"];
+
 $PHD_perIDPK=$row["PHD_PER_ID_PK"];
 $PHD_perSalu=$row["PHD_PER_Salu"];
 $PHD_perFName=$row["PHD_PER_FName"];

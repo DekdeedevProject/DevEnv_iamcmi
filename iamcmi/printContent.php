@@ -9,22 +9,22 @@ $content = "
 
 @font-face {
 font-family: THSarabun;
-src: url('dompdf/lib/fonts/THSarabun.ttf');
+src: url('../dompdf/lib/fonts/THSarabun.ttf');
 }
 
 \@font-face {
 font-family: THSarabunBold;
-src: url('dompdf/lib/fonts/THSarabunBold.ttf');
+src: url('../dompdf/lib/fonts/THSarabunBold.ttf');
 }
 
 @font-face {
 font-family: THSarabunBoldItalic;
-src: url('dompdf/lib/fonts/THSarabunBoldItalic.ttf');
+src: url('../dompdf/lib/fonts/THSarabunBoldItalic.ttf');
 }
 
 @font-face {
 font-family: THSarabunBoldItalic;
-src: url('dompdf/lib/fonts/THSarabunItalic.ttf');
+src: url('../dompdf/lib/fonts/THSarabunItalic.ttf');
 }
 
 
@@ -145,7 +145,6 @@ font.specify_center{
 
 </style>
 </head>
-
 <body>
 <header>
 <table id='theader'>
@@ -158,7 +157,7 @@ font.specify_center{
 			<font class='specify_center'>[Branch]</font>
 		</td>
 		<td width='40%'  id='tbody'>
-			<img src='../dompdf/src/Image/logo.png' alt='Company Logo' height='100px'>
+			<img src='../dompdf/src/Image/logo.jpg' alt='Company Logo' height='100px'>
 		</td>
 		<td width='25%' id='tstd2'>
 			[value? format(6digits)]
@@ -214,7 +213,7 @@ font.specify_center{
 	<tr>
 		<td>
 			<font class='mediumtext'>รหัสบริษัท : </font>
-			<font class='specify'>".$polOrgIDFK."</font>
+			<font class='specify'>".$orgShortName."</font>
 			<br>
 			<font class='smalltext'>Company Code</font>
 		</td>
@@ -250,7 +249,7 @@ font.specify_center{
 			<font class='smalltext'>Name</font>
 		</td>
 		<td>
-			<font class='specify'>".$PHD_perSalu." ".$PHD_perFName." ".$PHD_perLName."<p>
+			<font class='specify'>".$PHD_perSaluTH." ".$PHD_perFName." ".$PHD_perLName."<p>
 		</td>
 		<td>
 			<font class='mediumtext'>อาณาเขตที่คุ้มครอง<br></font>
@@ -571,7 +570,6 @@ font.specify_center{
 </tr>
 </table>
 <br/>
-
 <footer>
 <p> footer <p>
 </footer>

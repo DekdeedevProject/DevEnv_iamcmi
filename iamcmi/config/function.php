@@ -152,6 +152,7 @@ $sql="";
 				vehical.*,
 				t_redbook.*,
 				premium.*,
+				T_PerSaluType.*,
 				PHD.PER_ID_PK	 as 	PHD_PER_ID_PK,
 				PHD.PER_Salu	 as 	PHD_PER_Salu,
 				PHD.PER_FName	 as 	PHD_PER_FName,
@@ -196,6 +197,8 @@ $sql="";
 				ON POL_CUS_ID_FK_PHD=PHD.PER_ID_PK
 			INNER JOIN address	as PHDA
 				ON POL_CUS_Addr_ID_PHD=PHDA.ADDR_ID_PK
+			INNER JOIN T_PerSaluType
+				ON PER_Salu=PER_Salu_ID_PK		
 			WHERE POL_QuoNum='".$polQuoNum."';";
 	break;
 	case 'PSS1_001':

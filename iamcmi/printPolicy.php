@@ -1,5 +1,6 @@
 <?php
 // include autoloader
+ob_start();
 include 'config/config.php';
 require_once '../dompdf/autoload.inc.php';
 use Dompdf\Dompdf;
@@ -15,6 +16,7 @@ if($quoQueryResult){
 	include 'config/condition/PCS_CON_002.php';
 	include 'printContent.php';
 	echo $content;
+// $dompdf->stream();
 	// $dompdf = new Dompdf();
 	// $dompdf->loadHtml($content); 
 	// $dompdf->setPaper('A4', 'portrait');
@@ -24,12 +26,4 @@ if($quoQueryResult){
 else{
 	echo "not have";
 }
-
-// echo $content;
-
-
-
-
-
-// $dompdf->stream();
 ?>

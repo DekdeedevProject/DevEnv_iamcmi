@@ -251,6 +251,7 @@ $searchResultSize = $searchResult->num_rows;
 		      <th>Regitration No.</th>
 		      <th>Payment</th>
 		      <th>Agent</th>
+		      <th>Print</th>
 		    </tr>
 		  </thead>
 		  <tbody id="myTable">
@@ -282,6 +283,21 @@ $no=1;
 				?>
 				</td>
 				<td><?php echo $searchRow["AGT_Code"] ?></td>
+				<th>
+					<?php
+					if($searchRow["STA_ID_PK"]=='2'){
+					?>
+					<form action="printPolicy.php" id="cmi" method="POST">	
+					<input type="hidden" name="polStatusIDFK" id='<?php echo $searchRow["POL_Status_ID_FK"] ?>' value='<?php echo $searchRow["POL_Status_ID_FK"] ?>'/>
+					<input type="hidden" name="policyNo" id='<?php echo $searchRow["POL_ID_PK"] ?>' value='<?php echo $searchRow["POL_Num"] ?>'/>
+					<input type="Submit" value="Print"/>
+					</form>	
+					<?php	
+					}
+					else{}
+					?>
+					
+				</th>
 			</tr>
 <?php	
 	}

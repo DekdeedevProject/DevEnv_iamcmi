@@ -57,8 +57,11 @@ div {
  <page size="A4">
  <table height="10%">
   	<tr>
-  		<td></td>
-  		<td></td>
+  		<td>
+        <img src='../dompdf/src/Image/seg-logo.jpg' alt='Company Logo' height='80px'>
+      </td>
+  		<td>
+      </td>
   		<td></td>
   	</tr>
   </table>
@@ -67,18 +70,78 @@ div {
   		สำเนาตารางกรมธรรม์ประกันภัยคุ้มครองผู้ประสยภัยจากรถ/ใบเสร็จ/ใบกำกับภาษี<br>
   		THE SCHEDULE/RECEIPT/TAX INVOICE COPY
   	</div></th></tr>
-	<tr><td><div>row2</div></td></tr>
-	<tr><td><div>row3</div></td></tr>
-	<tr><td><div>row4</div></td></tr>
-	<tr><td><div>row5</div></td></tr>
 	<tr>
-	<td><div>row6.1</div></td>
-	<td><div>row6.2</div></td>
-	<td><div>row6.3</div></td>
-	<td><div>row6.4</div></td>
-	<td><div>row6.5</div></td>
-	<td><div>row6.6</div></td>
-
+    <td><div>
+      รหัสบริษัท :
+      <br>
+      Company Code
+    </div></td>
+    <td colspan="4"><div>row2</div></td>
+    <td><div>row2</div></td>
+    
+  </tr>
+	<tr>
+    <td><div>
+      รายการที่ 1.
+      <br>
+      Item1.
+    </div></td>
+    <td><div>รายการที่ 1.</div></td>
+    <td><div>รายการที่ 1.</div></td>
+    <td><div>รายการที่ 1.</div></td>
+    <td><div>รายการที่ 1.</div></td>
+  </tr>
+	<tr>
+    <td><div>
+      รายการที่ 2.
+      <br>
+      Item2.
+    </div></td>
+    <td><div>รายการที่ 2.</div></td>
+    <td><div>รายการที่ 2.</div></td>
+    <td><div>รายการที่ 2.</div></td>
+    <td><div>รายการที่ 2.</div></td>
+    <td><div>รายการที่ 2.</div></td>
+  </tr>
+	<tr>
+    <td><div>
+      รายการที่ 3.
+      <br>
+      Item3.
+    </div></td>
+    <td colspan="5"><div>รายการที่ 3.</div></td>
+  </tr>
+	<tr>
+    <th><div>
+      รหัส.
+      <br>
+      Code
+    </div></th>
+    <th><div>
+      ชื่อรถ
+      <br>
+      Make
+    </div></th>
+    <th><div>
+      เลขทะเบียน
+      <br>
+      License No.
+    </div></th>
+    <th><div>
+      เลขตัวถัง
+      <br>
+      Chassis No.
+    </div></th>
+    <th><div>
+      แบบตัวถัง
+      <br>
+      Body Type
+    </div></th>
+    <th><div>
+      ขนาดเครื่องยนต์/จำนวนที่นั่ง/นำ้หนักรวม
+      <br>
+      Capacity
+    </div></th>
 	</tr>
 	<tr>
 	<td><div>row7.1</div></td>
@@ -88,17 +151,62 @@ div {
 	<td><div>row7.5</div></td>
 	<td><div>row7.6</div></td>
 	</tr>
-	<tr><td><div>row8</div></td></tr>
-	<tr><td><div>row9</div></td></tr>
-	<tr><td><div>row10</div></td></tr>
 	<tr>
-		<td><div>row11.1</div></td>
-		<td><div>row11.2</div></td>
-		<td><div>row11.3</div></td>
-		<td><div>row11.4</div></td>
-		<td><div>row11.5</div></td>
-		<td><div>row11.6</div></td>
-	</tr>
+    <td><div>
+      รายการที่ 4.
+      <br>
+      Item4.
+    </div></td>
+    <td colspan="5"><div>รายการที่ 4.</div></td>
+  </tr>
+  <tr>
+    <td><div>
+      รายการที่ 5.
+      <br>
+      Item4.
+    </div></td>
+    <td colspan="5"><div>รายการที่ 5.</div></td>
+  </tr>
+  <tr>
+    <td><div>
+      รายการที่ 6.
+      <br>
+      Item4.
+    </div></td>
+    <td colspan="5"><div>รายการที่ 6.</div></td>
+  </tr>
+	<tr>
+    <th><div>
+      เบี้ยประกันภัย
+      <br>
+      Premium
+    </div></th>
+    <th><div>
+      ส่วนลดจากการประกันภัยโดยตรง
+      <br>
+      Premium Discounts
+    </div></th>
+    <th><div>
+      เบี้ยประกันภัยสุทธิ
+      <br>
+      Net Premium
+    </div></th>
+    <th><div>
+      อากรแสตมป์
+      <br>
+      Stamps
+    </div></th>
+    <th><div>
+      ภาษีมูลค่าเพิ่ม
+      <br>
+      VAT
+    </div></th>
+    <th><div>
+      รวมเงิน
+      <br>
+      Total
+    </div></th>
+  </tr>
 	<tr>
 		<td><div>row12.1</div></td>
 		<td><div>row12.2</div></td>
@@ -107,11 +215,22 @@ div {
 		<td><div>row12.5</div></td>
 		<td><div>row12.6</div></td>
 	</tr>
-	<tr><td><div>row13</div></td></tr>
-	<tr><td><div>row14</div></td></tr>
-	<tr><td><div>row15</div></td></tr>
-	<tr><td><div>row16</div></td></tr>
-	<tr><td><div>row17</div></td></tr>
+  <tr>
+    <td><div>
+      รายการที่ 7.
+      <br>
+      Item7.
+    </div></td>
+    <td colspan="5"><div>รายการที่ 7.</div></td>
+  </tr>
+	<tr>
+    <td><div>row14</div></td>
+    <td><div>row14</div></td>
+    <td><div>row14</div></td>
+    <td><div>row14</div></td>
+    <td><div>row14</div></td>
+    <td><div>row14</div></td>
+  </tr>
 
 
   </table>
