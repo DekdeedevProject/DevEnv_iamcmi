@@ -57,16 +57,26 @@ div {
  <page size="A4">
  <table height="10%">
   	<tr>
-  		<td>
+  		<td width="30%">
         <img src='../dompdf/src/Image/seg-logo.jpg' alt='Company Logo' height='80px'>
       </td>
-  		<td>
+  		<td width="50%">
       </td>
   		<td></td>
   	</tr>
+    <tr>
+      <td colspan="2"><div>
+      เลขที่
+      <br>
+      วันที่
+    </div></td>
+    <td></td>
+   </tr>
+    <tr>
+    </tr>
   </table>
   <table height="60%">
-  	<tr><th colspan="8"><div>
+  	<tr><th colspan="15"><div>
   		สำเนาตารางกรมธรรม์ประกันภัยคุ้มครองผู้ประสยภัยจากรถ/ใบเสร็จ/ใบกำกับภาษี<br>
   		THE SCHEDULE/RECEIPT/TAX INVOICE COPY
   	</div></th></tr>
@@ -76,13 +86,13 @@ div {
       <br>
       Co. Code
     </div></td>
-    <td><div>row1</div></td>
-    <td colspan="4"><div>
+    <td colspan="2"><div>row1</div></td>
+    <td colspan="7"><div>
       กรมธรรม์ประกันภัยเลขที่ :
       <br>
       Policy No.
     </div></td>
-    <td><div>row2</div></td>
+    <td colspan="3"><div>row2</div></td>
     
   </tr>
 	<tr>
@@ -93,21 +103,20 @@ div {
     </div></td>
     <td><div>
       1.
-      <br>
       1.
     </div></td>
      <td><div>
-      ผู้เอาปรกันภัย
+      ผู้เอาประกันภัย
       <br>
       The Insured
     </div></td>
-    <td><div>
+    <td colspan="2"><div>
       ชื่อ:
       <br>
       Name
     </div></td>
-    <td colspan="3"><div>Item1.1</div></td>
-    <td><div>
+    <td colspan="6"><div>Item1.1</div></td>
+    <td colspan="3"><div>
       อาณาเขตที่คุ้มครอง
       <br>
       Territorial Limit Covered
@@ -117,14 +126,14 @@ div {
     <td><div></div></td>
     <td><div></div></td>
     <td><div></div></td>
-    
-    <td><div>
+    <td><div></div></td>
+    <td colspan="2"><div>
       ที่อยู่:
       <br>
       Address
     </div></td>
-    <td colspan="3"><div>Item1.2</div></td>
-    <td><div>
+    <td colspan="6"><div>Item1.2</div></td>
+    <td colspan="3" width="25%"><div>
       ประเทศไทย
       <br>
       Thailanc
@@ -146,24 +155,24 @@ div {
       <br>
       Period Insured
     </div></td>
-    <td><div>
+    <td colspan="2"><div>
       เริ่มต้นวันที่
       <br>
       From
     </div></td>
-    <td><div>รายการที่ 2.</div></td>
+    <td colspan="4"><div>รายการที่ 2.</div></td>
     <td><div>
       ถึงวันที่
       <br>
       To
     </div></td>
-    <td><div>รายการที่ 2.</div></td>
-    <td><div>
+    <td colspan="2" ><div>รายการที่ 2.</div></td>
+     <td width="5%"><div>
       เวลา
       <br>
       at
     </div></td>
-    <td><div>รายการที่ 2.</div></td>
+    <td width="10%"><div>รายการที่ 2.</div></td>
   </tr>
 	<tr>
     <td colspan="2"><div>
@@ -176,7 +185,7 @@ div {
       <br>
       3.
     </div></td>
-    <td colspan="6"><div>
+    <td colspan="12"><div>
       รถที่เอาประกันภัย:
       <br>
       Particulars of Motor Vehicle
@@ -193,12 +202,12 @@ div {
       <br>
       Make
     </div></th>
-    <th colspan="2"><div>
+    <th colspan="3"><div>
       เลขทะเบียน
       <br>
       License No.
     </div></th>
-    <th><div>
+    <th colspan="3"><div>
       เลขตัวถัง
       <br>
       Chassis No.
@@ -208,7 +217,7 @@ div {
       <br>
       Body Type
     </div></th>
-    <th colspan="2"><div>
+    <th colspan="4"><div>
       ขนาดเครื่องยนต์/จำนวนที่นั่ง/นำ้หนักรวม
       <br>
       Capacity
@@ -217,10 +226,10 @@ div {
 	<tr>
 	<td colspan="3"><div>row7.1</div></td>
 	<td><div>row7.2</div></td>
-	<td colspan="2"><div>row7.3</div></td>
-	<td><div>row7.4</div></td>
+	<td colspan="3"><div>row7.3</div></td>
+	<td colspan="3"><div>row7.4</div></td>
 	<td><div>row7.5</div></td>
-	<td colspan="2"><div>row7.6</div></td>
+	<td colspan="4"><div>row7.6</div></td>
 	</tr>
 	<tr>
     <td colspan="2"><div>
@@ -233,7 +242,12 @@ div {
       <br>
       4.
     </div></td>
-    <td colspan="5"><div>รายการที่ 4.</div></td>
+    <td colspan="3"><div>
+      จำนวนเงินคุ้มครองผู้ประสบภัย:
+      <br>
+      Limit of covered 
+    </div></td>
+    <td colspan="9"><div>รายการที่ 4.</div></td>
   </tr>
   <tr>
    <td colspan="2"><div>
@@ -246,7 +260,19 @@ div {
       <br>
       5.
     </div></td>
-    <td colspan="5"><div>รายการที่ 5.</div></td>
+    <td colspan="3"><div>
+      จำนวนเงินค่าเสียหายเบื้องต้น:
+      <br>
+      Limit of Preliminary Compensation 
+    </div></td>
+    <td colspan="9"><div>รายการที่ 5.</div></td>
+  </tr>
+  <tr>
+    <td colspan="2"><div></div></td>
+    <td><div></div></td>
+    <td colspan="12"><div>
+      จำนวนเงินค่าเสียหายเบื้องต้นนี้เป็นส่วนหนึ่งของจำนวนเงินคุ้มครองผู้ประสบภัยตามรายการที่ 4
+    </div></td>
   </tr>
   <tr>
     <td colspan="2"><div>
@@ -259,12 +285,12 @@ div {
       <br>
       6.
     </div></td>
-    <td colspan="6"><div>
+    <td colspan="9"><div>
       เบี้ยประกันภัย: (บาท)
       <br>
       Premium (Baht)
     </div></td>
-    <td><div>row6.1</div></td>
+    <td colspan="3"><div>row6.1</div></td>
   </tr>
 	<tr>
     <th colspan="4"><div>
@@ -272,12 +298,13 @@ div {
       <br>
       Premium
     </div></th>
-    <th colspan="2"><div>
+    <th colspan="3"><div>
       ส่วนลดจากการประกันภัยโดยตรง
       <br>
       Premium Discounts
     </div></th>
-    <th><div>
+
+    <th colspan="3"><div>
       เบี้ยประกันภัยสุทธิ
       <br>
       Net Premium
@@ -292,7 +319,7 @@ div {
       <br>
       VAT
     </div></th>
-    <th><div>
+    <th colspan="3"><div>
       รวมเงิน
       <br>
       Total
@@ -300,11 +327,11 @@ div {
   </tr>
 	<tr>
 		<td colspan="4"><div>row12.1</div></td>
-		<td colspan="2"><div>row12.2</div></td>
-		<td><div>row12.3</div></td>
+		<td colspan="3"><div>row12.2</div></td>
+		<td colspan="3"><div>row12.3</div></td>
 		<td><div>row12.4</div></td>
 		<td><div>row12.5</div></td>
-		<td><div>row12.6</div></td>
+		<td colspan="3"><div>row12.6</div></td>
 	</tr>
   <tr>
     <td colspan="2"><div>
@@ -317,63 +344,112 @@ div {
       <br>
       7.
     </div></td>
-    <td><div>
+    <td colspan="2"><div>
       การใช้รถ
       <br>
       Use of Motor Vehicle
     </div></td>
-    <td colspan="6"><div>รายการที่ 7.</div></td>
+    <td colspan="10"><div>รายการที่ 7.</div></td>
   </tr>
 	<tr>
-    <td width="3%"><div>
+    <td width="5%"><div>
       [] 
     </div></td>
-    <td colspan="3"><div>
+    <td colspan="3" width="13%"><div>
       การประกันภัยโดยตรง
       <br>
       Direct Insurance
     </div></td>
-    <td><div>
+    <td width="5%"><div>
       [] 
     </div></td>
-    <td><div>
+    <td colspan="2" width="13%"><div>
       ตัวแทนประกันภัยรายนี้
       <br>
       Agent
     </div></td>
-    <td><div>
+    <td width="5%"><div>
       [] 
     </div></td>
-    <td><div>
+    <td width="13%"><div>
       นายหน้าประกันภัยรายนี้
       <br>
       Broker
     </div></td>
-    <td><div>row14</div></td>
-    <td><div>
+    <td colspan="3"><div>row14</div></td>
+    <td colspan="3"><div>
       ใบอนุญาตเลขที่
       <br>
       License No
     </div></td>
-    <td><div>row14</div></td>
   </tr>
 
 
   </table>
-   <table height="10%">
+   <table>
+    <tr>
+      <td width="15%"><div>
+        วันทำสัญญาประกันภัย
+        <br>
+        Agreement made on
+      </div></td>
+      <td></td>
+      <td></td>
+      <td width="15%"><div>
+        วันทำกรมธรรม์ประกันภัย
+        <br>
+        Policy issued on
+      </div></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td colspan="5"><div>
+        เพื่อเป็นหลักฐานบริษัทโดยบุคคลผู้มีอำนาจได้ลงลายมือชื่อและประทับตราของบริษัทได้เป็นสำคัญ ณ สำนักงานของบริษัท
+        <br>
+        As evidence the Company has caused this Policy to be signed by duly authorized persons and the Company's stamp to be affixed at its Office
+      </div></td>
+    </tr>
   	<tr>
-  		<td></td>
-  		<td></td>
-  		<td></td>
+  		<td colspan="2" width="33%"><div><br><br>กรรมการ Director<br><br></div></td>
+  		<td width="33%"><div><br><br>กรรมการ Director<br><br></div></td>
+  		<td colspan="2" width="34%" ><div><br><br>ผู้รับมอบอำนาจ Authorized Signature / ผู้รับเงิน Cahier<br><br></div></td>
   	</tr>
   </table>
-<table height="20%">
-  	<tr>
-  		<td></td>
-  		<td></td>
-  		<td></td>
-  	</tr>
+  <table>
+    <tr>
+      <th colspan="3"><div>
+        หลักฐานแสดงการประกันภัยตามพระราชบัญญัติคุ้มครองผู้ประสบภัยจากรถ
+        <br>
+        เพื่อใช้สำหรับการจดทะเบียนรถใหม่หรือขอเสียภาษีประจำปีต่อนายทะเบียนขนส่ง
+      </div></th>
+      
+      <td colspan="2"><div>
+        barcode
+      </div></td>
+    </tr>
+    <br>
+    <tr>
+       <td colspan="3"><div>
+        เอกสารนี้ให้ไว้เพื่อแสดงว่ารถหมายเลขทะเบียนที่ ...... ตัวถังรถเลขที่ ......
+        <br>
+        ได้ทำประกันภัยตามพระราชบัญญัติคุ้มครองผู้ประสบภัยจากรถ พ.ศ. 2535 แล้ว โดยมีระยะเวลาประกันภัยประกันภัย
+        <br>
+        เริ่มต้นวันที่ ....... ถึงวันที่ ........
+        <br>
+        ตามกรมธรรม์ประกันภัยเลขที่ .......... ของบริษัท ...........
+      </div></td>
+      
+      <td colspan="2"><div>
+      </div></td>
+    </tr>
+    </tr>
+    <tr>
+      <td colspan="2" width="33%"><div><br><br>กรรมการ Director<br><br></div></td>
+      <td width="33%"><div><br><br>กรรมการ Director<br><br></div></td>
+      <td colspan="2" width="34%" ><div><br><br>ผู้รับมอบอำนาจ Authorized Signature / ผู้รับเงิน Cahier<br><br></div></td>
+    </tr>
   </table>
+
 </page>
 <!-- <page size="A4" layout="portrait"></page>
 <page size="A5"></page>
