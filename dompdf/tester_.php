@@ -179,7 +179,7 @@ div {
     <td colspan="6"><div>
       รถที่เอาประกันภัย:
       <br>
-      Particulars of Motor Vehical
+      Particulars of Motor Vehicle
     </div></td>
   </tr>
 	<tr>
@@ -320,7 +320,7 @@ div {
     <td><div>
       การใช้รถ
       <br>
-      Use of Motor Vehical
+      Use of Motor Vehicle
     </div></td>
     <td colspan="6"><div>รายการที่ 7.</div></td>
   </tr>
