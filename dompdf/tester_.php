@@ -66,53 +66,124 @@ div {
   	</tr>
   </table>
   <table height="60%">
-  	<tr><th colspan="6"><div>
+  	<tr><th colspan="8"><div>
   		สำเนาตารางกรมธรรม์ประกันภัยคุ้มครองผู้ประสยภัยจากรถ/ใบเสร็จ/ใบกำกับภาษี<br>
   		THE SCHEDULE/RECEIPT/TAX INVOICE COPY
   	</div></th></tr>
 	<tr>
-    <td><div>
+    <td colspan="3"><div>
       รหัสบริษัท :
       <br>
-      Company Code
+      Co. Code
     </div></td>
-    <td colspan="4"><div>row2</div></td>
+    <td><div>row1</div></td>
+    <td colspan="4"><div>
+      กรมธรรม์ประกันภัยเลขที่ :
+      <br>
+      Policy No.
+    </div></td>
     <td><div>row2</div></td>
     
   </tr>
 	<tr>
-    <td><div>
-      รายการที่ 1.
+     <td colspan="2"><div>
+      รายการที่
       <br>
-      Item1.
+      Item
     </div></td>
-    <td><div>รายการที่ 1.</div></td>
-    <td><div>รายการที่ 1.</div></td>
-    <td><div>รายการที่ 1.</div></td>
-    <td><div>รายการที่ 1.</div></td>
+    <td><div>
+      1.
+      <br>
+      1.
+    </div></td>
+     <td><div>
+      ผู้เอาปรกันภัย
+      <br>
+      The Insured
+    </div></td>
+    <td><div>
+      ชื่อ:
+      <br>
+      Name
+    </div></td>
+    <td colspan="3"><div>Item1.1</div></td>
+    <td><div>
+      อาณาเขตที่คุ้มครอง
+      <br>
+      Territorial Limit Covered
+    </div></td>
+  </tr>
+  <tr>
+    <td><div></div></td>
+    <td><div></div></td>
+    <td><div></div></td>
+    
+    <td><div>
+      ที่อยู่:
+      <br>
+      Address
+    </div></td>
+    <td colspan="3"><div>Item1.2</div></td>
+    <td><div>
+      ประเทศไทย
+      <br>
+      Thailanc
+    </div></td>
   </tr>
 	<tr>
-    <td><div>
-      รายการที่ 2.
+    <td colspan="2"><div>
+      รายการที่
       <br>
-      Item2.
+      Item
+    </div></td>
+    <td><div>
+      2.
+      <br>
+      2.
+    </div></td>
+    <td><div>
+      ระยะเวลาประกันภัย
+      <br>
+      Period Insured
+    </div></td>
+    <td><div>
+      เริ่มต้นวันที่
+      <br>
+      From
     </div></td>
     <td><div>รายการที่ 2.</div></td>
+    <td><div>
+      ถึงวันที่
+      <br>
+      To
+    </div></td>
     <td><div>รายการที่ 2.</div></td>
-    <td><div>รายการที่ 2.</div></td>
-    <td><div>รายการที่ 2.</div></td>
+    <td><div>
+      เวลา
+      <br>
+      at
+    </div></td>
     <td><div>รายการที่ 2.</div></td>
   </tr>
 	<tr>
-    <td><div>
-      รายการที่ 3.
+    <td colspan="2"><div>
+      รายการที่
       <br>
-      Item3.
+      Item
     </div></td>
-    <td colspan="5"><div>รายการที่ 3.</div></td>
+    <td><div>
+      3.
+      <br>
+      3.
+    </div></td>
+    <td colspan="6"><div>
+      รถที่เอาประกันภัย:
+      <br>
+      Particulars of Motor Vehical
+    </div></td>
   </tr>
 	<tr>
-    <th><div>
+    <th colspan="3"><div>
       รหัส.
       <br>
       Code
@@ -122,7 +193,7 @@ div {
       <br>
       Make
     </div></th>
-    <th><div>
+    <th colspan="2"><div>
       เลขทะเบียน
       <br>
       License No.
@@ -137,51 +208,71 @@ div {
       <br>
       Body Type
     </div></th>
-    <th><div>
+    <th colspan="2"><div>
       ขนาดเครื่องยนต์/จำนวนที่นั่ง/นำ้หนักรวม
       <br>
       Capacity
     </div></th>
 	</tr>
 	<tr>
-	<td><div>row7.1</div></td>
+	<td colspan="3"><div>row7.1</div></td>
 	<td><div>row7.2</div></td>
-	<td><div>row7.3</div></td>
+	<td colspan="2"><div>row7.3</div></td>
 	<td><div>row7.4</div></td>
 	<td><div>row7.5</div></td>
-	<td><div>row7.6</div></td>
+	<td colspan="2"><div>row7.6</div></td>
 	</tr>
 	<tr>
-    <td><div>
-      รายการที่ 4.
+    <td colspan="2"><div>
+      รายการที่
       <br>
-      Item4.
+      Item
+    </div></td>
+    <td><div>
+      4.
+      <br>
+      4.
     </div></td>
     <td colspan="5"><div>รายการที่ 4.</div></td>
   </tr>
   <tr>
-    <td><div>
-      รายการที่ 5.
+   <td colspan="2"><div>
+      รายการที่
       <br>
-      Item4.
+      Item
+    </div></td>
+    <td><div>
+      5.
+      <br>
+      5.
     </div></td>
     <td colspan="5"><div>รายการที่ 5.</div></td>
   </tr>
   <tr>
-    <td><div>
-      รายการที่ 6.
+    <td colspan="2"><div>
+      รายการที่
       <br>
-      Item4.
+      Item
     </div></td>
-    <td colspan="5"><div>รายการที่ 6.</div></td>
+    <td><div>
+      6.
+      <br>
+      6.
+    </div></td>
+    <td colspan="6"><div>
+      เบี้ยประกันภัย: (บาท)
+      <br>
+      Premium (Baht)
+    </div></td>
+    <td><div>row6.1</div></td>
   </tr>
 	<tr>
-    <th><div>
+    <th colspan="4"><div>
       เบี้ยประกันภัย
       <br>
       Premium
     </div></th>
-    <th><div>
+    <th colspan="2"><div>
       ส่วนลดจากการประกันภัยโดยตรง
       <br>
       Premium Discounts
@@ -208,27 +299,62 @@ div {
     </div></th>
   </tr>
 	<tr>
-		<td><div>row12.1</div></td>
-		<td><div>row12.2</div></td>
+		<td colspan="4"><div>row12.1</div></td>
+		<td colspan="2"><div>row12.2</div></td>
 		<td><div>row12.3</div></td>
 		<td><div>row12.4</div></td>
 		<td><div>row12.5</div></td>
 		<td><div>row12.6</div></td>
 	</tr>
   <tr>
-    <td><div>
-      รายการที่ 7.
+    <td colspan="2"><div>
+      รายการที่
       <br>
-      Item7.
+      Item
     </div></td>
-    <td colspan="5"><div>รายการที่ 7.</div></td>
+    <td><div>
+      7.
+      <br>
+      7.
+    </div></td>
+    <td><div>
+      การใช้รถ
+      <br>
+      Use of Motor Vehical
+    </div></td>
+    <td colspan="6"><div>รายการที่ 7.</div></td>
   </tr>
 	<tr>
+    <td width="3%"><div>
+      [] 
+    </div></td>
+    <td colspan="3"><div>
+      การประกันภัยโดยตรง
+      <br>
+      Direct Insurance
+    </div></td>
+    <td><div>
+      [] 
+    </div></td>
+    <td><div>
+      ตัวแทนประกันภัยรายนี้
+      <br>
+      Agent
+    </div></td>
+    <td><div>
+      [] 
+    </div></td>
+    <td><div>
+      นายหน้าประกันภัยรายนี้
+      <br>
+      Broker
+    </div></td>
     <td><div>row14</div></td>
-    <td><div>row14</div></td>
-    <td><div>row14</div></td>
-    <td><div>row14</div></td>
-    <td><div>row14</div></td>
+    <td><div>
+      ใบอนุญาตเลขที่
+      <br>
+      License No
+    </div></td>
     <td><div>row14</div></td>
   </tr>
 
