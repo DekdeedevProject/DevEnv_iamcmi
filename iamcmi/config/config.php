@@ -17,7 +17,7 @@ function connOpen(){
 	$password = "root";
 	$dbName = "TestDB";
 	// MySQLi Object-Oriented	
-	$conn = new mysqli($hostname, $username, $password, $dbName) or die("Connection failed: " . $conn->connect_error);
+	$conn = new mysqli($hostname, $username, $password, $dbName,8889) or die("Connection failed: " . $conn->connect_error);
 	$conn->query("set names utf8");
 	//echo "Opened connection successfully<br>";	
 	

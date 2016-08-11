@@ -45,7 +45,7 @@ unset($_SESSION["polQuoNum"]);
 <body>
         <div class="container-fluid confDiv">
             <br><br><br><br>
-            <section id="Homepage" style="background-color:orange; height:598px;">
+            <section id="Homepage" style="background-color:orange;">
                 <div class="row">
                     <br><br>
                     <div data-scrollreveal="wait 0.5s and then ease-in-out 50px" class="col-md-6 col-md-offset-3">
