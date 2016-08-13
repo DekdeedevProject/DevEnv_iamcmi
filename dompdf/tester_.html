@@ -1,22 +1,3 @@
-<?php
-// include autoloader
-ob_start();
-include 'config/config.php';
-require_once '../dompdf/autoload.inc.php';
-use Dompdf\Dompdf;
-// $policyNo=$_POST['policyNo'];
-$policyNo="NCMI0000042";
-$date=date("Y-m-d H:i:s");
-setPolQuoNum($policyNo);
-$sqlID			= "PCS1_003";	
-$conn 	= connOpen();
-$quoQueryResult = executeSql($conn,$sqlID);
-if($quoQueryResult){
-	$row 		= $quoQueryResult->fetch_assoc();
-	include 'config/condition/PCS_CON_002.php';
-	// include 'printContent.php';
-	// echo $content;
-?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -578,10 +559,3 @@ div.request {color: red;}
   
   </body>
 </html>
-
-<?php
-}		
-else{
-	echo "not have";
-}
-?>
