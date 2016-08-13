@@ -4,8 +4,8 @@ ob_start();
 include 'config/config.php';
 require_once '../dompdf/autoload.inc.php';
 use Dompdf\Dompdf;
-// $policyNo=$_POST['policyNo'];
-$policyNo="NCMI0000042";
+$policyNo=$_POST['policyNo'];
+// $policyNo="NCMI0000042";
 $date=date("Y-m-d H:i:s");
 setPolQuoNum($policyNo);
 $sqlID			= "PCS1_003";	
@@ -129,7 +129,7 @@ div.request {color: red;}
       <div class="request">
       เลขที่
       <br>
-      วันที่
+      <?php echo date("Y-m-d");?>
     </div>
     </td>
    </tr>
@@ -147,9 +147,9 @@ div.request {color: red;}
       <br>
       Co. Code
     </div></td>
-    <td id="tdline_1100" colspan="2"><div class="request">row1-Company code</div></td>
+    <td id="tdline_1100" colspan="2"><div class="request"><?php echo $orgShortName;?></div></td>
     <td id="tdline_1100" colspan="7"><div>
-      กรมธรรม์ประกันภัยเลขที่ <font color="red">row1-Policy No.</font>
+      กรมธรรม์ประกันภัยเลขที่ <font color="red"><?php echo $policyNo; ?></font>
       <br>
       Policy No.
       </div>
@@ -178,7 +178,7 @@ div.request {color: red;}
       <br>
       Name
     </div></td>
-    <td colspan="6"><div class="request">Item1.1-Name: format=>Salu+Surname+(Midname)+Lastname</div></td>
+    <td colspan="6"><div class="request"><?php echo $PHD_perSaluTH." ".$PHD_perFName." ".$PHD_perLName; ?></div></td>
     <td colspan="3" align="right"><div>
       อาณาเขตที่คุ้มครอง  
       <br>
@@ -193,7 +193,8 @@ div.request {color: red;}
       Address
     </div></td>
     <td id="tdline_0100" colspan="6"><div class="request">
-      Item1.2-Address
+      <?php echo $PHD_addrLine1." ".$PHD_addrLine2; ?>
+      <?php echo $PHD_addrSubDist." ".$PHD_addrDist." ".$PHD_addrProv." ".$PHD_addrZipCode; ?>
     </div></td>
     <td id="tdline_0100" colspan="3" width="25%" align="right"><div>
       ประเทศไทย
@@ -222,22 +223,18 @@ div.request {color: red;}
       <br>
       From
     </div></td>
-    <td id="tdline_1100" colspan="4" ><div class="request">Item2-Effective Date</div></td>
+    <td id="tdline_1100" colspan="4" ><div class="request"><?php echo $polEffDate; ?></div></td>
     <td><div>
       ถึงวันที่
       <br>
       To
     </div></td>
-    <td id="tdline_1100" colspan="2" ><div class="request">Item2-Expiry Date</div></td>
-     <td id="tdline_1100" width="5%"><div>
-      เวลา
+    <td id="tdline_1100" colspan="2" ><div class="request"><?php echo $polExpDate; ?></div></td>
+     <td id="tdline_1100" width="5%"><div></div></td>
+    <td id="tdline_1100"width="10%" align="right"><div class="request">
+      เวลา 16.30 น.
       <br>
-      at
-    </div></td>
-    <td id="tdline_1100"width="10%"><div class="request">
-      Item2-เวลา
-      <br>
-      Item2-at
+      at 16.30 hours
     </div></td>
   </tr>
 	<tr>
@@ -290,12 +287,12 @@ div.request {color: red;}
     </div></th>
 	</tr>
 	<tr>
-	<td id="tdline_1111" colspan="3" align="center"><div class="request">Item3-Code</div></td>
-	<td id="tdline_1111" align="center"><div class="request">Item3-Make</div></td>
-	<td id="tdline_1111" colspan="3" align="center"><div class="request">Item3-License No.</div></td>
-	<td id="tdline_1111" colspan="3" align="center"><div class="request">Item3-Chassis No.</div></td>
-	<td id="tdline_1111" align="center"><div class="request">Item3-Body Type</div></td>
-	<td id="tdline_1111" colspan="4" align="center"><div class="request">Item3-Capacity</div></td>
+	<td id="tdline_1111" colspan="3" align="center"><div class="request"><?php echo $vehTARvehCodeFK;?></div></td>
+	<td id="tdline_1111" align="center"><div class="request"><?php echo $redMake;?></div></td>
+	<td id="tdline_1111" colspan="3" align="center"><div class="request"><?php echo $vehLicenseNum;?></div></td>
+	<td id="tdline_1111" colspan="3" align="center"><div class="request"><?php echo $vehChassisNum;?></div></td>
+	<td id="tdline_1111" align="center"><div class="request"><?php echo "[Body Type??]";?></div></td>
+	<td id="tdline_1111" colspan="4" align="center"><div class="request"><?php echo $vehCapacity." C.C./".$vehSeat." Seats/".$vehWeight." Tonage";?></div></td>
 	</tr>
 	<tr>
     <td id="tdline_1100" colspan="2"><div>
@@ -412,12 +409,21 @@ div.request {color: red;}
     </div></th>
   </tr>
 	<tr>
-		<td id="tdline_1111" colspan="4" align="center"><div class="request">Item6-Premium</div></td>
-		<td id="tdline_1111" colspan="3" align="center"><div class="request">Item6-Premium Discounts</div></td>
-		<td id="tdline_1111" colspan="3" align="center"><div class="request">Item6-Net Premium</div></td>
-		<td id="tdline_1111" align="center"><div class="request">Item6-Stamps</div></td>
-		<td id="tdline_1111" align="center"><div class="request">Item6-VAT</div></td>
-		<td id="tdline_1111" colspan="3" align="center"><div class="request">Item6-Total</div></td>
+		<td id="tdline_1111" colspan="4" align="center"><div class="request"><?php echo $premStdTotal;?></div></td>
+		<td id="tdline_1111" colspan="3" align="center"><div class="request">
+		<?php 
+		if($premDiscount==0){
+			echo "-";
+		}
+		else{
+			echo $premDiscount;
+		}	
+		?>
+		</div></td>
+		<td id="tdline_1111" colspan="3" align="center"><div class="request"><?php echo $premNet;?></div></td>
+		<td id="tdline_1111" align="center"><div class="request"><?php echo $premStampDuty;?></div></td>
+		<td id="tdline_1111" align="center"><div class="request"><?php echo $premVat;?></div></td>
+		<td id="tdline_1111" colspan="3" align="center"><div class="request"><?php echo $premTotal;?></div></td>
 	</tr>
   <tr>
     <td id="tdline_1100" colspan="2"><div>
