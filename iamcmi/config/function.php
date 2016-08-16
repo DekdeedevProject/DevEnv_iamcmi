@@ -179,7 +179,10 @@ $sql="";
 				PHDA.ADDR_ContType2	 as 	PHD_ADDR_ContType2,
 				PHDA.ADDR_ContNum2	 as 	PHD_ADDR_ContNum2,
 				PHDA.ADDR_UpdatedDate	 as 	PHD_ADDR_UpdatedDate,
-				PHDA.ADDR_UpdatedBy	 as 	PHD_ADDR_UpdatedBy
+				PHDA.ADDR_UpdatedBy	 as 	PHD_ADDR_UpdatedBy,
+				PHDAsubd.SUBDISTRICT_NAME as PHD_ADDR_SubdistNameTH,
+				PHDAdist.DISTRICT_NAME as PHD_ADDR_DistrictNameTH,
+				PHDAprov.PROVINCE_NAME	as PHD_ADDR_ProvNameTH
 			FROM policy 
 			INNER JOIN organization
 				ON POL_Org_ID_FK=ORG_ID_PK
@@ -197,6 +200,12 @@ $sql="";
 				ON POL_CUS_ID_FK_PHD=PHD.PER_ID_PK
 			INNER JOIN address	as PHDA
 				ON POL_CUS_Addr_ID_PHD=PHDA.ADDR_ID_PK
+			INNER JOIN T_subdistricts	as PHDAsubd
+				ON PHDA.ADDR_SubDist=PHDAsubd.SUBDISTRICT_CODE	
+			INNER JOIN T_districts	as PHDAdist
+				ON PHDA.ADDR_Dist=PHDAdist.DISTRICT_ID	
+			INNER JOIN T_provinces	as PHDAprov
+				ON PHDA.ADDR_Prov=PHDAprov.PROVINCE_ID	
 			INNER JOIN T_PerSaluType
 				ON PER_Salu=PER_Salu_ID_PK		
 			WHERE POL_QuoNum='".$polQuoNum."';";

@@ -143,5 +143,9 @@ $PHD_addrContNum2=$row["PHD_ADDR_ContNum2"];
 $PHD_addrUpdatedDate=$row["PHD_ADDR_UpdatedDate"];
 $PHD_addrUpdatedBy=$row["PHD_ADDR_UpdatedBy"];
 
+$PHD_addrSubDistNameTH=$row["PHD_ADDR_SubdistNameTH"];
+$PHD_addrDistrictNameTH=$row["PHD_ADDR_DistrictNameTH"];
+$PHD_addrProvNameTH=$row["PHD_ADDR_ProvNameTH"];
+
 ?>
 

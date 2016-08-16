@@ -589,14 +589,14 @@ $quoQueryResult = executeSql($conn,$sqlID);
 						<option>กรุณาเลือก</option>
 					</select>
 				</div>
-				<div class="col-md-2" align="right">แขวง/อำเภอ :</div>
+				<div class="col-md-2" align="right">เขต/อำเภอ :</div>
 				<input type="hidden" class="form-control" id="PHD_addrDistID" name="PHD_addrDistID" value='<?php echo $PHD_addrDist ?>'>
 				<div class="col-md-2" id="PHD_addrDist" name="PHD_addrDist">
 					<select class="form-control">
 						<option>กรุณาเลือก</option>
 					</select>	
 				</div>
-				<div class="col-md-2" align="right">เขต/ตำบล :</div>
+				<div class="col-md-2" align="right">แขวง/ตำบล :</div>
 				<input type="hidden" class="form-control" id="PHD_addrSubDistID" name="PHD_addrSubDistID" value='<?php echo $PHD_addrSubDist ?>'>
 				<div class="col-md-2" id="PHD_addrSubDist" name="PHD_addrSubDist">
 					<select class="form-control">
