@@ -102,7 +102,8 @@ $sql="";
 				FROM agent
 				JOIN account
 					ON AGT_ACC_ID_FK=ACC_ID_PK
-				WHERE ACC_User='".$usrName."' AND ACC_Role='".$usrRole."';";
+			;
+				";
 	break;
 
 	case 'PCS1_022':
