@@ -255,7 +255,12 @@ echo "polSearchSize: ".$polSearchSize."<br>";
 
 		$vehTARIDFK,
 		$vehTARvehCodeFK,
-		$vehREDKEYFK=$redKey
+		$vehREDKEYFK=$redKey,
+		$vehLicenseNum,
+		$vehChassisNum,
+		$vehCapacity,
+		$vehSeat,
+		$vehWeight
 
 	);
 	$sqlID ="PSS1_008";
