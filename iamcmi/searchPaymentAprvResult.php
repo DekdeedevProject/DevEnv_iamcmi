@@ -156,6 +156,21 @@ include 'config/config.php';
 include 'header.php'; 
 unset($_SESSION["polQuoNum"]);
 
+if(!empty($_POST['aprvPolQuoNum'])) {
+	$count = 0;
+	$polQuoList; 
+    foreach($_POST['aprvPolQuoNum'] as $check) {
+        if($count>0){
+        	$polQuoList=$polQuoList." , '".$check."'";
+        }
+        else{
+        	$polQuoList="'".$check."'";
+        }
+        $count++;
+	}
+    // echo $polQuoList;
+}
+
 if(isset($_POST['sBy']) && isset($_POST['sDesc'])){
 $sBy = trim($_POST['sBy']);
 $sDesc = trim($_POST['sDesc']);
@@ -166,7 +181,7 @@ $sDesc = "null";
 // echo "<br>sBy: ". $sBy;
 // echo "<br>sDesc: ". $sDesc;
 
-$sqlID = "SPO_002";
+$sqlID = "SPO_001";
 setSearchCriteria($sBy,$sDesc);
 $searchResult 	= executeSql($conn,$sqlID);
 	if($searchResult){
@@ -174,7 +189,8 @@ $searchResult 	= executeSql($conn,$sqlID);
 	}
 }
 else{
-$sqlID = "SPO_001";
+setPolQuoList($polQuoList);
+$sqlID = "SPO_004";
 $searchResult 	= executeSql($conn,$sqlID);
 
 	if($searchResult){
@@ -240,7 +256,7 @@ $searchResultSize = $searchResult->num_rows;
 		<table class="table table-striped">
 		  <thead>
 		    <tr>
-		      	<th>Approval Option</th>
+		      	<th>Approval Status</th>
 				<th>Policy No.</th>
 				<th>Premium Status</th>
 				<th>Total Premium</th>
@@ -251,15 +267,7 @@ $searchResultSize = $searchResult->num_rows;
 		    </tr>
 		  </thead>
 		  <tbody id="searchPaymentAprv.php">
-		  	<?php
-if(!empty($_POST['aprvPolQuoNum'])) {
-    foreach($_POST['aprvPolQuoNum'] as $check) {
-            echo $check; //echoes the value set in the HTML form for each checked checkbox.
-                         //so, if I were to check 1, 3, and 5 it would echo value 1, value 3, value 5.
-                         //in your case, it would echo whatever $row['Report ID'] is equivalent to.
-    }
-}
-?>
+
 		  	<form action="searchPayment.php">
 		  			
 <?php 
@@ -269,7 +277,16 @@ $no=1;
 	while($searchRow = $searchResult->fetch_assoc()) {
 ?>
 			<tr align="left">
-		     	<th>Approval Successfully</th>
+		     	<th>
+		     		
+		     		<?php
+		     		if($searchRow["PREM_PaidStatusAprv"]=='Y'){
+		     			echo "Approval Successfully";		     		}
+		     		else{
+						echo "Failed";
+		     		}
+		     		?>	
+		     	</th>
 				<td><?php echo $searchRow["POL_QuoNum"]; ?></td>
 				<td><?php echo "Premium status"; ?></td>
 				<td><?php 

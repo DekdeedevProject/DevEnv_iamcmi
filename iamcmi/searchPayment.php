@@ -233,8 +233,9 @@ $searchResultSize = $searchResult->num_rows;
 			<div class="row">
 				<div class="col-md-12">
 					<?php echo "<br>Found ".$searchResultSize." records"; ?>
-					<br>
-					<a href="searchPaymentAprv.php">Click!!! for approve payment!!!</a>
+				</div>
+				<div class="col-md-12" align="right">
+					<a href="searchPaymentAprv.php">Click to Approve Payment!!!</a>
 				</div>
 			</div>
 		<br>

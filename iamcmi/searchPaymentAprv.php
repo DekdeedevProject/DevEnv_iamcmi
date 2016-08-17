@@ -174,7 +174,7 @@ $searchResult 	= executeSql($conn,$sqlID);
 	}
 }
 else{
-$sqlID = "SPO_001";
+$sqlID = "SPO_003";
 $searchResult 	= executeSql($conn,$sqlID);
 
 	if($searchResult){
