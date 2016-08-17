@@ -231,30 +231,28 @@ $searchResultSize = $searchResult->num_rows;
 				<li class="active"><a href="searchAgent.php">Agent Information</a></li>
 			</ul>
 			<div class="row">
-				<div class="col-md-12">
+				<div class="col-md-2">
 					<?php echo "<br>Found ".$searchResultSize." records"; ?>
-					<br>
-					<a href="searchPaymentAprv.php">Click!!! for approve payment!!!</a>
+					<b><br></b>
 				</div>
 			</div>
 		<br>
 		<table class="table table-striped">
 		  <thead>
 		    <tr>
-		      <th>No.</th>
+		      	<th>Approval Status</th>
 				<th>Policy No.</th>
+				<th>Premium Status</th>
 				<th>Total Premium</th>
-				<th>Outstanding Premium</th>
-				<th>Paid Premium</th>
-				<th>Payment Status</th>
-				<?php 
-				if($_SESSION["usrRole"]=='Admin')
-					echo"<th>Approve Status</th>";
-				?>
-
+				<th>Payment Method</th>
+				<th>Bank A/C</th>
+				<th>Payment Amount</th>
+				<th>Transaction Date</th>
 		    </tr>
 		  </thead>
-		  <tbody id="myTable">
+		  <tbody id="searchPaymentAprv.php">
+		  	<form action="searchPaymentAprvResult.php" method="post">
+		  			
 <?php 
 
 if ($searchResult->num_rows > 0) {
@@ -262,8 +260,9 @@ $no=1;
 	while($searchRow = $searchResult->fetch_assoc()) {
 ?>
 			<tr align="left">
-		     	<th><?php echo $no++; ?></th>
+		     	<th><input type="checkbox" name="aprvPolQuoNum[]" value=<?php echo $searchRow["POL_QuoNum"]; ?>></th>
 				<td><?php echo $searchRow["POL_QuoNum"]; ?></td>
+				<td><?php echo "Premium status"; ?></td>
 				<td><?php 
 				if($searchRow["PREM_PaidStatus"]=='N'){
 					echo "<p style='color:red'>".$searchRow["PREM_Total"]."</p>"; 
@@ -272,31 +271,19 @@ $no=1;
 					echo "<p style='color:green'>".$searchRow["PREM_Paid"]."</p>"; 
 				}
 				?></td>
-				<td><?php echo $searchRow["PREM_PaidBalance"] ?></td>
-				<td><?php echo $searchRow["PREM_Paid"] ?></td>
-				<td><?php echo $searchRow["PREM_PaidStatus"] ?></td>
-				
-				<?php 
-				if($_SESSION["usrRole"]=='Admin')
-				{
-				// if($searchRow["SFN_PaidBal"]==0){
-					// 	echo"<td><input type='checkbox'></td>";
-					// }
-					// else{
-					// 	echo"<td>Payment Inprogress</td>";
-					// }
-					?><td><?php echo $searchRow["PREM_PaidStatusAprv"] ?></td>
-					<?php
-				}	
-				else{
-					//Display only status
-					?><td>test2</td>
-					<?php
-				}	
-				?>
+				<td><?php echo "Payment method"; ?></td>
+				<td><?php echo "Bank A/C"; ?></td>
+				<td><?php echo "Payment Amount" ?></td>
+				<td><?php echo "Transaction Date" ?></td>
 			</tr>
+
+			
+
 <?php	
 	}
+?>
+
+<?php	
 } else {
 ?>
 			    
@@ -314,9 +301,14 @@ $no=1;
 <?php
 	}
 ?>
+
 		  </tbody>
 		</table>
+
 		<div class="col-md-12 text-center">
+			<input type="submit" />
+		</form>	
+		<br>
 	      <ul class="pagination" id="myPager"></ul>
 	    </div>
 	</div>
