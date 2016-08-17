@@ -260,7 +260,7 @@ if(!empty($_POST['aprvPolQuoNum'])) {
     }
 }
 ?>
-		  	<form action="searchPaymentAprv.php" method="post">
+		  	<form action="searchPayment.php">
 		  			
 <?php 
 
@@ -315,7 +315,7 @@ $no=1;
 		</table>
 
 		<div class="col-md-12 text-center">
-			<input type="submit" />
+			<input type="submit" value="Back" />
 		</form>	
 		<br>
 	      <ul class="pagination" id="myPager"></ul>
