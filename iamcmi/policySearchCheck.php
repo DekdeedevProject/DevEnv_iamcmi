@@ -8,11 +8,13 @@ echo "QuoStatus: ".$status=$_GET['polStatusIDFK'];
 switch ($status) {
 	case '1':
 	//Status: Quote in Progress
-	redirect("policyCreateStep1.php");
+	$_SESSION["polQuoNum"] = $_GET['polQuoNum'];
+	redirect("policyCreateStep2.php");
 	// echo "<a href='policyCreateStep2.php'><input type='Button' value='Next' class='btn btn-primary btn-md'/></a>";
 	break;
 	case '2':
 	//Status: Policy Issued
+	$_SESSION["polQuoNum"] = $_GET['polQuoNum'];
 	redirect("policyCreateStep3.php");
 	// echo "<a href='policyCreateStep3.php'><input type='Button' value='Next' class='btn btn-primary btn-md'/></a>";
 	break;
@@ -22,6 +24,7 @@ switch ($status) {
 	break;
 	case '4':
 	//Status: Payment in Progress
+	$_SESSION["polQuoNum"] = $_GET['polQuoNum'];
 	redirect("policyCreateStep2.php");
 	// echo "<a href='policyCreateStep2.php'><input type='Button' value='Next' class='btn btn-primary btn-md'/></a>";
 	break;
@@ -31,5 +34,5 @@ switch ($status) {
 	break;
 }
 
-$_SESSION["polQuoNum"] = $_GET['polQuoNum'];
+
 ?>
