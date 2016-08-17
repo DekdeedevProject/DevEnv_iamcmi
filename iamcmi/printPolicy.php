@@ -456,7 +456,7 @@ div.request {color: red;}
   </tr>
 	<tr>
     <td id="tdline_1100" width="5%"><div>
-      <img src="src/Image/icon_checked.png" height="15px">
+      <img src="../img/icon_checked.png" height="15px">
     </div></td>
     <td id="tdline_1100" colspan="3"><div>
       การประกันภัยโดยตรง
@@ -464,7 +464,7 @@ div.request {color: red;}
       Direct Insurance
     </div></td>
     <td id="tdline_1100" width="5%"><div>
-      <img src="src/Image/icon_checked.png" height="15px">
+      <img src="../img/icon_checked.png" height="15px">
     </div></td>
     <td id="tdline_1100" colspan="2" width="13%"><div>
       ตัวแทนประกันภัยรายนี้
@@ -472,7 +472,7 @@ div.request {color: red;}
       Agent
     </div></td>
     <td width="5%"><div>
-      <img src="src/Image/icon_checked.png" height="15px">
+      <img src="../img/icon_checked.png" height="15px">
     </div></td>
     <td width="13%"><div>
       นายหน้าประกันภัยรายนี้

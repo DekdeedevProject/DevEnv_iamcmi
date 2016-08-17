@@ -15,7 +15,7 @@ $conn 	= connOpen();
                 </button>               
             </div>
             <div class="navbar-brand" href="index.html" >
-                    <img src="../img/logo2.png" /> <!-- logo here-->
+                    <img src=".." /> <!-- logo here-->
             </div>
             <div class="navbar-collapse collapse" data-scrollreveal="enter from the right 50px">
                 <div align="right" class="logout">
@@ -29,6 +29,7 @@ $conn 	= connOpen();
                     <li><a href="policyCreateStep1.php">Create</a></li>  
                     <li><a href="searchPolicy.php">Search</a></li>
                     <li><a href="#print">Print</a></li>
+                    <li><a href="#admin">Administrator</a></li>
                 </ul>
             </div>
 
