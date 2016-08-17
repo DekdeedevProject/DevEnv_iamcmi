@@ -127,7 +127,7 @@ div.request {color: red;}
     </div></td>
     <td align="left">
       <div class="request">
-      เลขที่
+      [เลขที่?]
       <br>
       <?php echo date("Y-m-d");?>
     </div>
@@ -194,7 +194,18 @@ div.request {color: red;}
     </div></td>
     <td id="tdline_0100" colspan="6"><div class="request">
       <?php echo $PHD_addrLine1." ".$PHD_addrLine2; ?>
-      <?php echo $PHD_addrSubDist." ".$PHD_addrDist." ".$PHD_addrProv." ".$PHD_addrZipCode; ?>
+      <br>
+      <?php 
+      if($PHD_addrProv=='1'){
+      echo "แขวง ".$PHD_addrSubDistNameTH." เขต ".$PHD_addrDistrictNameTH; 
+      }
+      else{
+      echo "ตำบล ".$PHD_addrSubDistNameTH." อำเภอ ".$PHD_addrDistrictNameTH; 
+      }
+
+      ?>
+      <br>
+      <?php echo "จังหวัด ".$PHD_addrProvNameTH." ".$PHD_addrZipCode; ?>
     </div></td>
     <td id="tdline_0100" colspan="3" width="25%" align="right"><div>
       ประเทศไทย
@@ -373,7 +384,7 @@ div.request {color: red;}
       <br>
       Premium (Baht)
     </div></td>
-    <td id="tdline_1100" colspan="3" align="right"><div class="request">Item6-Premium Status</div></td>
+    <td id="tdline_1100" colspan="3" align="right"><div class="request">[Item6-Premium Status?]</div></td>
   </tr>
 	<tr>
     <th id="thline_1111" colspan="4"><div>
@@ -469,9 +480,9 @@ div.request {color: red;}
       Broker
     </div></td>
     <td colspan="3"><div class="request">
-    Item7-Agent Code
+    <?php echo $agtCode; ?>
     <br>
-    Item7-Agent Name
+    [Item7-Agent Name?]
     </div></td>
     <td ><div>
       ใบอนุญาตเลขที่
@@ -536,31 +547,31 @@ div.request {color: red;}
        <td colspan="3"><div>
         เอกสารนี้ให้ไว้เพื่อแสดงว่ารถหมายเลขทะเบียนที่ 
         <font color="red">
-          Registration No.
+          <?php echo $vehLicenseNum; ?>
         </font> 
         ตัวถังรถเลขที่ 
         <font color="red">
-          Chassis No.
+          <?php echo $vehChassisNum; ?>
         </font> 
         <br>
         ได้ทำประกันภัยตามพระราชบัญญัติคุ้มครองผู้ประสบภัยจากรถ พ.ศ. 2535 แล้ว โดยมีระยะเวลาประกันภัยประกันภัย
         <br>
         เริ่มต้นวันที่ 
         <font color="red">
-          Effective Date
+          <?php echo $polEffDate; ?>
         </font> 
         ถึงวันที่ 
         <font color="red">
-          Expiry Date
+          <?php echo $polExpDate; ?>
         </font> 
         <br>
         ตามกรมธรรม์ประกันภัยเลขที่ 
         <font color="red">
-          Policy No.
+          <?php echo $policyNo; ?>
         </font> 
         ของบริษัท
         <font color="red">
-          Company Thai Name
+          <?php echo $orgLongNameTH; ?>
         </font> 
       </div></td>
       

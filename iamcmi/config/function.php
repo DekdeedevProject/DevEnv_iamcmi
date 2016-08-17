@@ -180,7 +180,10 @@ $sql="";
 				PHDA.ADDR_ContType2	 as 	PHD_ADDR_ContType2,
 				PHDA.ADDR_ContNum2	 as 	PHD_ADDR_ContNum2,
 				PHDA.ADDR_UpdatedDate	 as 	PHD_ADDR_UpdatedDate,
-				PHDA.ADDR_UpdatedBy	 as 	PHD_ADDR_UpdatedBy
+				PHDA.ADDR_UpdatedBy	 as 	PHD_ADDR_UpdatedBy,
+				PHDAsubd.SUBDISTRICT_NAME as PHD_ADDR_SubdistNameTH,
+				PHDAdist.DISTRICT_NAME as PHD_ADDR_DistrictNameTH,
+				PHDAprov.PROVINCE_NAME	as PHD_ADDR_ProvNameTH
 			FROM policy 
 			INNER JOIN organization
 				ON POL_Org_ID_FK=ORG_ID_PK
@@ -198,6 +201,12 @@ $sql="";
 				ON POL_CUS_ID_FK_PHD=PHD.PER_ID_PK
 			INNER JOIN address	as PHDA
 				ON POL_CUS_Addr_ID_PHD=PHDA.ADDR_ID_PK
+			INNER JOIN T_subdistricts	as PHDAsubd
+				ON PHDA.ADDR_SubDist=PHDAsubd.SUBDISTRICT_CODE	
+			INNER JOIN T_districts	as PHDAdist
+				ON PHDA.ADDR_Dist=PHDAdist.DISTRICT_ID	
+			INNER JOIN T_provinces	as PHDAprov
+				ON PHDA.ADDR_Prov=PHDAprov.PROVINCE_ID	
 			INNER JOIN T_PerSaluType
 				ON PER_Salu=PER_Salu_ID_PK		
 			WHERE POL_QuoNum='".$polQuoNum."';";
@@ -619,6 +628,12 @@ $sql="";
 	$vehTARIDFK= $GLOBALS['vehTARIDFK'] ;
 	$vehTARvehCodeFK= $GLOBALS['vehTARvehCodeFK'] ;
 	$vehREDKEYFK= $GLOBALS['vehREDKEYFK'] ;
+	$vehLicenseNum=$GLOBALS['vehLicenseNum'];
+	$vehChassisNum=$GLOBALS['vehChassisNum'];
+	$vehCapacity=$GLOBALS['vehCapacity'];
+	$vehSeat=$GLOBALS['vehSeat'];
+	$vehWeight=$GLOBALS['vehWeight'];
+
 	echo "<br>PSS1_008<br>";
 	echo $sql ="	UPDATE policy 
 				JOIN vehical
@@ -703,7 +718,13 @@ $sql="";
 
 				VEH_TAR_ID_FK='$vehTARIDFK',
 				VEH_TAR_VehCode_FK='$vehTARvehCodeFK',
-				VEH_RED_KEY_FK='$vehREDKEYFK'
+				VEH_RED_KEY_FK='$vehREDKEYFK',
+				VEH_LicenseNum='$vehLicenseNum',
+				VEH_ChassisNum='$vehChassisNum',
+				VEH_Capacity='$vehCapacity',
+				VEH_Seat='$vehSeat',
+				VEH_Weight='$vehWeight'
+
 			WHERE  POL_ID_PK='".$polIDPK."' AND POL_QuoNum='".$polQuoNum."';
 	";
 	break;
@@ -1490,7 +1511,12 @@ $PHD_addrUpdatedBy,
 
 $vehTARIDFK,
 $vehTARvehCodeFK,
-$vehREDKEYFK
+$vehREDKEYFK,
+$vehLicenseNum,
+$vehChassisNum,
+$vehCapacity,
+$vehSeat,
+$vehWeight
 ){
 $GLOBALS['polIDPK'] = $polIDPK;
 $GLOBALS['polOrgIDFK'] = $polOrgIDFK;
@@ -1569,6 +1595,12 @@ $GLOBALS['PHD_addrUpdatedBy'] = $PHD_addrUpdatedBy;
 $GLOBALS['vehTARIDFK']=$vehTARIDFK ;
 $GLOBALS['vehTARvehCodeFK']=$vehTARvehCodeFK;
 $GLOBALS['vehREDKEYFK'] = $vehREDKEYFK;
+$GLOBALS['vehREDKEYFK'] =$vehREDKEYFK;
+$GLOBALS['vehLicenseNum']=$vehLicenseNum;
+$GLOBALS['vehChassisNum']=$vehChassisNum;
+$GLOBALS['vehCapacity']=$vehCapacity;
+$GLOBALS['vehSeat']=$vehSeat;
+$GLOBALS['vehWeight']=$vehWeight;
 }
 
 function setLogin($accUser,$accPass){

@@ -255,7 +255,12 @@ echo "polSearchSize: ".$polSearchSize."<br>";
 
 		$vehTARIDFK,
 		$vehTARvehCodeFK,
-		$vehREDKEYFK=$redKey
+		$vehREDKEYFK=$redKey,
+		$vehLicenseNum,
+		$vehChassisNum,
+		$vehCapacity,
+		$vehSeat,
+		$vehWeight
 
 	);
 	$sqlID ="PSS1_008";
@@ -265,12 +270,12 @@ echo "polSearchSize: ".$polSearchSize."<br>";
 
 //redirect("policyCreateStep1.php");
 if($_POST['btn']=="Save"){
-// redirect("policyCreateStep1.php");		
-echo "<a href='policyCreateStep1.php'><input type='Button' value='Next' class='btn btn-primary btn-md'/></a>";	
+redirect("policyCreateStep1.php");		
+// echo "<a href='policyCreateStep1.php'><input type='Button' value='Next' class='btn btn-primary btn-md'/></a>";	
 }
 else{
-// redirect("policyCreateStep2.php");
-echo "<a href='policyCreateStep2.php'><input type='Button' value='Next' class='btn btn-primary btn-md'/></a>";
+redirect("policyCreateStep2.php");
+// echo "<a href='policyCreateStep2.php'><input type='Button' value='Next' class='btn btn-primary btn-md'/></a>";
 }
 connClose($conn);
 
