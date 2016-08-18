@@ -45,6 +45,15 @@ function reloadFunc(){
 	val2 = document.getElementById("paidStatusApprID").value;
 	updateStatus(src, val1, val2);
 }
+
+function myFunction() {
+	var d = new Date();
+	document.getElementById('curDate').value= d.toString();
+}
+function start(){
+	reloadFunc();
+	myFunction();
+}
 </script>
 <!-- HEADER SECTION-->
 <?php 
@@ -82,7 +91,7 @@ $quoQueryResult = executeSql($conn,$sqlID);
 <!-- END HEADER SECTION-->
 <title><?php echo $policyCreate ?></title>
 </head>
-<body onload="reloadFunc()">
+<body onload="start()">
 	<form action="policySaveStep2.php" method="post">
 		<br><br><br><br><br><br>
 
@@ -104,27 +113,93 @@ $quoQueryResult = executeSql($conn,$sqlID);
 			</div>
 			<br>
 			<div class="row">
-				<div class="col-md-2" align="left">เลขกรมธรรม์ :</div>
-				<div class="col-md-2">
+				<div class="col-md-3" align="left">เลขกรมธรรม์ :</div>
+				<div class="col-md-3">
 					<input type="text" class="form-control" id="chas"
 						placeholder="Enter Chassis Number" value='<?php echo $polQuoNum; ?>' readonly>
 				</div>
-				<div class="col-md-2" align="right">เบี้ยที่ต้องชำระ:</div>
-				<div class="col-md-2">
+				<div class="col-md-3" align="right">สถานะกรมธรรม์ :</div>
+				<div class="col-md-3">
+					<input type="text" class="form-control" id="polStatus"
+						placeholder="Enter Chassis Number" value='<?php echo (-$premPaidBalance); ?>' readonly>
+				</div>
+			</div>
+			<br>
+			<div class="row">
+				<div class="col-md-3" align="left">สถานะการชำระเงิน :</div>
+				<div class="col-md-3">
+					<input type="text" class="form-control" id="chas"
+						placeholder="Enter Chassis Number" value='<?php echo $polQuoNum; ?>' readonly>
+				</div>
+				<div class="col-md-3" align="right">เบี้ยที่ต้องชำระ :</div>
+				<div class="col-md-3">
 					<input type="text" class="form-control" id="chas"
 						placeholder="Enter Chassis Number" value='<?php echo (-$premPaidBalance); ?>' readonly>
 				</div>
-			</div><br>
+			</div>
+			<br>
+			<div class="row">
+				<div class="col-md-9" align="right">ยอดคงค้าง :</div>
+				<div class="col-md-3">
+					<input type="text" class="form-control" id="chas"
+						placeholder="Enter Chassis Number" value='<?php echo $polQuoNum; ?>' readonly>
+				</div>				
+			</div>
+			<br>
+			<div style="border: 3px; border-style: solid; border-color: #a5a5a5;">
+				<div class="row">
+					<div class="col-md-12">
+						<div style="background-color: #EBECE4; height: 30px;">
+							<b>Update payment information</b>
+						</div>
+					</div>
+				</div>
+				<div class="row" style="margin:0em 0.5em 0em 0.5em;">
+					<br>
+					<div class="col-md-3" align="left">Payment Method :</div>
+					<div class="col-md-3">
+						<input type="text" class="form-control" id="chas"
+							placeholder="Enter Chassis Number" value='<?php echo $polQuoNum; ?>' >
+					</div>
+					<div class="col-md-3" align="right">Transaction Date :</div>
+					<div class="col-md-3">
+						<input type="text" class="form-control" id="curDate"  readonly>
+					</div>
+				</div>
+				<br>
+				<div class="row" style="margin:0em 0.5em 0em 0.5em;">
+					<div class="col-md-3" align="left">Payment Amount :</div>
+					<div class="col-md-3">
+						<input type="text" class="form-control" id="chas"
+							placeholder="Enter Chassis Number" value='<?php echo $polQuoNum; ?>' >
+					</div>
+					<div class="col-md-3" align="right">Payee :</div>
+					<div class="col-md-3">
+						<input type="text" class="form-control" id="chas"
+							placeholder="Enter Chassis Number" value='<?php echo (-$premPaidBalance); ?>' >
+					</div>
+					</div>
+				<br>
+			</div>
+			<br>
+				<div class="row">
+					<div class="col-md-3" align="left">Approval Status :</div>
+					<div class="col-md-3">
+						<input type="text" class="form-control" id="chas"
+							placeholder="Enter Chassis Number" value='<?php echo $polQuoNum; ?>' readonly>
+					</div>
+					<div class="col-md-3" align="right">Approval Remarks :</div>
+					<div class="col-md-3">
+						<input type="text" class="form-control" id="chas"
+							placeholder="Enter Chassis Number" value='<?php echo (-$premPaidBalance); ?>' readonly>
+					</div>
+				</div>
+				<br>
 
+				
 			<input type="hidden" id="paidStatusID" name="paidStatusID" value='<?php echo $premPaidStatus; ?>'>
 			<input type="hidden" id="paidStatusApprID" name="paidStatusApprID" value='<?php echo $premPaidStatusAprv; ?>'>
-			<span id="paidStatus" name="paidStatus">	
-			<div class="row">
-				<div class="col-md-2" align="left">สถานะการชำระ:</div>
-				
-				</div>
-			</div>
-			</span>
+		
 			<br>
 			<div class="row">
 				<div class="col-md-12" align="center">
