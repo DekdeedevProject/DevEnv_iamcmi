@@ -158,7 +158,7 @@ $quoQueryResult = executeSql($conn,$sqlID);
 					<br>
 					<div class="col-md-3" align="left">Payment Method :</div>
 					<div class="col-md-3">
-						<input type="text" class="form-control" id="chas"
+						<input type="text" class="form-control" id="payMet"
 							placeholder="Enter Chassis Number" value='<?php echo $polQuoNum; ?>' >
 					</div>
 					<div class="col-md-3" align="right">Transaction Date :</div>
@@ -170,12 +170,12 @@ $quoQueryResult = executeSql($conn,$sqlID);
 				<div class="row" style="margin:0em 0.5em 0em 0.5em;">
 					<div class="col-md-3" align="left">Payment Amount :</div>
 					<div class="col-md-3">
-						<input type="text" class="form-control" id="chas"
+						<input type="text" class="form-control" id="payAmt"
 							placeholder="Enter Chassis Number" value='<?php echo $polQuoNum; ?>' >
 					</div>
 					<div class="col-md-3" align="right">Payee :</div>
 					<div class="col-md-3">
-						<input type="text" class="form-control" id="chas"
+						<input type="text" class="form-control" id="payee"
 							placeholder="Enter Chassis Number" value='<?php echo (-$premPaidBalance); ?>' >
 					</div>
 					</div>
@@ -185,12 +185,12 @@ $quoQueryResult = executeSql($conn,$sqlID);
 				<div class="row">
 					<div class="col-md-3" align="left">Approval Status :</div>
 					<div class="col-md-3">
-						<input type="text" class="form-control" id="chas"
+						<input type="text" class="form-control" id="apst"
 							placeholder="Enter Chassis Number" value='<?php echo $polQuoNum; ?>' readonly>
 					</div>
 					<div class="col-md-3" align="right">Approval Remarks :</div>
 					<div class="col-md-3">
-						<input type="text" class="form-control" id="chas"
+						<input type="text" class="form-control" id="aprm"
 							placeholder="Enter Chassis Number" value='<?php echo (-$premPaidBalance); ?>' readonly>
 					</div>
 				</div>
