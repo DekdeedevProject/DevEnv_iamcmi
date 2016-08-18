@@ -367,6 +367,13 @@ $sql="";
 			WHERE POL_ID_PK='$polIDPK'";
 	break;
 
+	case 'SPAR_001':
+	$polQuoList=$GLOBALS['polQuoList'];
+	$sql ="	UPDATE premium
+			SET PREM_PaidStatusAprv	='Y'
+			WHERE PREM_QuoNumRef IN (".$polQuoList.")";
+	break;
+
 	case 'PSS1_005':
 	$addrLine1=$GLOBALS['addrLine1'];
 	$addrLine2=$GLOBALS['addrLine2'];
