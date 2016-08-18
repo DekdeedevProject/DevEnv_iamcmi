@@ -128,12 +128,12 @@ $quoQueryResult = executeSql($conn,$sqlID);
 			<div class="row">
 				<div class="col-md-3" align="left">สถานะการชำระเงิน :</div>
 				<div class="col-md-3">
-					<input type="text" class="form-control" id="chas"
+					<input type="text" class="form-control" id="paySts"
 						placeholder="Enter Chassis Number" value='<?php echo $polQuoNum; ?>' readonly>
 				</div>
 				<div class="col-md-3" align="right">เบี้ยที่ต้องชำระ :</div>
 				<div class="col-md-3">
-					<input type="text" class="form-control" id="chas"
+					<input type="text" class="form-control" id="oustd"
 						placeholder="Enter Chassis Number" value='<?php echo (-$premPaidBalance); ?>' readonly>
 				</div>
 			</div>
@@ -141,7 +141,7 @@ $quoQueryResult = executeSql($conn,$sqlID);
 			<div class="row">
 				<div class="col-md-9" align="right">ยอดคงค้าง :</div>
 				<div class="col-md-3">
-					<input type="text" class="form-control" id="chas"
+					<input type="text" class="form-control" id="outAmt"
 						placeholder="Enter Chassis Number" value='<?php echo $polQuoNum; ?>' readonly>
 				</div>				
 			</div>
