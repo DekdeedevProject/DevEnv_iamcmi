@@ -23,6 +23,7 @@ switch ($status) {
 	// echo "<a href='#.php'><input type='Button' value='Next' class='btn btn-primary btn-md'/></a>";
 	break;
 	case '4':
+	case '5':
 	//Status: Payment in Progress
 	$_SESSION["polQuoNum"] = $_GET['polQuoNum'];
 	redirect("policyCreateStep2.php");

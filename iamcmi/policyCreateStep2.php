@@ -199,7 +199,7 @@ $quoQueryResult = executeSql($conn,$sqlID);
 				<div class="row" style="margin:0em 0.5em 0em 0.5em;">
 					<div class="col-md-3" align="left">Payment Amount :</div>
 					<div class="col-md-3">
-						<input type="text" class="form-control" id="payAmt"
+						<input type="text" class="form-control" name="payAmt4" id="payAmt4" 
 							placeholder="Enter Payment Amount">
 					</div>
 					<div class="col-md-3" align="right">Payee :</div>
@@ -317,7 +317,7 @@ $quoQueryResult = executeSql($conn,$sqlID);
 						else{
 							echo "<a href='policyCreateStep1.php'><button type='button' class='btn btn-primary btn-md'>Edit Policy Info.</button></a> ";
 							echo "<a href='home.php'><button type='button' class='btn btn-primary btn-md'>Home</button></a> ";		
-							echo "<a href='xx.php'><button type='button' class='btn btn-primary btn-md'>Save</button></a> ";			
+							echo "<input type='Submit' class='btn btn-primary btn-md' value='Save'/> ";
 							echo "<a href='xx.php'><button type='button' class='btn btn-primary btn-md'>Submit Payment</button></a> ";
 						}
 					?>

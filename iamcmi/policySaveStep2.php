@@ -12,9 +12,12 @@
 	$polQuoNum = $_SESSION["polQuoNum"];
 	$polUpdatedBy	= $_SESSION["usrName"];
 
+	echo $polIDPK=trim($_POST['payMet4']);
+	echo $polIDPK=trim($_POST['payAmt4']);
+
 	$sql = "UPDATE Policy 
 			SET POL_Num 			='$polQuoNum', 
-				POL_Status_ID_FK	='2', -- POL_Status_ID_FK: 2=Issued
+				POL_Status_ID_FK	='4', -- POL_Status_ID_FK: 2=Issued
 				POL_IssueDate		=CURRENT_TIMESTAMP,
 				POL_IssueBy			='$polUpdatedBy',
 				POL_UpdatedDate 	=CURRENT_TIMESTAMP,
@@ -27,5 +30,5 @@
 	   echo "Error: " . $sql . "<br>" . $conn->error;
 	}
 	connClose($conn);
-	redirect("policyCreateStep3.php")
+	// redirect("policyCreateStep2.php")
 ?>
