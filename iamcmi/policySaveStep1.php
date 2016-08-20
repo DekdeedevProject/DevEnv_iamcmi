@@ -7,6 +7,15 @@ $startDatetime=$_SESSION["startSessionDateTime"];
 echo $polQuoNum=$_SESSION["polQuoNum"];
 $updatedBy=$_SESSION["usrName"];
 
+if($_POST['btn']=="Save"){
+	echo "save";
+	$polStatusIDFK=1;
+}
+else{
+	echo "submit";
+	$polStatusIDFK=4;
+}
+
 setPolQuoNum($polQuoNum);
 $sqlID = "PSS1_001";					
 $polSearchResult = executeSql($conn,$sqlID);	
@@ -270,12 +279,12 @@ echo "polSearchSize: ".$polSearchSize."<br>";
 
 //redirect("policyCreateStep1.php");
 if($_POST['btn']=="Save"){
-redirect("policyCreateStep1.php");		
-// echo "<a href='policyCreateStep1.php'><input type='Button' value='Next' class='btn btn-primary btn-md'/></a>";	
+// redirect("policyCreateStep1.php");		
+echo "<a href='policyCreateStep1.php'><input type='Button' value='Next' class='btn btn-primary btn-md'/></a>";	
 }
 else{
-redirect("policyCreateStep2.php");
-// echo "<a href='policyCreateStep2.php'><input type='Button' value='Next' class='btn btn-primary btn-md'/></a>";
+// redirect("policyCreateStep2.php");
+echo "<a href='policyCreateStep2.php'><input type='Button' value='Next' class='btn btn-primary btn-md'/></a>";
 }
 connClose($conn);
 
