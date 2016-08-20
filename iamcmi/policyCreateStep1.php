@@ -659,7 +659,7 @@ $quoQueryResult = executeSql($conn,$sqlID);
 					<a href="home.php"><input type="button" class="btn btn-primary btn-md" name="btn" id="btn" value="Cancel"/></a>
 					<input type="Reset" class="btn btn-primary btn-md"/>
 					<input type="Submit" class="btn btn-primary btn-md" name="btn" id="btn" value="Save"/>
-					<input type="Submit" class="btn btn-primary btn-md" name="btn" id="btn" value="Next"/>
+					<input type="Submit" class="btn btn-primary btn-md" name="btn" id="btn" value="Submit for Payment"/>
 
 				</div>
 			</div>

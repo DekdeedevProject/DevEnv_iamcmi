@@ -130,30 +130,23 @@ $quoQueryResult = executeSql($conn,$sqlID);
 				<div class="col-md-3">
  
 					<input type="text" class="form-control" id="paySts"
-						placeholder="Enter Chassis Number" value='<?php echo $polQuoNum; ?>' readonly>
-				</div>
-				<div class="col-md-3" align="right">เบี้ยที่ต้องชำระ :</div>
-				<div class="col-md-3">
-					<input type="text" class="form-control" id="oustd"
-						placeholder="Enter Chassis Number" value='<?php echo (-$premPaidBalance); ?>' readonly>
-
-					<input type="text" class="form-control" id="chas"
 						placeholder="Enter Chassis Number" value='<?php echo $premPaidStatus; ?>' readonly>
 				</div>
 				<div class="col-md-3" align="right">เบี้ยที่ต้องชำระ :</div>
 				<div class="col-md-3">
-					<input type="text" class="form-control" id="chas"
+					<input type="text" class="form-control" id="oustd"
 						placeholder="Enter Chassis Number" value='<?php echo $premTotal; ?>' readonly>
 
 				</div>
+				
 			</div>
 			<br>
 			<div class="row">
-				<div class="col-md-9" align="right">ยอดคงค้าง :</div>
+				<div class="col-md-9" align="right">ยอดคงค้างชำระ :</div>
 				<div class="col-md-3">
 
 					<input type="text" class="form-control" id="outAmt"
-						placeholder="Enter Chassis Number" value='<?php echo $polQuoNum; ?>' readonly>
+						placeholder="Enter Chassis Number" value='<?php echo $premPaidBalance; ?>' readonly>
 
 				</div>				
 			</div>
@@ -171,7 +164,7 @@ $quoQueryResult = executeSql($conn,$sqlID);
 					<div class="col-md-3" align="left">Payment Method :</div>
 					<div class="col-md-3">
 						<input type="text" class="form-control" id="payMet"
-							placeholder="Enter Chassis Number" value='<?php echo $polQuoNum; ?>' >
+							placeholder="Enter Payment Method" >
 					</div>
 					<div class="col-md-3" align="right">Transaction Date :</div>
 					<div class="col-md-3">
@@ -183,12 +176,21 @@ $quoQueryResult = executeSql($conn,$sqlID);
 					<div class="col-md-3" align="left">Payment Amount :</div>
 					<div class="col-md-3">
 						<input type="text" class="form-control" id="payAmt"
-							placeholder="Enter Chassis Number" value='<?php echo $polQuoNum; ?>' >
+							placeholder="Enter Payment Amount">
 					</div>
 					<div class="col-md-3" align="right">Payee :</div>
 					<div class="col-md-3">
 						<input type="text" class="form-control" id="payee"
-							placeholder="Enter Chassis Number" value='<?php echo (-$premPaidBalance); ?>' >
+							placeholder="Enter Payee" >
+					</div>
+					</div>
+				<br>
+				<div class="row" style="margin:0em 0.5em 0em 0.5em;">
+					<div class="col-md-3" align="left">Update payment evidence :</div>
+					<div class="col-md-3">
+					</div>
+					<div class="col-md-3" align="right"></div>
+					<div class="col-md-3">
 					</div>
 					</div>
 				<br>
@@ -200,10 +202,10 @@ $quoQueryResult = executeSql($conn,$sqlID);
 						<input type="text" class="form-control" id="apst"
 							placeholder="Enter Chassis Number" value='<?php echo $premPaidStatusAprv; ?>' readonly>
 					</div>
-					<div class="col-md-3" align="right">Approval Remarks :</div>
+					<div class="col-md-3" align="right">Approval Comments :</div>
 					<div class="col-md-3">
 						<input type="text" class="form-control" id="aprm"
-							placeholder="Enter Chassis Number" value='<?php echo "" ?>' readonly>
+							placeholder="Enter Approval Comments" value='<?php echo "" ?>' readonly>
 					</div>
 				</div>
 				<br>
@@ -217,12 +219,14 @@ $quoQueryResult = executeSql($conn,$sqlID);
 				<div class="col-md-12" align="center">
 					<?php
 						if($premPaidStatusAprv == 'Y'){
+							echo "<a href='xx.php'><button type='button' class='btn btn-primary btn-md'>Save</button></a> ";
 							echo "<input type='Submit' class='btn btn-primary btn-md' value='Next'/>";
 						}
 						else{
 							echo "<a href='policyCreateStep1.php'><button type='button' class='btn btn-primary btn-md'>Edit Policy Info.</button></a> ";
-							echo "<a href='home.php'><button type='button' class='btn btn-primary btn-md'>Home</button></a> ";					
-							echo "<a href='xx.php'><button type='button' class='btn btn-primary btn-md'>Save</button></a> ";
+							echo "<a href='home.php'><button type='button' class='btn btn-primary btn-md'>Home</button></a> ";		
+							echo "<a href='xx.php'><button type='button' class='btn btn-primary btn-md'>Save</button></a> ";			
+							echo "<a href='xx.php'><button type='button' class='btn btn-primary btn-md'>Submit Payment</button></a> ";
 						}
 					?>
 				</div>
