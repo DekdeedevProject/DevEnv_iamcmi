@@ -12,74 +12,17 @@
     $val1 = $_GET['val1'];
     $val2 = $_GET['val2'];
 
-         if ($data=='paidStatus') { 
-            if($val1=='N'){
-            echo "<div class='row'> ";
-            echo "<div class='col-md-2' align='left'>สถานะการชำระเงิน:</div> ";
-            echo "<div class='col-md-2' id='paidStatus' name='paidStatus'>";
-            echo "<input type='radio' name='paidStatus' id='paidStatus' value='N' checked='checked' onchange=\"updateStatus('paidStatus', this.value, '-1')\"/> N ";
-            echo "<input type='radio' name='paidStatus' id='paidStatus' value='Y' onchange=\"updateStatus('paidStatus', this.value, '-1')\"/> Y";
-            echo "</div>";
-
-            }
-            else if($val1=='Y' && $val2=='-1'){
-             
-            echo "<div class='row'> ";
-            echo "<div class='col-md-2' align='left'>สถานะการชำระเงิน:</div> ";
-            echo "<div class='col-md-2' id='?' name='?'>";
-            echo "<input type='radio' name='paidStatus' id='paidStatus' value='N' onchange=\"updateStatus('paidStatus', this.value, '-1')\" /> N";
-            echo "<input type='radio' name='paidStatus' id='paidStatus' value='Y' checked='checked' onchange=\"updateStatus('paidStatus', this.value, '-1')\"/> Y ";  
-            echo "</div>";
-
-            echo "</div>";
-            echo "<br>";
-            echo "<div class='row'> ";
-            echo "<div class='col-md-2' align='left' id='?' name='?'>";
-            echo "วิธีการชำระเงิน:</div>"; 
-            echo "<div class='col-md-2' id='paidStatus' name='paidStatus'>";
-            echo "<input type='radio' name='' id='' value='N'/> Cash <br>";
-            echo "<input type='radio' name='' id='' value='N'/> Transfer <br>";
-            echo "<input type='radio' name='' id='' value='N'/> Credit Card <br>";
-            echo "</div>";
-            echo "</div>";
-              
-
-            }
-            else if($val1=='Y' && $val2=='N'){
-            echo "<div class='row'> ";
-            echo "<div class='col-md-2' align='left'>สถานะการชำระเงิน:</div> ";
-            echo "<div class='col-md-2' id='?' name='?'>";
-            echo "<input type='radio' name='paidStatus' id='paidStatus' value='N' /> N ";
-            echo "<input type='radio' name='paidStatus' id='paidStatus' value='Y' checked='checked' /> Y ";  
-            echo "</div>";
-
-            echo "<div class='col-md-2' align='right'>สถานะการอนุมัติ:</div> ";
-            echo "<div class='col-md-2' id='?' name='?'>";
-            echo "<input type='radio' name='' id='' value='N' checked='checked'/> N ";
-            echo "<input type='radio' name='' id='' value='Y' /> Y ";  
-            echo "</div>";
-            
-            echo "</div>"; 
-           }
-            else if($val1=='Y' && $val2=='Y'){
-            echo "<div class='row'> ";
-            echo "<div class='col-md-2' align='left'>สถานะการชำระเงิน:</div> ";
-            echo "<div class='col-md-2' id='?' name='?'>";
-            echo "<input type='radio' name='paidStatus' id='paidStatus' value='N' /> N ";
-            echo "<input type='radio' name='paidStatus' id='paidStatus' value='Y' checked='checked' /> Y ";  
-            echo "</div>";
-
-            echo "<div class='col-md-2' align='right'>สถานะการอนุมัติ:</div> ";
-            echo "<div class='col-md-2' id='?' name='?'>";
-            echo "<input type='radio' name='' id='' value='N' /> N ";
-            echo "<input type='radio' name='' id='' value='Y' checked='checked'/> Y ";  
-            echo "</div>";
-              
-           }
-            else{
-
-            }
-             
+         if ($data=='payMet4') { 
+            echo "<select class='form-control' name='payMet4' id='payMet4' >\n";
+            echo "<option value='0'>- เลือก payMet4 -</option>\n";
+            echo "<option value='1'>เงินสด</option>\n";
+            echo "<option value='2'>โอนเงิน</option>\n";
+         } 
+         else if ($data=='payApprSta5') { 
+            echo "<select class='form-control' name='payApprSta5' id='payApprSta5' >\n";
+            echo "<option value='0'>- เลือก payApprSta5 -</option>\n";
+            echo "<option value='1'>0</option>\n";
+            echo "<option value='2'>1</option>\n";
          } 
          else{
           echo "</select>\n";

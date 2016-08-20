@@ -40,10 +40,9 @@ function updateStatus(src, val1, val2){
 }
 
 function reloadFunc(){
-	src='paidStatus';
-	val1 = document.getElementById("paidStatusID").value;
-	val2 = document.getElementById("paidStatusApprID").value;
-	updateStatus(src, val1, val2);
+	updateStatus("payMet4", "", "");
+	updateStatus("payApprSta5", "", "");
+
 }
 
 function myFunction() {
@@ -120,15 +119,37 @@ $quoQueryResult = executeSql($conn,$sqlID);
 				</div>
 				<div class="col-md-3" align="right">สถานะกรมธรรม์ :</div>
 				<div class="col-md-3">
+					<?php
+ 					if($polStatusIDFK=="4"){
+ 						$polStatus="ดำเนินการจ่ายเงิน";
+ 					}
+ 					else if($polStatusIDFK=="5"){
+ 						$polStatus="ดำเนินการอนุมัติการจ่ายเงิน";
+ 					}
+ 					else{
+ 						$polStatus="error";
+ 					}
+ 					?>
 					<input type="text" class="form-control" id="polStatus"
-						placeholder="Enter Chassis Number" value='<?php echo $polStatusIDFK; ?>' readonly>
+						placeholder="Enter Policy Status" value='<?php echo $polStatus; ?>' readonly>
 				</div>
 			</div>
 			<br>
 			<div class="row">
 				<div class="col-md-3" align="left">สถานะการชำระเงิน :</div>
 				<div class="col-md-3">
- 
+
+ 					<?php
+ 					if($premPaidStatus=="Y"){
+ 						$premPaidStatus="จ่ายเรียบร้อยแล้ว";
+ 					}
+ 					else if($premPaidStatus=="N"){
+ 						$premPaidStatus="ค้างชำระ";
+ 					}
+ 					else{
+ 						$premPaidStatus="error";
+ 					}
+ 					?>
 					<input type="text" class="form-control" id="paySts"
 						placeholder="Enter Chassis Number" value='<?php echo $premPaidStatus; ?>' readonly>
 				</div>
@@ -150,6 +171,10 @@ $quoQueryResult = executeSql($conn,$sqlID);
 
 				</div>				
 			</div>
+			
+			<?php echo "policyStatus:".$polStatusIDFK ;
+			if($polStatusIDFK==4){ //STATUS:Payment In Progress
+			?>
 			<br>
 			<div style="border: 3px; border-style: solid; border-color: #a5a5a5;">
 				<div class="row">
@@ -162,9 +187,8 @@ $quoQueryResult = executeSql($conn,$sqlID);
 				<div class="row" style="margin:0em 0.5em 0em 0.5em;">
 					<br>
 					<div class="col-md-3" align="left">Payment Method :</div>
-					<div class="col-md-3">
-						<input type="text" class="form-control" id="payMet"
-							placeholder="Enter Payment Method" >
+					<div class="col-md-3" name="payMet4" id="payMet4">
+
 					</div>
 					<div class="col-md-3" align="right">Transaction Date :</div>
 					<div class="col-md-3">
@@ -198,9 +222,10 @@ $quoQueryResult = executeSql($conn,$sqlID);
 			<br>
 				<div class="row">
 					<div class="col-md-3" align="left">Approval Status :</div>
-					<div class="col-md-3">
-						<input type="text" class="form-control" id="apst"
-							placeholder="Enter Chassis Number" value='<?php echo $premPaidStatusAprv; ?>' readonly>
+					<div class="col-md-3" name="payApprSta4" id="payApprSta4">
+						<select class='form-control' name='payApprSta4' id='payApprSta4' disabled>
+						<option value='0'>- เลือก payApprSta4 -</option>
+					</select>
 					</div>
 					<div class="col-md-3" align="right">Approval Comments :</div>
 					<div class="col-md-3">
@@ -208,8 +233,75 @@ $quoQueryResult = executeSql($conn,$sqlID);
 							placeholder="Enter Approval Comments" value='<?php echo "" ?>' readonly>
 					</div>
 				</div>
-				<br>
 
+			<?php
+			}else if($polStatusIDFK==5){ //STATUS:Payment Approval In Progress
+			?>
+				<div class="row" style="margin:0em 0.5em 0em 0.5em;">
+					<br>
+					<div class="col-md-3" align="left">Payment Method :</div>
+					<div class="col-md-3">
+						<input type="text" class="form-control" id="payMet"
+							placeholder="Enter Payment Method" readonly>
+					</div>
+					<div class="col-md-3" align="right">Transaction Date :</div>
+					<div class="col-md-3">
+						<input type="text" class="form-control" id="curDate"  readonly>
+					</div>
+				</div>
+				<br>
+				<div class="row" style="margin:0em 0.5em 0em 0.5em;">
+					<div class="col-md-3" align="left">Payment Amount :</div>
+					<div class="col-md-3">
+						<select class='form-control' name='payApprSta4' id='payApprSta4' disabled>
+						<option value='0'>payApprSta4</option>
+						</select>
+					</div>
+					<div class="col-md-3" align="right">Payee :</div>
+					<div class="col-md-3">
+						<input type="text" class="form-control" id="payee"
+							placeholder="Enter Payee" readonly>
+					</div>
+					</div>
+				<br>
+				<div class="row" style="margin:0em 0.5em 0em 0.5em;">
+					<div class="col-md-3" align="left">Update payment evidence :</div>
+					<div class="col-md-3">
+					</div>
+					<div class="col-md-3" align="right"></div>
+					<div class="col-md-3">
+					</div>
+					</div>
+				<br>
+			<br>
+			<div style="border: 3px; border-style: solid; border-color: #a5a5a5;">
+				<div class="row">
+					<div class="col-md-12">
+						<div style="background-color: #EBECE4; height: 30px;">
+							<b>Update approval payment information</b>
+						</div>
+					</div>
+				</div>
+				<br>
+				<div class="row">
+					<div class="col-md-3" align="left">Approval Status :</div>
+					<div class="col-md-3" name="payApprSta5" id="payApprSta5">
+
+					</div>
+					<div class="col-md-3" align="right">Approval Comments :</div>
+					<div class="col-md-3">
+						<input type="text" class="form-control" id="aprm"
+							placeholder="Enter Approval Comments" value='<?php echo "" ?>' >
+					</div>
+				</div>
+				<br>
+			</div>	
+			<?php
+			}
+			else{ //STATUS:Other 
+				echo "STATUS: Other";
+			}
+			?>
 				
 			<input type="hidden" id="paidStatusID" name="paidStatusID" value='<?php echo $premPaidStatusAprv; ?>'>
 			<input type="hidden" id="paidStatusApprID" name="paidStatusApprID" value='<?php echo ""; ?>'>
@@ -219,8 +311,8 @@ $quoQueryResult = executeSql($conn,$sqlID);
 				<div class="col-md-12" align="center">
 					<?php
 						if($premPaidStatusAprv == 'Y'){
-							echo "<a href='xx.php'><button type='button' class='btn btn-primary btn-md'>Save</button></a> ";
-							echo "<input type='Submit' class='btn btn-primary btn-md' value='Next'/>";
+							echo "<a href='xx.php'><button type='button' class='btn btn-primary btn-md'>View Policy Info.</button></a> ";
+							echo "<input type='Submit' class='btn btn-primary btn-md' value='Issued'/>";
 						}
 						else{
 							echo "<a href='policyCreateStep1.php'><button type='button' class='btn btn-primary btn-md'>Edit Policy Info.</button></a> ";
