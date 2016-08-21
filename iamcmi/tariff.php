@@ -26,8 +26,8 @@
               setTariffID("","","","");
               $sqlID = "PCS1_014";
               $tarBodyResult = executeSql($conn,$sqlID);
-              echo "<select class='form-control' name='tarBody' id='tarBody' onChange=\"dochangeTariff('tarSubBody', '', this.value, '', '')\">\n";
-              echo "<option value='0'>- เลือกประเภท -</option>\n";
+              echo "<select class='form-control' name='tarBody' id='tarBody' onChange=\"dochangeTariff('tarSubBody', '', this.value, '', '')\" required>\n";
+              echo "<option value=''>- เลือกประเภท -</option>\n";
               while($tarBodyRow = $tarBodyResult->fetch_assoc()){
                 echo "<option value='$tarBodyRow[TAR_BodyName_TH]' >$tarBodyRow[TAR_BodyName_TH]</option>" ;
               }
@@ -35,8 +35,8 @@
               setTariffID("",$tarBody,"","");
               $sqlID = "PCS1_015";
               $tarSubBodyResult = executeSql($conn,$sqlID);
-              echo "<select class='form-control' name='tarSubBody' id='tarSubBody' onChange=\"dochangeTariff('tarUsage', '', '".$tarBody."', this.value, '')\">\n";
-              echo "<option value='0'>- เลือกประเภทย่อย -</option>\n";
+              echo "<select class='form-control' name='tarSubBody' id='tarSubBody' onChange=\"dochangeTariff('tarUsage', '', '".$tarBody."', this.value, '')\" required>\n";
+              echo "<option value=''>- เลือกประเภทย่อย -</option>\n";
               while($tarSubBodyRow = $tarSubBodyResult->fetch_assoc()){   
                 echo "<option value='$tarSubBodyRow[TAR_SubBodyName_TH]' >$tarSubBodyRow[TAR_SubBodyName_TH]</option>" ;
               }
@@ -45,7 +45,7 @@
               setTariffID("",$tarBody,$tarSubBody,"");
               $sqlID = "PCS1_016";
               $tarUsageResult = executeSql($conn,$sqlID);
-              echo "<select class='form-control' name='tarUsage' id='tarUsage' onChange=\"dochangeTariff('vehTARvehCodeFK', '', '".$tarBody."', '".$tarSubBody."', this.value)\">\n";
+              echo "<select class='form-control' name='tarUsage' id='tarUsage' onChange=\"dochangeTariff('vehTARvehCodeFK', '', '".$tarBody."', '".$tarSubBody."', this.value)\" required>\n";
               echo "<option value='0'>- เลือกการใช้งาน -</option>\n";
               while($tarUsageRow = $tarUsageResult->fetch_assoc()){
                 echo "<option value=\"$tarUsageRow[TAR_UsageName_TH]\" >$tarUsageRow[TAR_UsageName_TH]</option> \n" ;
@@ -66,8 +66,8 @@
               setTariffID("","","","");
               $sqlID = "PCS1_014";
               $tarBodyResult = executeSql($conn,$sqlID);
-              echo "<select class='form-control' name='tarBody' id='tarBody' onChange=\"dochangeTariff('tarSubBody', '', this.value, '', '')\">\n";
-              echo "<option value='0'>- เลือกประเภท -</option>\n";
+              echo "<select class='form-control' name='tarBody' id='tarBody' onChange=\"dochangeTariff('tarSubBody', '', this.value, '', '')\" required>\n";
+              echo "<option value=''>- เลือกประเภท -</option>\n";
               $tarBody = $tarRow["TAR_BodyName_TH"];
               while($tarBodyRow = $tarBodyResult->fetch_assoc()){
                 if(trim($tarBody)==trim($tarBodyRow["TAR_BodyName_TH"])){
@@ -87,8 +87,8 @@
               $sqlID = "PCS1_015";
               $tarSubBodyResult = executeSql($conn,$sqlID);
               $tarSubBody = $tarRow["TAR_SubBodyName_TH"];
-              echo "<select class='form-control' name='tarSubBody' id='tarSubBody' onChange=\"dochangeTariff('tarUsage', '', '".$tarBody."', this.value, '')\">\n";
-              echo "<option value='0'>- เลือกประเภทย่อย -</option>\n";
+              echo "<select class='form-control' name='tarSubBody' id='tarSubBody' onChange=\"dochangeTariff('tarUsage', '', '".$tarBody."', this.value, '')\" required>\n";
+              echo "<option value=''>- เลือกประเภทย่อย -</option>\n";
               while($tarSubBodyRow = $tarSubBodyResult->fetch_assoc()){   
                 if(trim($tarSubBody)==trim($tarSubBodyRow["TAR_SubBodyName_TH"])){
                 echo "<option value='$tarSubBodyRow[TAR_SubBodyName_TH]' selected='selected'>$tarSubBodyRow[TAR_SubBodyName_TH]</option>" ;
@@ -106,8 +106,8 @@
               $sqlID = "PCS1_016";
               $tarUsageResult = executeSql($conn,$sqlID);
               $tarUsage = $tarRow["TAR_UsageName_TH"];
-              echo "<select class='form-control' name='tarUsage' id='tarUsage' onChange=\"dochangeTariff('vehTARvehCodeFK', '', '".$tarBody."', '".$tarSubBody."', this.value)\">\n";
-              echo "<option value='0'>- เลือกการใช้งาน -</option>\n";
+              echo "<select class='form-control' name='tarUsage' id='tarUsage' onChange=\"dochangeTariff('vehTARvehCodeFK', '', '".$tarBody."', '".$tarSubBody."', this.value)\" required>\n";
+              echo "<option value=''>- เลือกการใช้งาน -</option>\n";
               while($tarUsageRow = $tarUsageResult->fetch_assoc()){
                 if(trim($tarUsage)==trim($tarUsageRow["TAR_UsageName_TH"])){
                 echo "<option value=\"$tarUsageRow[TAR_UsageName_TH]\" selected='selected'>$tarUsageRow[TAR_UsageName_TH]</option> \n" ;
