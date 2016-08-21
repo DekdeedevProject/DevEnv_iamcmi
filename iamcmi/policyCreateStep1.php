@@ -381,17 +381,17 @@ $quoQueryResult = executeSql($conn,$sqlID);
 				<div class="col-md-2" align="left">ความจุ :</div>
 				<div class="col-md-2">
 					<input type="text" class="form-control" id="vehCapacity" name="vehCapacity" value='<?php echo $vehCapacity ?>'
-						placeholder="ความจุ" required/>
+						placeholder="ความจุ"/>
 				</div>
 				<div class="col-md-2" align="right">น้ำหนัก :</div>
 				<div class="col-md-2">
 					<input type="text" class="form-control" id="vehWeight" name="vehWeight" value='<?php echo $vehWeight ?>'
-						placeholder="น้ำหนัก" required/>
+						placeholder="น้ำหนัก" />
 				</div>
 				<div class="col-md-2" align="right">จำนวนที่นั่ง :</div>
 				<div class="col-md-2">
 					<input type="text" class="form-control" id="vehSeat" name="vehSeat" value='<?php echo $vehSeat ?>'
-						placeholder="จำนวนที่นั่ง" required/> 
+						placeholder="จำนวนที่นั่ง" /> 
 				</div>
 			</div>
 			<br>
@@ -400,7 +400,7 @@ $quoQueryResult = executeSql($conn,$sqlID);
 				<div class="col-md-2" align="left">เลขตัวถัง :</div>
 				<div class="col-md-2">
 					<input type="text" class="form-control" id="vehChassisNum" name="vehChassisNum" value='<?php echo $vehChassisNum ?>'
-						placeholder="เลขตัวถัง" required>
+						placeholder="เลขตัวถัง" >
 				</div>
 				<div class="col-md-2" align="right">ทะเบียนรถ:</div>
 				<div class="col-md-2">
@@ -529,7 +529,7 @@ $quoQueryResult = executeSql($conn,$sqlID);
 					<div class="date" id="datetimepicker6">						
 						<div id="datetimepicker6" class="input-group date"> 
 			               <input type="text" class="form-control" data-format="dd-MM-yyyy" placeholder="วันเกิด" 
-							id="PHD_perDOB" name="PHD_perDOB" value='<?php echo $PHD_perDOB; ?>' required>
+							id="PHD_perDOB" name="PHD_perDOB" value='<?php echo $PHD_perDOB; ?>' >
 			                <span class="add-on"> 
 			                    <i class="glyphicon glyphicon-calendar cld"></i> 
 			                </span> 
@@ -621,7 +621,7 @@ $quoQueryResult = executeSql($conn,$sqlID);
 			<div class="row">
 				<div class="col-md-2" align="left">อีเมล์ :</div>
 				<div class="col-md-2">
-					<input type="text" class="form-control" placeholder="อีเมล์" id="PHD_addrEmail"  name="PHD_addrEmail" value='<?php echo $PHD_addrEmail ?>' required>
+					<input type="text" class="form-control" placeholder="อีเมล์" id="PHD_addrEmail"  name="PHD_addrEmail" value='<?php echo $PHD_addrEmail ?>' >
 				</div>
 				<div class="col-md-2" align="right">ประเภทเบอร์ติดต่อ:</div>
 				<input type="hidden" class="form-control" id="PHD_addrContType1ID" name="PHD_addrContType1ID" value='<?php echo $PHD_addrContType1 ?>'>
