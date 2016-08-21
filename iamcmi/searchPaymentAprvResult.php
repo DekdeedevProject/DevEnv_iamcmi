@@ -171,6 +171,10 @@ if(!empty($_POST['aprvPolQuoNum'])) {
     // echo $polQuoList;
 }
 
+$sqlID = "SPAR_001";
+setPolQuoList($polQuoList);
+$updateResult 	= executeSql($conn,$sqlID);
+
 if(isset($_POST['sBy']) && isset($_POST['sDesc'])){
 $sBy = trim($_POST['sBy']);
 $sDesc = trim($_POST['sDesc']);

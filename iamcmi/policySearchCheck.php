@@ -9,7 +9,7 @@ switch ($status) {
 	case '1':
 	//Status: Quote in Progress
 	$_SESSION["polQuoNum"] = $_GET['polQuoNum'];
-	redirect("policyCreateStep2.php");
+	redirect("policyCreateStep1.php");
 	// echo "<a href='policyCreateStep2.php'><input type='Button' value='Next' class='btn btn-primary btn-md'/></a>";
 	break;
 	case '2':

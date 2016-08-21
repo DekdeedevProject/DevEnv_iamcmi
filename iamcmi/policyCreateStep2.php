@@ -121,13 +121,14 @@ $quoQueryResult = executeSql($conn,$sqlID);
 				<div class="col-md-3" align="right">สถานะกรมธรรม์ :</div>
 				<div class="col-md-3">
 					<input type="text" class="form-control" id="polStatus"
-						placeholder="Enter Chassis Number" value='<?php echo (-$premPaidBalance); ?>' readonly>
+						placeholder="Enter Chassis Number" value='<?php echo $polStatusIDFK; ?>' readonly>
 				</div>
 			</div>
 			<br>
 			<div class="row">
 				<div class="col-md-3" align="left">สถานะการชำระเงิน :</div>
 				<div class="col-md-3">
+ 
 					<input type="text" class="form-control" id="paySts"
 						placeholder="Enter Chassis Number" value='<?php echo $polQuoNum; ?>' readonly>
 				</div>
@@ -135,14 +136,25 @@ $quoQueryResult = executeSql($conn,$sqlID);
 				<div class="col-md-3">
 					<input type="text" class="form-control" id="oustd"
 						placeholder="Enter Chassis Number" value='<?php echo (-$premPaidBalance); ?>' readonly>
+
+					<input type="text" class="form-control" id="chas"
+						placeholder="Enter Chassis Number" value='<?php echo $premPaidStatus; ?>' readonly>
+				</div>
+				<div class="col-md-3" align="right">เบี้ยที่ต้องชำระ :</div>
+				<div class="col-md-3">
+					<input type="text" class="form-control" id="chas"
+						placeholder="Enter Chassis Number" value='<?php echo $premTotal; ?>' readonly>
+
 				</div>
 			</div>
 			<br>
 			<div class="row">
 				<div class="col-md-9" align="right">ยอดคงค้าง :</div>
 				<div class="col-md-3">
+
 					<input type="text" class="form-control" id="outAmt"
 						placeholder="Enter Chassis Number" value='<?php echo $polQuoNum; ?>' readonly>
+
 				</div>				
 			</div>
 			<br>
@@ -186,19 +198,19 @@ $quoQueryResult = executeSql($conn,$sqlID);
 					<div class="col-md-3" align="left">Approval Status :</div>
 					<div class="col-md-3">
 						<input type="text" class="form-control" id="apst"
-							placeholder="Enter Chassis Number" value='<?php echo $polQuoNum; ?>' readonly>
+							placeholder="Enter Chassis Number" value='<?php echo $premPaidStatusAprv; ?>' readonly>
 					</div>
 					<div class="col-md-3" align="right">Approval Remarks :</div>
 					<div class="col-md-3">
 						<input type="text" class="form-control" id="aprm"
-							placeholder="Enter Chassis Number" value='<?php echo (-$premPaidBalance); ?>' readonly>
+							placeholder="Enter Chassis Number" value='<?php echo "" ?>' readonly>
 					</div>
 				</div>
 				<br>
 
 				
-			<input type="hidden" id="paidStatusID" name="paidStatusID" value='<?php echo $premPaidStatus; ?>'>
-			<input type="hidden" id="paidStatusApprID" name="paidStatusApprID" value='<?php echo $premPaidStatusAprv; ?>'>
+			<input type="hidden" id="paidStatusID" name="paidStatusID" value='<?php echo $premPaidStatusAprv; ?>'>
+			<input type="hidden" id="paidStatusApprID" name="paidStatusApprID" value='<?php echo ""; ?>'>
 		
 			<br>
 			<div class="row">
