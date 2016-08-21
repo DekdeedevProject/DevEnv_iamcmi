@@ -45,7 +45,7 @@ unset($_SESSION["polQuoNum"]);
 <body>
         <div class="container-fluid confDiv">
             <br><br><br><br>
-            <section id="Homepage" style="background-color:orange;">
+            <section id="Homepage">
                 <div class="row">
                     <br><br>
                     <div data-scrollreveal="wait 0.5s and then ease-in-out 50px" class="col-md-6 col-md-offset-3">
@@ -58,8 +58,8 @@ unset($_SESSION["polQuoNum"]);
                 </div><br><br>
                 <div class="row">
                     <div data-scrollreveal="enter from the left 500px" class="col-md-8 col-md-offset-2">
-                        <div class="align-center">
-                            <div class="col-xl-12 align-center">
+                        <div>
+                            <div class="col-xl-12 homeIcon">
                                 <div class="hi-icon-effect-9 hi-icon-effect-9a">
                                     <a href="policyCreateStep1.php" onMouseOver="document.MyImage1.src='../img/create-hover.png'; " onMouseOut="document.MyImage1.src='../img/create-icono.png';"><img src="../img/create-icono.png" width="120" height="120"  name="MyImage1"></a> 
                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                              

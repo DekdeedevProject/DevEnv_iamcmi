@@ -198,8 +198,10 @@ h1 a.navbar-brand {
 
 #Homepage {
     padding-bottom: 13.5%;
-    background-color:orange;
+    /*background-color:orange;*/
     display: block;
+    position: relative;
+    padding-top: 7%;
 }
 
 

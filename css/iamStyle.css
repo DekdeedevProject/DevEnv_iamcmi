@@ -85,3 +85,9 @@ body {
     max-height: 80vh; 
 }
 
+.homeIcon{
+    text-align: center;
+    position: relative;
+    display: block;
+}
+
