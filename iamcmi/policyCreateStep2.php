@@ -40,7 +40,9 @@ function updateStatus(src, val1, val2){
 }
 
 function reloadFunc(){
-	updateStatus("payMet4", "", "");
+	
+	var premPayMethod = document.getElementById('premPayMethod').value;
+	updateStatus("payMet4", premPayMethod, "");
 	updateStatus("payApprSta5", "", "");
 
 }
@@ -189,6 +191,7 @@ $quoQueryResult = executeSql($conn,$sqlID);
 				</div>
 				<div class="row" style="margin:0em 0.5em 0em 0.5em;">
 					<br>
+					<input type="hidden" class="form-control" id="premPayMethod" name="premPayMethod" value='<?php echo $premPayMethod; ?>'>
 					<div class="col-md-3" align="left">Payment Method :</div>
 					<div class="col-md-3" name="payMet4" id="payMet4">
 
@@ -202,12 +205,12 @@ $quoQueryResult = executeSql($conn,$sqlID);
 				<div class="row" style="margin:0em 0.5em 0em 0.5em;">
 					<div class="col-md-3" align="left">Payment Amount :</div>
 					<div class="col-md-3">
-						<input type="text" class="form-control" name="payAmt4" id="payAmt4" 
+						<input type="text" class="form-control" name="payAmt4" id="payAmt4"
 							placeholder="Enter Payment Amount">
 					</div>
 					<div class="col-md-3" align="right">Payee :</div>
 					<div class="col-md-3">
-						<input type="text" class="form-control" id="premPayeeName" name="premPayeeName"
+						<input type="text" class="form-control" id="premPayeeName" name="premPayeeName" value='<?php echo $premPayeeName; ?>'
 							placeholder="Enter Payee" >
 					</div>
 					</div>
