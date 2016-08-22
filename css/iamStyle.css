@@ -78,11 +78,6 @@ body {
 
 .confDiv{
   background-color: orange;
-  height: 100%;
-}
-
-.modal-body {
-    max-height: 80vh; 
 }
 
 .homeIcon{

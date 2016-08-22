@@ -61,7 +61,7 @@
       <div class="container"> 
         <br><br><br><br>
           <div class="col-xs-6 col-sm-4"></div>
-            <div class="col-xs-6 col-sm-4">  
+            <div class="col-xs-12 col-sm-4">  
               <!-- Add the extra clearfix for only the required viewport -->
               <div class="clearfix visible-xs-block"></div>     
 
