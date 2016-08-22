@@ -12,10 +12,10 @@ $policySearch = $title."Policy Search";
 $redbookUpdate = $title."Update Redbook Information";
 
 function connOpen(){
-	$hostname = "localhost";
-	$username = "root";
-	$password = "root";
-	$dbName = "TestDB";
+	$hostname = "mysql.hostinger.in.th";
+	$username = "u444298262_root";
+	$password = "root1234";
+	$dbName = "u444298262_dev";
 	// MySQLi Object-Oriented	
 	$conn = new mysqli($hostname, $username, $password, $dbName,8889) or die("Connection failed: " . $conn->connect_error);
 	$conn->query("set names utf8");
