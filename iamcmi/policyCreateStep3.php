@@ -1,3 +1,10 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<title>Issue</title>
 <!-- MAIN STYLE SECTION-->
 <link href="../assets/plugins/isotope/isotope.css" rel="stylesheet" media="screen" />
 <link href="../assets/plugins/fancybox/jquery.fancybox.css" rel="stylesheet" />
