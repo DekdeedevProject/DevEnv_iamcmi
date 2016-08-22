@@ -239,7 +239,7 @@ $quoQueryResult = executeSql($conn,$sqlID);
 				<br>
 			</div>
 			<br>
-				<div class="row">
+				<div class="row" style="margin:0em 0.5em 0em 0.5em;" >
 					<div class="col-md-3" align="left">Approval Status :</div>
 					<div class="col-md-3" name="payApprSta4" id="payApprSta4">
 						<select class='form-control' name='payApprSta4' id='payApprSta4' disabled>
@@ -302,7 +302,7 @@ $quoQueryResult = executeSql($conn,$sqlID);
 					</div>
 				</div>
 				<br>
-				<div class="row">
+				<div class="row" style="margin:0em 0.5em 0em 0.5em;">
 					<div class="col-md-3" align="left">Approval Status :</div>
 					<div class="col-md-3" name="payApprSta5" id="payApprSta5">
 
@@ -364,7 +364,7 @@ $quoQueryResult = executeSql($conn,$sqlID);
 					</div>
 				</div>
 				<br>
-				<div class="row">
+				<div class="row" style="margin:0em 0.5em 0em 0.5em;">
 					<div class="col-md-3" align="left">Approval Status :</div>
 					<div class="col-md-3" name="payApprSta5" id="payApprSta5">
 
