@@ -82,7 +82,7 @@ $sql="";
 	$accUser=$GLOBALS['accUser'];
 	$accPass=$GLOBALS['accPass'];
 	$sql = "	SELECT * 
-			FROM Account
+			FROM account
 			WHERE ACC_User='".$accUser."' 
 			AND ACC_Pass='".$accPass."';";
 	break;
@@ -90,7 +90,7 @@ $sql="";
 	case 'PCS1_020':
 	$polOrgIDFK = $GLOBALS['polOrgIDFK'];
 	$sql = "SELECT * 
-			FROM Organization
+			FROM organization
 			WHERE ORG_ID_PK='".$polOrgIDFK."'
 			LIMIT 1;";
 	break;
