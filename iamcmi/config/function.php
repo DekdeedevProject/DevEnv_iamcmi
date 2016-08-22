@@ -245,8 +245,8 @@ $sql="";
 	$polVEHIDFK=$GLOBALS['polVEHIDFK'];
 	$polUpdatedDate=$GLOBALS['polUpdatedDate'];
 	$polUpdatedBy=$GLOBALS['polUpdatedBy'];
-	echo "<br>PSS1_002<br>";
-	echo $sql ="	INSERT INTO policy (
+	// echo "<br>PSS1_002<br>";
+	$sql ="	INSERT INTO policy (
 				POL_Org_ID_FK,
 				POL_Status_ID_FK,
 				POL_MasPolNum,
@@ -443,8 +443,8 @@ $sql="";
 	$vehQuoNumRef=$GLOBALS['vehQuoNumRef'];
 	$vehUpdatedDate=$GLOBALS['vehUpdatedDate'];
 	$vehUpdatedBy=$GLOBALS['vehUpdatedBy'];
-	echo "<br>PSS1_006<br>";
-	echo $sql="INSERT INTO vehical (
+	// echo "<br>PSS1_006<br>";
+	$sql="INSERT INTO vehical (
 			VEH_TAR_ID_FK,
 			VEH_TAR_VehCode_FK,
 			VEH_RED_KEY_FK,
@@ -507,8 +507,8 @@ $sql="";
 	$premPaidDate=$GLOBALS['premPaidDate'];
 	$premUpdatedDate=$GLOBALS['premUpdatedDate'];
 	$premUpdatedBy=$GLOBALS['premUpdatedBy'];	
-	echo "<br>PSS1_007<br>";
-	echo $sql =" INSERT INTO premium (
+	// echo "<br>PSS1_007<br>";
+	$sql =" INSERT INTO premium (
 				PREM_StdNet,
 				PREM_StdVat,
 				PREM_StdStampDuty,
@@ -641,8 +641,8 @@ $sql="";
 	$vehSeat=$GLOBALS['vehSeat'];
 	$vehWeight=$GLOBALS['vehWeight'];
 
-	echo "<br>PSS1_008<br>";
-	echo $sql ="	UPDATE policy 
+	// echo "<br>PSS1_008<br>";
+	$sql ="	UPDATE policy 
 				JOIN vehical
 				ON POL_VEH_ID_FK=VEH_ID_PK
 				JOIN premium

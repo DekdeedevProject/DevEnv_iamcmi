@@ -3,16 +3,17 @@ require_once('config/config.php');
 session_start();
 $conn = connOpen();
 include 'config/condition/PSS_CON_001.php';
+// include 'config/condition/PSS_CON_001_echo.php';
 $startDatetime=$_SESSION["startSessionDateTime"];
-echo $polQuoNum=$_SESSION["polQuoNum"];
+// echo $polQuoNum=$_SESSION["polQuoNum"];
 $updatedBy=$_SESSION["usrName"];
 
 if($_POST['btn']=="Save"){
-	echo "save";
+	// echo "save";
 	$polStatusIDFK=1;
 }
 else{
-	echo "submit";
+	// echo "submit";
 	$polStatusIDFK=4;
 }
 
@@ -22,8 +23,8 @@ $polSearchResult = executeSql($conn,$sqlID);
 
 if($polSearchResult){
 $polSearchSize = $polSearchResult->num_rows;
-echo "polQuoNum: ".$polQuoNum."<br>";
-echo "polSearchSize: ".$polSearchSize."<br>";
+// echo "polQuoNum: ".$polQuoNum."<br>";
+// echo "polSearchSize: ".$polSearchSize."<br>";
 	if($polSearchSize==0){
 		// // getAlertMsg("CREATE NEW POLICY");
 		// //Policyholder Information		
@@ -175,7 +176,7 @@ echo "polSearchSize: ".$polSearchSize."<br>";
 		}
 	}
 	else{
-	echo "UPDATE EXISTING POLICY";	
+	// echo "UPDATE EXISTING POLICY";	
 
 	$sqlID ="PSS1_007";
 	if($premDiscountFlag=='Y'){
@@ -279,12 +280,12 @@ echo "polSearchSize: ".$polSearchSize."<br>";
 
 //redirect("policyCreateStep1.php");
 if($_POST['btn']=="Save"){
-// redirect("policyCreateStep1.php");		
-echo "<a href='policyCreateStep1.php'><input type='Button' value='Next' class='btn btn-primary btn-md'/></a>";	
+redirect("policyCreateStep1.php");		
+// echo "<a href='policyCreateStep1.php'><input type='Button' value='Next' class='btn btn-primary btn-md'/></a>";	
 }
 else{
-// redirect("policyCreateStep2.php");
-echo "<a href='policyCreateStep2.php'><input type='Button' value='Next' class='btn btn-primary btn-md'/></a>";
+redirect("policyCreateStep2.php");
+// echo "<a href='policyCreateStep2.php'><input type='Button' value='Next' class='btn btn-primary btn-md'/></a>";
 }
 connClose($conn);
 
