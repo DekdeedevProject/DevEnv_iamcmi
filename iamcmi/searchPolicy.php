@@ -263,7 +263,7 @@ $no=1;
 			<tr align="left">
 		     	<th scope="row"><?php echo $no++; ?></th>
 				<td>
-				<form action="policySearchCheck.php" id="cmi" method="GET">	
+				<form action="searchCheck.php" id="cmi" method="GET">	
 					<input type="hidden" name="polStatusIDFK" id='<?php echo $searchRow["POL_Status_ID_FK"] ?>' value='<?php echo $searchRow["POL_Status_ID_FK"] ?>'/>
 					<input type="hidden" name="polQuoNum" id='<?php echo $searchRow["POL_ID_PK"] ?>' value='<?php echo $searchRow["POL_QuoNum"] ?>'/>
 					<input type="Submit" value='<?php echo $searchRow["POL_QuoNum"] ?>'/>
