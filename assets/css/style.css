@@ -201,7 +201,8 @@ h1 a.navbar-brand {
     /*background-color:orange;*/
     display: block;
     position: relative;
-    padding-top: 7%;
+    padding-top: 5%;
+    width: 100%;
 }
 
 

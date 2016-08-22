@@ -48,8 +48,7 @@ unset($_SESSION["polQuoNum"]);
             <section id="Homepage">
                 <div class="row">
                     <br><br>
-                    <div data-scrollreveal="wait 0.5s and then ease-in-out 50px" class="col-md-6 col-md-offset-3">
-
+                    <div data-scrollreveal="wait 0.5s and then ease-in-out 50px" class="col-md-6 col-md-offset-3" style="margin-bottom: 1.5em;">
                         <div class="align-center">
                             <h2 class="main-text">WELCOME TO IAMCMI</h2>
 
@@ -57,17 +56,26 @@ unset($_SESSION["polQuoNum"]);
                     </div>
                 </div><br><br>
                 <div class="row">
-                    <div data-scrollreveal="enter from the left 500px" class="col-md-8 col-md-offset-2">
+                    <div data-scrollreveal="enter from the left" class="col-md-8 col-md-offset-4">
                         <div>
-                            <div class="col-xl-12 homeIcon">
-                                <div class="hi-icon-effect-9 hi-icon-effect-9a">
+                            <div class="col-xl-12 col-md-12 homeIcon">
+                                <!-- <div class="">
                                     <a href="policyCreateStep1.php" onMouseOver="document.MyImage1.src='../img/create-hover.png'; " onMouseOut="document.MyImage1.src='../img/create-icono.png';"><img src="../img/create-icono.png" width="120" height="120"  name="MyImage1"></a> 
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                              
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                              
                                     <a href="searchPolicy.php" onMouseOver="document.MyImage2.src='../img/query-hover.png';" onMouseOut="document.MyImage2.src='../img/search-icono.png';"><img src="../img/search-icono.png" width="120" height="120" name="MyImage2"></a>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <a href="print.php" onMouseOver="document.MyImage3.src='../img/print-hover.png';" onMouseOut="document.MyImage3.src='../img/print-icono.png';"><img src="../img/print-icono.png" width="120" height="120" name="MyImage3"></a>
+                                </div> -->
+                                <div class="col-xs-12 col-md-2 col-md-offset3">
+                                    <a href="policyCreateStep1.php" onMouseOver="document.MyImage1.src='../img/create-hover.png'; " onMouseOut="document.MyImage1.src='../img/create-icono.png';"><img src="../img/create-icono.png" width="120" height="120"  name="MyImage1"></a>
+                                </div>
+                                <div class="col-xs-12 col-md-2">
+                                    <a href="searchPolicy.php" onMouseOver="document.MyImage2.src='../img/query-hover.png';" onMouseOut="document.MyImage2.src='../img/search-icono.png';"><img src="../img/search-icono.png" width="120" height="120" name="MyImage2"></a>
+                                </div>
+                                <div class="col-xs-12 col-md-2">
                                     <a href="print.php" onMouseOver="document.MyImage3.src='../img/print-hover.png';" onMouseOut="document.MyImage3.src='../img/print-icono.png';"><img src="../img/print-icono.png" width="120" height="120" name="MyImage3"></a>
                                 </div>
-                                <br />
+                                <br/>
                             </div>
                         </div>
                     </div>

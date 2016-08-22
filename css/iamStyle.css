@@ -86,3 +86,9 @@ body {
     display: block;
 }
 
+
+#footer{
+  text-align: center;
+  background-color:#e5e5e5;
+  vertical-align: middle;
+}
