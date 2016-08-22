@@ -390,7 +390,7 @@ $sql="";
 	$addrUpdatedDate=$GLOBALS['addrUpdatedDate'];
 	$addrUpdatedBy=$GLOBALS['addrUpdatedBy'];
 
-	$sql =" INSERT INTO Address (
+	$sql =" INSERT INTO address (
 			ADDR_Line1, 
 			ADDR_Line2, 
 			ADDR_SubDist, 
