@@ -205,8 +205,21 @@ $quoQueryResult = executeSql($conn,$sqlID);
 				<div class="row" style="margin:0em 0.5em 0em 0.5em;">
 					<div class="col-md-3" align="left">Payment Amount :</div>
 					<div class="col-md-3">
+						<?php
+						if($premPaidBalance>=0){
+						?>	
+						<input type="text" class="form-control" name="payAmt4" id="payAmt4"
+							placeholder="" readonly>
+						<?php
+						}
+						else{
+						?>	
 						<input type="text" class="form-control" name="payAmt4" id="payAmt4"
 							placeholder="Enter Payment Amount">
+						<?php
+						}
+						?>
+						
 					</div>
 					<div class="col-md-3" align="right">Payee :</div>
 					<div class="col-md-3">
@@ -230,13 +243,13 @@ $quoQueryResult = executeSql($conn,$sqlID);
 					<div class="col-md-3" align="left">Approval Status :</div>
 					<div class="col-md-3" name="payApprSta4" id="payApprSta4">
 						<select class='form-control' name='payApprSta4' id='payApprSta4' disabled>
-						<option value='0'>- เลือก payApprSta4 -</option>
+						<option value='0'>- เลือกผลการอนุมัติ -</option>
 					</select>
 					</div>
 					<div class="col-md-3" align="right">Approval Comments :</div>
 					<div class="col-md-3">
 						<input type="text" class="form-control" id="aprm"
-							placeholder="Enter Approval Comments" value='<?php echo "" ?>' readonly>
+							placeholder="ระบุเหตุผลเพิ่มเติม" value='<?php echo "" ?>' readonly>
 					</div>
 				</div>
 
@@ -297,7 +310,7 @@ $quoQueryResult = executeSql($conn,$sqlID);
 					<div class="col-md-3" align="right">Approval Comments :</div>
 					<div class="col-md-3">
 						<input type="text" class="form-control" id="aprm"
-							placeholder="Enter Approval Comments" value='<?php echo "" ?>' >
+							placeholder="ระบุเหตุผลเพิ่มเติม" value='<?php echo "" ?>' >
 					</div>
 				</div>
 				<br>
@@ -359,7 +372,7 @@ $quoQueryResult = executeSql($conn,$sqlID);
 					<div class="col-md-3" align="right">Approval Comments :</div>
 					<div class="col-md-3">
 						<input type="text" class="form-control" id="aprm"
-							placeholder="Enter Approval Comments" value='<?php echo "" ?>' >
+							placeholder="ระบุเหตุผลเพิ่มเติม" value='<?php echo "" ?>' >
 					</div>
 				</div>
 				<br>

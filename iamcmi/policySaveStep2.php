@@ -59,7 +59,7 @@
 	}else if($btn=="Issue"){
 		$polStatusIDFK="2";
 
-		$sql = "UPDATE Policy 
+		$sql = "UPDATE policy 
 			SET POL_Num 			='$polQuoNum', 
 				POL_Status_ID_FK	='$polStatusIDFK', -- POL_Status_ID_FK: 2=Issued
 				POL_IssueDate		=CURRENT_TIMESTAMP,
@@ -81,7 +81,7 @@
 		$polStatusIDFK="6";
 		$premPaidStatusAprv="Y";
 
-		$sql = "UPDATE Policy 
+		$sql = "UPDATE policy 
 			JOIN premium
 			ON POL_PREM_ID_FK=PREM_ID_PK 
 			SET POL_Status_ID_FK	='$polStatusIDFK', -- POL_Status_ID_FK: 2=Issued
@@ -114,7 +114,7 @@
 		$polStatusIDFK="5";
 		$premPaidStatus="Y";
 
-		$sql = "UPDATE Policy 
+		$sql = "UPDATE policy 
 			JOIN premium
 			ON POL_PREM_ID_FK=PREM_ID_PK 
 			SET POL_Status_ID_FK	='$polStatusIDFK', -- POL_Status_ID_FK: 2=Issued
