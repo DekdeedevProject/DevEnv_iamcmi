@@ -138,7 +138,7 @@ $sql="";
 
 	case 'PCS1_002':
 	$sql 	= "	SELECT * 
-				FROM T_provinces
+				FROM t_provinces
 				ORDER BY PROVINCE_NAME;";
 	break;
 
@@ -153,7 +153,7 @@ $sql="";
 				vehical.*,
 				t_redbook.*,
 				premium.*,
-				T_PerSaluType.*,
+				t_perSaluType.*,
 				PHD.PER_ID_PK	 as 	PHD_PER_ID_PK,
 				PHD.PER_Salu	 as 	PHD_PER_Salu,
 				PHD.PER_FName	 as 	PHD_PER_FName,
@@ -201,13 +201,13 @@ $sql="";
 				ON POL_CUS_ID_FK_PHD=PHD.PER_ID_PK
 			INNER JOIN address	as PHDA
 				ON POL_CUS_Addr_ID_PHD=PHDA.ADDR_ID_PK
-			INNER JOIN T_subdistricts	as PHDAsubd
+			INNER JOIN t_subdistricts	as PHDAsubd
 				ON PHDA.ADDR_SubDist=PHDAsubd.SUBDISTRICT_CODE	
-			INNER JOIN T_districts	as PHDAdist
+			INNER JOIN t_districts	as PHDAdist
 				ON PHDA.ADDR_Dist=PHDAdist.DISTRICT_ID	
-			INNER JOIN T_provinces	as PHDAprov
+			INNER JOIN t_provinces	as PHDAprov
 				ON PHDA.ADDR_Prov=PHDAprov.PROVINCE_ID	
-			INNER JOIN T_PerSaluType
+			INNER JOIN t_perSaluType
 				ON PER_Salu=PER_Salu_ID_PK		
 			WHERE POL_QuoNum='".$polQuoNum."';";
 	break;
@@ -304,13 +304,13 @@ $sql="";
 
 	case 'PCS1_004':
 	$sql 	= "	SELECT * 
-				FROM T_AddrContType
+				FROM t_addrContType
 				ORDER BY ADDR_ContType_ID_PK;";
 	break;
 
 	case 'PCS1_005':
 	$sql 	= "	SELECT * 
-				FROM T_PerCardType
+				FROM t_perCardType
 				ORDER BY PER_CardType_ID_PK;";
 	break;
 
@@ -781,7 +781,7 @@ $sql="";
 	case 'PCS1_010':
 	$provID=$GLOBALS['provID'];
 	$sql 	= "SELECT *
-				FROM T_districts
+				FROM t_districts
 				WHERE PROVINCE_ID='".$provID."'
 				ORDER BY DISTRICT_NAME;";
 	break;
@@ -790,7 +790,7 @@ $sql="";
 	$provID=$GLOBALS['provID'];
 	$distID=$GLOBALS['distID'];
 	$sql 	= "	SELECT *
-				FROM T_subdistricts
+				FROM t_subdistricts
 				WHERE PROVINCE_ID='".$provID."' AND DISTRICT_ID='".$distID."'
 				ORDER BY SUBDISTRICT_NAME;";
 	break;
@@ -798,7 +798,7 @@ $sql="";
 	case 'PCS1_012':
 	$subDistID=$GLOBALS['subDistID'];
 	$sql 	= "	SELECT *
-				FROM T_zipcodes
+				FROM t_zipcodes
 				WHERE subdistrict_code='".$subDistID."'
 				ORDER BY zipcode;";
 	break;
@@ -852,7 +852,7 @@ $sql="";
 
 	case 'PCS1_018':
 	$sql 	= "	SELECT *
-				FROM T_PerSaluType
+				FROM t_perSaluType
 				ORDER BY PER_Salu_TH
 				;";
 	break;
