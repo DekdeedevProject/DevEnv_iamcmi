@@ -2,7 +2,7 @@
 require_once('config/config.php'); 
 session_start();
 $conn = connOpen();
-include 'config/Condition/PSS_CON_001.php';
+include 'config/condition/PSS_CON_001.php';
 $startDatetime=$_SESSION["startSessionDateTime"];
 echo $polQuoNum=$_SESSION["polQuoNum"];
 $updatedBy=$_SESSION["usrName"];
