@@ -1025,7 +1025,8 @@ $sql="";
 				ON POL_CUS_ID_FK_PHD=PHD.PER_ID_PK
 			INNER JOIN address	as PHDA
 				ON POL_CUS_Addr_ID_PHD=PHDA.ADDR_ID_PK
-			WHERE PREM_PaidStatusAprv != 'Y'		
+			WHERE PREM_PaidStatus != 'N'	
+				AND PREM_PaidStatusAprv != 'Y'	
 			ORDER BY POL_ID_PK DESC;";
 	break;
 

@@ -24,11 +24,13 @@ switch ($status) {
 	break;
 	case '4':
 	case '5':
+	case '6':
 	//Status: Payment in Progress
 	$_SESSION["polQuoNum"] = $_GET['polQuoNum'];
 	redirect("policyCreateStep2.php");
 	// echo "<a href='policyCreateStep2.php'><input type='Button' value='Next' class='btn btn-primary btn-md'/></a>";
 	break;
+
 	default:
 	redirect("home.php");
 	// echo "<a href='home.php'><input type='Button' value='Next' class='btn btn-primary btn-md'/></a>";

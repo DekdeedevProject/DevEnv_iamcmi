@@ -156,24 +156,26 @@ include 'config/config.php';
 include 'header.php'; 
 unset($_SESSION["polQuoNum"]);
 
-if(!empty($_POST['aprvPolQuoNum'])) {
-	$count = 0;
-	$polQuoList; 
-    foreach($_POST['aprvPolQuoNum'] as $check) {
-        if($count>0){
-        	$polQuoList=$polQuoList." , '".$check."'";
-        }
-        else{
-        	$polQuoList="'".$check."'";
-        }
-        $count++;
-	}
-    // echo $polQuoList;
-}
+$polQuoList;
+if(!empty($_POST['polQuoList'])) {
+echo $polQuoList=$_POST['polQuoList'];
 
 $sqlID = "SPAR_001";
 setPolQuoList($polQuoList);
 $updateResult 	= executeSql($conn,$sqlID);
+	if($updateResult){
+		echo $sql = "UPDATE policy 
+			SET POL_Status_ID_FK	='6', 
+				POL_UpdatedDate 	=CURRENT_TIMESTAMP
+			WHERE POL_QuoNum IN (".$polQuoList.")"; 
+		
+		if ($conn->query($sql) === TRUE) {
+		   echo "New record created successfully";
+		} else {
+		   echo "Error: " . $sql . "<br>" . $conn->error;
+		}
+	}
+}
 
 if(isset($_POST['sBy']) && isset($_POST['sDesc'])){
 $sBy = trim($_POST['sBy']);
@@ -189,10 +191,11 @@ $sqlID = "SPO_001";
 setSearchCriteria($sBy,$sDesc);
 $searchResult 	= executeSql($conn,$sqlID);
 	if($searchResult){
-
+		
 	}
 }
 else{
+$polQuoList;
 setPolQuoList($polQuoList);
 $sqlID = "SPO_004";
 $searchResult 	= executeSql($conn,$sqlID);
@@ -275,7 +278,6 @@ $searchResultSize = $searchResult->num_rows;
 		  	<form action="searchPayment.php">
 		  			
 <?php 
-
 if ($searchResult->num_rows > 0) {
 $no=1;
 	while($searchRow = $searchResult->fetch_assoc()) {

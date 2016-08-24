@@ -155,34 +155,6 @@ $(document).ready(function(){
 include 'config/config.php'; 
 include 'header.php'; 
 unset($_SESSION["polQuoNum"]);
-
-if(isset($_POST['sBy']) && isset($_POST['sDesc'])){
-$sBy = trim($_POST['sBy']);
-$sDesc = trim($_POST['sDesc']);
-
-if($sDesc==""){
-$sDesc = "null";
-}
-// echo "<br>sBy: ". $sBy;
-// echo "<br>sDesc: ". $sDesc;
-
-$sqlID = "SPO_002";
-setSearchCriteria($sBy,$sDesc);
-$searchResult 	= executeSql($conn,$sqlID);
-	if($searchResult){
-
-	}
-}
-else{
-$sqlID = "SPO_003";
-$searchResult 	= executeSql($conn,$sqlID);
-
-	if($searchResult){
-
-	}
-}
-$searchResultSize = $searchResult->num_rows;
-// @Falom END 2016-06-19 SUN 02:08 PM 
 ?>
 <!-- END HEADER SECTION-->
 </head>
@@ -230,87 +202,50 @@ $searchResultSize = $searchResult->num_rows;
 				<li class="active"><a href="searchPayment.php">Payment Information</a></li>
 				<li class="active"><a href="searchAgent.php">Agent Information</a></li>
 			</ul>
-			<div class="row">
-				<div class="col-md-2">
-					<?php echo "<br>Found ".$searchResultSize." records"; ?>
-					<b><br></b>
+			<form action="searchPaymentAprvResult.php" method="post" >
+			<div class="row" align="center">
+				<div class="col-md-12">
+					<br>
+
+					ยืนยันการอนุมัติกรรมธรรม์ : 
+
+					<?php 
+					$polQuoList; 
+					if(!empty($_POST['aprvPolQuoNum'])) {
+						$count = 0;
+						
+					    foreach($_POST['aprvPolQuoNum'] as $check) {
+					        if($count>0){
+					        	echo "," . $check;
+					        	$polQuoList=$polQuoList." , '".$check."'";
+					        }
+					        else{
+					        	echo $check;
+					        	$polQuoList="'".$check."'";
+					        }
+					        $count++;
+						}
+					    
+					}
+
+					?>
+					<br>
 				</div>
 			</div>
-		<br>
-		<table class="table table-striped">
-		  <thead>
-		    <tr>
-		      	<th>Approval Status</th>
-				<th>Policy No.</th>
-				<th>Premium Status</th>
-				<th>Total Premium</th>
-				<th>Payment Method</th>
-				<th>Bank A/C</th>
-				<th>Payment Amount</th>
-				<th>Transaction Date</th>
-		    </tr>
-		  </thead>
-		  <tbody id="searchPaymentAprv.php">
-		  	<form action="searchPaymentAprvConfirm.php" method="post">
-		  			
-<?php 
+			<br>
+			<div class="col-md-12 text-center">
 
-if ($searchResult->num_rows > 0) {
-$no=1;
-	while($searchRow = $searchResult->fetch_assoc()) {
-?>
-			<tr align="left">
-		     	<th><input type="checkbox" name="aprvPolQuoNum[]" value=<?php echo $searchRow["POL_QuoNum"]; ?>></th>
-				<td><?php echo $searchRow["POL_QuoNum"]; ?></td>
-				<td><?php echo "Premium status"; ?></td>
-				<td><?php 
-				if($searchRow["PREM_PaidStatus"]=='N'){
-					echo "<p style='color:red'>".$searchRow["PREM_Total"]."</p>"; 
-				}
-				else{
-					echo "<p style='color:green'>".$searchRow["PREM_Paid"]."</p>"; 
-				}
-				?></td>
-				<td><?php echo "Payment method"; ?></td>
-				<td><?php echo "Bank A/C"; ?></td>
-				<td><?php echo "Payment Amount" ?></td>
-				<td><?php echo "Transaction Date" ?></td>
-			</tr>
-
-			
-
-<?php	
-	}
-?>
-
-<?php	
-} else {
-?>
-			    
-		 	<tr>
-		    	<td><?php echo "0 results"; ?></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<th></th>
-			</tr>
-<?php
-	}
-?>
-
-		  </tbody>
-		</table>
-
-		<div class="col-md-12 text-center">
-			<input type="submit" />
-		</form>	
-		<br>
-	      <ul class="pagination" id="myPager"></ul>
-	    </div>
+				<?php echo 
+				'<input type="hidden" id="polQuoList" name="polQuoList" value= "'.$polQuoList.'" />';
+				
+				echo $polQuoList;
+				?>
+				<a href="searchPaymentAprv.php"><button>Cancel</button></a>
+				<input type="submit" value="Confirm" />
+				<br>
+		      <ul class="pagination" id="myPager"></ul>
+		    </div>
+	    	</form>	
 	</div>
 	
 <footer>
