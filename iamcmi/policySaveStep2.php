@@ -80,7 +80,7 @@
 	}else if($btn=="Approve"){
 		$polStatusIDFK="6";
 		$premPaidStatusAprv="Y";
-
+		$premAprvComment="Test";
 		$sql = "UPDATE policy 
 			JOIN premium
 			ON POL_PREM_ID_FK=PREM_ID_PK 
@@ -88,6 +88,7 @@
 				POL_UpdatedDate 	=CURRENT_TIMESTAMP,
 				POL_UpdatedBy		='$polUpdatedBy',
 				PREM_PaidStatusAprv='$premPaidStatusAprv',
+				PREM_AprvComment='$premAprvComment',
 				PREM_UpdatedDate='$premUpdatedDate',
 				PREM_UpdatedBy='$premUpdatedBy'
 			WHERE POL_QuoNum='$polQuoNum'"; 

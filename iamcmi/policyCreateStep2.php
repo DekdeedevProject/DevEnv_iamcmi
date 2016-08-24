@@ -128,6 +128,9 @@ $quoQueryResult = executeSql($conn,$sqlID);
  					else if($polStatusIDFK=="5"){
  						$polStatus="ดำเนินการอนุมัติการจ่ายเงิน";
  					}
+ 					else if($polStatusIDFK=="6"){
+ 						$polStatus="รอออกกรรมธรรม์";
+ 					}
  					else{
  						$polStatus="error";
  					}
@@ -258,10 +261,10 @@ $quoQueryResult = executeSql($conn,$sqlID);
 			?>
 				<div class="row" style="margin:0em 0.5em 0em 0.5em;">
 					<br>
+					<input type="hidden" class="form-control" id="premPayMethod" name="premPayMethod" value='<?php echo $premPayMethod; ?>'>
 					<div class="col-md-3" align="left">Payment Method :</div>
-					<div class="col-md-3">
-						<input type="text" class="form-control" id="payMet"
-							placeholder="Enter Payment Method" readonly>
+					<div class="col-md-3" name="payMet4" id="payMet4">
+
 					</div>
 					<div class="col-md-3" align="right">Transaction Date :</div>
 					<div class="col-md-3" >
@@ -272,14 +275,12 @@ $quoQueryResult = executeSql($conn,$sqlID);
 				<div class="row" style="margin:0em 0.5em 0em 0.5em;">
 					<div class="col-md-3" align="left">Payment Amount :</div>
 					<div class="col-md-3">
-						<select class='form-control' name='payApprSta4' id='payApprSta4' disabled>
-						<option value='0'>payApprSta4</option>
-						</select>
+					<input type="text" class="form-control" id="premPayMethod" name="premPayMethod" value='<?php echo $premPaid; ?>' readonly>
 					</div>
 					<div class="col-md-3" align="right">Payee :</div>
 					<div class="col-md-3">
-						<input type="text" class="form-control" id="payee"
-							placeholder="Enter Payee" readonly>
+						
+					<input type="text" class="form-control" id="premPayMethod" name="premPayMethod" value='<?php echo $premPayeeName; ?>' readonly>
 					</div>
 					</div>
 				<br>
@@ -320,13 +321,13 @@ $quoQueryResult = executeSql($conn,$sqlID);
 			?>
 				<div class="row" style="margin:0em 0.5em 0em 0.5em;">
 					<br>
+					<input type="hidden" class="form-control" id="premPayMethod" name="premPayMethod" value='<?php echo $premPayMethod; ?>'>
 					<div class="col-md-3" align="left">Payment Method :</div>
-					<div class="col-md-3">
-						<input type="text" class="form-control" id="payMet"
-							placeholder="Enter Payment Method" readonly>
+					<div class="col-md-3" name="payMet4" id="payMet4">
+
 					</div>
 					<div class="col-md-3" align="right">Transaction Date :</div>
-					<div class="col-md-3">
+					<div class="col-md-3" >
 						<input type="text" class="form-control" id="curDate"  readonly>
 					</div>
 				</div>
@@ -334,14 +335,12 @@ $quoQueryResult = executeSql($conn,$sqlID);
 				<div class="row" style="margin:0em 0.5em 0em 0.5em;">
 					<div class="col-md-3" align="left">Payment Amount :</div>
 					<div class="col-md-3">
-						<select class='form-control' name='payApprSta4' id='payApprSta4' disabled>
-						<option value='0'>payApprSta4</option>
-						</select>
+					<input type="text" class="form-control" id="premPayMethod" name="premPayMethod" value='<?php echo $premPaid; ?>' readonly>
 					</div>
 					<div class="col-md-3" align="right">Payee :</div>
 					<div class="col-md-3">
-						<input type="text" class="form-control" id="payee"
-							placeholder="Enter Payee" readonly>
+						
+					<input type="text" class="form-control" id="premPayMethod" name="premPayMethod" value='<?php echo $premPayeeName; ?>' readonly>
 					</div>
 					</div>
 				<br>
