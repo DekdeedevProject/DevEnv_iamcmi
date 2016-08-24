@@ -188,6 +188,7 @@ $searchResultSize = $searchResult->num_rows;
 </head>
 <title><?php echo $policySearch; ?></title>
 <body>
+	<div class="container">
 		<form action="searchPolicy.php" id="cmi" method="POST">
 		<div class="container">
 			<div class="page-header">
@@ -333,4 +334,5 @@ include 'footer.php';
 ?>
 <!-- END FOOTER SECTION-->
 </footer>
+
 </html>

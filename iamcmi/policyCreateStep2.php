@@ -264,7 +264,7 @@ $quoQueryResult = executeSql($conn,$sqlID);
 							placeholder="Enter Payment Method" readonly>
 					</div>
 					<div class="col-md-3" align="right">Transaction Date :</div>
-					<div class="col-md-3">
+					<div class="col-md-3" >
 						<input type="text" class="form-control" id="curDate"  readonly>
 					</div>
 				</div>
