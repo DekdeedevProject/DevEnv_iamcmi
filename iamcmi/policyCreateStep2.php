@@ -93,7 +93,7 @@ $quoQueryResult = executeSql($conn,$sqlID);
 <title><?php echo $policyCreate ?></title>
 </head>
 <body onload="start()">
-	<form action="policySaveStep2.php" method="post">
+	<form action="policyS2_PaymentConf.php" method="post">
 		<br><br><br><br><br><br>
 
 	    <div class="container" align="center">
@@ -112,6 +112,7 @@ $quoQueryResult = executeSql($conn,$sqlID);
 					</div>
 				</div>
 			</div>
+			
 			<br>
 			<div class="row">
 				<div class="col-md-3" align="left">เลขกรมธรรม์ :</div>
@@ -201,7 +202,7 @@ $quoQueryResult = executeSql($conn,$sqlID);
 					</div>
 					<div class="col-md-3" align="right">Transaction Date :</div>
 					<div class="col-md-3">
-						<input type="text" class="form-control" id="curDate"  readonly>
+						<input type="text" class="form-control" id="curDate" name="curDate" readonly>
 					</div>
 				</div>
 				<br>
@@ -268,19 +269,19 @@ $quoQueryResult = executeSql($conn,$sqlID);
 					</div>
 					<div class="col-md-3" align="right">Transaction Date :</div>
 					<div class="col-md-3" >
-						<input type="text" class="form-control" id="curDate"  readonly>
+						<input type="text" class="form-control" id="curDate" name="curDate"  readonly>
 					</div>
 				</div>
 				<br>
 				<div class="row" style="margin:0em 0.5em 0em 0.5em;">
 					<div class="col-md-3" align="left">Payment Amount :</div>
 					<div class="col-md-3">
-					<input type="text" class="form-control" id="premPayMethod" name="premPayMethod" value='<?php echo $premPaid; ?>' readonly>
+					<input type="text" class="form-control" id="payAmt4" name="payAmt4" value='<?php echo $premPaid; ?>' readonly>
 					</div>
 					<div class="col-md-3" align="right">Payee :</div>
 					<div class="col-md-3">
 						
-					<input type="text" class="form-control" id="premPayMethod" name="premPayMethod" value='<?php echo $premPayeeName; ?>' readonly>
+					<input type="text" class="form-control" id="premPayeeName" name="premPayeeName" value='<?php echo $premPayeeName; ?>' readonly>
 					</div>
 					</div>
 				<br>
@@ -328,7 +329,7 @@ $quoQueryResult = executeSql($conn,$sqlID);
 					</div>
 					<div class="col-md-3" align="right">Transaction Date :</div>
 					<div class="col-md-3" >
-						<input type="text" class="form-control" id="curDate"  readonly>
+						<input type="text" class="form-control" id="curDate" name="curDate"  readonly>
 					</div>
 				</div>
 				<br>
@@ -379,7 +380,7 @@ $quoQueryResult = executeSql($conn,$sqlID);
 			<?php
 			}
 			else{ //STATUS:Other 
-				echo "STATUS: Other";
+				echo "STATUS OTHER";
 			}
 			?>
 				
@@ -396,8 +397,7 @@ $quoQueryResult = executeSql($conn,$sqlID);
 						}
 						else if($polStatusIDFK==4){
 							echo "<a href='policyCreateStep1.php'><button type='button' class='btn btn-primary btn-md'>Edit Policy Info.</button></a> ";
-							echo "<a href='home.php'><button type='button' class='btn btn-primary btn-md'>Home</button></a> ";		
-							echo "<input type='Submit' class='btn btn-primary btn-md' name='btn' id='btn' value='Save'/> ";
+							// echo "<input type='Submit' class='btn btn-primary btn-md' name='btn' id='btn' value='Save'/> ";
 							echo "<input type='Submit' class='btn btn-primary btn-md' name='btn' id='btn' value='Submit Payment'/> ";
 						}
 						else if($polStatusIDFK==6){
