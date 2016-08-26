@@ -92,46 +92,21 @@ $polQuoNum = $_SESSION["polQuoNum"];
 				<br>
 				<br>
 				<div class="row">
-
+			<form action="policyS2_PaymentSave.php" method="POST">
 			<?php
-			if(!empty($_POST['btn']) || 
-				!empty($_POST['payMet4']) ||
-				!empty($_POST['payAmt4']) ||
-				!empty($_POST['curDate']) ||
-				!empty($_POST['premPaidBalance'])){
+			if(!empty($_POST['btn'])){
 					
 				$btn=trim($_POST['btn']);
-				$premPaid=trim($_POST['payAmt4']);
-				$premPaidBalance=trim($_POST['premPaidBalance']);
-				$premOutstanding=trim($_POST['premPaidBalance']) + $premPaid;
-				$premPayMethod=trim($_POST['payMet4']);
-				$premPayeeName=trim($_POST['premPayeeName']);
-				$premPaidBalance=trim($_POST['premPaidBalance']) + $premPaid;
-				$premPaidDate='CURRENT_TIMESTAMP';
+				if($btn=="Submit Payment"){
+					$premPaid=trim($_POST['payAmt4']);
+					$premPayMethod=$_POST['payMet4'];
+					$premPaidBalance=trim($_POST['premPaidBalance']);
+					$premOutstanding=trim($_POST['premPaidBalance']) + $premPaid;
+					$premPayeeName=trim($_POST['premPayeeName']);
+					$premPaidBalance=trim($_POST['premPaidBalance']) + $premPaid;
+					$premPaidDate='CURRENT_TIMESTAMP';
 
-				if($premOutstanding<0){
-				?>
-				<div class="col-md-12" align="center">
-					<?php
-						echo "กรรมธรรม์เลขที่ ".$polQuoNum." มีเบี้ยคงค้างชำระ ".$premOutstanding." บาท<br>";
-						echo "ไม่สามารถดำเนินการต่อได้<br><br>";
 					?>
-				</div>
-				<div class="col-md-12" align="center">
-					<a href="policyCreateStep2.php"><button type="button" class="btn btn-primary btn-md">Back</button></a>
-				</div>
-				</div>
-				<?php
-				}
-				else{
-				?>
-				<div class="col-md-12" align="center">
-					<?php
-						echo "ยืนยันการชำระเบี้ยกรรมธรรม์เลขที่ ".$polQuoNum;
-					?>
-				</div>
-				<div class="col-md-12" align="center">
-					<form action="policyS2_PaymentSave.php" method="POST">
 					<input type="hidden" id="btn" name="btn" value='<?php echo $btn; ?>'/>	
 					<input type="hidden" id="premPaid" name="premPaid" value='<?php echo $premPaid; ?>'/>	
 					<input type="hidden" id="premPaidBalance" name="premPaidBalance" value='<?php echo $premPaidBalance; ?>'/>	
@@ -140,19 +115,99 @@ $polQuoNum = $_SESSION["polQuoNum"];
 					<input type="hidden" id="premPayeeName" name="premPayeeName" value='<?php echo $premPayeeName; ?>'/>
 					<input type="hidden" id="premPaidBalance" name="premPaidBalance" value='<?php echo $premPaidBalance; ?>'/>	
 					<input type="hidden" id="premPaidDate" name="premPaidDate" value='<?php echo $premPaidDate; ?>'/>	
+					<?php
 
-					<a href="policyCreateStep2.php"><button type="button" class="btn btn-primary btn-md">Cancel</button></a>
-					<input type="Submit" class='btn btn-primary btn-md' value="Confirm"/>
-					</form>
-				</div>
-				</div>
-				<?php
+					if($premOutstanding<0){
+					?>
+					<div class="col-md-12" align="center">
+						<?php
+							echo "กรรมธรรม์เลขที่ ".$polQuoNum." มีเบี้ยคงค้างชำระ ".$premOutstanding." บาท<br>";
+							echo "ไม่สามารถดำเนินการต่อได้<br><br>";
+						?>
+					</div>
+					<div class="col-md-12" align="center">
+						<a href="policyCreateStep2.php"><button type="button" class="btn btn-primary btn-md">Back</button></a>
+					</div>
+					</div>
+					<?php
+					}
+					else{
+					?>
+					<div class="col-md-12" align="center">
+						<?php
+							echo "ยืนยันการชำระเบี้ยกรรมธรรม์เลขที่ ".$polQuoNum;
+						?>
+					</div>
+					<div class="col-md-12" align="center">
+						<a href="policyCreateStep2.php"><button type="button" class="btn btn-primary btn-md">Cancel</button></a>
+						<input type="Submit" class='btn btn-primary btn-md' value="Confirm"/>
+					</div>
+					</div>
+					<?php
+					}
+				}
+				else if($btn=="Approve"){
+					$premPaidStatusAprv=trim($_POST['payApprSta5']);
+					$premAprvComment=trim($_POST['premAprvComment']);
+					?>
+					<div class="col-md-12" align="center">
+						<?php
+							echo "ยืนยันการอนุมัติกรรมธรรม์เลขที่ ".$polQuoNum."<br><br>";
+						?>
+					</div>
+					<div class="col-md-12" align="center">
+						<input type="hidden" id="btn" name="btn" value='<?php echo $btn; ?>'/>	
+						<input type="hidden" id="premPaidStatusAprv" name="premPaidStatusAprv" value='<?php echo $premPaidStatusAprv; ?>'/>	
+						<input type="hidden" id="premAprvComment" name="premAprvComment" value='<?php echo $premAprvComment; ?>'/>	
+						<a href="policyCreateStep2.php"><button type="button" class="btn btn-primary btn-md">Cancel</button></a>
+						<input type="Submit" class='btn btn-primary btn-md' value="Confirm"/>
+					</div>
+					</div>
+
+					<?php
+				}
+				else if($btn=="Issue"){
+					?>
+					<div class="col-md-12" align="center">
+						<?php
+							echo "ยืนยันการออกกรรมธรรม์เลขที่ ".$polQuoNum."<br><br>";
+						?>
+					</div>
+					<div class="col-md-12" align="center">
+						<input type="hidden" id="btn" name="btn" value='<?php echo $btn; ?>'/>	
+						<a href="policyCreateStep2.php"><button type="button" class="btn btn-primary btn-md">Cancel</button></a>
+						<input type="Submit" class='btn btn-primary btn-md' value="Confirm"/>
+					</div>
+					</div>
+					<?php
+				}
+				else if($btn=="Update"){
+					echo $premPaidStatusAprv=trim($_POST['payApprSta5']);
+					echo $premAprvComment=trim($_POST['premAprvComment']);
+					
+					?>
+					<div class="col-md-12" align="center">
+						<?php
+							echo "Update ".$polQuoNum."<br><br>";
+						?>
+					</div>
+					<div class="col-md-12" align="center">
+						<input type="hidden" id="btn" name="btn" value='<?php echo $btn; ?>'/>	
+						<a href="policyCreateStep2.php"><button type="button" class="btn btn-primary btn-md">Cancel</button></a>
+						<input type="Submit" class='btn btn-primary btn-md' value="Confirm"/>
+					</div>
+					</div>
+					<?php
+				}
+				else{
+
 				}	
 			}
 			else{
 				echo "Error data not found!!!!";
 			}	
 			?>	
+			</form>
 				
 				
 			</div>

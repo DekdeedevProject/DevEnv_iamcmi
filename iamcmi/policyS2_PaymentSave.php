@@ -75,12 +75,17 @@
 		}
 		connClose($conn);
 
-		redirect("policyCreateStep3.php");
+		redirect("policyS3_Issue.php");
 
-	}else if($btn=="Approve"){
-		$polStatusIDFK="6";
-		$premPaidStatusAprv="Y";
-		$premAprvComment="Test";
+	}else if($btn=="Approve" || $btn=="Update"){
+		$premPaidStatusAprv=trim($_POST['premPaidStatusAprv']);
+		if($premPaidStatusAprv=='Y'){
+			$polStatusIDFK="6";
+		}
+		else{
+			$polStatusIDFK="5";
+		}
+		$premAprvComment=trim($_POST['premAprvComment']);
 		$sql = "UPDATE policy 
 			JOIN premium
 			ON POL_PREM_ID_FK=PREM_ID_PK 
@@ -89,8 +94,8 @@
 				POL_UpdatedBy		='$polUpdatedBy',
 				PREM_PaidStatusAprv='$premPaidStatusAprv',
 				PREM_AprvComment='$premAprvComment',
-				PREM_UpdatedDate='$premUpdatedDate',
-				PREM_UpdatedBy='$premUpdatedBy'
+				PREM_UpdatedDate=CURRENT_TIMESTAMP,
+				PREM_UpdatedBy='$polUpdatedBy'
 			WHERE POL_QuoNum='$polQuoNum'"; 
 		
 		if ($conn->query($sql) === TRUE) {

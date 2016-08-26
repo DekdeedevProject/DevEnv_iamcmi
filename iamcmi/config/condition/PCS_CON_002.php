@@ -105,6 +105,7 @@ $premOutstanding=$row["PREM_Outstanding"];
 $premPaid=$row["PREM_Paid"];
 $premPaidStatus=$row["PREM_PaidStatus"];
 $premPaidStatusAprv=$row["PREM_PaidStatusAprv"];
+$premAprvComment=$row["PREM_AprvComment"];
 $premPayMethod=$row["PREM_PayMethod"];
 $premPayeeName=$row["PREM_PayeeName"];
 $premPaidBalance=$row["PREM_PaidBalance"];

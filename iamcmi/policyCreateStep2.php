@@ -43,7 +43,8 @@ function reloadFunc(){
 	
 	var premPayMethod = document.getElementById('premPayMethod').value;
 	updateStatus("payMet4", premPayMethod, "");
-	updateStatus("payApprSta5", "", "");
+	var premPayAprv = document.getElementById('premPayAprv').value;
+	updateStatus("payApprSta5", premPayAprv, "");
 
 }
 
@@ -181,7 +182,7 @@ $quoQueryResult = executeSql($conn,$sqlID);
 				</div>				
 			</div>
 			
-			<?php echo "policyStatus:".$polStatusIDFK ;
+			<?php 
 			if($polStatusIDFK==4){ //STATUS:Payment In Progress
 			?>
 			<br>
@@ -305,14 +306,15 @@ $quoQueryResult = executeSql($conn,$sqlID);
 				</div>
 				<br>
 				<div class="row" style="margin:0em 0.5em 0em 0.5em;">
+					<input type="hidden" class="form-control" id="premPayAprv" name="premPayAprv" value='<?php echo $premPaidStatusAprv; ?>'>
 					<div class="col-md-3" align="left">Approval Status :</div>
 					<div class="col-md-3" name="payApprSta5" id="payApprSta5">
 
 					</div>
 					<div class="col-md-3" align="right">Approval Comments :</div>
 					<div class="col-md-3">
-						<input type="text" class="form-control" id="aprm"
-							placeholder="ระบุเหตุผลเพิ่มเติม" value='<?php echo "" ?>' >
+						<input type="text" class="form-control" id="premAprvComment" name="premAprvComment"
+							placeholder="ระบุเหตุผลเพิ่มเติม" value='<?php echo $premAprvComment ?>' >
 					</div>
 				</div>
 				<br>
@@ -320,7 +322,7 @@ $quoQueryResult = executeSql($conn,$sqlID);
 			<?php
 			}else if($polStatusIDFK==6){ //STATUS:Payment Approval In Progress
 			?>
-				<div class="row" style="margin:0em 0.5em 0em 0.5em;">
+				<div class="row">
 					<br>
 					<input type="hidden" class="form-control" id="premPayMethod" name="premPayMethod" value='<?php echo $premPayMethod; ?>'>
 					<div class="col-md-3" align="left">Payment Method :</div>
@@ -329,11 +331,11 @@ $quoQueryResult = executeSql($conn,$sqlID);
 					</div>
 					<div class="col-md-3" align="right">Transaction Date :</div>
 					<div class="col-md-3" >
-						<input type="text" class="form-control" id="curDate" name="curDate"  readonly>
+						<input type="text" class="form-control" id="curDate" name="curDate" readonly>
 					</div>
 				</div>
 				<br>
-				<div class="row" style="margin:0em 0.5em 0em 0.5em;">
+				<div class="row">
 					<div class="col-md-3" align="left">Payment Amount :</div>
 					<div class="col-md-3">
 					<input type="text" class="form-control" id="premPayMethod" name="premPayMethod" value='<?php echo $premPaid; ?>' readonly>
@@ -345,38 +347,34 @@ $quoQueryResult = executeSql($conn,$sqlID);
 					</div>
 					</div>
 				<br>
-				<div class="row" style="margin:0em 0.5em 0em 0.5em;">
-					<div class="col-md-3" align="left">Update payment evidence :</div>
-					<div class="col-md-3">
-					</div>
-					<div class="col-md-3" align="right"></div>
-					<div class="col-md-3">
-					</div>
-					</div>
-				<br>
-			<br>
-			<div style="border: 3px; border-style: solid; border-color: #a5a5a5;">
+				
 				<div class="row">
-					<div class="col-md-12">
-						<div style="background-color: #EBECE4; height: 30px;">
-							<b>Update approval payment information</b>
-						</div>
-					</div>
-				</div>
-				<br>
-				<div class="row" style="margin:0em 0.5em 0em 0.5em;">
+					<input type="hidden" class="form-control" id="premPayAprv" name="premPayAprv" value='<?php echo $premPaidStatusAprv; ?>'>
 					<div class="col-md-3" align="left">Approval Status :</div>
 					<div class="col-md-3" name="payApprSta5" id="payApprSta5">
 
 					</div>
+					
 					<div class="col-md-3" align="right">Approval Comments :</div>
 					<div class="col-md-3">
-						<input type="text" class="form-control" id="aprm"
-							placeholder="ระบุเหตุผลเพิ่มเติม" value='<?php echo "" ?>' >
+						
+						<?php
+						if($premPaidStatusAprv=='Y'){
+						?>
+						<input type="text" class="form-control" id="premAprvComment" name="premAprvComment"
+							placeholder="ระบุเหตุผลเพิ่มเติม" value='<?php echo $premAprvComment ?>' readonly>
+						<?php
+						}
+						else{
+						?>
+						<input type="text" class="form-control" id="premAprvComment" name="premAprvComment"
+							placeholder="ระบุเหตุผลเพิ่มเติม" value='<?php echo $premAprvComment ?>' >
+						<?php
+						} 
+						?>
 					</div>
 				</div>
 				<br>
-			</div>		
 			<?php
 			}
 			else{ //STATUS:Other 
@@ -402,7 +400,12 @@ $quoQueryResult = executeSql($conn,$sqlID);
 						}
 						else if($polStatusIDFK==6){
 							echo "<a href='xx.php'><button type='button' class='btn btn-primary btn-md'>View Policy Info.</button></a> ";
+							if($premPaidStatusAprv=='Y'){
 							echo "<input type='Submit' class='btn btn-primary btn-md' name='btn' id='btn' value='Issue'/>";
+							}
+							else{
+							echo "<input type='Submit' class='btn btn-primary btn-md' name='btn' id='btn' value='Update'/>";
+							}
 						}
 						else {
 							echo "<a href='home.php'><button type='button' class='btn btn-primary btn-md'>Home</button></a> ";		
