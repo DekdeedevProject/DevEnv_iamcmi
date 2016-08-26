@@ -190,56 +190,63 @@ $searchResultSize = $searchResult->num_rows;
 <body>
 	<div class="container">
 		<form action="searchPolicy.php" id="cmi" method="POST">
-		<div class="container">
-			<div class="page-header">
-				<h1>พ ร บ.</h1>
-			</div>
-			<ul class="nav nav-tabs">
-				<li class="active"><a href="#">Search Criteria</a></li>
-			</ul>
-			<div class="row">
-				<div class="col-md-12">
-					<br>
+			<div class="container">
+				<div class="page-header">
+					<h1>พ ร บ.</h1>
 				</div>
-			</div>
-			<div class="row" >
-				<div class="col-md-12" align="left">
-					Search by: 
-					<select name="sBy" id="sBy">
-						<option name="sBy" id="sBy" value="0">กรุณาเลือก</option>
-						<option name="sBy" id="sBy" value="POL_QuoNum">Policy No.</option>
-						<option name="sBy" id="sBy" value="POL_StatusName_EN">Status</option>
-						<option name="sBy" id="sBy" value="POL_StatusName_EN">Policy Holder</option>
-						<option name="sBy" id="sBy" value="POL_StatusName_EN">Regitration No.</option>
-						<option name="sBy" id="sBy" value="POL_StatusName_EN">Agent Code</option>
-					</select>	
-					<input type="text" name="sDesc"/>
+				<ul class="nav nav-tabs">
+					<li class="active"><a href="#">Search Criteria</a></li>
+				</ul>
+				<div class="row">
+					<div class="col-md-12">
+						<br>
+					</div>
+				</div>
+
+				<div class="row form-group" >
+					<div class="c<?php if (condition): ?>
+						
+					<?php endif ?>ol-md-2 col-xs-12" align="right">
+						Search by : 
+					</div>
+					<div class="col-md-2 col-xs-12" align="left">						
+						<select class="form-control" name="sBy" id="sBy">
+							<option name="sBy" id="sBy" value="0">กรุณาเลือก</option>
+							<option name="sBy" id="sBy" value="POL_QuoNum">Policy No.</option>
+							<option name="sBy" id="sBy" value="POL_StatusName_EN">Status</option>
+							<option name="sBy" id="sBy" value="POL_StatusName_EN">Policy Holder</option>
+							<option name="sBy" id="sBy" value="POL_StatusName_EN">Regitration No.</option>
+							<option name="sBy" id="sBy" value="POL_StatusName_EN">Agent Code</option>
+						</select>	
+					</div>
+					<div class="col-md-2 col-xs-12 form-group" align="left">
+						<input type="text" class="form-control" name="sDesc"/>						
+					</div>
 					<input type="Submit" class="btn btn-primary btn-md" value="Search"/>
-					<a href="searchPolicy.php"><input type="Button" value="Reset" class="btn btn-primary btn-md"/></a>
-				</form>		
 				</div>
+
 			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<br>
-				</div>
+		</form>		
+	
+		<div class="row">
+			<div class="col-md-12">
+				<br>
 			</div>
 		</div>
-	</form>
 
-	<div class="container">
+
 		<br>
 		<ul class="nav nav-tabs">
 				<li class="active"><a href="searchPolicy.php">Policy Information</a></li>
 				<li class="active"><a href="searchPayment.php">Payment Information</a></li>
 				<li class="active"><a href="searchAgent.php">Agent Information</a></li>
-			</ul>
-			<div class="row">
-				<div class="col-md-2">
-					<?php echo "<br>Found ".$searchResultSize." records"; ?>
-					<b><br></b>
-				</div>
+		</ul>
+		<div class="row">
+			<div class="col-md-2">
+				<?php echo "<br>Found ".$searchResultSize." records"; ?>
+				<b><br></b>
 			</div>
+		</div>
 		<br>
 		<table class="table table-striped">
 		  <thead>
@@ -256,66 +263,66 @@ $searchResultSize = $searchResult->num_rows;
 		    </tr>
 		  </thead>
 		  <tbody id="myTable">
-<?php 
-if ($searchResult->num_rows > 0) {
-$no=1;
-	while($searchRow = $searchResult->fetch_assoc()) {
-?>
-			<tr align="left">
-		     	<th scope="row"><?php echo $no++; ?></th>
-				<td>
-				<form action="searchCheck.php" id="cmi" method="GET">	
-					<input type="hidden" name="polStatusIDFK" id='<?php echo $searchRow["POL_Status_ID_FK"] ?>' value='<?php echo $searchRow["POL_Status_ID_FK"] ?>'/>
-					<input type="hidden" name="polQuoNum" id='<?php echo $searchRow["POL_ID_PK"] ?>' value='<?php echo $searchRow["POL_QuoNum"] ?>'/>
-					<input type="Submit" value='<?php echo $searchRow["POL_QuoNum"] ?>'/>
-				</form>	
-				</td>
-				<td><?php echo $searchRow["POL_EffDate"] ?></td>
-				<td><?php echo $searchRow["STA_Name_EN"] ?></td>
-				<td><?php echo $searchRow["PHD_PER_FName"]." ".$searchRow["PHD_PER_LName"] ?></td>
-				<td><?php echo $searchRow["VEH_LicenseNum"] ?></td>
-				<td><?php 
-				if($searchRow["PREM_PaidStatus"]=='N'){
-					echo "<p style='color:red'>".$searchRow["PREM_Total"]."</p>"; 
+			<?php 
+			if ($searchResult->num_rows > 0) {
+			$no=1;
+				while($searchRow = $searchResult->fetch_assoc()) {
+			?>
+						<tr align="left">
+					     	<th scope="row"><?php echo $no++; ?></th>
+							<td>
+							<form action="searchCheck.php" id="cmi" method="GET">	
+								<input type="hidden" name="polStatusIDFK" id='<?php echo $searchRow["POL_Status_ID_FK"] ?>' value='<?php echo $searchRow["POL_Status_ID_FK"] ?>'/>
+								<input type="hidden" name="polQuoNum" id='<?php echo $searchRow["POL_ID_PK"] ?>' value='<?php echo $searchRow["POL_QuoNum"] ?>'/>
+								<input type="Submit" value='<?php echo $searchRow["POL_QuoNum"] ?>'/>
+							</form>	
+							</td>
+							<td><?php echo $searchRow["POL_EffDate"] ?></td>
+							<td><?php echo $searchRow["STA_Name_EN"] ?></td>
+							<td><?php echo $searchRow["PHD_PER_FName"]." ".$searchRow["PHD_PER_LName"] ?></td>
+							<td><?php echo $searchRow["VEH_LicenseNum"] ?></td>
+							<td><?php 
+							if($searchRow["PREM_PaidStatus"]=='N'){
+								echo "<p style='color:red'>".$searchRow["PREM_Total"]."</p>"; 
+							}
+							else{
+								echo "<p style='color:green'>".$searchRow["PREM_Total"]."</p>"; 
+							}
+							?>
+							</td>
+							<td><?php echo $searchRow["AGT_Code"] ?></td>
+							<th>
+								<?php
+								if($searchRow["STA_ID_PK"]=='2'){
+								?>
+								<form action="printPolicy.php" id="cmi" method="POST">	
+								<input type="hidden" name="polStatusIDFK" id='<?php echo $searchRow["POL_Status_ID_FK"] ?>' value='<?php echo $searchRow["POL_Status_ID_FK"] ?>'/>
+								<input type="hidden" name="policyNo" id='<?php echo $searchRow["POL_ID_PK"] ?>' value='<?php echo $searchRow["POL_Num"] ?>'/>
+								<input type="Submit" value="Print"/>
+								</form>	
+								<?php	
+								}
+								else{}
+								?>
+								
+							</th>
+						</tr>
+			<?php	
 				}
-				else{
-					echo "<p style='color:green'>".$searchRow["PREM_Total"]."</p>"; 
+			} else {
+			?>
+						    
+					 	<tr>
+					    	<td><?php echo "0 results"; ?></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+			<?php
 				}
-				?>
-				</td>
-				<td><?php echo $searchRow["AGT_Code"] ?></td>
-				<th>
-					<?php
-					if($searchRow["STA_ID_PK"]=='2'){
-					?>
-					<form action="printPolicy.php" id="cmi" method="POST">	
-					<input type="hidden" name="polStatusIDFK" id='<?php echo $searchRow["POL_Status_ID_FK"] ?>' value='<?php echo $searchRow["POL_Status_ID_FK"] ?>'/>
-					<input type="hidden" name="policyNo" id='<?php echo $searchRow["POL_ID_PK"] ?>' value='<?php echo $searchRow["POL_Num"] ?>'/>
-					<input type="Submit" value="Print"/>
-					</form>	
-					<?php	
-					}
-					else{}
-					?>
-					
-				</th>
-			</tr>
-<?php	
-	}
-} else {
-?>
-			    
-		 	<tr>
-		    	<td><?php echo "0 results"; ?></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>
-<?php
-	}
-?>
-		  </tbody>
+			?>
+					  </tbody>
 		</table>
 		<div class="col-md-12 text-center">
 	      <ul class="pagination" id="myPager"></ul>
