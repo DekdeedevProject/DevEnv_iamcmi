@@ -50,11 +50,11 @@ include 'header.php';
 				<div class="row">
 				<div class="col-md-12" align="center">
 					<form action="printPolicy.php" method="post">
+						<a href="policyS1_View.php"><button type="button" class="btn btn-primary btn-md">View Policy Info.</button></a>
 						<input type="hidden" id="policyNo" name="policyNo" value='<?php echo $_SESSION["polQuoNum"]; ?>'/>
-						<input type="submit" class="btn btn-primary btn-md" value="Print">
+						<input type="submit" class="btn btn-primary btn-md" value="Print Policy">
+						<a href="#.php"><button type="button" class="btn btn-primary btn-md">Download</button></a>
 					</form>	
-					<a href="#.php"><button type="button" class="btn btn-primary btn-md">Download</button></a>
-					<a href="home.php"><button type="button" class="btn btn-primary btn-md">Home</button></a>
 				</div>
 			</div>
 		</div>
@@ -62,13 +62,8 @@ include 'header.php';
 <footer>
 <!-- FOOTER SECTION-->
 <?php 
-// @BEGIN
-// @DEKDEEDEV_IAMCMI
-// @Falom
-// @2016-06-19 SUN 02:08 PM 
 unset($_SESSION["polQuoNum"]);
 include 'footer.php'; 
-// @Falom END 2016-06-19 SUN 02:08 PM 
 ?>
 <!-- END FOOTER SECTION-->
 </footer>
