@@ -148,5 +148,5 @@
 		echo "nothing happen";
 	}
 
-	redirect("policyCreateStep2.php")
+	redirect("policyS2_Payment.php")
 ?>

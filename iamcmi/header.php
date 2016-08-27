@@ -26,7 +26,7 @@ $conn 	= connOpen();
                 </div> 
                 <ul class="nav navbar-nav">
                     <li class=""><a href="home.php">Home</a></li><!-- menu links-->
-                    <li><a href="policyCreateStep1.php">Create</a></li>  
+                    <li><a href="policyS1_Create.php">Create</a></li>  
                     <li><a href="searchPolicy.php">Search</a></li>
                     <li><a href="print.php">Print</a></li>
                     <li><a href="#admin">Administrator</a></li>

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
-<title>Home</title>
+<!-- HEADER SECTION-->
+<?php include 'config/config.php'; ?>
+<title><?php echo $confirmPayment ?></title>
+
 <!-- <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
 <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css" /> -->
 <link rel="stylesheet" href="../js/jquery-ui-themes-1.12.0-rc.2/themes/smoothness/jquery-ui.css" />
@@ -56,13 +56,7 @@ function start(){
 	myFunction();
 }
 </script>
-<!-- HEADER SECTION-->
 <?php 
-// @BEGIN
-// @DEKDEEDEV_IAMCMI
-// @Falom
-// @2016-06-19 SUN 02:08 PM 
-include 'config/config.php'; 
 include 'header.php'; 
 
 $polQuoNum = $_SESSION["polQuoNum"];
@@ -126,7 +120,7 @@ $polQuoNum = $_SESSION["polQuoNum"];
 						?>
 					</div>
 					<div class="col-md-12" align="center">
-						<a href="policyCreateStep2.php"><button type="button" class="btn btn-primary btn-md">Back</button></a>
+						<a href="policyS2_Payment.php"><button type="button" class="btn btn-primary btn-md">Back</button></a>
 					</div>
 					</div>
 					<?php
@@ -139,7 +133,7 @@ $polQuoNum = $_SESSION["polQuoNum"];
 						?>
 					</div>
 					<div class="col-md-12" align="center">
-						<a href="policyCreateStep2.php"><button type="button" class="btn btn-primary btn-md">Cancel</button></a>
+						<a href="policyS2_Payment.php"><button type="button" class="btn btn-primary btn-md">Cancel</button></a>
 						<input type="Submit" class='btn btn-primary btn-md' value="Confirm"/>
 					</div>
 					</div>
@@ -159,7 +153,7 @@ $polQuoNum = $_SESSION["polQuoNum"];
 						<input type="hidden" id="btn" name="btn" value='<?php echo $btn; ?>'/>	
 						<input type="hidden" id="premPaidStatusAprv" name="premPaidStatusAprv" value='<?php echo $premPaidStatusAprv; ?>'/>	
 						<input type="hidden" id="premAprvComment" name="premAprvComment" value='<?php echo $premAprvComment; ?>'/>	
-						<a href="policyCreateStep2.php"><button type="button" class="btn btn-primary btn-md">Cancel</button></a>
+						<a href="policyS2_Payment.php"><button type="button" class="btn btn-primary btn-md">Cancel</button></a>
 						<input type="Submit" class='btn btn-primary btn-md' value="Confirm"/>
 					</div>
 					</div>
@@ -175,7 +169,7 @@ $polQuoNum = $_SESSION["polQuoNum"];
 					</div>
 					<div class="col-md-12" align="center">
 						<input type="hidden" id="btn" name="btn" value='<?php echo $btn; ?>'/>	
-						<a href="policyCreateStep2.php"><button type="button" class="btn btn-primary btn-md">Cancel</button></a>
+						<a href="policyS2_Payment.php"><button type="button" class="btn btn-primary btn-md">Cancel</button></a>
 						<input type="Submit" class='btn btn-primary btn-md' value="Confirm"/>
 					</div>
 					</div>
@@ -193,7 +187,7 @@ $polQuoNum = $_SESSION["polQuoNum"];
 					</div>
 					<div class="col-md-12" align="center">
 						<input type="hidden" id="btn" name="btn" value='<?php echo $btn; ?>'/>	
-						<a href="policyCreateStep2.php"><button type="button" class="btn btn-primary btn-md">Cancel</button></a>
+						<a href="policyS2_Payment.php"><button type="button" class="btn btn-primary btn-md">Cancel</button></a>
 						<input type="Submit" class='btn btn-primary btn-md' value="Confirm"/>
 					</div>
 					</div>

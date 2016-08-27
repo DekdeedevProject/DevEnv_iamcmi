@@ -9,14 +9,14 @@ switch ($status) {
 	case '1':
 	//Status: Quote in Progress
 	$_SESSION["polQuoNum"] = $_GET['polQuoNum'];
-	redirect("policyCreateStep1.php");
-	// echo "<a href='policyCreateStep2.php'><input type='Button' value='Next' class='btn btn-primary btn-md'/></a>";
+	redirect("policyS1_Create.php");
+	// echo "<a href='policyS2_Payment.php'><input type='Button' value='Next' class='btn btn-primary btn-md'/></a>";
 	break;
 	case '2':
 	//Status: Policy Issued
 	$_SESSION["polQuoNum"] = $_GET['polQuoNum'];
-	redirect("policyCreateStep3.php");
-	// echo "<a href='policyCreateStep3.php'><input type='Button' value='Next' class='btn btn-primary btn-md'/></a>";
+	redirect("policyS3_Issue.php");
+	// echo "<a href='policyS3_Issue.php'><input type='Button' value='Next' class='btn btn-primary btn-md'/></a>";
 	break;
 	case '3':
 	// redirect("#.php");
@@ -27,8 +27,8 @@ switch ($status) {
 	case '6':
 	//Status: Payment in Progress
 	$_SESSION["polQuoNum"] = $_GET['polQuoNum'];
-	redirect("policyCreateStep2.php");
-	// echo "<a href='policyCreateStep2.php'><input type='Button' value='Next' class='btn btn-primary btn-md'/></a>";
+	redirect("policyS2_Payment.php");
+	// echo "<a href='policyS2_Payment.php'><input type='Button' value='Next' class='btn btn-primary btn-md'/></a>";
 	break;
 
 	default:
