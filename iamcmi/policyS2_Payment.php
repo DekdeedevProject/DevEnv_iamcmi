@@ -3,7 +3,7 @@
 <head>
 <!-- HEADER SECTION-->
 <?php include 'config/config.php'; ?>
-<title><?php echo $policyPayment ?></title>
+<title><?php echo $policyPayment; ?></title>
 
 <!-- <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
 <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css" /> -->
