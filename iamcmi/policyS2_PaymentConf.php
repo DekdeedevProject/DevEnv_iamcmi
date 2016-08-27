@@ -129,8 +129,10 @@ $polQuoNum = $_SESSION["polQuoNum"];
 					?>
 					<div class="col-md-12" align="center">
 						<?php
-							echo "ยืนยันการชำระเบี้ยกรรมธรรม์เลขที่ ".$polQuoNum;
+							echo "ยืนยันการชำระเบี้ยกรรมธรรม์เลขที่ ".$polQuoNum." จำนวนเงิน ".$premPaid." บาท";
 						?>
+						<br>
+						<br>
 					</div>
 					<div class="col-md-12" align="center">
 						<a href="policyS2_Payment.php"><button type="button" class="btn btn-primary btn-md">Cancel</button></a>
