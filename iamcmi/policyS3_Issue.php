@@ -62,7 +62,7 @@ include 'header.php';
 <footer>
 <!-- FOOTER SECTION-->
 <?php 
-unset($_SESSION["polQuoNum"]);
+// unset($_SESSION["polQuoNum"]);
 include 'footer.php'; 
 ?>
 <!-- END FOOTER SECTION-->

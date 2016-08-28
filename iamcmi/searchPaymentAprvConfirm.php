@@ -146,13 +146,7 @@ $(document).ready(function(){
 });
 </script>
 
-<!-- HEADER SECTION-->
 <?php 
-// @BEGIN
-// @DEKDEEDEV_IAMCMI
-// @Falom
-// @2016-06-19 SUN 02:08 PM 
-include 'config/config.php'; 
 include 'header.php'; 
 unset($_SESSION["polQuoNum"]);
 ?>
@@ -205,10 +199,12 @@ unset($_SESSION["polQuoNum"]);
 			<div class="row" align="center">
 				<div class="col-md-12">
 					<br>
+                    <?php 
+                   if($_SESSION["usrRole"]=='Admin'){
 
-					ยืนยันการอนุมัติกรรมธรรม์ : 
+					echo "ยืนยันการอนุมัติกรรมธรรม์ : ";
 
-					<?php 
+					
 					$polQuoList; 
 					if(!empty($_POST['aprvPolQuoNum'])) {
 						$count = 0;
@@ -225,23 +221,24 @@ unset($_SESSION["polQuoNum"]);
 					        $count++;
 						}
 					    
-					}
-
+					   }
+                       echo "<br>";
+                    }
 					?>
-					<br>
 				</div>
 			</div>
 			<br>
 			<div class="col-md-12 text-center">
-
-				<?php echo 
-				'<input type="hidden" id="polQuoList" name="polQuoList" value= "'.$polQuoList.'" />';
-				
-				echo $polQuoList;
-				?>
-				<a href="searchPaymentAprv.php"><button>Cancel</button></a>
-				<input type="submit" value="Confirm" />
-				<br>
+                <?php 
+                if($_SESSION["usrRole"]=='Admin'){
+                    echo '<input type="hidden" id="polQuoList" name="polQuoList" value= "'.$polQuoList.'" />';
+                    echo '<a href="searchPaymentAprv.php"><button>Cancel</button></a>';
+                    echo '<input type="submit" value="Confirm" /><br>';
+                }
+                else{
+                    echo "<a href='searchPayment.php'><button>Back</button></a><br>";
+                }
+                ?>				
 		      <ul class="pagination" id="myPager"></ul>
 		    </div>
 	    	</form>	

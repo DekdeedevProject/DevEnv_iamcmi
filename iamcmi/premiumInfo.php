@@ -40,6 +40,7 @@
             echo "<option value=''>- เลือกผลการอนุมัติ -</option>\n";
             echo "<option value='Y'>อนุมัติ</option>\n";
             echo "<option value='N' selected>ไม่อนุมัติ</option>\n";
+            echo "<option value='W' >รออนุมัติ</option>\n";
             echo "<option value='P'>อื่น ๆ</option>\n";
             }
             else if($val1=='Y'){
@@ -47,6 +48,7 @@
             echo "<option value=''>- เลือกผลการอนุมัติ -</option>\n";
             echo "<option value='Y' selected>อนุมัติ</option>\n";
             echo "<option value='N' >ไม่อนุมัติ</option>\n";
+            echo "<option value='W' >รออนุมัติ</option>\n";
             echo "<option value='P'>อื่น ๆ</option>\n";
             }
             else if($val1=='P'){
@@ -54,13 +56,23 @@
             echo "<option value=''>- เลือกผลการอนุมัติ -</option>\n";
             echo "<option value='Y' >อนุมัติ</option>\n";
             echo "<option value='N' >ไม่อนุมัติ</option>\n";
+            echo "<option value='W' >รออนุมัติ</option>\n";
             echo "<option value='P' selected>อื่น ๆ</option>\n";
+            } 
+            else if($val1=='W'){
+            echo "<select class='form-control' name='payApprSta5' id='payApprSta5' disabled>\n";
+            echo "<option value=''>- เลือกผลการอนุมัติ -</option>\n";
+            echo "<option value='Y' >อนุมัติ</option>\n";
+            echo "<option value='N' >ไม่อนุมัติ</option>\n";
+            echo "<option value='W' selected>รออนุมัติ</option>\n";
+            echo "<option value='P' >อื่น ๆ</option>\n";
             } 
             else{
             echo "<select class='form-control' name='payApprSta5' id='payApprSta5' required>\n";
             echo "<option value=''>- เลือกผลการอนุมัติ -</option>\n";
             echo "<option value='Y' >อนุมัติ</option>\n";
             echo "<option value='N' >ไม่อนุมัติ</option>\n";
+            echo "<option value='W' >รออนุมัติ</option>\n";
             echo "<option value='P' >อื่น ๆ</option>\n";
             }
          } 

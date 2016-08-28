@@ -14,6 +14,10 @@
     $redModel = $_GET['redModel'];
     $redYear = $_GET['redYear'];
     $redDesc = $_GET['redDesc'];
+    $cond = "";
+    if(!empty($_GET['cond'])){
+      $cond = $_GET['cond'];
+    }
 
          if ($data=='redMake') { 
               $sqlID = "PCS1_006";
@@ -78,7 +82,12 @@
               echo "<div class='col-md-2' id='redMake' name='redMake'>";
               $sqlID = "PCS1_006";
               $redMakeResult = executeSql($conn,$sqlID);
+              if($cond=="view"){
+              echo "<select class='form-control' name='redMake' id='redMake' onChange=\"dochangeRedbook('redModel', '', this.value, '', '', '')\" disabled>\n";
+              }
+              else{
               echo "<select class='form-control' name='redMake' id='redMake' onChange=\"dochangeRedbook('redModel', '', this.value, '', '', '')\" required>\n";
+              }
               echo "<option value=''>- เลือกยี่ห้อ -</option>\n";
               while($redMakeRow = $redMakeResult->fetch_assoc()){
                 if($redMake==$redMakeRow["RED_Make"]){
@@ -96,7 +105,13 @@
               setRedbookID($redMake,$redModel,$redYear,$redDesc);
               $sqlID = "PCS1_007";
               $redModelResult = executeSql($conn,$sqlID);
+              
+              if($cond=="view"){
+              echo "<select class='form-control' name='redModel' id='redModel' onChange=\"dochangeRedbook('redYear', '', '".$redMake."', this.value, '', '')\" disabled>\n";
+              }
+              else{
               echo "<select class='form-control' name='redModel' id='redModel' onChange=\"dochangeRedbook('redYear', '', '".$redMake."', this.value, '', '')\" required>\n";
+              }
               echo "<option value=''>- เลือกรุ่น -</option>\n";
               while($redModelRow = $redModelResult->fetch_assoc()){
                 if($redModel==$redModelRow["RED_Model"]){
@@ -114,7 +129,12 @@
               setRedbookID($redMake,$redModel,$redYear,$redDesc);
               $sqlID = "PCS1_008";
               $redYearResult = executeSql($conn,$sqlID);
+              if($cond=="view"){
+              echo "<select class='form-control' name='redYear' id='redYear' onChange=\"dochangeRedbook('redDesc', '', '".$redMake."', '".$redModel."', this.value,'')\" disabled>\n";
+              }
+              else{
               echo "<select class='form-control' name='redYear' id='redYear' onChange=\"dochangeRedbook('redDesc', '', '".$redMake."', '".$redModel."', this.value,'')\" required>\n";
+              }
               echo "<option value=''>- เลือกปี -</option>\n";
               while($redYearRow = $redYearResult->fetch_assoc()){
                 if($redYear==$redYearRow["RED_Year"]){
@@ -135,7 +155,12 @@
               setRedbookID($redMake,$redModel,$redYear,$redDesc);
               $sqlID = "PCS1_009";
               $redDescResult = executeSql($conn,$sqlID);
+              if($cond=="view"){
+              echo "<select class='form-control' name='redDesc' id='redDesc' onChange=\"dochangeRedbook('redKey', '', '".$redMake."', '".$redModel."', '".$redYear."',this.value)\" disabled>\n";
+              }
+              else{
               echo "<select class='form-control' name='redDesc' id='redDesc' onChange=\"dochangeRedbook('redKey', '', '".$redMake."', '".$redModel."', '".$redYear."',this.value)\" required>\n";
+              }
               echo "<option value=''>- เลือกรุ่นย่อย -</option>\n";
               while($redDescRow = $redDescResult->fetch_assoc()){
                 if($redDesc==$redDescRow["RED_Desc"]){
@@ -150,12 +175,8 @@
                 
               echo "<div class='col-md-2' align='right'>รหัสรุ่นรถ :</div>";
               echo "<div class='col-md-2' id='redKey'>";
-              echo "<input type='text' class='form-control' id='redKey' name='redKey' value=\"$val\" required randonly>";
+              echo "<input type='text' class='form-control' id='redKey' name='redKey' value=\"$val\" readonly>";
               echo "<div class='col-md-2' align='right'>";
-              echo "<a href='javascript:void(0);' NAME='Add Redbook' title=' My title here '  
-                          onClick=' window.open('addRedbook.php','','width=550,height=170,left=150,top=200,toolbar=1,status=1')'> 
-                          +add+
-                          </a>";
               echo "</div>";
               echo "</div>";
               echo "</div>";

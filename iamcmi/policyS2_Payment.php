@@ -153,7 +153,7 @@ $quoQueryResult = executeSql($conn,$sqlID);
 					<input type="text" class="form-control" id="paySts"
 						placeholder="Enter Chassis Number" value='<?php echo $premPaidStatus; ?>' readonly>
 				</div>
-				<div class="col-md-3" align="right">เบี้ยที่ต้องชำระ :</div>
+				<div class="col-md-3" align="right">เบี้ยกรรมธรรม์ :</div>
 				<div class="col-md-3">
 					<input type="text" class="form-control"
 						placeholder="Enter Chassis Number" value='<?php echo $premTotal; ?>' readonly>
@@ -250,7 +250,8 @@ $quoQueryResult = executeSql($conn,$sqlID);
 
 			<?php
 			}else if($polStatusIDFK==5){ //STATUS:Payment Approval In Progress
-			?>
+				if($_SESSION["usrRole"]=='Admin'){
+				?>
 				<div class="row">
 					<br>
 					<input type="hidden" class="form-control" id="premPayMethod" name="premPayMethod" value='<?php echo $premPayMethod; ?>'>
@@ -285,32 +286,90 @@ $quoQueryResult = executeSql($conn,$sqlID);
 					</div>
 					</div>
 				<br>
-			<br>
-			<div style="border: 3px; border-style: solid; border-color: #a5a5a5;">
-				<div class="row">
-					<div class="col-md-12">
-						<div style="background-color: #EBECE4; height: 30px;">
-							<b>Update approval payment information</b>
+				<br>
+				<div style="border: 3px; border-style: solid; border-color: #a5a5a5;">
+					<div class="row">
+						<div class="col-md-12">
+							<div style="background-color: #EBECE4; height: 30px;">
+								<b>Update approval payment information</b>
+							</div>
 						</div>
 					</div>
+					<br>
+					<div class="row" style="margin:0em 0.5em 0em 0.5em;">
+						<input type="hidden" class="form-control" id="premPayAprv" name="premPayAprv" value='<?php echo $premPaidStatusAprv; ?>'>
+						<div class="col-md-3" align="left">Approval Status :</div>
+						<div class="col-md-3" name="payApprSta5" id="payApprSta5">
+
+						</div>
+						<div class="col-md-3" align="right">Approval Comments :</div>
+						<div class="col-md-3">
+							<input type="text" class="form-control" id="premAprvComment" name="premAprvComment"
+								placeholder="ระบุเหตุผลเพิ่มเติม" value='<?php echo $premAprvComment ?>' >
+						</div>
+					</div>
+					<br>
 				</div>
-				<br>
-				<div class="row" style="margin:0em 0.5em 0em 0.5em;">
-					<input type="hidden" class="form-control" id="premPayAprv" name="premPayAprv" value='<?php echo $premPaidStatusAprv; ?>'>
-					<div class="col-md-3" align="left">Approval Status :</div>
-					<div class="col-md-3" name="payApprSta5" id="payApprSta5">
+				<?php	
+				}
+				else{
+				?>
+				<div class="row">
+					<br>
+					<input type="hidden" class="form-control" id="premPayMethod" name="premPayMethod" value='<?php echo $premPayMethod; ?>'>
+					<div class="col-md-3" align="left">Payment Method :</div>
+					<div class="col-md-3" name="payMet4" id="payMet4">
 
 					</div>
-					<div class="col-md-3" align="right">Approval Comments :</div>
-					<div class="col-md-3">
-						<input type="text" class="form-control" id="premAprvComment" name="premAprvComment"
-							placeholder="ระบุเหตุผลเพิ่มเติม" value='<?php echo $premAprvComment ?>' >
+					<div class="col-md-3" align="right">Transaction Date :</div>
+					<div class="col-md-3" >
+						<input type="text" class="form-control" id="curDate" name="curDate"  readonly>
 					</div>
 				</div>
 				<br>
-			</div>
+				<div class="row">
+					<div class="col-md-3" align="left">Payment Amount :</div>
+					<div class="col-md-3">
+					<input type="text" class="form-control" id="payAmt4" name="payAmt4" value='<?php echo $premPaid; ?>' readonly>
+					</div>
+					<div class="col-md-3" align="right">Payee :</div>
+					<div class="col-md-3">
+						
+					<input type="text" class="form-control" id="premPayeeName" name="premPayeeName" value='<?php echo $premPayeeName; ?>' readonly>
+					</div>
+					</div>
+				<br>
+				<div class="row">
+					<div class="col-md-3" align="left">Update payment evidence :</div>
+					<div class="col-md-3">
+					</div>
+					<div class="col-md-3" align="right"></div>
+					<div class="col-md-3">
+					</div>
+					</div>
+				<br>
+				<br>
+				<div>
+					<div class="row">
+						<input type="hidden" class="form-control" id="premPayAprv" name="premPayAprv" value='<?php echo $premPaidStatusAprv; ?>'>
+						<div class="col-md-3" align="left">Approval Status :</div>
+						<div class="col-md-3" name="payApprSta5" id="payApprSta5">
+
+						</div>
+						<div class="col-md-3" align="right">Approval Comments :</div>
+						<div class="col-md-3">
+							<input type="text" class="form-control" id="premAprvComment" name="premAprvComment"
+								placeholder="ระบุเหตุผลเพิ่มเติม" value='<?php echo $premAprvComment ?>' readonly>
+						</div>
+					</div>
+					<br>
+				</div>
+				<?php
+				}
+			?>
+				
 			<?php
-			}else if($polStatusIDFK==6){ //STATUS:Payment Approval In Progress
+			}else if($polStatusIDFK==6){ //STATUS:Waiting for Issue
 			?>
 				<div class="row">
 					<br>
@@ -335,7 +394,7 @@ $quoQueryResult = executeSql($conn,$sqlID);
 						
 					<input type="text" class="form-control" id="premPayMethod" name="premPayMethod" value='<?php echo $premPayeeName; ?>' readonly>
 					</div>
-					</div>
+				</div>
 				<br>
 				
 				<div class="row">
@@ -380,8 +439,11 @@ $quoQueryResult = executeSql($conn,$sqlID);
 				<div class="col-md-12" align="center">
 					<?php
 						if($polStatusIDFK==5){
-							echo "<a href='xx.php'><button type='button' class='btn btn-primary btn-md'>View Policy Info.</button></a> ";
+							echo "<a href='policyS1_View.php'><button type='button' class='btn btn-primary btn-md'>View Policy Info.</button></a> ";
+							if($_SESSION["usrRole"]=='Admin'){
 							echo "<input type='Submit' class='btn btn-primary btn-md' name='btn' id='btn' value='Approve'/>";
+							}
+
 						}
 						else if($polStatusIDFK==4){
 							echo "<a href='policyCreateStep1.php'><button type='button' class='btn btn-primary btn-md'>Edit Policy Info.</button></a> ";
@@ -389,7 +451,7 @@ $quoQueryResult = executeSql($conn,$sqlID);
 							echo "<input type='Submit' class='btn btn-primary btn-md' name='btn' id='btn' value='Submit Payment'/> ";
 						}
 						else if($polStatusIDFK==6){
-							echo "<a href='xx.php'><button type='button' class='btn btn-primary btn-md'>View Policy Info.</button></a> ";
+							echo "<a href='policyS1_View.php'><button type='button' class='btn btn-primary btn-md'>View Policy Info.</button></a> ";
 							if($premPaidStatusAprv=='Y'){
 							echo "<input type='Submit' class='btn btn-primary btn-md' name='btn' id='btn' value='Issue'/>";
 							}

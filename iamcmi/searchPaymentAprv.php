@@ -247,8 +247,7 @@ $searchResultSize = $searchResult->num_rows;
 		  	<form action="searchPaymentAprvConfirm.php" method="post">
 		  			
 <?php 
-
-if ($searchResult->num_rows > 0) {
+if ($searchResult->num_rows > 0 && $_SESSION["usrRole"]=='Admin') {
 $no=1;
 	while($searchRow = $searchResult->fetch_assoc()) {
 ?>

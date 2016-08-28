@@ -1,5 +1,5 @@
 <?php 
-   include 'config/config.php'; 
+   include 'config/config_login.php'; 
    session_start();
    $conn = connOpen();
    

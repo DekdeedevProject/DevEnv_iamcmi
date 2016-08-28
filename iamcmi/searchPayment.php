@@ -291,8 +291,6 @@ $no=1;
 				}	
 				else{
 					//Display only status
-					?><td>test2</td>
-					<?php
 				}	
 				?>
 			</tr>
