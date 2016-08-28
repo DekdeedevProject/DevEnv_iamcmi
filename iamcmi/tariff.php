@@ -13,6 +13,9 @@
     $tarBody = trim($_GET['tarBody']);
     $tarSubBody = trim($_GET['tarSubBody']);
     $tarUsage = trim($_GET['tarUsage']);
+    if(!empty($_GET['cond'])){
+      $cond = $_GET['cond'];
+    }
          if ($data=='tarPower') { 
               // $sqlID = "PCS1_013";
               // $tarPowerResult = executeSql($conn,$sqlID);
@@ -66,7 +69,12 @@
               setTariffID("","","","");
               $sqlID = "PCS1_014";
               $tarBodyResult = executeSql($conn,$sqlID);
+              if($cond=="view"){
+              echo "<select class='form-control' name='tarBody' id='tarBody' onChange=\"dochangeTariff('tarSubBody', '', this.value, '', '')\" disabled>\n";
+              }
+              else{
               echo "<select class='form-control' name='tarBody' id='tarBody' onChange=\"dochangeTariff('tarSubBody', '', this.value, '', '')\" required>\n";
+              }
               echo "<option value=''>- เลือกประเภท -</option>\n";
               $tarBody = $tarRow["TAR_BodyName_TH"];
               while($tarBodyRow = $tarBodyResult->fetch_assoc()){
@@ -87,7 +95,12 @@
               $sqlID = "PCS1_015";
               $tarSubBodyResult = executeSql($conn,$sqlID);
               $tarSubBody = $tarRow["TAR_SubBodyName_TH"];
+              if($cond=="view"){
+              echo "<select class='form-control' name='tarSubBody' id='tarSubBody' onChange=\"dochangeTariff('tarUsage', '', '".$tarBody."', this.value, '')\" disabled>\n";
+              }
+              else{
               echo "<select class='form-control' name='tarSubBody' id='tarSubBody' onChange=\"dochangeTariff('tarUsage', '', '".$tarBody."', this.value, '')\" required>\n";
+              }
               echo "<option value=''>- เลือกประเภทย่อย -</option>\n";
               while($tarSubBodyRow = $tarSubBodyResult->fetch_assoc()){   
                 if(trim($tarSubBody)==trim($tarSubBodyRow["TAR_SubBodyName_TH"])){
@@ -106,7 +119,12 @@
               $sqlID = "PCS1_016";
               $tarUsageResult = executeSql($conn,$sqlID);
               $tarUsage = $tarRow["TAR_UsageName_TH"];
+              if($cond=="view"){
+              echo "<select class='form-control' name='tarUsage' id='tarUsage' onChange=\"dochangeTariff('vehTARvehCodeFK', '', '".$tarBody."', '".$tarSubBody."', this.value)\" disabled>\n";
+              }
+              else{
               echo "<select class='form-control' name='tarUsage' id='tarUsage' onChange=\"dochangeTariff('vehTARvehCodeFK', '', '".$tarBody."', '".$tarSubBody."', this.value)\" required>\n";
+              }
               echo "<option value=''>- เลือกการใช้งาน -</option>\n";
               while($tarUsageRow = $tarUsageResult->fetch_assoc()){
                 if(trim($tarUsage)==trim($tarUsageRow["TAR_UsageName_TH"])){

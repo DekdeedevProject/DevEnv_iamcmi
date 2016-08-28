@@ -41,7 +41,7 @@ $(function () {
 		     	document.getElementById(src).innerHTML = xhttp.responseText;
 		    	}
 		  	};
-		  	xhttp.open("GET", "location.php?data="+src+"&val="+val+"&provID="+provID+"&distID="+distID+"&subDistID="+subDistID+"&cond=view"); //สร้าง connection
+		  	xhttp.open("GET", "location.php?data="+src+"&val="+val+"&provID="+provID+"&distID="+distID+"&subDistID="+subDistID); //สร้าง connection
              xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;charset=utf-8"); // set Header
              xhttp.send(null); //ส่งค่า
         }
@@ -56,7 +56,7 @@ $(function () {
 		    	}
 		  	};
 
-		  	 xhttp.open("GET", "tariff.php?data="+src+"&val="+val+"&tarBody="+tarBody+"&tarSubBody="+tarSubBody+"&tarUsage="+tarUsage+"&cond=view"); //สร้าง connection
+		  	 xhttp.open("GET", "tariff.php?data="+src+"&val="+val+"&tarBody="+tarBody+"&tarSubBody="+tarSubBody+"&tarUsage="+tarUsage); //สร้าง connection
              xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;charset=utf-8"); // set Header
              xhttp.send(null); //ส่งค่า
         }
@@ -70,7 +70,7 @@ $(function () {
 		    	}
 		  	};
 
-   			 xhttp.open("GET", "redbook.php?data="+src+"&val="+val+"&redMake="+redMake+"&redModel="+redModel+"&redYear="+redYear+"&redDesc="+redDesc+"&cond=view"); //สร้าง connection
+   			 xhttp.open("GET", "redbook.php?data="+src+"&val="+val+"&redMake="+redMake+"&redModel="+redModel+"&redYear="+redYear+"&redDesc="+redDesc); //สร้าง connection
              xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;charset=utf-8"); // set Header
              xhttp.send(null); //ส่งค่า
         }
@@ -84,7 +84,7 @@ $(function () {
 		     	document.getElementById(src).innerHTML = xhttp.responseText;
 		    	}
 		  	};
-		     xhttp.open("GET", "policyInfo.php?data="+src+"&val="+val+"&usrName="+usrName+"&usrRole="+usrRole+"&cond=view"); //สร้าง connection
+		     xhttp.open("GET", "policyInfo.php?data="+src+"&val="+val+"&usrName="+usrName+"&usrRole="+usrRole); //สร้าง connection
              xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;charset=utf-8"); // set Header
              xhttp.send(null); //ส่งค่า
         }
@@ -113,6 +113,7 @@ $(function () {
         	usrName = document.getElementById("usrName").value;
         	usrRole = document.getElementById("usrRole").value;
         	window.onLoad=dochangePolicyInfo('polAGTIDFK', polAGTIDFK, usrName, usrRole)
+
         	PHD_perSalu = document.getElementById("PHD_perSaluID").value;
         	window.onLoad=dochangePolicyInfo('PHD_perSalu', PHD_perSalu,"","");
 			PHD_perCardType = document.getElementById("PHD_perCardTypeID").value;
@@ -290,7 +291,7 @@ $quoQueryResult = executeSql($conn,$sqlID);
 					<div class="date" id="datetimepicker">						
 						<div id="datetimepicker4" class="input-group date"> 
 			               <input type="text" class="form-control" data-format="dd-MM-yyyy HH:mm:ss" 
-							placeholder="วันที่เริ่มคุ้มครอง" id="polEffDate" name="polEffDate" value='<?php echo $polEffDate; ?>' readonly >
+							placeholder="วันที่เริ่มคุ้มครอง" id="polEffDate" name="polEffDate" value='<?php echo $polEffDate; ?>' required >
 			                <span class="add-on"> 
 			                    <i class="glyphicon glyphicon-calendar cld"></i> 
 			                </span> 
@@ -303,7 +304,7 @@ $quoQueryResult = executeSql($conn,$sqlID);
 					<div class="date" id="datetimepicker">						
 						<div id="datetimepicker5" class="input-group date"> 
 				             <input type="text" class="form-control" data-format="dd-MM-yyyy HH:mm:ss"  
-				             placeholder="วันสิ้นสุดความคุ้มครอง" id="polExpDate" name="polExpDate" value='<?php echo $polExpDate; ?>' readonly >
+				             placeholder="วันสิ้นสุดความคุ้มครอง" id="polExpDate" name="polExpDate" value='<?php echo $polExpDate; ?>' required >
 							 <div class="add-on"> 
 				                <i class="glyphicon glyphicon-calendar cld"></i> 
 				             </div> 
@@ -359,9 +360,12 @@ $quoQueryResult = executeSql($conn,$sqlID);
 				
 				<div class="col-md-2" align="right">รหัสรุ่นรถ :</div>
 				<div class="col-md-2" id="redKey">
-					<input type="text" id="redKey" name="redKey" class="form-control" placeholder="รหัสรุ่นรถ" value='<?php echo $redKey ?>' readonly>
+					<input type="text" id="redKey" name="redKey" class="form-control" placeholder="รหัสรุ่นรถ" value='<?php echo $redKey ?>' required readonly>
 					<div class="col-md-2" align="right">
-		
+						<a href="javascript:void(0);" NAME="Add Redbook" title=" My title here "  
+            			onClick=" window.open('addRedbook.php','','width=550,height=170,left=150,top=200,toolbar=1,status=1')"> 
+            			+add+
+            			</a>
             		</div>
 				</div>
 			</div>
@@ -371,15 +375,18 @@ $quoQueryResult = executeSql($conn,$sqlID);
 			<div class="row">
 				<div class="col-md-2" align="left">ความจุ :</div>
 				<div class="col-md-2">
-					<input type="text" class="form-control" id="vehCapacity" name="vehCapacity" value='<?php echo $vehCapacity ?>' readonly/>
+					<input type="text" class="form-control" id="vehCapacity" name="vehCapacity" value='<?php echo $vehCapacity ?>'
+						placeholder="ความจุ"/>
 				</div>
 				<div class="col-md-2" align="right">น้ำหนัก :</div>
 				<div class="col-md-2">
-					<input type="text" class="form-control" id="vehWeight" name="vehWeight" value='<?php echo $vehWeight ?>' readonly/>
+					<input type="text" class="form-control" id="vehWeight" name="vehWeight" value='<?php echo $vehWeight ?>'
+						placeholder="น้ำหนัก" />
 				</div>
 				<div class="col-md-2" align="right">จำนวนที่นั่ง :</div>
 				<div class="col-md-2">
-					<input type="text" class="form-control" id="vehSeat" name="vehSeat" value='<?php echo $vehSeat ?>' readonly/> 
+					<input type="text" class="form-control" id="vehSeat" name="vehSeat" value='<?php echo $vehSeat ?>'
+						placeholder="จำนวนที่นั่ง" /> 
 				</div>
 			</div>
 			<br>
@@ -387,11 +394,13 @@ $quoQueryResult = executeSql($conn,$sqlID);
 			<div class="row">
 				<div class="col-md-2" align="left">เลขตัวถัง :</div>
 				<div class="col-md-2">
-					<input type="text" class="form-control" id="vehChassisNum" name="vehChassisNum" value='<?php echo $vehChassisNum ?>' readonly>
+					<input type="text" class="form-control" id="vehChassisNum" name="vehChassisNum" value='<?php echo $vehChassisNum ?>'
+						placeholder="เลขตัวถัง" >
 				</div>
 				<div class="col-md-2" align="right">ทะเบียนรถ:</div>
 				<div class="col-md-2">
-					<input type="text" class="form-control" id="vehLicenseNum" name="vehLicenseNum" value='<?php echo $vehLicenseNum ?>' readonly>
+					<input type="text" class="form-control" id="vehLicenseNum" name="vehLicenseNum" value='<?php echo $vehLicenseNum ?>'
+						placeholder="ทะเบียนรถ" required>
 				</div>
 				
 			</div>
@@ -497,12 +506,14 @@ $quoQueryResult = executeSql($conn,$sqlID);
 				</div>
 				<div class="col-md-2" align="right">ชื่อ :</div>
 				<div class="col-md-2">
-					<input type="text" class="form-control" id="PHD_perFName" name="PHD_perFName" value='<?php echo $PHD_perFName ?>' readonly>
+					<input type="text" class="form-control" id="PHD_perFName" name="PHD_perFName" value='<?php echo $PHD_perFName ?>'
+						placeholder="ชื่อ" required>
 				</div>
 				<div class="col-md-2" align="right">นามสกุล :</div>
 				<div class="col-md-2">
 					<input type="hidden" class="form-control" id="PHD_perMName" name="PHD_perMName" value='<?php echo $PHD_perMName ?>'>
-					<input type="text" class="form-control" id="PHD_perLName" name="PHD_perLName" value='<?php echo $PHD_perLName ?>' readonly>
+					<input type="text" class="form-control" id="PHD_perLName" name="PHD_perLName" value='<?php echo $PHD_perLName ?>'
+						placeholder="นามสกุล" required>
 				</div>
 			</div>
 			<br>
@@ -513,7 +524,7 @@ $quoQueryResult = executeSql($conn,$sqlID);
 					<div class="date" id="datetimepicker6">						
 						<div id="datetimepicker6" class="input-group date"> 
 			               <input type="text" class="form-control" data-format="dd-MM-yyyy" placeholder="วันเกิด" 
-							id="PHD_perDOB" name="PHD_perDOB" value='<?php echo $PHD_perDOB; ?>' readonly>
+							id="PHD_perDOB" name="PHD_perDOB" value='<?php echo $PHD_perDOB; ?>' >
 			                <span class="add-on"> 
 			                    <i class="glyphicon glyphicon-calendar cld"></i> 
 			                </span> 
@@ -533,14 +544,15 @@ $quoQueryResult = executeSql($conn,$sqlID);
 				</div>
 				<div class="col-md-2" align="right">เลขที่บัตร :</div>
 				<div class="col-md-2">
-					<input type="text" class="form-control" id="PHD_perCardNo" name="PHD_perCardNo" value='<?php echo $PHD_perCardNo ?>' readonly>
+					<input type="text" class="form-control" id="PHD_perCardNo" name="PHD_perCardNo" value='<?php echo $PHD_perCardNo ?>'
+						placeholder="เลขที่บัตร" required>
 				</div>
 				<div class="col-md-2" align="right">วันหมดอายุ :</div>
 				<div class="col-md-2">
 					<div class="date" id="datetimepicker7">						
 						<div id="datetimepicker7" class="input-group date"> 
 			               <input type="text" class="form-control" data-format="dd-MM-yyyy" placeholder="วันหมดอายุ" 
-							id="PHD_perExpDate" name="PHD_perExpDate" value='<?php echo $PHD_perExpDate; ?>' readonly>
+							id="PHD_perExpDate" name="PHD_perExpDate" value='<?php echo $PHD_perExpDate; ?>' required>
 			                <span class="add-on"> 
 			                    <i class="glyphicon glyphicon-calendar cld"></i> 
 			                </span> 
@@ -553,11 +565,13 @@ $quoQueryResult = executeSql($conn,$sqlID);
 			<div class="row">
 				<div class="col-md-2" align="left">บ้านเลขที่ :</div>
 				<div class="col-md-2">
-					<input type="text" class="form-control" id="PHD_addrLine1" name="PHD_addrLine1" value='<?php echo $PHD_addrLine1 ?>' readonly>
+					<input type="text" class="form-control" id="PHD_addrLine1" name="PHD_addrLine1" value='<?php echo $PHD_addrLine1 ?>'
+						placeholder="บ้านเลขที่" required>
 				</div>
 				<div class="col-md-2" align="right">หมู่บ้าน/ซอย/ถนน :</div>
 				<div class="col-md-2">
-					<input type="text" class="form-control" id="PHD_addrLine2" name="PHD_addrLine2" value='<?php echo $PHD_addrLine2 ?>' readonly>
+					<input type="text" class="form-control" id="PHD_addrLine2" name="PHD_addrLine2" value='<?php echo $PHD_addrLine2 ?>'
+						placeholder="หมู่บ้าน/ซอย/ถนน">
 				</div>
 			</div>
 			<br>
@@ -602,7 +616,7 @@ $quoQueryResult = executeSql($conn,$sqlID);
 			<div class="row">
 				<div class="col-md-2" align="left">อีเมล์ :</div>
 				<div class="col-md-2">
-					<input type="text" class="form-control" id="PHD_addrEmail"  name="PHD_addrEmail" value='<?php echo $PHD_addrEmail ?>' readonly>
+					<input type="text" class="form-control" placeholder="อีเมล์" id="PHD_addrEmail"  name="PHD_addrEmail" value='<?php echo $PHD_addrEmail ?>' >
 				</div>
 				<div class="col-md-2" align="right">ประเภทเบอร์ติดต่อ:</div>
 				<input type="hidden" class="form-control" id="PHD_addrContType1ID" name="PHD_addrContType1ID" value='<?php echo $PHD_addrContType1 ?>'>
@@ -614,7 +628,7 @@ $quoQueryResult = executeSql($conn,$sqlID);
 				<div class="col-md-2" align="right">เบอร์ติดต่อ:</div>
 				<div class="col-md-2">
 					<input type="text" class="form-control" id="PHD_addrContNum1"
-						placeholder="เบอร์ติดต่อ" name="PHD_addrContNum1" value='<?php echo $PHD_addrContNum1 ?>' readonly>
+						placeholder="เบอร์ติดต่อ" name="PHD_addrContNum1" value='<?php echo $PHD_addrContNum1 ?>' required>
 				</div>
 			</div>
 			<br>
@@ -637,7 +651,11 @@ $quoQueryResult = executeSql($conn,$sqlID);
 
 			<div class="row">
 				<div class="col-md-12" align="center">
-					<a href="home.php"><input type="button" class="btn btn-primary btn-md" name="btn" id="btn" value="Home"/></a>
+					<a href="home.php"><input type="button" class="btn btn-primary btn-md" name="btn" id="btn" value="Cancel"/></a>
+					<input type="Reset" class="btn btn-primary btn-md"/>
+					<input type="Submit" class="btn btn-primary btn-md" name="btn" id="btn" value="Save"/>
+					<input type="Submit" class="btn btn-primary btn-md" name="btn" id="btn" value="Submit for Payment"/>
+
 				</div>
 			</div>
 	<!-- polIDPK: --><input type="hidden" placeholder="" id="polIDPK" name="polIDPK" value='<?php echo $polIDPK; ?>' randonly /><!-- <br> -->

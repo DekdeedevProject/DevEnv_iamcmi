@@ -13,6 +13,10 @@
     $provID = $_GET['provID'];
     $distID = $_GET['distID'];
     $subDistID = $_GET['subDistID'];
+    $cond = "";
+    if(!empty($_GET['cond'])){
+      $cond = $_GET['cond'];
+    }
     
          if ($data=='PHD_addrProv') { 
               $sqlID  = "PCS1_002";   
@@ -62,7 +66,12 @@
               $sqlID  = "PCS1_002";   
               $PHD_addrProvResult =executeSql($conn,$sqlID);
               $PHD_addrProvSize = $PHD_addrProvResult->num_rows;
-              echo "<select class='form-control' name='PHD_addrProv' id='PHD_addrProv' onChange=\"dochangeLocation('PHD_addrDist', '', this.value,'','')\" requireds>\n";
+              if($cond=="view"){
+              echo "<select class='form-control' name='PHD_addrProv' id='PHD_addrProv' onChange=\"dochangeLocation('PHD_addrDist', '', this.value,'','')\" disabled>\n";              
+              }
+              else{
+              echo "<select class='form-control' name='PHD_addrProv' id='PHD_addrProv' onChange=\"dochangeLocation('PHD_addrDist', '', this.value,'','')\" requireds>\n";              
+              }
               echo "<option value=''>- เลือกจังหวัด -</option>\n";
               while($PHD_addrProvRow = $PHD_addrProvResult->fetch_assoc()){
                 if($provID==$PHD_addrProvRow["PROVINCE_ID"]){
@@ -82,7 +91,12 @@
               $PHD_addrDistResult =executeSql($conn,$sqlID);
               $PHD_addrDistSize = $PHD_addrDistResult->num_rows;
               $distID = $_GET['distID'];
+              if($cond=="view"){
+              echo "<select class='form-control' name='PHD_addrDist' id='PHD_addrDist' onChange=\"dochangeLocation('PHD_addrSubDist', '','".$provID."',this.value,'')\" disabled>\n";
+              }
+              else{
               echo "<select class='form-control' name='PHD_addrDist' id='PHD_addrDist' onChange=\"dochangeLocation('PHD_addrSubDist', '','".$provID."',this.value,'')\" required>\n";
+              }
               echo "<option value=''>- เลือกอำเภอ -</option>\n";
               while($PHD_addrDistRow = $PHD_addrDistResult->fetch_assoc()){
                  if($distID==$PHD_addrDistRow["DISTRICT_ID"]){
@@ -100,7 +114,12 @@
               setLocationID($provID,$distID,0);
               $sqlID  = "PCS1_011";   
               $PHD_addrSubDistResult  =executeSql($conn,$sqlID);
+              if($cond=="view"){
+              echo "<select class='form-control' name='PHD_addrSubDist' id='PHD_addrSubDist' onChange=\"dochangeLocation('PHD_addrZipCode', '','".$provID."','".$distID."',this.value)\" disabled>\n";
+              }
+              else{
               echo "<select class='form-control' name='PHD_addrSubDist' id='PHD_addrSubDist' onChange=\"dochangeLocation('PHD_addrZipCode', '','".$provID."','".$distID."',this.value)\" required>\n";
+              }
               echo "<option value=''>- เลือกตำบล -</option>\n";
               $subDistID = $_GET['subDistID'];
               while($PHD_addrSubDistRow = $PHD_addrSubDistResult->fetch_assoc()){
@@ -121,7 +140,12 @@
               setLocationID($provID,$distID,$subDistID);
               $sqlID  = "PCS1_012";   
               $PHD_addrZipCodeResult  =executeSql($conn,$sqlID);
-              echo "<select class='form-control' name='PHD_addrZipCode' id='PHD_addrZipCode'>\n";
+              if($cond=="view"){
+              echo "<select class='form-control' name='PHD_addrZipCode' id='PHD_addrZipCode' disabled>\n";
+              }
+              else{
+              echo "<select class='form-control' name='PHD_addrZipCode' id='PHD_addrZipCode' required>\n";
+              }
               while($PHD_addrZipCodeRow = $PHD_addrZipCodeResult->fetch_assoc()){
                 if($val != '-1'){
                  echo "<option value=\"$PHD_addrZipCodeRow[zipcode]\" selected='selected'>$PHD_addrZipCodeRow[zipcode]</option> \n" ;
