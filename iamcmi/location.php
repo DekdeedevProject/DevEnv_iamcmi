@@ -1,5 +1,5 @@
 <?php
-    header("content-type: text/html; charset=utf-8");
+    header ("content-type: text/html; charset=utf-8");
     header ("Expires: Wed, 21 Aug 2013 13:13:13 GMT");
     header ("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
     header ("Cache-Control: no-cache, must-revalidate");

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<!-- HEADER SECTION-->
+<?php include 'config/config.php'; ?>
+<title><?php echo $policySearch; ?></title>
 <!-- <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
 <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css" /> -->
 <link rel="stylesheet" href="../js/jquery-ui-themes-1.12.0-rc.2/themes/smoothness/jquery-ui.css" />
@@ -158,7 +158,6 @@ unset($_SESSION["polQuoNum"]);
 ?>
 <!-- END HEADER SECTION-->
 </head>
-<title><?php echo $policySearch; ?></title>
 <body>
 		<form action="policySearchAll.php" id="cmi" method="POST">
 		<div class="container">
