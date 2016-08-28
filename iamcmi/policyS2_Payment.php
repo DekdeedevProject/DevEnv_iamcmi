@@ -446,7 +446,7 @@ $quoQueryResult = executeSql($conn,$sqlID);
 
 						}
 						else if($polStatusIDFK==4){
-							echo "<a href='policyCreateStep1.php'><button type='button' class='btn btn-primary btn-md'>Edit Policy Info.</button></a> ";
+							echo "<a href='policyS1_Create.php'><button type='button' class='btn btn-primary btn-md'>Edit Policy Info.</button></a> ";
 							// echo "<input type='Submit' class='btn btn-primary btn-md' name='btn' id='btn' value='Save'/> ";
 							echo "<input type='Submit' class='btn btn-primary btn-md' name='btn' id='btn' value='Submit Payment'/> ";
 						}

@@ -82,7 +82,7 @@
               echo "<div class='col-md-2' id='redMake' name='redMake'>";
               $sqlID = "PCS1_006";
               $redMakeResult = executeSql($conn,$sqlID);
-              if($cond=="view"){
+              if(!empty($_GET['cond']) && $cond=="view"){
               echo "<select class='form-control' name='redMake' id='redMake' onChange=\"dochangeRedbook('redModel', '', this.value, '', '', '')\" disabled>\n";
               }
               else{
@@ -106,7 +106,7 @@
               $sqlID = "PCS1_007";
               $redModelResult = executeSql($conn,$sqlID);
               
-              if($cond=="view"){
+              if(!empty($_GET['cond']) && $cond=="view"){
               echo "<select class='form-control' name='redModel' id='redModel' onChange=\"dochangeRedbook('redYear', '', '".$redMake."', this.value, '', '')\" disabled>\n";
               }
               else{
@@ -129,7 +129,7 @@
               setRedbookID($redMake,$redModel,$redYear,$redDesc);
               $sqlID = "PCS1_008";
               $redYearResult = executeSql($conn,$sqlID);
-              if($cond=="view"){
+              if(!empty($_GET['cond']) && $cond=="view"){
               echo "<select class='form-control' name='redYear' id='redYear' onChange=\"dochangeRedbook('redDesc', '', '".$redMake."', '".$redModel."', this.value,'')\" disabled>\n";
               }
               else{
@@ -155,7 +155,7 @@
               setRedbookID($redMake,$redModel,$redYear,$redDesc);
               $sqlID = "PCS1_009";
               $redDescResult = executeSql($conn,$sqlID);
-              if($cond=="view"){
+              if(!empty($_GET['cond']) && $cond=="view"){
               echo "<select class='form-control' name='redDesc' id='redDesc' onChange=\"dochangeRedbook('redKey', '', '".$redMake."', '".$redModel."', '".$redYear."',this.value)\" disabled>\n";
               }
               else{

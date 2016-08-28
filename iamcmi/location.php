@@ -66,7 +66,7 @@
               $sqlID  = "PCS1_002";   
               $PHD_addrProvResult =executeSql($conn,$sqlID);
               $PHD_addrProvSize = $PHD_addrProvResult->num_rows;
-              if($cond=="view"){
+              if(!empty($_GET['cond']) && $cond=="view"){
               echo "<select class='form-control' name='PHD_addrProv' id='PHD_addrProv' onChange=\"dochangeLocation('PHD_addrDist', '', this.value,'','')\" disabled>\n";              
               }
               else{
@@ -91,7 +91,7 @@
               $PHD_addrDistResult =executeSql($conn,$sqlID);
               $PHD_addrDistSize = $PHD_addrDistResult->num_rows;
               $distID = $_GET['distID'];
-              if($cond=="view"){
+              if(!empty($_GET['cond']) && $cond=="view"){
               echo "<select class='form-control' name='PHD_addrDist' id='PHD_addrDist' onChange=\"dochangeLocation('PHD_addrSubDist', '','".$provID."',this.value,'')\" disabled>\n";
               }
               else{
@@ -114,7 +114,7 @@
               setLocationID($provID,$distID,0);
               $sqlID  = "PCS1_011";   
               $PHD_addrSubDistResult  =executeSql($conn,$sqlID);
-              if($cond=="view"){
+              if(!empty($_GET['cond']) && $cond=="view"){
               echo "<select class='form-control' name='PHD_addrSubDist' id='PHD_addrSubDist' onChange=\"dochangeLocation('PHD_addrZipCode', '','".$provID."','".$distID."',this.value)\" disabled>\n";
               }
               else{
@@ -140,7 +140,7 @@
               setLocationID($provID,$distID,$subDistID);
               $sqlID  = "PCS1_012";   
               $PHD_addrZipCodeResult  =executeSql($conn,$sqlID);
-              if($cond=="view"){
+              if(!empty($_GET['cond']) && $cond=="view"){
               echo "<select class='form-control' name='PHD_addrZipCode' id='PHD_addrZipCode' disabled>\n";
               }
               else{

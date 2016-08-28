@@ -69,7 +69,7 @@
               setTariffID("","","","");
               $sqlID = "PCS1_014";
               $tarBodyResult = executeSql($conn,$sqlID);
-              if($cond=="view"){
+              if(!empty($_GET['cond']) && $cond=="view"){
               echo "<select class='form-control' name='tarBody' id='tarBody' onChange=\"dochangeTariff('tarSubBody', '', this.value, '', '')\" disabled>\n";
               }
               else{
@@ -95,7 +95,7 @@
               $sqlID = "PCS1_015";
               $tarSubBodyResult = executeSql($conn,$sqlID);
               $tarSubBody = $tarRow["TAR_SubBodyName_TH"];
-              if($cond=="view"){
+              if(!empty($_GET['cond']) && $cond=="view"){
               echo "<select class='form-control' name='tarSubBody' id='tarSubBody' onChange=\"dochangeTariff('tarUsage', '', '".$tarBody."', this.value, '')\" disabled>\n";
               }
               else{
@@ -119,7 +119,7 @@
               $sqlID = "PCS1_016";
               $tarUsageResult = executeSql($conn,$sqlID);
               $tarUsage = $tarRow["TAR_UsageName_TH"];
-              if($cond=="view"){
+              if(!empty($_GET['cond']) && $cond=="view"){
               echo "<select class='form-control' name='tarUsage' id='tarUsage' onChange=\"dochangeTariff('vehTARvehCodeFK', '', '".$tarBody."', '".$tarSubBody."', this.value)\" disabled>\n";
               }
               else{

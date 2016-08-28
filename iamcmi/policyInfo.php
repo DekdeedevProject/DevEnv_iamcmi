@@ -20,7 +20,7 @@
          if ($data=='PHD_perCardType') { 
               $sqlID  = "PCS1_005";   
               $perCardTypeResult  =executeSql($conn,$sqlID);
-              if($cond=="view"){
+              if(!empty($_GET['cond']) && $cond=="view"){
               echo "<select class='form-control' name='PHD_perCardType' id='PHD_perCardType' disabled>\n";
               }
               else{
@@ -40,7 +40,7 @@
          } else if ($data=='PHD_addrContType1') { 
               $sqlID  = "PCS1_004";
               $addrContType1Result =executeSql($conn,$sqlID);
-              if($cond=="view"){
+              if(!empty($_GET['cond']) && $cond=="view"){
               echo "<select class='form-control' name='PHD_addrContType1' id='PHD_addrContType1' disabled>\n";
               }
               else{
@@ -58,7 +58,7 @@
          } else if ($data=='PHD_perSalu') { 
              $sqlID  = "PCS1_018";   
               $perSaluResult =executeSql($conn,$sqlID);
-              if($cond=="view"){
+              if(!empty($_GET['cond']) && $cond=="view"){
               echo "<select class='form-control' name='PHD_perSalu' id='PHD_perSalu' disabled>\n";
               }
               else{
@@ -80,7 +80,7 @@
               $sqlID  = "PCS1_021";   
               $aCodeResult =executeSql($conn,$sqlID);
               
-              if($cond=="view"){
+              if(!empty($_GET['cond']) && $cond=="view"){
                 echo "<select class='form-control' name='polAGTIDFK' id='polAGTIDFK' disabled>\n";
               }
               else{

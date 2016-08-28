@@ -148,7 +148,7 @@ setPolOrgIDFK($orgIDPK);
 }
 
 if(!isset($_SESSION["polQuoNum"])){ 
-echo "<br>NEW FROM HOME PAGE<br>";
+// echo "<br>NEW FROM HOME PAGE<br>";
 $sqlID	= "PCS1_001";	
 $polResult 	= executeSql($conn,$sqlID);
 	if($polResult){
@@ -188,7 +188,7 @@ $polResult 	= executeSql($conn,$sqlID);
 	}
 }
 else{	
-echo "<br>EXISTING FROM RELOAD/SAVED/SUBMITED&Back <br>";
+// echo "<br>EXISTING FROM RELOAD/SAVED/SUBMITED&Back <br>";
 $polQuoNum = $_SESSION["polQuoNum"];
 setPolQuoNum($polQuoNum);
 $sqlID			= "PCS1_003";				
@@ -196,7 +196,7 @@ $quoQueryResult = executeSql($conn,$sqlID);
 	if($quoQueryResult){
 	$quoQueryResultSize = $quoQueryResult->num_rows;
 		if($quoQueryResultSize==0){
-		echo "WHEN RELOAD PAGE";
+		// echo "WHEN RELOAD PAGE";
 		include 'config/condition/PCS_CON_001.php';
 		if($orgResult){
 		$orgResultRow 	= $orgResult->fetch_assoc();
@@ -220,12 +220,12 @@ $quoQueryResult = executeSql($conn,$sqlID);
 		}
 		}
 		else if($quoQueryResultSize==1){
-		echo "WHEN RECORDS HAS ALREADY SAVED OR SUBMITTED&BACK<br>";
+		// echo "WHEN RECORDS HAS ALREADY SAVED OR SUBMITTED&BACK<br>";
 		$row 		= $quoQueryResult->fetch_assoc();
 		include 'config/condition/PCS_CON_002.php';
 		}
 		else{
-		echo "RECORDS MORE THAN ONE ROW";
+		// echo "RECORDS MORE THAN ONE ROW";
 		}
 	}
 }	
