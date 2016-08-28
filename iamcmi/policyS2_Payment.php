@@ -44,7 +44,8 @@ function reloadFunc(){
 	var premPayMethod = document.getElementById('premPayMethod').value;
 	updateStatus("payMet4", premPayMethod, "");
 	var premPayAprv = document.getElementById('premPayAprv').value;
-	updateStatus("payApprSta5", premPayAprv, "");
+	var userRole = document.getElementById('userRole').value;
+	updateStatus("payApprSta5", premPayAprv, userRole);
 
 }
 
@@ -430,7 +431,7 @@ $quoQueryResult = executeSql($conn,$sqlID);
 				echo "STATUS OTHER";
 			}
 			?>
-				
+			<input type="hidden" id="userRole" name="userRole" value='<?php echo $_SESSION["usrRole"]; ?>'>
 			<input type="hidden" id="paidStatusID" name="paidStatusID" value='<?php echo $premPaidStatusAprv; ?>'>
 			<input type="hidden" id="paidStatusApprID" name="paidStatusApprID" value='<?php echo ""; ?>'>
 		

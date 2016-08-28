@@ -172,9 +172,62 @@ $polResult 	= executeSql($conn,$sqlID);
 		$orgPolPrefix 	=$orgResultRow["ORG_PolPrefix"];
 		$orgPolLength 	=$orgResultRow["ORG_PolLength"];
 		}
-		$_SESSION["polQuoNum"]				= getNewPolicyNo($orgPolPrefix, $orgPolLength, $lastPolNo);
-		$polQuoNum 		= $_SESSION["polQuoNum"];
+
+		$sql = "SELECT *
+				FROM policyReserve
+				ORDER BY POL_RES_UpdatedDate DESC
+				LIMIT 1";
+		$qresult = $conn->query($sql);
+		if ( $qresult == TRUE) {
+			$qresultRow 	= $qresult->fetch_assoc();
+			echo "Test".$qresultRow["POL_RES_QuoNo"];
+			if($qresultRow["POL_RES_QuoNo"]>$lastPolNo){
+				$_SESSION["polQuoNum"]				= getNewPolicyNo($orgPolPrefix, $orgPolLength, $qresultRow["POL_RES_QuoNo"]);
+			}
+			else{
+				$_SESSION["polQuoNum"]				= getNewPolicyNo($orgPolPrefix, $orgPolLength, $lastPolNo);
+			}
+		}	
+		echo $polQuoNum 		= $_SESSION["polQuoNum"];
 		$polOrgIDFK 	= $orgIDPK;
+
+		$sql = "SELECT *
+				FROM policyReserve
+				WHERE POL_RES_QuoNo='".$polQuoNum."'
+				"; 
+		$queryResult = $conn->query($sql);
+		if ( $queryResult == TRUE) {
+		   $queryResult = $queryResult->num_rows;
+		   if($queryResult==0){
+		   		$sql = "INSERT INTO policyReserve (POL_RES_QuoNo, POL_RES_UpdatedDate, POL_RES_UpdatedBy)
+						VALUES ('".$polQuoNum."', CURRENT_TIMESTAMP , '".$_SESSION["usrName"]."');"; 
+				$insertResult = $conn->query($sql);
+				if ($insertResult == TRUE) {
+				   // echo "New record created successfully";
+				} else {
+				   echo "Error: " . $sql . "<br>" . $conn->error;
+				}
+		   }
+		   else{
+		   	$_SESSION["polQuoNum"]				= getNewPolicyNo($orgPolPrefix, $orgPolLength, $polQuoNum);
+			echo $polQuoNum 		= $_SESSION["polQuoNum"];
+			$sql = "INSERT INTO policyReserve (POL_RES_QuoNo, POL_RES_UpdatedDate, POL_RES_UpdatedBy)
+						VALUES ('".$polQuoNum."', 'CURRENT_TIMESTAMP' , '".$_SESSION["usrName"]."');"; 
+				$insertResult = $conn->query($sql);
+				if ($insertResult == TRUE) {
+				   // echo "New record created successfully";
+				} else {
+				   echo "Error: " . $sql . "<br>" . $conn->error;
+				}
+		   }
+		} 
+		else {
+		   echo "Error: " . $sql . "<br>" . $conn->error;
+		}
+
+		
+
+		
 
 		setPolStatusIDFK($polStatusIDFK);
 		$sqlID	= "PCS1_023";	
@@ -652,7 +705,6 @@ $quoQueryResult = executeSql($conn,$sqlID);
 			<div class="row">
 				<div class="col-md-12" align="center">
 					<a href="home.php"><input type="button" class="btn btn-primary btn-md" name="btn" id="btn" value="Cancel"/></a>
-					<input type="Reset" class="btn btn-primary btn-md"/>
 					<input type="Submit" class="btn btn-primary btn-md" name="btn" id="btn" value="Save"/>
 					<input type="Submit" class="btn btn-primary btn-md" name="btn" id="btn" value="Submit for Payment"/>
 

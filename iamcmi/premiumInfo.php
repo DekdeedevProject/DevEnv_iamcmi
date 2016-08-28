@@ -59,8 +59,16 @@
             echo "<option value='W' >รออนุมัติ</option>\n";
             echo "<option value='P' selected>อื่น ๆ</option>\n";
             } 
-            else if($val1=='W'){
+            else if($val1=='W' && $val2=="User"){
             echo "<select class='form-control' name='payApprSta5' id='payApprSta5' disabled>\n";
+            echo "<option value=''>- เลือกผลการอนุมัติ -</option>\n";
+            echo "<option value='Y' >อนุมัติ</option>\n";
+            echo "<option value='N' >ไม่อนุมัติ</option>\n";
+            echo "<option value='W' selected>รออนุมัติ</option>\n";
+            echo "<option value='P' >อื่น ๆ</option>\n";
+            } 
+            else if($val1=='W' && $val2=="Admin"){
+            echo "<select class='form-control' name='payApprSta5' id='payApprSta5' required>\n";
             echo "<option value=''>- เลือกผลการอนุมัติ -</option>\n";
             echo "<option value='Y' >อนุมัติ</option>\n";
             echo "<option value='N' >ไม่อนุมัติ</option>\n";
