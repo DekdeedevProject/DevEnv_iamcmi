@@ -138,7 +138,7 @@ $(function () {
 </script>
 
 <?php 
-include 'header.php'; 
+include 'header_create.php'; 
 
 $orgIDPK=1;		
 setOrgIDPK($orgIDPK);
@@ -704,7 +704,7 @@ $quoQueryResult = executeSql($conn,$sqlID);
 
 			<div class="row">
 				<div class="col-md-12" align="center">
-					<a href="home.php"><input type="button" class="btn btn-primary btn-md" name="btn" id="btn" value="Cancel"/></a>
+					<a href="policyS1_CreateCancle.php"><input type="button" class="btn btn-primary btn-md" name="btn" id="btn" value="Cancel"/></a>
 					<input type="Submit" class="btn btn-primary btn-md" name="btn" id="btn" value="Save"/>
 					<input type="Submit" class="btn btn-primary btn-md" name="btn" id="btn" value="Submit for Payment"/>
 

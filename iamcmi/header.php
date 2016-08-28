@@ -35,9 +35,21 @@ $conn 	= connOpen();
                         <div class="navbar-collapse collapse" data-scrollreveal="enter from the right 50px">
                             <ul class="nav navbar-nav">
                                 <li class=""><a href="home.php">Home</a></li><!-- menu links-->
-                                <li><a href="policyS1_Create.php">Create</a></li>  
-                                <li><a href="searchPolicy.php">Search</a></li>
-                                <li><a href="print.php">Print</a></li>
+                                <div class="dropdown">
+                                  <li class="dropbtn">Policy</li>
+                                      <div class="dropdown-content">
+                                        <a href="policyS1_Create">New Policy</a>
+                                        <a href="print.php">Print</a>
+                                      </div>
+                                </div>     
+                                <div class="dropdown">
+                                  <li class="dropbtn">Search</li>
+                                      <div class="dropdown-content">
+                                        <a href="searchPolicy.php">Policy Info.</a>
+                                        <a href="#">Payment Info.</a>
+                                        <a href="#">Agent Info.</a>
+                                      </div>
+                                </div>   
                                 <div class="dropdown">
                                   <li class="dropbtn">Administrator</li>
                                       <div class="dropdown-content">
