@@ -1,9 +1,17 @@
 <!DOCTYPE html>
+<?php include 'config/config.php'; ?>
+
 <html>
 <head>
 <!-- HEADER SECTION-->
-<?php include 'config/config.php'; ?>
 <title><?php echo $homeTitle; ?></title>
+
+<?php 
+include 'header.php'; 
+if(isset($_SESSION["polQuoNum"])){ 
+unset($_SESSION["polQuoNum"]);
+}
+?>
 
 <!-- <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
 <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css" /> -->
@@ -22,48 +30,44 @@
 <link href="../assets/plugins/bootstrap/bootstrap.css" rel="stylesheet" />
 <link href="../assets/css/about-achivements.css" rel="stylesheet" />
 <link id="mainStyle" href="../assets/css/style.css" rel="stylesheet" />
-
-<?php 
-include 'header.php'; 
-if(isset($_SESSION["polQuoNum"])){ 
-unset($_SESSION["polQuoNum"]);
-}
-?>
 <!-- END HEADER SECTION-->
 </head>
 <body>
-    <div class="container-fluid confDiv">
-        <br><br><br><br>
-        <section id="Homepage">
-            <div class="row">
-                <br><br>
-                <div data-scrollreveal="wait 0.5s and then ease-in-out 50px" class="col-md-6 col-md-offset-3" style="margin-bottom: 1.5em;">
-                    <div class="align-center">
-                        <h2 class="main-text">WELCOME TO IAMCMI</h2>
+        <div class="container-fluid confDiv">
+            <br><br><br><br>
+            <section id="Homepage">
+                <div class="row">
+                    <br><br>
+                    <div data-scrollreveal="wait 0.5s and then ease-in-out 50px" class="col-md-6 col-md-offset-3" style="margin-bottom: 1.5em;">
+                        <div class="align-center">
+                            <h2 class="main-text">WELCOME TO IAMCMI</h2>
 
+                        </div>
                     </div>
-                </div>
-            </div><br><br>
-            <div class="row">
-                <div data-scrollreveal="enter from the left" class="col-md-8 col-md-offset-4">
-                    <div>
-                        <div class="col-xl-12 col-md-12 homeIcon">
-                            <div class="col-xs-12 col-md-2 col-md-offset3">
-                                <a href="policyS1_Create.php" onMouseOver="document.MyImage1.src='../img/create-hover.png'; " onMouseOut="document.MyImage1.src='../img/create-icono.png';"><img src="../img/create-icono.png" width="120" height="120"  name="MyImage1"></a>
+                </div><br><br>
+                <div class="row">
+                    <div data-scrollreveal="enter from the left" class="col-md-8 col-md-offset-4">
+                        <div>
+                            <div class="col-xl-12 col-md-12 homeIcon">
+                                <div class="col-xs-12 col-md-2 col-md-offset3">
+                                    <a href="policyCreateStep1.php" onMouseOver="document.MyImage1.src='../img/create-hover.png'; " onMouseOut="document.MyImage1.src='../img/create-icono.png';"><img src="../img/create-icono.png" width="120" height="120"  name="MyImage1"></a>
+                                </div>
+                                <div class="col-xs-12 col-md-2">
+                                    <a href="searchPolicy.php" onMouseOver="document.MyImage2.src='../img/query-hover.png';" onMouseOut="document.MyImage2.src='../img/search-icono.png';"><img src="../img/search-icono.png" width="120" height="120" name="MyImage2"></a>
+                                </div>
+                                <div class="col-xs-12 col-md-2">
+                                    <a href="print.php" onMouseOver="document.MyImage3.src='../img/print-hover.png';" onMouseOut="document.MyImage3.src='../img/print-icono.png';"><img src="../img/print-icono.png" width="120" height="120" name="MyImage3"></a>
+                                </div>
+                                <br/>
                             </div>
-                            <div class="col-xs-12 col-md-2">
-                                <a href="searchPolicy.php" onMouseOver="document.MyImage2.src='../img/query-hover.png';" onMouseOut="document.MyImage2.src='../img/search-icono.png';"><img src="../img/search-icono.png" width="120" height="120" name="MyImage2"></a>
-                            </div>
-                            <div class="col-xs-12 col-md-2">
-                                <a href="print.php" onMouseOver="document.MyImage3.src='../img/print-hover.png';" onMouseOut="document.MyImage3.src='../img/print-icono.png';"><img src="../img/print-icono.png" width="120" height="120" name="MyImage3"></a>
-                            </div>
-                            <br/>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
-    </div>
+            </section>
+        </div>
+   
+     <!--END HOMEPAGE SECTION-->
+
 </body>
 <footer>
 <!-- FOOTER SECTION-->
