@@ -5,6 +5,7 @@
 <?php include 'config/config.php'; ?>
 <title><?php echo $policyIssue; ?></title>
 <!-- MAIN STYLE SECTION-->
+<link rel="stylesheet" href="../css/iamStyle.css">
 <link href="../assets/plugins/isotope/isotope.css" rel="stylesheet" media="screen" />
 <link href="../assets/plugins/fancybox/jquery.fancybox.css" rel="stylesheet" />
 <link href="../assets/plugins/IconHoverEffects-master/css/component.css" rel="stylesheet" />
@@ -34,7 +35,7 @@ include 'header.php';
 			</div>
 			<div class="row titleInsured">
 				<div class="col-md-12">
-					<div style="background-color: #EBECE4; height: 30px;">
+					<div style="display: -webkit-inline-box;padding-left: 5px;color: white;padding-top: 0.4em;">
 						<b>บันทึกข้อมูลกรรมธรรม์เรียบร้อย</b>
 					</div>
 				</div>
@@ -48,15 +49,19 @@ include 'header.php';
 				</div>
 			</div><br>
 				<div class="row">
-				<div class="col-md-12" align="center">
-					<form action="printPolicy.php" method="post">
-						<a href="policyS1_View.php"><button type="button" class="btn btn-primary btn-md">View Policy Info.</button></a>
-						<input type="hidden" id="policyNo" name="policyNo" value='<?php echo $_SESSION["polQuoNum"]; ?>'/>
-						<input type="submit" class="btn btn-primary btn-md" value="Print Policy">
-						<a href="#.php"><button type="button" class="btn btn-primary btn-md">Download</button></a>
-					</form>	
+					<div class="col-md-12" align="center">
+						<form action="printPolicy.php" method="post">
+							<a href="policyS1_View.php"><button type="button" class="btn btn-primary btn-md">View Policy Info.</button></a>
+							<input type="hidden" id="policyNo" name="policyNo" value='<?php echo $_SESSION["polQuoNum"]; ?>'/>
+							<input type="submit" class="btn btn-primary btn-md" value="Print Policy">
+							<a href="#.php"><button type="button" class="btn btn-primary btn-md">Download</button></a>
+						</form>	
+					</div>
 				</div>
-			</div>
+				<div class="row" style="height:14em;">
+					<div class="col-md-12" align="center">
+					</div>
+				</div>
 		</div>
 </body>	<br><br><br>
 <footer>
