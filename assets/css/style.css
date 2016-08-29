@@ -201,13 +201,13 @@ h1 a.navbar-brand {
     /*background-color:orange;*/
     display: block;
     position: relative;
-    padding-top: 5%;
+    padding-top: 7%;
     width: 100%;
 }
 
 
 .main-text {
-	font-size: 40px;
+	font-size: 5em;
 	font-weight: 900;
     color:#fff;
 }

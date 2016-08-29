@@ -50,13 +50,13 @@ unset($_SESSION["polQuoNum"]);
                         <div>
                             <div class="col-xl-12 col-md-12 homeIcon">
                                 <div class="col-xs-12 col-md-2 col-md-offset3">
-                                    <a href="policyS1_Create.php" onMouseOver="document.MyImage1.src='../img/create-hover.png'; " onMouseOut="document.MyImage1.src='../img/create-icono.png';"><img src="../img/create-icono.png" width="120" height="120"  name="MyImage1"></a>
+                                    <a href="policyS1_Create.php" onMouseOver="document.MyImage1.src='../img/create-hover.png'; " onMouseOut="document.MyImage1.src='../img/create-icono.png';"><img src="../img/create-icono.png" width="135" height="135"  name="MyImage1"></a>
                                 </div>
                                 <div class="col-xs-12 col-md-2">
-                                    <a href="searchPolicy.php" onMouseOver="document.MyImage2.src='../img/query-hover.png';" onMouseOut="document.MyImage2.src='../img/search-icono.png';"><img src="../img/search-icono.png" width="120" height="120" name="MyImage2"></a>
+                                    <a href="searchPolicy.php" onMouseOver="document.MyImage2.src='../img/query-hover.png';" onMouseOut="document.MyImage2.src='../img/search-icono.png';"><img src="../img/search-icono.png" width="135" height="135" name="MyImage2"></a>
                                 </div>
                                 <div class="col-xs-12 col-md-2">
-                                    <a href="print.php" onMouseOver="document.MyImage3.src='../img/print-hover.png';" onMouseOut="document.MyImage3.src='../img/print-icono.png';"><img src="../img/print-icono.png" width="120" height="120" name="MyImage3"></a>
+                                    <a href="print.php" onMouseOver="document.MyImage3.src='../img/print-hover.png';" onMouseOut="document.MyImage3.src='../img/print-icono.png';"><img src="../img/print-icono.png" width="135" height="135" name="MyImage3"></a>
                                 </div>
                                 <br/>
                             </div>
