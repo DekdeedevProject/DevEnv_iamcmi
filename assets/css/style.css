@@ -165,9 +165,8 @@ h1 a.navbar-brand {
 }
 
 .navbar-brand img {
-	vertical-align: middle;
-	width:120px; 
-    height:80px;
+    position: relative;
+    display: flex;
 }
 
 .navbar-toggle {
@@ -177,13 +176,16 @@ h1 a.navbar-brand {
 }
 
 .navbar-collapse.in {
-	margin-top: -5px !important;
+	margin-top: -20px !important;
+    overflow-y: inherit;
 }
 
 .logout{
-	font-size:10px; 
+	font-size:0.8em; 
 	height:45px;
 	color:#828282;
+	position: relative;
+    display: inline-flex;
 }
 
 .cld{
