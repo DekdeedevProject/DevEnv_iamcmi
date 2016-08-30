@@ -47,6 +47,11 @@ $agtCode=$row["AGT_Code"];
 $agtACCIDFK=$row["AGT_ACC_ID_FK"];
 $agtUpdatedDate=$row["AGT_UpdatedDate"];
 $agtUpdatedBy=$row["AGT_UpdatedBy"];
+$agtUpdatedDate=$row["AGT_UpdatedDate"];
+$agtUpdatedBy=$row["AGT_UpdatedBy"];
+
+$agtinfPERFname=$row["AGTINF_PER_Fname"];
+$agtinfPERLname=$row["AGTINF_PER_Lname"];
 
 $vehIDPK=$row["VEH_ID_PK"];
 $vehTARIDFK=$row["VEH_TAR_ID_FK"];
@@ -114,9 +119,9 @@ $premUpdatedDate=$row["PREM_UpdatedDate"];
 $premUpdatedBy=$row["PREM_UpdatedBy"];
 
 
-$PHD_perSaluIDPK=$row["PER_Salu_ID_PK"];
-$PHD_perSaluTH=$row["PER_Salu_TH"];
-$PHD_perSaluEN=$row["PER_Salu_EN"];
+// $PHD_perSaluIDPK=$row["PER_Salu_ID_PK"];
+$PHD_perSaluTH=$row["PHDSalu_PER_Salu_TH"];
+$PHD_perSaluEN=$row["PHDSalu_PER_Salu_EN"];
 
 $PHD_perIDPK=$row["PHD_PER_ID_PK"];
 $PHD_perSalu=$row["PHD_PER_Salu"];

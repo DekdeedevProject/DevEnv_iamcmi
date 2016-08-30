@@ -485,7 +485,7 @@ div.request {color: red;}
     <td colspan="3"><div class="request">
     <?php echo $agtCode; ?>
     <br>
-    [Item7-Agent Name?]
+    <?php echo $agtinfPERFname." ".$agtinfPERLname; ?>
     </div></td>
     <td ><div>
       ใบอนุญาตเลขที่

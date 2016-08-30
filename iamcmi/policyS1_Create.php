@@ -147,7 +147,7 @@ $orgResult 	= executeSql($conn,$sqlID);
 if($orgResult){
 setPolOrgIDFK($orgIDPK);	
 }
-
+$cond="";
 if(!isset($_SESSION["polQuoNum"])){ 
 // echo "<br>NEW FROM HOME PAGE<br>";
 $sqlID	= "PCS1_001";	
@@ -174,7 +174,7 @@ $polResult 	= executeSql($conn,$sqlID);
 		}
 
 		$sql = "SELECT *
-				FROM policyReserve
+				FROM policy_reserve
 				ORDER BY POL_RES_UpdatedDate DESC
 				LIMIT 1";
 		$qresult = $conn->query($sql);
@@ -192,14 +192,14 @@ $polResult 	= executeSql($conn,$sqlID);
 		$polOrgIDFK 	= $orgIDPK;
 
 		$sql = "SELECT *
-				FROM policyReserve
+				FROM policy_reserve
 				WHERE POL_RES_QuoNo='".$polQuoNum."'
 				"; 
 		$queryResult = $conn->query($sql);
 		if ( $queryResult == TRUE) {
 		   $queryResult = $queryResult->num_rows;
 		   if($queryResult==0){
-		   		$sql = "INSERT INTO policyReserve (POL_RES_QuoNo, POL_RES_UpdatedDate, POL_RES_UpdatedBy)
+		   		$sql = "INSERT INTO policy_reserve (POL_RES_QuoNo, POL_RES_UpdatedDate, POL_RES_UpdatedBy)
 						VALUES ('".$polQuoNum."', CURRENT_TIMESTAMP , '".$_SESSION["usrName"]."');"; 
 				$insertResult = $conn->query($sql);
 				if ($insertResult == TRUE) {
@@ -211,7 +211,7 @@ $polResult 	= executeSql($conn,$sqlID);
 		   else{
 		   	$_SESSION["polQuoNum"]				= getNewPolicyNo($orgPolPrefix, $orgPolLength, $polQuoNum);
 			echo $polQuoNum 		= $_SESSION["polQuoNum"];
-			$sql = "INSERT INTO policyReserve (POL_RES_QuoNo, POL_RES_UpdatedDate, POL_RES_UpdatedBy)
+			$sql = "INSERT INTO policy_reserve (POL_RES_QuoNo, POL_RES_UpdatedDate, POL_RES_UpdatedBy)
 						VALUES ('".$polQuoNum."', 'CURRENT_TIMESTAMP' , '".$_SESSION["usrName"]."');"; 
 				$insertResult = $conn->query($sql);
 				if ($insertResult == TRUE) {
@@ -274,7 +274,10 @@ $quoQueryResult = executeSql($conn,$sqlID);
 		}
 		}
 		else if($quoQueryResultSize==1){
+		$cond = "existing";	
+		
 		// echo "WHEN RECORDS HAS ALREADY SAVED OR SUBMITTED&BACK<br>";
+
 		$row 		= $quoQueryResult->fetch_assoc();
 		include 'config/condition/PCS_CON_002.php';
 		}
@@ -704,7 +707,13 @@ $quoQueryResult = executeSql($conn,$sqlID);
 
 			<div class="row">
 				<div class="col-md-12" align="center">
-					<a href="policyS1_CreateCancle.php"><input type="button" class="btn btn-primary btn-md" name="btn" id="btn" value="Cancel"/></a>
+					<?php
+						if($cond != "existing"){
+						?>	
+						<a href="policyS1_CreateCancle.php"><input type="button" class="btn btn-primary btn-md" name="btn" id="btn" value="Cancel"/></a>
+						<?php
+						}
+					?>
 					<input type="Submit" class="btn btn-primary btn-md" name="btn" id="btn" value="Save"/>
 					<input type="Submit" class="btn btn-primary btn-md" name="btn" id="btn" value="Submit for Payment"/>
 

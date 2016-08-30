@@ -24,7 +24,7 @@ $quoQueryResult = executeSql($conn,$sqlID);
 	if($quoQueryResult){
 	$quoQueryResultSize = $quoQueryResult->num_rows;
 		if($quoQueryResultSize==0){
-			echo $sql = "DELETE FROM policyReserve
+			echo $sql = "DELETE FROM policy_reserve
 					WHERE POL_RES_QuoNo='".$polQuoNum."';";
 			$qresult = $conn->query($sql);
 			if ( $qresult == TRUE) {

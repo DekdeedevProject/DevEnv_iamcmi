@@ -38,26 +38,34 @@ $conn 	= connOpen();
                                 <div class="dropdown">
                                   <li class="dropbtn">Policy</li>
                                       <div class="dropdown-content">
-                                        <a href="policyS1_Create">New Policy</a>
-                                        <a href="print.php">Print</a>
+                                        <a href="policyS1_Create.php">New Policy</a>
+                                        <a href="print.php">Print Policy Schedule</a>
                                       </div>
                                 </div>     
                                 <div class="dropdown">
                                   <li class="dropbtn">Search</li>
                                       <div class="dropdown-content">
-                                        <a href="searchPolicy.php">Policy Info.</a>
-                                        <a href="#">Payment Info.</a>
-                                        <a href="#">Agent Info.</a>
+                                        <a href="searchPolicy.php">Policy</a>
+                                        <a href="searchPayment.php">Payment</a>
+                                        <a href="searchAgent.php">Agent</a>
                                       </div>
                                 </div>   
+                              <?php
+                                if (isset($_SESSION["usrRole"])&&$_SESSION["usrRole"]=="Admin") {
+                              ?>
                                 <div class="dropdown">
                                   <li class="dropbtn">Administrator</li>
                                       <div class="dropdown-content">
-                                        <a href="#">Link 1</a>
-                                        <a href="#">Link 2</a>
-                                        <a href="#">Link 3</a>
+                                        <a href="#">Config Agent</a>
+                                        <a href="#">Config Tariff</a>
+                                        <a href="#">Config Product</a>
+                                        <a href="#">Config Etc.</a>
                                       </div>
-                                </div>                              
+                                </div>   
+                              <?php
+                                } 
+                              ?>  
+                                                           
                             </ul>
                         </div>
                   </div>

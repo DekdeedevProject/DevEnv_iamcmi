@@ -145,15 +145,16 @@ $sql="";
 	case 'PCS1_003':
 	$polQuoNum = $GLOBALS['polQuoNum'];
 	// echo "<br>PCS1_003<br>";
-	$sql = "SELECT 
-				policy.*,
+	$sql = "SELECT policy.*,
 				organization.*,
 				t_status.*,
 				agent.*,
+				AGTINF.PER_Salu as AGTINF_PER_Salu,
+				AGTINF.PER_Fname as AGTINF_PER_Fname,
+	   			AGTINF.PER_Lname as AGTINF_PER_Lname,
 				vehical.*,
 				t_redbook.*,
 				premium.*,
-				t_perSaluType.*,
 				PHD.PER_ID_PK	 as 	PHD_PER_ID_PK,
 				PHD.PER_Salu	 as 	PHD_PER_Salu,
 				PHD.PER_FName	 as 	PHD_PER_FName,
@@ -165,6 +166,10 @@ $sql="";
 				PHD.PER_ExpDate	 as 	PHD_PER_ExpDate,
 				PHD.PER_UpdatedDate	 as 	PHD_PER_UpdatedDate,
 				PHD.PER_UpdatedBy as 	PHD_PER_UpdatedBy,
+
+
+				PHDSalu.PER_Salu_TH as PHDSalu_PER_Salu_TH  ,
+				PHDSalu.PER_Salu_EN as PHDSalu_PER_Salu_EN  ,
 
 				PHDA.ADDR_ID_PK	 as 	PHD_ADDR_ID_PK,
 				PHDA.ADDR_Line1	 as 	PHD_ADDR_Line1,
@@ -191,6 +196,10 @@ $sql="";
 				ON POL_Status_ID_FK=STA_ID_PK
 			INNER JOIN agent
 				ON POL_AGT_ID_FK=AGT_ID_PK
+			INNER JOIN account
+				ON AGT_ACC_ID_FK=ACC_ID_PK
+			INNER JOIN personal as AGTINF
+				ON ACC_PER_ID_FK=AGTINF.PER_ID_PK	
 			INNER JOIN vehical 
 				ON POL_VEH_ID_FK=VEH_ID_PK	
 			INNER JOIN t_redbook
@@ -207,8 +216,8 @@ $sql="";
 				ON PHDA.ADDR_Dist=PHDAdist.DISTRICT_ID	
 			INNER JOIN t_provinces	as PHDAprov
 				ON PHDA.ADDR_Prov=PHDAprov.PROVINCE_ID	
-			INNER JOIN t_perSaluType
-				ON PER_Salu=PER_Salu_ID_PK		
+			INNER JOIN t_perSaluType as PHDSalu
+				ON PHDSalu.PER_Salu_ID_PK=PHD.PER_Salu		
 			WHERE POL_QuoNum='".$polQuoNum."';";
 	break;
 	case 'PSS1_001':
