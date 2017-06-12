@@ -34,16 +34,18 @@ $conn 	= connOpen();
                         </div>              
                         <div class="navbar-collapse collapse" data-scrollreveal="enter from the right 50px">
                             <ul class="nav navbar-nav">
-                                <li class=""><a href="home.php">Home</a></li><!-- menu links-->
                                 <div class="dropdown">
-                                  <li class="dropbtn">Policy</li>
+                                <li class="dropbtn"><a href="home.php">Home</a></li>
+                                </div>     
+                                <div class="dropdown">
+                                  <li class="dropbtn">| Policy</li>
                                       <div class="dropdown-content">
                                         <a href="policyS1_Create.php">New Policy</a>
                                         <a href="print.php">Print Policy Schedule</a>
                                       </div>
                                 </div>     
                                 <div class="dropdown">
-                                  <li class="dropbtn">Search</li>
+                                  <li class="dropbtn">| Search</li>
                                       <div class="dropdown-content">
                                         <a href="searchPolicy.php">Policy</a>
                                         <a href="searchPayment.php">Payment</a>
@@ -54,12 +56,13 @@ $conn 	= connOpen();
                                 if (isset($_SESSION["usrRole"])&&$_SESSION["usrRole"]=="Admin") {
                               ?>
                                 <div class="dropdown">
-                                  <li class="dropbtn">Administrator</li>
+                                  <li class="dropbtn">| Admin</li>
                                       <div class="dropdown-content">
                                         <a href="#">Config Agent</a>
                                         <a href="#">Config Tariff</a>
                                         <a href="#">Config Product</a>
-                                        <a href="#">Config Etc.</a>
+                                        <a href="configOrganization.php">Config Organization</a>
+                                        <a href="FalomTestCode.php">Falom Test Code</a>
                                       </div>
                                 </div>   
                               <?php

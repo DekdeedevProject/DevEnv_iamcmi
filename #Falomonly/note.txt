@@ -1,0 +1,2 @@
+// Create Drop Stored Procedure
+DROP PROCEDURE IF EXISTS test_droppro;

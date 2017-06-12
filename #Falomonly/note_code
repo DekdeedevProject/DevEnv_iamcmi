@@ -1,0 +1,81 @@
+$(document).ready(function(){
+$("#btn").click(function(){
+var vorgShortName = $("#orgShortName").val();
+var vorgPolPrefix = $("#orgPolPrefix").val();
+// alert(vorgShortName)
+if(vorgShortName==''  && vorgPolPrefix==''  )
+
+alert("Please fill out the form")
+
+else{
+$.post("configOrgUpdate.php", //Required URL of the page on server
+{ // Data Sending With Request To Server
+orgShortName:vorgShortName,
+orgPolPrefix:vorgPolPrefix
+},
+function(response,status){ // Required Callback Function
+alert("*----Received Data----*\n\nResponse : " + response+"\n\nStatus : " + status);//"response" receives - whatever written in echo of above PHP script.
+$("#form")[0].reset();
+
+});
+}
+});
+});
+
+
+function saveCaRequest(next) { 
+  var num = next; 
+  alert('SaveCARequest') 
+  try { 
+   var data = {} 
+   data["caRunNo"] = $("#lblCaNo").text(); 
+   data["codEmpId"] = $("#lblEmpId").text(); 
+   data["namEmPt"] = $("#lblEmpName").text(); 
+   data["grpId"] = $("#ddlCaList").val(); 
+   data["objective"] = $("#inputCaObj").val(); 
+   data["startDate"] = $("#txtStartDate").val(); 
+   data["endDate"] = $("#txtEndDate").val(); 
+   data["dueDateReq"] = $("#ddlDueDate").val(); 
+   data["codComp"] = $("#ddlCompany" + num).val(); 
+   data["amount"] = $("#inputCaAmount" + num).val(); 
+   data["codCompReqNew"] = $("#lblCodComp").text(); 
+   data["codOrgNew"] = $("#lblCodCompany1").text(); 
+   data["updateBy"] = $("#lblEmpId").text(); 
+   data["status"] = "01"; 
+   if (document.getElementById('inputAcceptCond').checked) { 
+    data["acceptCond"] = document.getElementById('inputAcceptCond').value; 
+   } 
+ 
+// alert($("#txtStartDate").val()+"objective : "+$("#inputCaObj").val()+"FromCompany : " 
+// +$("#ddlCompany"+num).val()+"Amount : "+$("#inputCaAmount"+num).val()) 
+ 
+   jQuery.ajax({ 
+    url : 'caSaveRequest', 
+    type : "Post", 
+    contentType : "application/json", 
+    data : JSON.stringify(data), 
+    dataType : 'json', 
+    success : function(obj) { 
+     if (obj.success == 1) { 
+      ShowSuccessMsg('0003', obj.message); 
+     } else { 
+      ShowErrorMsg('00022', obj.message); 
+     } 
+    } 
+   }); 
+ 
+  } catch (ex) { 
+   HideWaiting(); 
+   ShowErrorMsg('0006', ex); 
+  } 
+ 
+ }
+
+
+ $(document).ready(function(){
+
+   // jQuery methods go here...
+   //# for id , no # for tag e.g. <p>, . for class
+   ref.https://www.w3schools.com/jquery/jquery_selectors.asp
+
+});
