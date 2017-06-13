@@ -34,7 +34,10 @@ $data           = array();      // array to pass back data
         $errors['orgShortName'] = 'Name is required.';
 
     if (empty($_POST['orgPolPrefix']))
-        $errors['orgPolPrefix'] = 'Email is required.';
+        $errors['orgPolPrefix'] = 'Prefix is required.';
+
+    if (empty($_POST['orgPolLength']))
+        $errors['orgPolLength'] = 'Length is required.';
 
 // return a response ===========================================================
 
@@ -50,13 +53,20 @@ $data           = array();      // array to pass back data
 
         // DO ALL YOUR FORM PROCESSING HERE
         // THIS CAN BE WHATEVER YOU WANT TO DO (LOGIN, SAVE, UPDATE, WHATEVER)
-        echo $_POST['orgIDPK'];
-    	$sql = "CALL updateOrg(".$_POST['orgIDPK'].");";
-		$result = $conn->query($sql);
+        if($_POST['btn']=="insert"){
+            $sql = "CALL updateOrg(1,".$_POST['orgIDPK'].",'".$_POST['orgShortName']."','".$_POST['orgPolPrefix']."',".$_POST['orgPolLength'].");";
+        }
+        else if($_POST['btn']=="remove"){
+            $sql = "CALL updateOrg(2,".$_POST['orgIDPK'].",'','',0);";
+        }
+        else if($_POST['btn']=="edit"){
+            
+        }
+        else{
+            $sql = "";
+        }
 
-		if(!$result){
-			echo "error was found";
-		}
+		$result = $conn->query($sql);
 
         // show a message of success and provide a true success variable
         $data['success'] = true;
@@ -64,7 +74,8 @@ $data           = array();      // array to pass back data
     }
 
     // return all our data to an AJAX call
-    echo json_encode($data);
+    // echo json_encode($data);
+    json_encode($data);
     redirect("configOrganization.php");
 
 connClose($conn);

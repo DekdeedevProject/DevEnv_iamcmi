@@ -24,6 +24,7 @@ $(document).ready(function(){
             'orgIDPK'                  : $('input[name=orgIDPK]').val(),
             'orgShortName'             : $('input[name=orgShortName]').val(),
             'orgPolPrefix'             : $('input[name=orgPolPrefix]').val(),
+            'orgPolLength'             : $('input[name=orgPolLength]').val(),
         };
           // process the form
         $.ajax({
@@ -74,16 +75,22 @@ $(document).ready(function(){
   	while($resultRow = $result->fetch_assoc()) {
   	echo"
   	<tr>
+      <form id='form' action='configOrgUpdate.php' method='POST'>
+      <input type='hidden' name='orgIDPK' value='".$resultRow["ORG_ID_PK"]."'>
+      <input type='hidden' name='orgShortName' value='".$resultRow["ORG_ShortName"]."'>
+      <input type='hidden' name='orgPolPrefix' value='".$resultRow["ORG_PolPrefix"]."'>
+      <input type='hidden' name='orgPolLength' value='".$resultRow["ORG_PolLength"]."'>
 	    <td>".$resultNo++."</td>
 	    <td>".$resultRow["ORG_ShortName"]."</td>
 	    <td>".$resultRow["ORG_PolPrefix"]."</td>
   		<td>".$resultRow["ORG_PolLength"]."</td>
   		<td>".$resultRow["ORG_UpdateDate"]."</td>
   		<td>
-    			<a href='#'><img src='../assets/img/config_edit.png' alt='Edit' width='30' height='30' border='0'></a>
+    			<button name='btn' id='btn' value='edit'><a href='#'><img src='../assets/img/config_edit.png' alt='Edit' width='30' height='30' border='0'></a></button>
    	  <td>
-    			<a href='#'><img src='../assets/img/config_remove.png' alt='Remove' width='30' height='30' border='0'></a>
+    			<button name='btn' id='btn' value='remove'><a href='#'><img src='../assets/img/config_remove.png' alt='Remove' width='30' height='30' border='0'></a></button>
   		</td>
+      </form>
 	   </tr>
   	";
       $resultID = $resultRow["ORG_ID_PK"]+1;
@@ -98,12 +105,12 @@ $(document).ready(function(){
   	<form id="form" action="configOrgUpdate.php" method="POST">
     <td><?php echo $resultNo++; ?></td>
     <input type="hidden" name="orgIDPK" value="<?php echo $resultID; ?>">
-    <td><div id="orgShortNamediv"><input type="text" name="orgShortName" id="orgShortName" placeholder="Short Name"></div></td>
-    <td><div id="orgPolPrefixdiv"><input type="text" name="orgPolPrefix" id="orgPolPrefix" placeholder="Prefix"></div></td>
-    <td><input type="text" name="#"></td>
+    <td><input type="text" name="orgShortName" id="orgShortName" placeholder="Short Name" required></td>
+    <td><input type="text" name="orgPolPrefix" id="orgPolPrefix" placeholder="Prefix" required></td>
+    <td><input name="orgPolLength" id="orgPolLength" type="number" min="0" max="10" required></td>
     <td><input type="text" name="#"></td>
   	<td>
-      <button id="btn" ><img src="../assets/img/config_add.png" alt="Add" width="30" height="30" border="0"></button>
+      <button name="btn" id="btn" value="insert"><img src="../assets/img/config_add.png" alt="Add" width="30" height="30" border="0"></button>
 	  </td>
   	<td>
   		<a href="#"><img src="../assets/img/config_reset.png" alt="Reset" width="30" height="30" border="0"></a>
