@@ -31,13 +31,22 @@ $data           = array();      // array to pass back data
         $errors['orgIDPK'] = 'ID is duplicated.';
 
     if (empty($_POST['orgShortName']))
-        $errors['orgShortName'] = 'Name is required.';
+        $errors['orgShortName'] = 'Short Name is required.';
+
+    if (empty($_POST['orgLongNameTH']))
+        $errors['orgLongNameTH'] = 'Long Name is required.';
 
     if (empty($_POST['orgPolPrefix']))
         $errors['orgPolPrefix'] = 'Prefix is required.';
 
     if (empty($_POST['orgPolLength']))
         $errors['orgPolLength'] = 'Length is required.';
+
+    if (empty($_POST['orgReservedFrom']))
+        $errors['orgReservedFrom'] = 'Observe from is required.';
+
+    if (empty($_POST['orgReservedTo']))
+        $errors['orgReservedTo'] = 'Observe To is required.';
 
 // return a response ===========================================================
 
@@ -47,26 +56,44 @@ $data           = array();      // array to pass back data
         // if there are items in our errors array, return those errors
         $data['success'] = false;
         $data['errors']  = $errors;
+
     } else {
 
         // if there are no errors process our form, then return a message
 
         // DO ALL YOUR FORM PROCESSING HERE
         // THIS CAN BE WHATEVER YOU WANT TO DO (LOGIN, SAVE, UPDATE, WHATEVER)
+        echo $_POST['btn'];
         if($_POST['btn']=="insert"){
-            $sql = "CALL updateOrg(1,".$_POST['orgIDPK'].",'".$_POST['orgShortName']."','".$_POST['orgPolPrefix']."',".$_POST['orgPolLength'].");";
+            $sql = "CALL updateOrg(1,
+                ".$_POST['orgIDPK'].",
+                '".$_POST['orgShortName']."',
+                '".$_POST['orgLongNameTH']."',
+                '".$_POST['orgLongNameEN']."',
+                '".$_POST['orgPolPrefix']."',
+                ".$_POST['orgPolLength'].",
+                '".$_POST['orgReservedFrom']."',
+                '".$_POST['orgReservedTo']."');";
         }
         else if($_POST['btn']=="remove"){
-            $sql = "CALL updateOrg(2,".$_POST['orgIDPK'].",'','',0);";
+            $sql = "CALL updateOrg(2,".$_POST['orgIDPK'].",'','','','',0,'','');";
         }
-        else if($_POST['btn']=="edit"){
-            
+        else if($_POST['btn']=="save"){
+            $sql = "CALL updateOrg(3,
+                ".$_POST['orgIDPK'].",
+                '".$_POST['orgShortName']."',
+                '".$_POST['orgLongNameTH']."',
+                '".$_POST['orgLongNameEN']."',
+                '".$_POST['orgPolPrefix']."',
+                ".$_POST['orgPolLength'].",
+                '".$_POST['orgReservedFrom']."',
+                '".$_POST['orgReservedTo']."');";
         }
         else{
             $sql = "";
         }
 
-		$result = $conn->query($sql);
+		echo $result = $conn->query($sql);
 
         // show a message of success and provide a true success variable
         $data['success'] = true;
