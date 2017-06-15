@@ -60,7 +60,7 @@ $(document).ready(function(){
 </head>
 <body>
 
-<h1>Config <span>Organization Information</span></h1>
+<h1>Setup <span>Organization Information</span></h1>
 
 <table class="responstable">
   
@@ -129,13 +129,12 @@ $(document).ready(function(){
             <td><input name='orgPolPrefix' id='orgPolPrefix' value='".$resultRow["ORG_PolPrefix"]."' required></td>
             <td><input name='orgPolLength' id='orgPolLength' type='number' min='0' max='10' value='".$resultRow["ORG_PolLength"]."' required></td>
             <td><input name='orgReservedFrom' id='orgReservedFrom' value='".$resultRow["ORG_ReservedFrom"]."' required></td>
-            <td><input name='orgReservedTo' id='orgReservedTo' value='".$resultRow["ORG_ShortName"]."' required></td>
+            <td><input name='orgReservedTo' id='orgReservedTo' value='".$resultRow["ORG_ReservedTo"]."' required></td>
             <td>  
-            <button name='btn' id='btn' value='save'><a href='#'><img src='#.png' alt='Cancel' width='30' height='30' border='0'></a></button>
+            <button name='btn' id='btn' value='save'><a href='#'><img src='../assets/img/config_save.png' alt='Cancel' width='30' height='30' border='0'></a></button>
             </form>
-            <br/>
             <a href='configOrganization.php'>
-            <img src='#.png' alt='Cancel' width='30' height='30' border='0'>
+            <img src='../assets/img/config_cancel.png' alt='Cancel' width='50' height='50' border='0'>
             </a>
             </td>
             <td></td>

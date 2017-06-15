@@ -48,6 +48,55 @@ $data           = array();      // array to pass back data
     if (empty($_POST['orgReservedTo']))
         $errors['orgReservedTo'] = 'Observe To is required.';
 
+    if (!empty($_POST['orgPolPrefix']) && !empty($_POST['orgReservedFrom']) && !empty($_POST['orgReservedTo'])){
+        $c_orgPolPrefix = trim($_POST['orgPolPrefix']);
+        $c_orgReservedFrom = trim($_POST['orgReservedFrom']);
+        $c_orgReservedTo = trim($_POST['orgReservedTo']);
+
+        $c_orgReservedFrom_substr = substr($c_orgReservedFrom,0,strlen($c_orgPolPrefix));
+        $c_orgReservedTo_substr = substr($c_orgReservedTo,0,strlen($c_orgPolPrefix));
+
+        if(substr_compare(
+                $c_orgReservedFrom_substr,
+                $c_orgPolPrefix,
+                0))
+           $errors['orgReservedFrom'] = 'ReservedFrom is not matched with Prefix.';
+
+        if(substr_compare(
+                $c_orgReservedTo_substr,
+                $c_orgPolPrefix,
+                0))
+           $errors['orgReservedTo'] = 'ReservedTo is not matched with Prefix.';
+
+        if(!substr_compare(
+                $c_orgReservedFrom_substr,
+                $c_orgPolPrefix,
+                0) &&
+            !substr_compare(
+                $c_orgReservedTo_substr,
+                $c_orgPolPrefix,
+                0)){
+            echo (int)$c_orgReservedFrom_substr = substr($c_orgReservedFrom,strlen($c_orgPolPrefix)+1,strlen($c_orgReservedFrom));
+            echo (int)$c_orgReservedTo_substr = substr($c_orgReservedTo,strlen($c_orgPolPrefix)+1,strlen($c_orgReservedTo));
+
+            if($c_orgReservedFrom_substr >= $c_orgReservedTo_substr) 
+                $errors['orgReservedFrom'] = 'ReservedFrom is equal or more than ReservedTo.';
+        }
+    }
+
+    if (!empty($_POST['orgPolLength']) && !empty($_POST['orgReservedFrom']) && !empty($_POST['orgReservedTo'])){
+        $c_orgPolLength = trim($_POST['orgPolLength']);
+        $c_orgReservedFrom = trim($_POST['orgReservedFrom']);
+        $c_orgReservedTo = trim($_POST['orgReservedTo']);
+        
+        if(strlen($c_orgReservedFrom) != $c_orgPolLength)
+           $errors['orgReservedFrom'] = 'ReservedFrom Length is not matched.';
+        
+         if(strlen($c_orgReservedTo) != $c_orgPolLength)
+           $errors['orgReservedTo'] = 'Length is not matched.';
+
+    }
+
 // return a response ===========================================================
 
     // if there are any errors in our errors array, return a success boolean of false
@@ -66,34 +115,34 @@ $data           = array();      // array to pass back data
         echo $_POST['btn'];
         if($_POST['btn']=="insert"){
             $sql = "CALL updateOrg(1,
-                ".$_POST['orgIDPK'].",
-                '".$_POST['orgShortName']."',
-                '".$_POST['orgLongNameTH']."',
-                '".$_POST['orgLongNameEN']."',
-                '".$_POST['orgPolPrefix']."',
-                ".$_POST['orgPolLength'].",
-                '".$_POST['orgReservedFrom']."',
-                '".$_POST['orgReservedTo']."');";
+                ".trim($_POST['orgIDPK']).",
+                '".trim($_POST['orgShortName'])."',
+                '".trim($_POST['orgLongNameTH'])."',
+                '".trim($_POST['orgLongNameEN'])."',
+                '".trim($_POST['orgPolPrefix'])."',
+                ".trim($_POST['orgPolLength']).",
+                '".trim($_POST['orgReservedFrom'])."',
+                '".trim($_POST['orgReservedTo'])."');";
         }
         else if($_POST['btn']=="remove"){
             $sql = "CALL updateOrg(2,".$_POST['orgIDPK'].",'','','','',0,'','');";
         }
         else if($_POST['btn']=="save"){
             $sql = "CALL updateOrg(3,
-                ".$_POST['orgIDPK'].",
-                '".$_POST['orgShortName']."',
-                '".$_POST['orgLongNameTH']."',
-                '".$_POST['orgLongNameEN']."',
-                '".$_POST['orgPolPrefix']."',
-                ".$_POST['orgPolLength'].",
-                '".$_POST['orgReservedFrom']."',
-                '".$_POST['orgReservedTo']."');";
+                ".trim($_POST['orgIDPK']).",
+                '".trim($_POST['orgShortName'])."',
+                '".trim($_POST['orgLongNameTH'])."',
+                '".trim($_POST['orgLongNameEN'])."',
+                '".trim($_POST['orgPolPrefix'])."',
+                ".trim($_POST['orgPolLength']).",
+                '".trim($_POST['orgReservedFrom'])."',
+                '".trim($_POST['orgReservedTo'])."');";
         }
         else{
             $sql = "";
         }
 
-		echo $result = $conn->query($sql);
+		$result = $conn->query($sql);
 
         // show a message of success and provide a true success variable
         $data['success'] = true;
@@ -101,9 +150,9 @@ $data           = array();      // array to pass back data
     }
 
     // return all our data to an AJAX call
-    // echo json_encode($data);
-    json_encode($data);
-    redirect("configOrganization.php");
+    echo json_encode($data);
+    // json_encode($data);
+    // redirect("configOrganization.php");
 
 connClose($conn);
 ?>
